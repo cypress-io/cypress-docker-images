@@ -11,14 +11,18 @@ Docker hub: [cypress/base](https://hub.docker.com/r/cypress/base/)
 
 ## Example
 
-Example user Dockerfile
+Example user [test/Dockerfile](test/Dockerfile)
 
 ```
 FROM cypress/base
-RUN npm install -g cypress
+RUN npm install -g cypress-cli
 RUN cypress install
-RUN cypress --run ...
+RUN cypress verify
+RUN cypress run
 ```
+
+See example [test/test.sh](test/test.sh) that runs Cypress inside a container
+against mounted volume with E2E tests
 
 ## Other images
 

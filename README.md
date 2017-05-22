@@ -19,4 +19,10 @@ RUN cypress --run ...
 ## Other images
 
 We have a few other *strictly internal* images built from this repo. These
-images are used to test Cypress tools on CI.
+images are used to test Cypress tools on CI. For example, we have an image
+based on `cypress/base` with Chrome browser installed.
+
+```sh
+$ docker run cypress/internal:chrome58 chrome --version
+Google Chrome 58.0.3029.110
+```

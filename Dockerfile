@@ -9,3 +9,8 @@ RUN apt-get update && \
     libxss1 \
     xvfb
 
+# run as non-root user inside the docker container
+# first add a new group "qa"
+RUN groupadd -r qa && useradd -m -r -g qa cypress
+# now run as new user "cypress" from group "qa"
+USER cypress

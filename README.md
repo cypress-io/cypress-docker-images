@@ -9,6 +9,9 @@ Just run your Docker image from `cypress/base` and you should be good to go!
 
 Docker hub: [cypress/base](https://hub.docker.com/r/cypress/base/)
 
+Note that inside the container we create a group "qa" and a new user "cypress".
+All commands after that should run as `qa/cypress` user for additional security.
+
 ## Example
 
 Example user [test/Dockerfile](test/Dockerfile)

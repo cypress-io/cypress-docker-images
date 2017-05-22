@@ -9,5 +9,7 @@ RUN \
 
 RUN google-chrome --version
 
-# TODO link chrome including "--disable-gpu" and "--no-sandbox" options
-RUN ln -s google-chrome /usr/bin/chrome
+# Run Google Chrome with certain additional CLI options
+ADD chrome.sh /usr/bin/chrome
+
+RUN chrome --version

@@ -1,4 +1,2 @@
-#!/bin/bash
-set -e
-
-google-chrome --disable-gpu --no-sandbox $@
+#!/bin/sh
+google-chrome --disable-gpu --no-sandbox "$@"

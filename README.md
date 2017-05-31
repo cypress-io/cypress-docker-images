@@ -44,6 +44,9 @@ Google Chrome 58.0.3029.110
 Internal tags on Docker hub:
 [cypress/internal/tags](https://hub.docker.com/r/cypress/internal/tags/)
 
+For increased security the `cypress/internal` images create separate non-root
+user called `person`.
+
 ## Building Docker Hub
 
 1. Open Docker hub build settings page, for example

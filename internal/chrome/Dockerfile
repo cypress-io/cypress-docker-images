@@ -17,3 +17,14 @@ RUN chrome --version
 # "fake" dbus address to prevent errors
 # https://github.com/SeleniumHQ/docker-selenium/issues/87
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
+
+# run as non-root user inside the docker container
+# see https://vimeo.com/171803492 at 17:20 mark
+RUN groupadd -r regular-users && useradd -m -r -g regular-users person
+# now run as the new "non-root" user
+USER person
+
+# test the new user - can they access Chrome and Node?
+RUN ls /home
+RUN node --version
+RUN chrome --version

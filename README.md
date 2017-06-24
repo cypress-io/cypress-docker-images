@@ -53,7 +53,7 @@ user called `person`.
   [cypress/internal](https://hub.docker.com/r/cypress/internal/~/settings/automated-builds/)
 2. Click "Trigger" button next to the tag you would like to build
 
-![Trigger buttons](images/docker-hub-build.png)
+![Trigger buttons](screenshots/docker-hub-build.png)
 
 Then look at "Build Details" tab to see the build progress, usually takes a
 few minutes to finish.

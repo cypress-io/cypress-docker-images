@@ -7,4 +7,5 @@ RUN apt-get update && \
     libgconf-2-4 \
     libnss3 \
     libxss1 \
+    libasound2 \
     xvfb

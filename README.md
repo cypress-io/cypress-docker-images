@@ -1,5 +1,7 @@
 > Docker image with Cypress dependencies
 
+[![Docker Build Status](https://img.shields.io/docker/build/cypress/base.svg)](https://hub.docker.com/r/cypress/base/)
+
 If you want to install and run Cypress.io inside your Docker container,
 we have prepared an image with Node, XVFB and other
 [Cypress dependencies][cy deps].

@@ -18,6 +18,8 @@ RUN chrome --version
 # https://github.com/SeleniumHQ/docker-selenium/issues/87
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
+RUN apt-get update && apt-get install -y zip
+
 # run as non-root user inside the docker container
 # see https://vimeo.com/171803492 at 17:20 mark
 RUN groupadd -r regular-users && useradd -m -r -g regular-users person

@@ -14,6 +14,11 @@ Docker hub: [cypress/base](https://hub.docker.com/r/cypress/base/)
 Note that inside the container we create a group "qa" and a new user "cypress".
 All commands after that should run as `qa/cypress` user for additional security.
 
+## Tags
+
+* `:6` - built on top of Node 6 image
+* `:8` - built on top of Node 8 image
+
 ## Example
 
 Example user [test/Dockerfile](test/Dockerfile)

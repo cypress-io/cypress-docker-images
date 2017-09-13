@@ -16,21 +16,21 @@ All commands after that should run as `qa/cypress` user for additional security.
 
 ## Tags
 
-* `:0.12` - built on top of Node 0.12 image
 * `:4` - built on top of Node 4 image
 * `:6` - built on top of Node 6 image
 * `:8` - built on top of Node 8 image
 
+**note:** Node 0.12 is no longer supported by the Cypress install and should not be used.
+
 ## Example
 
-Example user [test/Dockerfile](test/Dockerfile)
+Example user [test/Dockerfile](test/Dockerfile) with Cypress version > 0.20.0 install.
 
 ```
 FROM cypress/base
-RUN npm install -g cypress-cli
-RUN cypress install
-RUN cypress verify
-RUN cypress run
+RUN npm install --save-dev cypress
+RUN $(npm bin)/cypress verify
+RUN $(npm bin)/cypress run
 ```
 
 See example [test/test.sh](test/test.sh) that runs Cypress inside a container

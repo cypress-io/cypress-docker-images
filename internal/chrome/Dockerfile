@@ -1,5 +1,7 @@
 FROM cypress/base
 
+RUN echo "force new chrome"
+
 RUN \
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
   echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
@@ -30,3 +32,4 @@ USER person
 RUN ls /home
 RUN node --version
 RUN chrome --version
+RUN zip --version

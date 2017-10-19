@@ -36,7 +36,14 @@ RUN $(npm bin)/cypress run
 See example [test/test.sh](test/test.sh) that runs Cypress inside a container
 against mounted volume with E2E tests
 
-## Other images
+## CI Example
+
+- [CircleCI example](https://github.com/cypress-io/cypress-example-docker-circle), see
+  how `cypress/base` image is used in the 
+  [circle.yml](https://github.com/cypress-io/cypress-example-docker-circle/blob/master/circle.yml)
+  file.
+
+## Other Images
 
 We have a few other *strictly internal* images built from this repo. These
 images are used to test Cypress tools on CI and are not guaranteed to work

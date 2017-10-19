@@ -39,30 +39,9 @@ against mounted volume with E2E tests
 ## Other images
 
 We have a few other *strictly internal* images built from this repo. These
-images are used to test Cypress tools on CI. They are labeled usually by
-the additional feature included.
+images are used to test Cypress tools on CI and are not guaranteed to work
+long term.
 
-For example, we have an image based on `cypress/base` with Chrome browser
-installed tagged `chrome58`.
+## Docker hub
 
-```sh
-$ docker run cypress/internal:chrome58 chrome --version
-Google Chrome 58.0.3029.110
-```
-
-Internal tags on Docker hub:
-[cypress/internal/tags](https://hub.docker.com/r/cypress/internal/tags/)
-
-For increased security the `cypress/internal` images create separate non-root
-user called `person`.
-
-## Building Docker Hub
-
-1. Open Docker hub build settings page, for example
-  [cypress/internal](https://hub.docker.com/r/cypress/internal/~/settings/automated-builds/)
-2. Click "Trigger" button next to the tag you would like to build
-
-![Trigger buttons](screenshots/docker-hub-build.png)
-
-Then look at "Build Details" tab to see the build progress, usually takes a
-few minutes to finish.
+[Docker hub notes](docker-hub.md) for Cypress developers

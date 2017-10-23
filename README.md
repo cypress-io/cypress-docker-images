@@ -24,8 +24,8 @@ All commands after that should run as `qa/cypress` user for additional security.
 
 ## Browsers
 
-We build an image with Chrome browser included. Based on `cypress/base:6` it is called
-`cypress/browser:chrome62`
+We build an image with Chrome browser included. The image is based on `cypress/base:6` 
+and is called `cypress/browsers:chrome62`.
 
 ## Example
 

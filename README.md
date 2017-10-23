@@ -39,6 +39,7 @@ See example [test/test.sh](test/test.sh) that runs Cypress inside a container ag
 
 We also build an image with a [Chrome browser included](browser/chrome/Dockerfile). The image is based on `cypress/base:6` and is called `cypress/browsers:chrome62`. With this image you can install Cypress and test using `cypress run --browser chrome`.
 
-## Docker hub
+## Links
 
-[Docker hub notes](docker-hub.md) for Cypress developers
+* [cypress.io](https://www.cypress.io/)
+* [Cypress docs](https://on.cypress.io/)

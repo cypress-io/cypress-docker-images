@@ -22,11 +22,6 @@ All commands after that should run as `qa/cypress` user for additional security.
 
 **note:** Node 0.12 is no longer supported by the Cypress install and should not be used.
 
-## Browsers
-
-We build an image with Chrome browser included. The image is based on `cypress/base:6` 
-and is called `cypress/browsers:chrome62`.
-
 ## Example
 
 Example user [test/Dockerfile](test/Dockerfile) with Cypress version > 0.20.0 install.
@@ -47,6 +42,12 @@ against mounted volume with E2E tests
   how `cypress/base` image is used in the 
   [circle.yml](https://github.com/cypress-io/cypress-example-docker-circle/blob/master/circle.yml)
   file.
+
+## Additional Browsers
+
+We also build an image with a [Chrome browser included](browser/chrome/Dockerfile).
+The image is based on `cypress/base:6` and is called `cypress/browsers:chrome62`.
+With this image you can install Cypress and test using `cypress run --browser chrome`.
 
 ## Docker hub
 

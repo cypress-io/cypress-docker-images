@@ -38,10 +38,7 @@ against mounted volume with E2E tests
 
 ## CI Example
 
-- [CircleCI example](https://github.com/cypress-io/cypress-example-docker-circle), see
-  how `cypress/base` image is used in the 
-  [circle.yml](https://github.com/cypress-io/cypress-example-docker-circle/blob/master/circle.yml)
-  file.
+- [CircleCI example](https://github.com/cypress-io/cypress-example-docker-circle), see how `cypress/base` image is used in the [circle.yml](https://github.com/cypress-io/cypress-example-docker-circle/blob/master/circle.yml) file.
 
 ## Additional Browsers
 

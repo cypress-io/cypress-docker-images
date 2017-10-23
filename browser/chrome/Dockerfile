@@ -1,6 +1,6 @@
-FROM cypress/base
+FROM cypress/base:6
 
-RUN echo "force new chrome"
+RUN echo "force new chrome here"
 
 RUN \
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \

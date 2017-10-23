@@ -16,11 +16,16 @@ All commands after that should run as `qa/cypress` user for additional security.
 
 ## Tags
 
-* `:4` - built on top of Node 4 image
-* `:6` - built on top of Node 6 image
-* `:8` - built on top of Node 8 image
+* `cypress/base:4` - built on top of Node 4 image
+* `cypress/base:6` - built on top of Node 6 image
+* `cypress/base:8` - built on top of Node 8 image
 
 **note:** Node 0.12 is no longer supported by the Cypress install and should not be used.
+
+## Browsers
+
+We build an image with Chrome browser included. Based on `cypress/base:6` it is called
+`cypress/browser:chrome62`
 
 ## Example
 

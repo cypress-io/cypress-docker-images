@@ -48,12 +48,6 @@ against mounted volume with E2E tests
   [circle.yml](https://github.com/cypress-io/cypress-example-docker-circle/blob/master/circle.yml)
   file.
 
-## Other Images
-
-We have a few other *strictly internal* images built from this repo. These
-images are used to test Cypress tools on CI and are not guaranteed to work
-long term.
-
 ## Docker hub
 
 [Docker hub notes](docker-hub.md) for Cypress developers

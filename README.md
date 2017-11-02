@@ -1,4 +1,4 @@
-> Docker image with Cypress dependencies
+# Docker image with Cypress.io dependencies
 
 [![Docker Build Status](https://img.shields.io/docker/build/cypress/base.svg)](https://hub.docker.com/r/cypress/base/)
 
@@ -41,5 +41,5 @@ We also build an image with a [Chrome browser included](browsers/chrome/Dockerfi
 
 ## Links
 
-* [cypress.io](https://www.cypress.io/)
-* [Cypress docs](https://on.cypress.io/)
+* [Cypress.io Website](https://www.cypress.io/)
+* [Cypress.io Docs](https://on.cypress.io/)

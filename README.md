@@ -2,19 +2,21 @@
 
 [![Docker Build Status](https://img.shields.io/docker/build/cypress/base.svg)](https://hub.docker.com/r/cypress/base/)
 
-If you want to install and run Cypress.io inside your Docker container, we have prepared an image with Node, XVFB and other [Cypress dependencies][cy deps]. Just run your Docker image from `cypress/base` and you should be good to go!
+**TL;DR** If you want to install and run Cypress.io inside your Docker container, we have prepared an image with Node, XVFB and other [Cypress dependencies][cy deps]. Just run your Docker image from `cypress/base` and you should be good to go!
 
 [cy deps]: https://docs.cypress.io/docs/continuous-integration#section-dependencies
 
-Docker hub: [cypress/base](https://hub.docker.com/r/cypress/base/)
+## Available base images
 
-Note that inside the container we create a group "qa" and a new user "cypress". All commands after that should run as `qa/cypress` user for additional security.
+You can see current list of `cypress/base` tags at the Docker hub: 
+[cypress/base/tags](https://hub.docker.com/r/cypress/base/tags/)
 
-## Tags
-
-* `cypress/base:4` - built on top of Node 4 image
-* `cypress/base:6` - built on top of Node 6 image
-* `cypress/base:8` - built on top of Node 8 image
+* `cypress/base` - latest default image, built on top of Node 6, see [Dockerfile](Dockerfile)
+* `cypress/base:4` - built on top of Node 4 image, see [Dockerfile](https://github.com/cypress-io/cypress-docker-images/blob/node4/Dockerfile)
+* `cypress/base:6` - built on top of Node 6 image, see [Dockerfile](https://github.com/cypress-io/cypress-docker-images/blob/node6/Dockerfile)
+* `cypress/base:8` - built on top of Node 8 image, see [Dockerfile](https://github.com/cypress-io/cypress-docker-images/blob/node8/Dockerfile)
+* `cypress/base:centos7` - example built on top of Centos7 image, [Dockerfile](https://github.com/cypress-io/cypress-docker-images/blob/centos7/Dockerfile)
+* `cypress/base:ubuntu16` - example built on top of Ubuntu 16.04 image, [Dockerfile](https://github.com/cypress-io/cypress-docker-images/blob/ubuntu16/Dockerfile)
 
 **note:** Node 0.12 is no longer supported by the Cypress install and should not be used.
 
@@ -34,6 +36,8 @@ See example [test/test.sh](test/test.sh) that runs Cypress inside a container ag
 ## CI Example
 
 - [CircleCI example](https://github.com/cypress-io/cypress-example-docker-circle), see how `cypress/base` image is used in the [circle.yml](https://github.com/cypress-io/cypress-example-docker-circle/blob/master/circle.yml) file.
+
+More working CI examples available at [](https://docs.cypress.io/guides/guides/continuous-integration.html#Docker)
 
 ## Additional Browsers
 

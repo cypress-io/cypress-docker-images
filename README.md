@@ -43,6 +43,12 @@ More working CI examples available at [](https://docs.cypress.io/guides/guides/c
 
 We also build an image with a [Chrome browser included](browsers/chrome/Dockerfile). The image is based on `cypress/base:6` and is called `cypress/browsers:chrome62`. With this image you can install Cypress and test using `cypress run --browser chrome`.
 
+## Debugging
+
+If something is going wrong, you can build additional image on top of any of
+these images with X11 VNC server. Then you can connect and see what is going
+on inside the container. See [instructions here](https://github.com/cypress-io/browser-connect-experiment)
+
 ## Links
 
 * [Cypress.io Website](https://www.cypress.io/)

@@ -1,55 +1,34 @@
-# Docker image with Cypress.io dependencies
+# Cypress Docker Images
 
 [![Docker Build Status](https://img.shields.io/docker/build/cypress/base.svg)](https://hub.docker.com/r/cypress/base/)
 
-**TL;DR** If you want to install and run Cypress.io inside your Docker container, we have prepared an image with Node, XVFB and other [Cypress dependencies][cy deps]. Just run your Docker image from `cypress/base` and you should be good to go!
+These images provide all of the required dependencies for running Cypress in Docker.
 
-[cy deps]: https://docs.cypress.io/docs/continuous-integration#section-dependencies
+We have two main images:
 
-## Available base images
+Image | Default | Description
+--- | ---
+cypress/base | `cypress/base:6` | All system dependencies, no browsers.
+cypress/browsers | `cypress/browsers:chrome63` | All system dependencies, with browser(s).
 
-You can see current list of `cypress/base` tags at the Docker hub: 
-[cypress/base/tags](https://hub.docker.com/r/cypress/base/tags/)
+Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need. We only provide browsers for `Debian`, but you can use our base images and build your own.
 
-* `cypress/base` - latest default image, built on top of Node 6, see [Dockerfile](Dockerfile)
-* `cypress/base:4` - built on top of Node 4 image, see [Dockerfile](https://github.com/cypress-io/cypress-docker-images/blob/node4/Dockerfile)
-* `cypress/base:6` - built on top of Node 6 image, see [Dockerfile](https://github.com/cypress-io/cypress-docker-images/blob/node6/Dockerfile)
-* `cypress/base:8` - built on top of Node 8 image, see [Dockerfile](https://github.com/cypress-io/cypress-docker-images/blob/node8/Dockerfile)
-* `cypress/base:centos7` - example built on top of Centos7 image, [Dockerfile](https://github.com/cypress-io/cypress-docker-images/blob/centos7/Dockerfile)
-* `cypress/base:ubuntu16` - example built on top of Ubuntu 16.04 image, [Dockerfile](https://github.com/cypress-io/cypress-docker-images/blob/ubuntu16/Dockerfile)
+Name + Tag | Node | Operating System | Dependences | Browsers
+--- | --- | --- | ---
+cypress/base:4 | 4 | Debian | ✅ | 🚫
+cypress/base:6 | 6 | Debian | ✅ | 🚫
+cypress/base:8 | 8 | Debian | ✅ | 🚫
+cypress/base:centos7 | 6 | CentOS | ✅ | 🚫
+cypress/base:ubuntu16 | 6 | Ubuntu | ✅ | 🚫
+cypress/browsers:chrome62 | 6 | Debian | ✅ | Chrome 62
+cypress/browsers:chrome63 | 6 | Debian | ✅ | Chrome 63
 
-**note:** Node 0.12 is no longer supported by the Cypress install and should not be used.
+## DockerHub
 
-## Example
+All of the images and tags are [published to DockerHub here](https://hub.docker.com/r/cypress).
 
-Example user [test/Dockerfile](test/Dockerfile) with Cypress version > 0.20.0 install.
+## Examples
 
-```
-FROM cypress/base
-RUN npm install --save-dev cypress
-RUN $(npm bin)/cypress verify
-RUN $(npm bin)/cypress run
-```
+We utilize many of these docker images in our own projects, with different CI providers.
 
-See example [test/test.sh](test/test.sh) that runs Cypress inside a container against mounted volume with E2E tests
-
-## CI Example
-
-- [CircleCI example](https://github.com/cypress-io/cypress-example-docker-circle), see how `cypress/base` image is used in the [circle.yml](https://github.com/cypress-io/cypress-example-docker-circle/blob/master/circle.yml) file.
-
-More working CI examples available at [](https://docs.cypress.io/guides/guides/continuous-integration.html#Docker)
-
-## Additional Browsers
-
-We also build an image with a [Chrome browser included](browsers/chrome/Dockerfile). The image is based on `cypress/base:6` and is called `cypress/browsers:chrome63`. With this image you can install Cypress and test using `cypress run --browser chrome`.
-
-## Debugging
-
-If something is going wrong, you can build additional image on top of any of
-these images with X11 VNC server. Then you can connect and see what is going
-on inside the container. See [instructions here](https://github.com/cypress-io/browser-connect-experiment)
-
-## Links
-
-* [Cypress.io Website](https://www.cypress.io/)
-* [Cypress.io Docs](https://on.cypress.io/)
+[Check out our docs for a examples.](https://on.cypress.io/docker)

@@ -9,7 +9,7 @@ We have two main images:
 Image | Default | Description
 --- | --- | ---
 cypress/base | `cypress/base:6` | All system dependencies, no browsers.
-cypress/browsers | `cypress/browsers:chrome63` | All system dependencies, with browser(s).
+[cypress/browsers](browsers/chrome) | `cypress/browsers:chrome63` | All system dependencies, with browser(s).
 
 Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need. We only provide browsers for `Debian`, but you can use our base images and build your own.
 
@@ -20,8 +20,8 @@ cypress/base:6 | 6 | Debian | ✅ | 🚫
 cypress/base:8 | 8 | Debian | ✅ | 🚫
 cypress/base:centos7 | 6 | CentOS | ✅ | 🚫
 cypress/base:ubuntu16 | 6 | Ubuntu | ✅ | 🚫
-cypress/browsers:chrome62 | 6 | Debian | ✅ | Chrome 62
-cypress/browsers:chrome63 | 6 | Debian | ✅ | Chrome 63
+[cypress/browsers:chrome62](browsers/chrome/62) | 6 | Debian | ✅ | Chrome 62
+[cypress/browsers:chrome63](browsers/chrome/63) | 6 | Debian | ✅ | Chrome 63
 
 ## DockerHub
 

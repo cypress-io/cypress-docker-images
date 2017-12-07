@@ -7,14 +7,14 @@ These images provide all of the required dependencies for running Cypress in Doc
 We have two main images:
 
 Image | Default | Description
---- | ---
+--- | --- | ---
 cypress/base | `cypress/base:6` | All system dependencies, no browsers.
 cypress/browsers | `cypress/browsers:chrome63` | All system dependencies, with browser(s).
 
 Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need. We only provide browsers for `Debian`, but you can use our base images and build your own.
 
 Name + Tag | Node | Operating System | Dependences | Browsers
---- | --- | --- | ---
+--- | --- | --- | --- | ---
 cypress/base:4 | 4 | Debian | ✅ | 🚫
 cypress/base:6 | 6 | Debian | ✅ | 🚫
 cypress/base:8 | 8 | Debian | ✅ | 🚫

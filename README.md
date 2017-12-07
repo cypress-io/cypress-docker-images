@@ -41,7 +41,7 @@ More working CI examples available at [](https://docs.cypress.io/guides/guides/c
 
 ## Additional Browsers
 
-We also build an image with a [Chrome browser included](browsers/chrome/Dockerfile). The image is based on `cypress/base:6` and is called `cypress/browsers:chrome62`. With this image you can install Cypress and test using `cypress run --browser chrome`.
+We also build an image with a [Chrome browser included](browsers/chrome/Dockerfile). The image is based on `cypress/base:6` and is called `cypress/browsers:chrome63`. With this image you can install Cypress and test using `cypress run --browser chrome`.
 
 ## Debugging
 

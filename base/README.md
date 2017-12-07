@@ -10,3 +10,5 @@ cypress/base:6 | 6 | Debian | [/6](6)
 cypress/base:8 | 8 | Debian | [/8](8)
 cypress/base:centos7 | 6 | CentOS | [/centos7](centos7)
 cypress/base:ubuntu16 | 6 | Ubuntu | [/ubuntu16](ubuntu16)
+
+**note** Cypress no longer supports Node 0.12

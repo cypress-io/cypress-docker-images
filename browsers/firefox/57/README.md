@@ -15,4 +15,5 @@ RUN firefox --version
 RUN $(npm bin)/cypress run --browser firefox
 ```
 
-This image uses the default user `node`.
+This image uses the `root` user. You might want to switch to non-root
+user when running this container for security.

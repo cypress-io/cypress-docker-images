@@ -12,9 +12,15 @@ RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.moz
 
 RUN apt-get update && apt-get install -y zip
 
-USER node
-
 # versions of local tools
 RUN firefox --version
 RUN zip --version
 RUN git --version
+
+# a few environment variables to make NPM installs easier
+# good colors for most applications
+ENV TERM xterm
+# avoid million NPM install messages
+ENV npm_config_loglevel warn
+# allow installing when the main user is root
+ENV npm_config_unsafe_perm true

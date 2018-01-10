@@ -7,7 +7,7 @@ We have two main images:
 Image | Default | CI Build | Description
 --- | --- | --- | ---
 [cypress/base](base) | `cypress/base:6` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/base.svg)](https://hub.docker.com/r/cypress/base/) | All system dependencies, no browsers.
-[cypress/browsers](browsers) | `cypress/browsers` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/browsers.svg)](https://hub.docker.com/r/cypress/browsers/) | All system dependencies, with Chrome and Firefox browsers.
+[cypress/browsers](browsers) | `cypress/browsers` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/browsers.svg)](https://hub.docker.com/r/cypress/browsers/) | All system dependencies and Chrome and Firefox browsers.
 
 Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need. We only provide browsers for `Debian`, but you can use our base images and build your own.
 

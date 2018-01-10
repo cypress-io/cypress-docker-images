@@ -1,6 +1,6 @@
-# cypress/browsers:firefox57
+# cypress/browsers:chrome63-ff57
 
-A complete image with all dependencies for Cypress included AND Firefox v57 browser.
+A complete image with all dependencies for Cypress included browsers Chrome, Firefox
 
 [Dockerfile](Dockerfile)
 
@@ -9,9 +9,10 @@ A complete image with all dependencies for Cypress included AND Firefox v57 brow
 If you want to build your image
 
 ```
-FROM cypress/browsers:firefox57
+FROM cypress/browsers:chrome63-ff57
 RUN npm i cypress
 RUN firefox --version
+RUN $(npm bin)/cypress run --browser chrome
 RUN $(npm bin)/cypress run --browser firefox
 ```
 

@@ -7,7 +7,7 @@ We have two main images:
 Image | Default | CI Build | Description
 --- | --- | --- | ---
 [cypress/base](base) | `cypress/base:6` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/base.svg)](https://hub.docker.com/r/cypress/base/) | All system dependencies, no browsers.
-[cypress/browsers](browsers/chrome) | `cypress/browsers:chrome63` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/browsers.svg)](https://hub.docker.com/r/cypress/browsers/) | All system dependencies, with browser(s).
+[cypress/browsers](browsers) | `cypress/browsers` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/browsers.svg)](https://hub.docker.com/r/cypress/browsers/) | All system dependencies, with Chrome and Firefox browsers.
 
 Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need. We only provide browsers for `Debian`, but you can use our base images and build your own.
 
@@ -18,8 +18,7 @@ Name + Tag | Node | Operating System | Dependences | Browsers
 [cypress/base:8](base/8) | 8 | Debian | ✅ | 🚫
 [cypress/base:centos7](base/centos7) | 6 | CentOS | ✅ | 🚫
 [cypress/base:ubuntu16](base/ubuntu16) | 6 | Ubuntu | ✅ | 🚫
-[cypress/browsers:chrome62](browsers/chrome/62) | 6 | Debian | ✅ | Chrome 62
-[cypress/browsers:chrome63](browsers/chrome/63) | 6 | Debian | ✅ | Chrome 63
+[cypress/browsers:chrome63-ff57](browsers/chrome63-ff57) | 6 | Debian | ✅ | Chrome 63, FF 57
 
 ## DockerHub
 

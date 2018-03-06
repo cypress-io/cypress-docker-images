@@ -1,4 +1,4 @@
-FROM node:8.4.0
+FROM node:8.9.4
 
 RUN apt-get update && \
   apt-get install -y \
@@ -9,3 +9,5 @@ RUN apt-get update && \
     libxss1 \
     libasound2 \
     xvfb
+    
+RUN npm install npm@5.7.1 -g

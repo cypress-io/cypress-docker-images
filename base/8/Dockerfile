@@ -9,5 +9,9 @@ RUN apt-get update && \
     libxss1 \
     libasound2 \
     xvfb
-    
+
 RUN npm install npm@5.7.1 -g
+
+# versions of local tools
+RUN node -v
+RUN npm -v

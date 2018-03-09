@@ -1,4 +1,4 @@
-FROM node:8.9.4
+FROM node:8.10.0
 
 RUN apt-get update && \
   apt-get install -y \

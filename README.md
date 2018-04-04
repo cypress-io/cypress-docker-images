@@ -28,7 +28,7 @@ All of the images and tags are [published to DockerHub here](https://hub.docker.
 
 We utilize many of these docker images in our own projects, with different CI providers.
 
-[Check out our docs for a examples.](https://on.cypress.io/docker)
+[Check out our docs for examples.](https://on.cypress.io/docker)
 
 ## Contributing
 

@@ -8,6 +8,7 @@ Name + Tag | Node | Operating System | Link
 cypress/base:4 | 4 | Debian | [/4](4)
 cypress/base:6 | 6 | Debian | [/6](6)
 cypress/base:8 | 8 | Debian | [/8](8)
+cypress/base:10 | 10 | Debian | [/10](10)
 cypress/base:centos7 | 6 | CentOS | [/centos7](centos7)
 cypress/base:ubuntu16 | 6 | Ubuntu | [/ubuntu16](ubuntu16)
 

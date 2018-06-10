@@ -10,7 +10,7 @@ RUN apt-get update && \
     libasound2 \
     xvfb
 
-RUN npm install npm@5.8.0 -g
+RUN npm install -g npm@6.1.0
 
 # versions of local tools
 RUN node -v

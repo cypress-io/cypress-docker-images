@@ -1,4 +1,4 @@
-FROM node:10.0
+FROM node:10.4
 
 RUN apt-get update && \
   apt-get install -y \
@@ -15,3 +15,4 @@ RUN npm install -g npm@6.1.0
 # versions of local tools
 RUN node -v
 RUN npm -v
+RUN yarn -v

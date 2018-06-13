@@ -1,4 +1,4 @@
-FROM node:6.11.1
+FROM node:6.14
 
 RUN apt-get update && \
   apt-get install -y \
@@ -9,3 +9,8 @@ RUN apt-get update && \
     libxss1 \
     libasound2 \
     xvfb
+
+# versions of local tools
+RUN node -v
+RUN npm -v
+RUN yarn -v

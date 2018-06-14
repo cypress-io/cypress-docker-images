@@ -19,7 +19,7 @@ Name + Tag | Node | Operating System | Dependences | Browsers
 [cypress/base:10](base/10) | 10 | Debian | ✅ | 🚫
 [cypress/base:centos7](base/centos7) | 6 | CentOS | ✅ | 🚫
 [cypress/base:ubuntu16](base/ubuntu16) | 6 | Ubuntu | ✅ | 🚫
-[cypress/browsers:chrome65-ff57](browsers/chrome65-ff57) | 8 | Debian | ✅ | Chrome 65, FF 57
+[cypress/browsers:chrome67-ff57](browsers/chrome67-ff57) | 8 | Debian | ✅ | Chrome 67, FF 57
 
 ## DockerHub
 

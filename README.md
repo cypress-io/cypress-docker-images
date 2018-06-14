@@ -7,7 +7,7 @@ We have two main images:
 Image | Default | CI Build | Description
 --- | --- | --- | ---
 [cypress/base](base) | `cypress/base:8` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/base.svg)](https://hub.docker.com/r/cypress/base/) | All system dependencies, no browsers.
-[cypress/browsers](browsers) | `cypress/browsers:chrome67` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/browsers.svg)](https://hub.docker.com/r/cypress/browsers/) | All system dependencies and Chrome and Firefox browsers.
+[cypress/browsers](browsers) | `cypress/browsers:chrome67` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/browsers.svg)](https://hub.docker.com/r/cypress/browsers/) | All system dependencies and browser(s).
 
 Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need. We only provide browsers for `Debian`, but you can use our base images and build your own.
 
@@ -32,7 +32,7 @@ All of the images and tags are [published to DockerHub here](https://hub.docker.
 
 ## Examples
 
-We utilize many of these docker images in our own projects, with different CI providers.
+These images have all dependencies necessary to install and run Cypress. Just install NPM dependencies (including Cypress) and run the tests. We utilize many of these docker images in our own projects, with different CI providers.
 
 [Check out our docs for examples.](https://on.cypress.io/docker)
 

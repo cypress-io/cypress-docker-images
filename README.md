@@ -7,7 +7,7 @@ We have two main images:
 Image | Default | CI Build | Description
 --- | --- | --- | ---
 [cypress/base](base) | `cypress/base:8` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/base.svg)](https://hub.docker.com/r/cypress/base/) | All system dependencies, no browsers.
-[cypress/browsers](browsers) | `cypress/browsers` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/browsers.svg)](https://hub.docker.com/r/cypress/browsers/) | All system dependencies and Chrome and Firefox browsers.
+[cypress/browsers](browsers) | `cypress/browsers:chrome67` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/browsers.svg)](https://hub.docker.com/r/cypress/browsers/) | All system dependencies and Chrome and Firefox browsers.
 
 Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need. We only provide browsers for `Debian`, but you can use our base images and build your own.
 
@@ -19,7 +19,12 @@ Name + Tag | Node | Operating System | Dependences | Browsers
 [cypress/base:10](base/10) | 10 | Debian | ✅ | 🚫
 [cypress/base:centos7](base/centos7) | 6 | CentOS | ✅ | 🚫
 [cypress/base:ubuntu16](base/ubuntu16) | 6 | Ubuntu | ✅ | 🚫
+[cypress/browsers:chrome67](browsers/chrome67) | 8 | Debian | ✅ | Chrome 67
 [cypress/browsers:chrome67-ff57](browsers/chrome67-ff57) | 8 | Debian | ✅ | Chrome 67, FF 57
+
+## Best practice
+
+It is recommended to use a specific image tag, and not rely on the `default` tag. For example, it is better to use `cypress/base:8` than `cypress/base`.
 
 ## DockerHub
 

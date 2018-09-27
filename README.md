@@ -20,6 +20,7 @@ Name + Tag | Node | Operating System | Dependences | Browsers
 [cypress/base:centos7](base/centos7) | 6 | CentOS | ✅ | 🚫
 [cypress/base:ubuntu16](base/ubuntu16) | 6 | Ubuntu | ✅ | 🚫
 [cypress/browsers:chrome67](browsers/chrome67) | 8 | Debian | ✅ | Chrome 67
+[cypress/browsers:chrome69](browsers/chrome69) | 10 | Debian | ✅ | Chrome 69
 [cypress/browsers:chrome67-ff57](browsers/chrome67-ff57) | 8 | Debian | ✅ | Chrome 67, FF 57
 
 ## Best practice

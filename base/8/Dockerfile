@@ -1,4 +1,4 @@
-FROM node:8.11
+FROM node:8.12
 
 RUN apt-get update && \
   apt-get install -y \
@@ -10,7 +10,7 @@ RUN apt-get update && \
     libasound2 \
     xvfb
 
-RUN npm install -g npm@6.1.0
+RUN npm install -g npm@6.4.1
 
 # versions of local tools
 RUN node -v

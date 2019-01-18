@@ -10,9 +10,10 @@ RUN apt-get update && \
     libasound2 \
     xvfb
 
-RUN npm install -g npm@6.4.1
+RUN npm upgrade -g npm
 
 # versions of local tools
-RUN node -v
-RUN npm -v
-RUN yarn -v
+RUN echo " node version:           $(node -v) \n" \
+  "npm version:            $(npm -v) \n" \
+  "yarn version:           $(yarn -v)  \n" \
+  "debian version:         $(cat /etc/debian_version) \n"

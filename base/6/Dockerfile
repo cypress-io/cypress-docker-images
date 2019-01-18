@@ -1,4 +1,4 @@
-FROM node:6.16
+FROM node:6.14
 
 RUN apt-get update && \
   apt-get install -y \
@@ -11,7 +11,6 @@ RUN apt-get update && \
     xvfb
 
 # versions of local tools
-RUN echo " node version:           $(node -v) \n" \
-  "npm version:            $(npm -v) \n" \
-  "yarn version:           $(yarn -v)  \n" \
-  "debian version:         $(cat /etc/debian_version) \n"
+RUN node -v
+RUN npm -v
+RUN yarn -v

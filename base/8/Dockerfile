@@ -1,4 +1,4 @@
-FROM node:8.15
+FROM node:8.12
 
 RUN apt-get update && \
   apt-get install -y \
@@ -10,10 +10,9 @@ RUN apt-get update && \
     libasound2 \
     xvfb
 
-RUN npm upgrade -g npm
+RUN npm install -g npm@6.4.1
 
 # versions of local tools
-RUN echo " node version:           $(node -v) \n" \
-  "npm version:            $(npm -v) \n" \
-  "yarn version:           $(yarn -v)  \n" \
-  "debian version:         $(cat /etc/debian_version) \n"
+RUN node -v
+RUN npm -v
+RUN yarn -v

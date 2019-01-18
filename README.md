@@ -13,7 +13,6 @@ Of these images, we provide multiple tags for various operating systems and spec
 
 Name + Tag | Node | Operating System | Dependences | Browsers
 --- | --- | --- | --- | ---
-[cypress/base:4](base/4) | 4 | Debian | ✅ | 🚫
 [cypress/base:6](base/6) | 6 | Debian | ✅ | 🚫
 [cypress/base:8](base/8) | 8 | Debian | ✅ | 🚫
 [cypress/base:10](base/10) | 10 | Debian | ✅ | 🚫

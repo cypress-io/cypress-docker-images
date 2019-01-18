@@ -1,4 +1,4 @@
-FROM node:6.14
+FROM node:6.16
 
 RUN apt-get update && \
   apt-get install -y \

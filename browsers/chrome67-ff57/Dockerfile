@@ -12,7 +12,10 @@ RUN \
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
   echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
   apt-get update && \
-  apt-get install -y dbus-x11 google-chrome-stable && \
+  apt-get install --no-install-recommends -y \
+    dbus-x11 \
+    google-chrome-stable \
+    zip && \
   rm -rf /var/lib/apt/lists/*
 
 # "fake" dbus address to prevent errors
@@ -24,9 +27,6 @@ RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.moz
   && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
   && rm /tmp/firefox.tar.bz2 \
   && ln -fs /opt/firefox/firefox /usr/bin/firefox
-
-# Add zip utility - it comes in very handy
-RUN apt-get update && apt-get install -y zip
 
 # versions of local tools
 RUN node -v

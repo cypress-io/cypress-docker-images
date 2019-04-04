@@ -18,6 +18,7 @@ Name + Tag | Node | Operating System | Dependences | Browsers
 [cypress/base:8](base/8) | 8 | Debian | ✅ | 🚫
 [cypress/base:8.15.1](base/8.15.1) | 8.15.1 | Debian | ✅ | 🚫
 [cypress/base:10](base/10) | 10 | Debian | ✅ | 🚫
+[cypress/base:10.15.3](base/10.15.3) | 10.15.3 | Debian | ✅ | 🚫
 [cypress/base:centos7](base/centos7) | 6 | CentOS | ✅ | 🚫
 [cypress/base:ubuntu16](base/ubuntu16) | 6 | Ubuntu | ✅ | 🚫
 [cypress/browsers:chrome67](browsers/chrome67) | 8 | Debian | ✅ | Chrome 67

@@ -11,6 +11,7 @@ Name + Tag | Node | Operating System | Link | NPM version | Yarn version
 cypress/base:4 | 4 | Debian | [/4](4) | 2.15.11 | 0.24.4
 cypress/base:6 | 6 | Debian | [/6](6) | 3.10.10 | 1.6.0
 cypress/base:8 | 8 | Debian | [/8](8) | 6.4.1 | 1.9.4
+cypress/base:8.2.1 | 8.2.1 | Debian | [/8.2.1](8.2.1) | 5.3.0 | 1.12.3
 cypress/base:8.15.1 | 8.15.1 | Debian | [/8.15.1](8.15.1) | 6.9.0 | 1.15.2
 cypress/base:10 | 10 | Debian | [/10](10) | 6.4.1 | 1.9.4
 cypress/base:10.15.3 | 10.15.3 | Debian | [/10.15.3](10.15.3) | 6.9.0 | 1.15.2

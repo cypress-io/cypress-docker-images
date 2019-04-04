@@ -12,7 +12,7 @@ cypress/base:6 | 6 | Debian | [/6](6) | 3.10.10 | 1.6.0
 cypress/base:8 | 8 | Debian | [/8](8) | 6.4.1 | 1.9.4
 cypress/base:8.2.1 | 8.2.1 | Debian | [/8.2.1](8.2.1) | 5.3.0 | 1.12.3
 cypress/base:8.9.3 | 8.9.3 | Debian | [/8.9.3](8.9.3) | 5.5.1 | 1.12.3
-cypress/base:8.15.1 | 8.15.1 | Debian | [/8.15.1](8.15.1) | 6.9.0 | 1.15.2
+cypress/base:8.15-jessie | 8.15 | Debian | [/8.15-jessie](8.15-jessie) | 6.9.0 | 1.15.2
 cypress/base:10 | 10 | Debian | [/10](10) | 6.4.1 | 1.9.4
 cypress/base:10.15.3 | 10.15.3 | Debian | [/10.15.3](10.15.3) | 6.9.0 | 1.15.2
 cypress/base:11.13.0 | 11.13.0 | Debian | [/11.13.0](11.13.0) | 6.9.0 | 1.15.2

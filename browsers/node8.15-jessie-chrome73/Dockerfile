@@ -1,4 +1,4 @@
-FROM cypress/base:8.15.1
+FROM cypress/base:8.15-jessie
 
 USER root
 

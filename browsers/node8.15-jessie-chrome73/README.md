@@ -1,4 +1,4 @@
-# cypress/browsers:node8.15.1-chrome73
+# cypress/browsers:node8.15-jessie-chrome73
 
 A complete image with all operating system dependencies for Cypress and Chrome 73 browser
 
@@ -9,7 +9,7 @@ A complete image with all operating system dependencies for Cypress and Chrome 7
 If you want to build your image
 
 ```
-FROM cypress/browsers:node8.15.1-chrome73
+FROM cypress/browsers:node8.15-jessie-chrome73
 RUN npm i cypress
 RUN $(npm bin)/cypress run --browser chrome
 ```

@@ -1,4 +1,4 @@
-FROM node:8.15-jessie
+FROM node:8.12
 
 RUN apt-get update && \
   apt-get install -y \

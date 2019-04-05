@@ -8,7 +8,6 @@ Image `cypress/base:8` is tagged [`latest`](https://hub.docker.com/r/cypress/bas
 
 Name + Tag | Node | Operating System | Link | NPM version | Yarn version
 --- | --- | --- | --- | --- | ---
-cypress/base:4 | 4 | Debian | [/4](4) | 2.15.11 | 0.24.4
 cypress/base:6 | 6 | Debian | [/6](6) | 3.10.10 | 1.6.0
 cypress/base:8 | 8 | Debian | [/8](8) | 6.4.1 | 1.9.4
 cypress/base:8.2.1 | 8.2.1 | Debian | [/8.2.1](8.2.1) | 5.3.0 | 1.12.3
@@ -19,7 +18,7 @@ cypress/base:11.13.0 | 11.13.0 | Debian | [/11.13.0](11.13.0) | 6.9.0 | 1.15.2
 cypress/base:centos7 | 6 | CentOS | [/centos7](centos7) | 3.10.10 | 🚫
 cypress/base:ubuntu16 | 6 | Ubuntu | [/ubuntu16](ubuntu16) | 3.10.10 | 🚫
 
-**note** Cypress no longer supports Node 0.12
+**note** Cypress no longer supports Node v0.12.x. Using 4.x image is not recommended, and we do not plan to release new versions of Cypress tested on Node v4. See [End-of-Life Releases](https://github.com/nodejs/Release#end-of-life-releases).
 
 ## Information
 

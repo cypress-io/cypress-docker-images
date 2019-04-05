@@ -15,13 +15,16 @@ Name + Tag | Node | Operating System | Dependences | Browsers
 --- | --- | --- | --- | ---
 [cypress/base:6](base/6) | 6 | Debian | ✅ | 🚫
 [cypress/base:8](base/8) | 8 | Debian | ✅ | 🚫
+[cypress/base:8.15.1](base/8.15.1) | 8.15.1 | Debian | ✅ | 🚫
 [cypress/base:10](base/10) | 10 | Debian | ✅ | 🚫
+[cypress/base:10.15.3](base/10.15.3) | 10.15.3 | Debian | ✅ | 🚫
 [cypress/base:centos7](base/centos7) | 6 | CentOS | ✅ | 🚫
 [cypress/base:ubuntu16](base/ubuntu16) | 6 | Ubuntu | ✅ | 🚫
 [cypress/browsers:chrome67](browsers/chrome67) | 8 | Debian | ✅ | Chrome 67
-[cypress/browsers:chrome67-ff57](browsers/chrome67-ff57) | 8 | Debian | ✅ | Chrome 67, FF 57
+[cypress/browsers:node8.15.1-chrome73](browsers/node8.15.1-chrome73) | 8.15.1 | Debian | ✅ | Chrome 73
+[cypress/browsers:node11.13.0-chrome73](browsers/node11.13.0-chrome73) | 11.13.0 | Debian | ✅ | Chrome 73
 [cypress/browsers:chrome69](browsers/chrome69) | 10 | Debian | ✅ | Chrome 69
-[cypress/browsers:chrome71](browsers/chrome71) | 10 | Debian | ✅ | Chrome 71
+[cypress/browsers:chrome67-ff57](browsers/chrome67-ff57) | 8 | Debian | ✅ | Chrome 67, FF 57
 
 ## Best practice
 

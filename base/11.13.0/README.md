@@ -3,9 +3,8 @@
 Size
 
 ```
-$ docker images cypress/base:11.13.0
-REPOSITORY          TAG                 IMAGE ID            SIZE
-cypress/base        11.13.0             ae05bb9eae5f        969MB
+$ docker images --format "{{.Tag}} {{.Size}}" cypress/base:11.13.0
+11.13.0 969MB
 ```
 
 ## Example

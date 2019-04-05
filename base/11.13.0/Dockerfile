@@ -8,6 +8,7 @@ RUN apt-get update && \
     libnss3 \
     libxss1 \
     libasound2 \
+    libxtst6 \
     xvfb && \
     rm -rf /var/lib/apt/lists/*
 

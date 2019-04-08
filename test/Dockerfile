@@ -1,9 +1,14 @@
-FROM cypress/base
-
-ENV npm_config_loglevel=warn
-
-RUN npm install cypress@1.0.2
-RUN node_modules/.bin/cypress verify
-RUN node_modules/.bin/cypress --version
-
-CMD ["node_modules/.bin/cypress", "run"]
+FROM cypress/base:8.15.1
+# avoid too many progress messages
+# https://github.com/cypress-io/cypress/issues/1243
+ENV CI=1
+# create package.json file
+RUN npm init --yes
+RUN npm install --save-dev cypress
+RUN $(npm bin)/cypress verify
+# initialize a basic project with Cypress tests
+RUN npx @bahmutov/cly init
+# if testing a base image with just Electron use "cypress run"
+RUN $(npm bin)/cypress run
+# if testing an image with Chrome browser
+# RUN $(npm bin)/cypress run --browser chrome

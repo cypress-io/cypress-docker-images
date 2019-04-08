@@ -28,7 +28,7 @@ Name + Tag | Node | Operating System | Dependences | Browsers
 
 ## Best practice
 
-It is recommended to use a specific image tag, and not rely on the `default` tag. For example, it is better to use `cypress/base:8` than `cypress/base`.
+It is recommended to use a specific image tag, and not rely on the `default` tag. For example, it is better to use `cypress/base:8` than `cypress/base`. Even better it is to use full version of the image, like `cypress/base:8.15.1` - we will never overwrite the existing Docker images to prevent accidental changes.
 
 ## DockerHub
 

@@ -1,4 +1,6 @@
-FROM cypress/base:8.15.1
+# FROM cypress/base:8.9.3
+FROM cypress/browsers:node8.9.3-chrome73
+
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
 ENV CI=1
@@ -11,4 +13,4 @@ RUN npx @bahmutov/cly init
 # if testing a base image with just Electron use "cypress run"
 RUN $(npm bin)/cypress run
 # if testing an image with Chrome browser
-# RUN $(npm bin)/cypress run --browser chrome
+RUN $(npm bin)/cypress run --browser chrome

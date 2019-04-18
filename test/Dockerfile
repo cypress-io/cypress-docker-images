@@ -1,4 +1,4 @@
-FROM cypress/base:8.15.1
+FROM cypress/base:8.9.3
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
 ENV CI=1

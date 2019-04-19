@@ -74,6 +74,7 @@ RUN apt-get update && \
   libxss1 \
   libasound2 \
   libxtst6 \
+  xauth \
   xvfb && \
   rm -rf /var/lib/apt/lists/*
 

@@ -65,9 +65,14 @@ RUN set -ex \
 
 # install Cypress OS dependencies
 # but do not install recommended libs and clean temp files
+#
+# note:
+#   Gtk2 for Cypress < 3.3.0
+#   Gtk3 for Cypress >= 3.3.0
 RUN apt-get update && \
   apt-get install --no-install-recommends -y \
   libgtk2.0-0 \
+  libgtk-3-0 \
   libnotify-dev \
   libgconf-2-4 \
   libnss3 \

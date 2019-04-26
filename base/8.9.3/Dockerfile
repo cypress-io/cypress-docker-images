@@ -87,4 +87,5 @@ RUN apt-get update && \
 RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
   "yarn verison:    $(yarn -v) \n" \
-  "debian version:  $(cat /etc/debian_version) \n"
+  "debian version:  $(cat /etc/debian_version) \n" \
+  "user:            $(whoami) \n"

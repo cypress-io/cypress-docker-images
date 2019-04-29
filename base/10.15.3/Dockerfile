@@ -16,5 +16,5 @@ RUN npm install -g yarn@1.15.2
 # versions of local tools
 RUN echo  " node version:    $(node -v) \n" \
           "npm version:     $(npm -v) \n" \
-          "yarn verison:    $(yarn -v) \n" \
+          "yarn version:    $(yarn -v) \n" \
           "debian version:  $(cat /etc/debian_version) \n"

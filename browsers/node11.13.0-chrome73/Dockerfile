@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y zip
 # versions of local tools
 RUN echo  " node version:    $(node -v) \n" \
           "npm version:     $(npm -v) \n" \
-          "yarn verison:    $(yarn -v) \n" \
+          "yarn version:    $(yarn -v) \n" \
           "debian version:  $(cat /etc/debian_version) \n" \
           "Chrome version:  $(google-chrome --version) \n" \
           "git version:     $(git --version) \n"

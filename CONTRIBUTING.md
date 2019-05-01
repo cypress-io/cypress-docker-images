@@ -44,3 +44,16 @@ $ docker images --format "{{.Tag}} {{.Size}}" cypress/base:11.13.0
 ```
 
 I would put this information into the image folder README file.
+
+## Bonus 2: tool versions
+
+It is a good idea to print versions of the installed tools and username at the end of the build, like
+
+```
+# versions of local tools
+RUN echo  " node version:    $(node -v) \n" \
+  "npm version:     $(npm -v) \n" \
+  "yarn version:    $(yarn -v) \n" \
+  "debian version:  $(cat /etc/debian_version) \n" \
+  "user:            $(whoami) \n"
+```

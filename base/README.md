@@ -16,6 +16,7 @@ cypress/base:8.15.1 | 8.15.1 | Debian | [/8.15.1](8.15.1) | 6.9.0 | 1.15.2
 cypress/base:10 | 10 | Debian | [/10](10) | 6.4.1 | 1.9.4
 cypress/base:10.15.3 | 10.15.3 | Debian | [/10.15.3](10.15.3) | 6.9.0 | 1.15.2
 cypress/base:11.13.0 | 11.13.0 | Debian | [/11.13.0](11.13.0) | 6.9.0 | 1.15.2
+cypress/base:12.1.0 | 12.1.0 | Debian | [/12.1.0](12.1.0) | 6.9.0 | 1.15.2
 cypress/base:centos7 | 6 | CentOS | [/centos7](centos7) | 3.10.10 | 🚫
 cypress/base:ubuntu16 | 6 | Ubuntu | [/ubuntu16](ubuntu16) | 3.10.10 | 🚫
 

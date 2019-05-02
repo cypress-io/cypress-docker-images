@@ -36,6 +36,10 @@ It is recommended to use a specific image tag, and not rely on the `default` tag
 
 All of the images and tags are [published to DockerHub here](https://hub.docker.com/r/cypress).
 
+## Cypress included
+
+The `cypress/base` and `cypress/browsers` images do NOT include Cypress itself. We strongly believe that versioning and caching of Cypress test runner is better done via the standard NPM caching and [Cypress binary caching](http://on.cypress.io/caching). But if you just need Cypress for end-to-end tests in a non-JavaScript project, we have prepared an image with Cypress pre-installed globally. See folder [cypress/included](included) for details.
+
 ## Examples
 
 These images have all dependencies necessary to install and run Cypress. Just install NPM dependencies (including Cypress) and run the tests. We utilize many of these docker images in our own projects, with different CI providers.

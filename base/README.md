@@ -1,6 +1,6 @@
 # cypress/base
 
-Main images that include all operating system dependencies necessary to run Cypress, **but NOT the test runner itself**.
+Main images that include all operating system dependencies necessary to run Cypress, **but NOT the test runner itself**. See [cypress/included](../included) images if you need pre-installed Cypress in the image.
 
 Each tag is in a sub folder, named after Node version or OS it is built on.
 
@@ -20,7 +20,7 @@ cypress/base:12.1.0 | 12.1.0 | Debian | [/12.1.0](12.1.0) | 6.9.0 | 1.15.2
 cypress/base:centos7 | 6 | CentOS | [/centos7](centos7) | 3.10.10 | 🚫
 cypress/base:ubuntu16 | 6 | Ubuntu | [/ubuntu16](ubuntu16) | 3.10.10 | 🚫
 
-**note** Cypress no longer supports Node v0.12.x. Using 4.x image is not recommended, and we do not plan to release new versions of Cypress tested on Node v4. See [End-of-Life Releases](https://github.com/nodejs/Release#end-of-life-releases).
+**note** Cypress no longer supports Node v0.12.x. Using 4.x, 6.x images is not recommended, and we do not plan to release new versions of Cypress tested on Node v4. See [End-of-Life Releases](https://github.com/nodejs/Release#end-of-life-releases).
 
 ## Information
 

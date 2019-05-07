@@ -2,31 +2,15 @@
 
 These images provide all of the required dependencies for running Cypress in Docker.
 
-We have two main images:
+We build three main images, click on the image name to see the available tags and versions.
 
-Image | Default | CI Build | Description
---- | --- | --- | ---
-[cypress/base](base) | `cypress/base:8` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/base.svg)](https://hub.docker.com/r/cypress/base/) | All system dependencies, no browsers.
-[cypress/browsers](browsers) | `cypress/browsers:chrome67` | [![Docker Build Status](https://img.shields.io/docker/build/cypress/browsers.svg)](https://hub.docker.com/r/cypress/browsers/) | All system dependencies and browser(s).
+Image | Default | Description
+--- | --- | ---
+[cypress/base](base) | `cypress/base:8` | All system dependencies, no browsers.
+[cypress/browsers](browsers) | `cypress/browsers:chrome67` | All system dependencies and browser(s).
+[cypress/included](included) | `cypress/included:3.2.0` | All system dependencies and the Cypress test runner installed globally.
 
-Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need. We only provide browsers for `Debian`, but you can use our base images and build your own.
-
-Name + Tag | Node | Operating System | Dependences | Browsers
---- | --- | --- | --- | ---
-[cypress/base:6](base/6) | 6 | Debian | ✅ | 🚫
-[cypress/base:8](base/8) | 8 | Debian | ✅ | 🚫
-[cypress/base:8.9.3](base/8.9.3) | 8.9.3 | Debian | ✅ | 🚫
-[cypress/base:8.15.1](base/8.15.1) | 8.15.1 | Debian | ✅ | 🚫
-[cypress/base:10](base/10) | 10 | Debian | ✅ | 🚫
-[cypress/base:10.15.3](base/10.15.3) | 10.15.3 | Debian | ✅ | 🚫
-[cypress/base:centos7](base/centos7) | 6 | CentOS | ✅ | 🚫
-[cypress/base:ubuntu16](base/ubuntu16) | 6 | Ubuntu | ✅ | 🚫
-[cypress/browsers:chrome67](browsers/chrome67) | 8 | Debian | ✅ | Chrome 67
-[cypress/browsers:node8.9.3-chrome73](browsers/node8.9.3-chrome73) | 8.9.3 | Debian | ✅ | Chrome 73
-[cypress/browsers:node8.15.1-chrome73](browsers/node8.15.1-chrome73) | 8.15.1 | Debian | ✅ | Chrome 73
-[cypress/browsers:node11.13.0-chrome73](browsers/node11.13.0-chrome73) | 11.13.0 | Debian | ✅ | Chrome 73
-[cypress/browsers:chrome69](browsers/chrome69) | 10 | Debian | ✅ | Chrome 69
-[cypress/browsers:chrome67-ff57](browsers/chrome67-ff57) | 8 | Debian | ✅ | Chrome 67, FF 57
+Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need.
 
 ## Best practice
 
@@ -36,15 +20,13 @@ It is recommended to use a specific image tag, and not rely on the `default` tag
 
 All of the images and tags are [published to DockerHub here](https://hub.docker.com/r/cypress).
 
-## Cypress included
-
-The `cypress/base` and `cypress/browsers` images do NOT include Cypress itself. We strongly believe that versioning and caching of Cypress test runner is better done via the standard NPM caching and [Cypress binary caching](http://on.cypress.io/caching). But if you just need Cypress for end-to-end tests in a non-JavaScript project, we have prepared an image with Cypress pre-installed globally. See folder [cypress/included](included) for details.
-
 ## Examples
 
-These images have all dependencies necessary to install and run Cypress. Just install NPM dependencies (including Cypress) and run the tests. We utilize many of these docker images in our own projects, with different CI providers.
+These images have all dependencies necessary to install and run Cypress. Just install your NPM dependencies (including Cypress) and run the tests. We utilize many of these docker images in our own projects, with different CI providers.
 
 [Check out our docs for examples.](https://on.cypress.io/docker)
+
+If you want to use `cypress/included` image, read [Run Cypress with a single Docker command](https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command/)
 
 ## Contributing
 

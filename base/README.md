@@ -42,4 +42,5 @@ nvm ls-remote
 ## Notes
 
 <div id="note1">
+
 **1:** image `cypress/base:8.16.0` includes fonts with Chinese characters

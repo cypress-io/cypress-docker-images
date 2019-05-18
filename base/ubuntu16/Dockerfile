@@ -19,7 +19,8 @@ RUN git --version
 
 # Install Cypress dependencies (separate commands to avoid time outs)
 RUN apt-get install -y \
-    libgtk2.0-0
+    libgtk2.0-0 \
+    libgtk-3-0
 RUN apt-get install -y \
     libnotify-dev
 RUN apt-get install -y \

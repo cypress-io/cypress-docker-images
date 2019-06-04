@@ -1,4 +1,4 @@
-FROM cypress/base:11.13.0
+FROM cypress/base:10.16.0
 # FROM cypress/browsers:node8.9.3-chrome73
 
 # avoid too many progress messages

@@ -1,4 +1,4 @@
-FROM cypress/base:8.9.3
+FROM cypress/base:11.13.0
 # FROM cypress/browsers:node8.9.3-chrome73
 
 # avoid too many progress messages
@@ -8,10 +8,10 @@ ENV CI=1
 RUN npm init --yes
 
 # install either a specific version of Cypress
-# RUN npm install --save-dev cypress@3.2.0
+RUN npm install --save-dev cypress@3.3.1
 # or install a beta version of Cypress using environment variables
-ENV CYPRESS_INSTALL_BINARY=https://cdn.cypress.io/beta/binary/3.3.0/linux64/circle-develop-40502cbfb7b934afce0a7b1dba4141dab4adb202-100529/cypress.zip
-RUN npm install https://cdn.cypress.io/beta/npm/3.3.0/circle-develop-40502cbfb7b934afce0a7b1dba4141dab4adb202-100527/cypress.tgz
+# ENV CYPRESS_INSTALL_BINARY=https://cdn.cypress.io/beta/binary/3.3.0/linux64/circle-develop-40502cbfb7b934afce0a7b1dba4141dab4adb202-100529/cypress.zip
+# RUN npm install https://cdn.cypress.io/beta/npm/3.3.0/circle-develop-40502cbfb7b934afce0a7b1dba4141dab4adb202-100527/cypress.tgz
 
 RUN $(npm bin)/cypress verify
 # initialize a basic project with Cypress tests

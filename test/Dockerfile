@@ -1,6 +1,8 @@
-FROM cypress/base:centos7-12.4.0
+# FROM cypress/base:10.11.0
 # FROM cypress/base:10.16.0
-# FROM cypress/browsers:node8.9.3-chrome73
+FROM cypress/browsers:node10.11.0-chrome75
+
+RUN echo "current user: $(whoami)"
 
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
@@ -20,4 +22,4 @@ RUN npx @bahmutov/cly init
 # if testing a base image with just Electron use "cypress run"
 RUN $(npm bin)/cypress run
 # if testing an image with Chrome browser
-# RUN $(npm bin)/cypress run --browser chrome
+RUN $(npm bin)/cypress run --browser chrome

@@ -1,8 +1,8 @@
 # FROM cypress/base:10.11.0
 # FROM cypress/base:10.16.0
-FROM cypress/browsers:node10.11.0-chrome74
+FROM cypress/browsers:node10.11.0-chrome75
 
-RUN echo "user: $(whoami)"
+RUN echo "current user: $(whoami)"
 
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243

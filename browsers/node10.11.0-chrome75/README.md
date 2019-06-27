@@ -1,6 +1,6 @@
-# cypress/browsers:node10.11.0-chrome74
+# cypress/browsers:node10.11.0-chrome75
 
-A complete image with all operating system dependencies for Cypress and Chrome 74 browser
+A complete image with all operating system dependencies for Cypress and Chrome 75 browser
 
 [Dockerfile](Dockerfile)
 
@@ -11,7 +11,7 @@ Note: this image is mostly used for internal building and testing of Cypress tes
 If you want to build your image
 
 ```
-FROM cypress/browsers:node10.11.0-chrome74
+FROM cypress/browsers:node10.11.0-chrome75
 RUN npm i cypress
 RUN $(npm bin)/cypress run --browser chrome
 ```

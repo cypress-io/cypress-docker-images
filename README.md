@@ -18,7 +18,11 @@ It is recommended to use a specific image tag, and not rely on the `default` tag
 
 ## DockerHub
 
-All of the images and tags are [published to DockerHub here](https://hub.docker.com/r/cypress).
+All of the images and tags are published to DockerHub under
+
+- [https://hub.docker.com/r/cypress/base](https://hub.docker.com/r/cypress/base)
+- [https://hub.docker.com/r/cypress/browsers](https://hub.docker.com/r/cypress/browsers)
+- [https://hub.docker.com/r/cypress/included](https://hub.docker.com/r/cypress/included)
 
 ## Examples
 

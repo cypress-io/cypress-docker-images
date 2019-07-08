@@ -1,6 +1,6 @@
 # FROM cypress/base:10.11.0
-# FROM cypress/base:10.16.0
-FROM cypress/browsers:node10.11.0-chrome75
+# FROM cypress/base:12.0.0
+FROM cypress/browsers:node12.0.0-chrome75
 
 RUN echo "current user: $(whoami)"
 

@@ -15,5 +15,6 @@ Image `cypress/browsers:chrome69` is tagged [`latest`](https://hub.docker.com/r/
 - Node 10.2.1 + Chrome 74 [/node10.2.1-chrome74](node10.2.1-chrome74)
 - Node 10.11.0 + Chrome 75 [/node10.11.0-chrome75](node10.11.0-chrome75)
 - Node 11.13.0 + Chrome 73 [/node11.13.0-chrome73](node11.13.0-chrome73)
+- Node 12.0.0 + Chrome 75 [/node12.0.0-chrome75](node12.0.0-chrome75)
 
 We only provide browsers for `Debian`, but you can use our base images and build your own. See Cypress [Docker documentation](https://on.cypress.io/docker).

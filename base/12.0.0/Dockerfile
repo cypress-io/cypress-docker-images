@@ -29,7 +29,7 @@ RUN apt-get update && \
   # clean up
   && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g npm@6.9.0
+RUN npm install -g npm@6.10.0
 RUN npm install -g yarn@1.16.0
 
 # a few environment variables to make NPM installs easier

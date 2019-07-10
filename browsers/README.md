@@ -4,6 +4,12 @@
 
 Image `cypress/browsers:chrome69` is tagged [`latest`](https://hub.docker.com/r/cypress/browsers/tags/)
 
+Name + Tag | Base image | Chrome
+--- | --- | ---
+[cypress/browsers:node12.6.0-chrome75](./node12.6.0-chrome75) | `cypress/base:12.6.0` | `75.0.3770.100`
+
+Other images:
+
 - Node 6 + Chrome 63 + Firefox 57 [/chrome63-ff57](chrome63-ff57)
 - Node 8 + Chrome 65 + Firefox 57 [/chrome65-ff57](chrome65-ff57)
 - Node 8 + Chrome 67 + Firefox 57 [/chrome67-ff57](chrome67-ff57)

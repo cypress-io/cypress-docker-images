@@ -1,6 +1,6 @@
 # FROM cypress/base:10.11.0
-FROM cypress/base:12.6.0
-# FROM cypress/browsers:node12.0.0-chrome75
+# FROM cypress/base:12.6.0
+FROM cypress/browsers:node12.6.0-chrome75
 
 RUN echo "current user: $(whoami)"
 
@@ -11,7 +11,7 @@ ENV CI=1
 RUN npm init --yes
 
 # install either a specific version of Cypress
-RUN npm install --save-dev cypress@3.3.2
+RUN npm install --save-dev cypress@3.4.0
 # or install a beta version of Cypress using environment variables
 # ENV CYPRESS_INSTALL_BINARY=https://cdn.cypress.io/beta/binary/3.3.0/linux64/circle-develop-40502cbfb7b934afce0a7b1dba4141dab4adb202-100529/cypress.zip
 # RUN npm install https://cdn.cypress.io/beta/npm/3.3.0/circle-develop-40502cbfb7b934afce0a7b1dba4141dab4adb202-100527/cypress.tgz
@@ -22,4 +22,4 @@ RUN npx @bahmutov/cly init
 # if testing a base image with just Electron use "cypress run"
 RUN $(npm bin)/cypress run
 # if testing an image with Chrome browser
-# RUN $(npm bin)/cypress run --browser chrome
+RUN $(npm bin)/cypress run --browser chrome

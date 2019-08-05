@@ -35,3 +35,7 @@ If you want to use `cypress/included` image, read [Run Cypress with a single Doc
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## License
+
+See [LICENSE](LICENSE)

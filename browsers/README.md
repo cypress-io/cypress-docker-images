@@ -22,6 +22,7 @@ Other images:
 - Node 10 + Chrome 69 [/chrome69](chrome69)
 - Node 10.2.1 + Chrome 74 [/node10.2.1-chrome74](node10.2.1-chrome74)
 - Node 10.11.0 + Chrome 75 [/node10.11.0-chrome75](node10.11.0-chrome75)
+- Node 10.16.0 + Chrome 76 [/node10.16.0-chrome75](node10.16.0-chrome76)
 - Node 11.13.0 + Chrome 73 [/node11.13.0-chrome73](node11.13.0-chrome73)
 - Node 12.0.0 + Chrome 75 [/node12.0.0-chrome75](node12.0.0-chrome75)
 

@@ -31,9 +31,6 @@ RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.moz
 # Add zip utility - it comes in very handy
 RUN apt-get update && apt-get install -y zip
 
-# Add zip utility - it comes in very handy
-RUN apt-get update && apt-get install -y zip
-
 # versions of local tools
 RUN echo " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \

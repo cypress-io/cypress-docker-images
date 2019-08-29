@@ -1,4 +1,4 @@
-# cypress/browsers:node8.9.3-npm6.10.1-chrome76-ff-68
+# cypress/browsers:node8.9.3-npm6.10.1-chrome76-ff68
 
 A complete image with:
 - all operating system dependencies for Cypress
@@ -12,7 +12,7 @@ A complete image with:
 If you want to build your image
 
 ```
-FROM cypress/browsers:node8.9.3-npm6.10.1-chrome76-ff-68
+FROM cypress/browsers:node8.9.3-npm6.10.1-chrome76-ff68
 RUN npm i cypress
 RUN $(npm bin)/cypress run --browser chrome
 ```

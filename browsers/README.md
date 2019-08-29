@@ -18,6 +18,7 @@ Other images:
 - Node 8 + Chrome 67 [/chrome67](chrome67)
 - Node 8.2.1 + Chrome 73 [/node8.2.1-chrome73](node8.2.1-chrome73)
 - Node 8.9.3 + Chrome 73 [/node8.9.3-chrome73](node8.9.3-chrome73)
+- Node 8.9.3 + Chrome 76 + Firefox 68 [/node8.9.3-npm6.10.1-chrome76-ff68](node8.9.3-npm6.10.1-chrome76-ff68)
 - Node 8.15.1 + Chrome 73 [/node8.15.1-chrome73](node8.15.1-chrome73)
 - Node 10 + Chrome 69 [/chrome69](chrome69)
 - Node 10.2.1 + Chrome 74 [/node10.2.1-chrome74](node10.2.1-chrome74)

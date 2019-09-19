@@ -3,7 +3,7 @@ FROM cypress/base:12.6.0
 USER root
 
 RUN node --version
-RUN echo "force new chrome here"
+RUN echo "force new chrome here!"
 
 # install Chromebrowser
 RUN \

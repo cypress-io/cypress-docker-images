@@ -26,5 +26,6 @@ Other images:
 - Node 10.16.0 + Chrome 76 [/node10.16.0-chrome75](node10.16.0-chrome76)
 - Node 11.13.0 + Chrome 73 [/node11.13.0-chrome73](node11.13.0-chrome73)
 - Node 12.0.0 + Chrome 75 [/node12.0.0-chrome75](node12.0.0-chrome75)
+- Node 12.6.0 + Chrome 77 [/node12.6.0-chrome77](node12.6.0-chrome77)
 
 We only provide browsers for `Debian`, but you can use our base images and build your own. See Cypress [Docker documentation](https://on.cypress.io/docker).

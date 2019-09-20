@@ -1,6 +1,6 @@
 # cypress/browsers:node12.6.0-chrome77
 
-A complete image with all operating system dependencies for Cypress and Chrome 76 browser
+A complete image with all operating system dependencies for Cypress and Chrome 77 browser
 
 [Dockerfile](Dockerfile)
 

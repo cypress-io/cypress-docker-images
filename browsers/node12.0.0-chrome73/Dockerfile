@@ -35,6 +35,10 @@ RUN apt-get update && apt-get install -y zip
 
 RUN npm i -g npm@6.10.3 yarn@1.17.3
 
+# Install xauth for Cypress development work
+RUN apt-get install -y xauth
+RUN xauth version
+
 # versions of local tools
 RUN echo  " node version:    $(node -v) \n" \
           "npm version:     $(npm -v) \n" \

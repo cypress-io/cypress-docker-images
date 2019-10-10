@@ -1,5 +1,7 @@
 # cypress/base
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/cypress/base.svg?maxAge=604800)](https://hub.docker.com/r/cypress/base/)
+
 Main images that include all operating system dependencies necessary to run Cypress, **but NOT the test runner itself**. See [cypress/included](../included) images if you need pre-installed Cypress in the image.
 
 Each tag is in a sub folder, named after Node version or OS it is built on.

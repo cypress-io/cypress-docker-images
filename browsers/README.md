@@ -1,5 +1,7 @@
 # cypress/browsers
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/cypress/browsers.svg?maxAge=604800)](https://hub.docker.com/r/cypress/browsers/)
+
 > Image with all operating system dependencies and a pre-installed browser, **but NOT the test runner itself**. See [cypress/included](../included) images if you need pre-installed Cypress in the image.
 
 Image `cypress/browsers:chrome69` is tagged [`latest`](https://hub.docker.com/r/cypress/browsers/tags/)

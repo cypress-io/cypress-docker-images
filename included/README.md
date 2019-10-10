@@ -1,5 +1,7 @@
 # cypress/included
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/cypress/included.svg?maxAge=604800)](https://hub.docker.com/r/cypress/included/)
+
 Docker image with operating system and Cypress installed globally.
 
 Name + Tag | Base image

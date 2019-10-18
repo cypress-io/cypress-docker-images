@@ -1,8 +1,5 @@
 FROM node:12.12.0
 
-## https://superuser.com/a/1423685/458816
-# RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
-
 RUN apt-get update && \
   apt-get install --no-install-recommends -y \
   libgtk2.0-0 \
@@ -29,8 +26,8 @@ RUN apt-get update && \
   # clean up
   && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g npm@6.11.3
-RUN npm install -g yarn@1.19.1
+RUN npm install -g npm@latest
+RUN npm install -g yarn@latest
 
 # a few environment variables to make NPM installs easier
 # good colors for most applications

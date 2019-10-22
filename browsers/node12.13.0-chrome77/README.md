@@ -1,4 +1,4 @@
-# cypress/browsers:node12.12.0-chrome77
+# cypress/browsers:node12.13.0-chrome77
 
 A complete image with all operating system dependencies for Cypress and Chrome 77 browser
 
@@ -9,7 +9,7 @@ A complete image with all operating system dependencies for Cypress and Chrome 7
 If you want to build your image
 
 ```
-FROM cypress/browsers:node12.12.0-chrome77
+FROM cypress/browsers:node12.13.0-chrome77
 RUN npm i cypress
 RUN $(npm bin)/cypress run --browser chrome
 ```

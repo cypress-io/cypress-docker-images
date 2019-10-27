@@ -1,4 +1,4 @@
-FROM cypress/base:12.6.0
+FROM cypress/base:12.12.0
 
 USER root
 

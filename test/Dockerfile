@@ -1,6 +1,6 @@
 # FROM cypress/base:10.11.0
 # FROM cypress/base:12.4.0
-FROM cypress/browsers:node10.16.0-chrome78
+FROM cypress/browsers:node12.12.0-chrome78
 
 RUN echo "current user: $(whoami)"
 
@@ -11,7 +11,7 @@ ENV CI=1
 RUN npm init --yes
 
 # install either a specific version of Cypress
-RUN npm install --save-dev cypress@3.5.0
+RUN npm install --save-dev cypress@3.6.0
 # or install a beta version of Cypress using environment variables
 # ENV CYPRESS_INSTALL_BINARY=https://cdn.cypress.io/beta/binary/3.3.0/linux64/circle-develop-40502cbfb7b934afce0a7b1dba4141dab4adb202-100529/cypress.zip
 # RUN npm install https://cdn.cypress.io/beta/npm/3.3.0/circle-develop-40502cbfb7b934afce0a7b1dba4141dab4adb202-100527/cypress.tgz

@@ -28,7 +28,7 @@ cypress/base:12.1.0 | 12.1.0 | Debian | [/12.1.0](12.1.0) | 6.9.0 | 1.15.2
 cypress/base:12.4.0 | 12.4.0 | Debian | [/12.4.0](12.4.0) | 6.10.2 | 1.17.3 | [1](#note1)
 cypress/base:12.6.0 | 12.6.0 | Debian | [/12.6.0](12.6.0) | 6.10.0 | 1.16.0 | [1](#note1)
 cypress/base:12.12.0 | 12.12.0 | Debian | [/12.12.0](12.12.0) | 6.12.0 | 1.19.1 | [1](#note1)
-cypress/base:12.13.0 | 12.13.0 | Debian | [/12.13.0](12.13.0) | 6.12.0 | 1.19.1 | [1](#note1)
+cypress/base:12.13.0 | 12.13.0 | Debian | [/12.13.0](12.13.0) | 6.13.0 | 1.19.1 | [1](#note1)
 cypress/base:centos7 | 6 | CentOS | [/centos7](centos7) | 3.10.10 | 🚫
 cypress/base:centos7-12.4.0 | 12.4.0 | CentOS | [/centos7](centos7) | 6.9.0 | 1.16.0
 cypress/base:ubuntu16 | 6 | Ubuntu | [/ubuntu16](ubuntu16) | 3.10.10 | 🚫

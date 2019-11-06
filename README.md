@@ -32,6 +32,22 @@ These images have all dependencies necessary to install and run Cypress. Just in
 
 If you want to use `cypress/included` image, read [Run Cypress with a single Docker command](https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command/)
 
+## Common problems
+
+### Cannot run post-install hook
+
+Some versions of Node restrict running `postinstall` hook with the following error message
+
+```text
+lifecycle realworld@1.0.0~postinstall: cannot run in wd realworld@1.0.0
+```
+
+In that case run install with `npm install --unsafe-perm` flag, or set an environment variable in the container
+
+```
+npm_config_unsafe_perm: true
+```
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)

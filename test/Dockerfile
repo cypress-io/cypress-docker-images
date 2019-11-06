@@ -22,4 +22,4 @@ RUN npx @bahmutov/cly init
 # if testing a base image with just Electron use "cypress run"
 RUN $(npm bin)/cypress run
 # if testing an image with Chrome browser
-RUN $(npm bin)/cypress run --browser chrome
+#RUN $(npm bin)/cypress run --browser chrome

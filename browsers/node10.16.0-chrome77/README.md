@@ -1,4 +1,4 @@
-# cypress/browsers:node10.16.0-chrome75
+# cypress/browsers:node10.16.0-chrome77
 
 A complete image with all operating system dependencies for Cypress and Chrome 77 browser
 

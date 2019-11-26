@@ -32,6 +32,7 @@ cypress/base:12.13.0 | 12.13.0 | Debian | [/12.13.0](12.13.0) | 6.13.0 | 1.19.1 
 cypress/base:centos7 | 6 | CentOS | [/centos7](centos7) | 3.10.10 | 🚫
 cypress/base:centos7-12.4.0 | 12.4.0 | CentOS | [/centos7](centos7) | 6.9.0 | 1.16.0
 cypress/base:ubuntu16 | 6 | Ubuntu | [/ubuntu16](ubuntu16) | 3.10.10 | 🚫
+cypress/base:ubuntu16-8 | 8.16.2 | Ubuntu | [/ubuntu16-8.16.2](ubuntu16-8.16.2) | 6.4.1 | 🚫
 cypress/base:ubuntu16-12.13.1 | 12.13.1 | Ubuntu | [/ubuntu16-12.13.1](ubuntu16-12.13.1) | 6.12.1 | 🚫
 
 ⚠️ Cypress no longer supports Node v0.12.x. Using 4.x, 6.x images is not recommended, and we do not plan to release new versions of Cypress tested on Node v4. See [End-of-Life Releases](https://github.com/nodejs/Release#end-of-life-releases).

@@ -1,4 +1,5 @@
 .DS_Store
 .vscode
 test/src/.Trash-0/
-test/src/cypress/videos/
+cypress/videos
+cypress/screenshots

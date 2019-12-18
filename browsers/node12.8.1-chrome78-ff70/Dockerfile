@@ -2,6 +2,14 @@ FROM cypress/browsers:node12.13.0-chrome78-ff70
 
 USER root
 
+# add codecs needed for video playback in firefox 
+# https://github.com/cypress-io/cypress-docker-images/issues/150
+RUN apt-get install apt-transport-https -y && \
+curl https://download.videolan.org/pub/debian/videolan-apt.asc | apt-key add - && \
+echo 'deb https://download.videolan.org/pub/debian/stable ./' | tee /etc/apt/sources.list.d/libdvdcss.list && \
+apt-get update && \
+apt-get install mplayer2 -y
+
 # install desired node version
 # see: https://github.com/nodejs/docker-node/blob/bd2ecff0929173daa8e6099d59097f24718d428e/10/jessie/Dockerfile
 ENV NODE_VERSION 12.8.1

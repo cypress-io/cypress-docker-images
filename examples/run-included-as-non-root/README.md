@@ -82,3 +82,28 @@ Running tests against cypress/example
 ```
 
 Good read [Use non-root user inside Docker container](https://glebbahmutov.com/blog/docker-user/) and [Processes In Containers Should Not Run As Root](https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b)
+
+## Run as non-root with current user
+
+If you follow the above solution, you will run Cypress inside the Docker container as a non-root user `node`. This user has ID 1000 - which has no meaning outside the Docker container on your host machine. The artifacts created by the Cypress run such as screenshots and videos also belong to that user with id 1000 - which might or might be mapped by the Docker correctly.
+
+You can run Cypress inside the Docker container as a non-root user `node`, but map its internal user id to the host machine's current user. Remapping is achieved using Docker argument syntax `--user <host machine user id>:<docker image user id>` (or its alias `-u`).
+
+
+```shell
+# print current user's host user id on the host machine
+$ id -u
+501
+# run container and map current user 501 to node user inside the container
+$ docker run -it -v $PWD/src:/test -w /test -u 501:node --entrypoint /bin/sh cypress/included:3.8.0
+$ id
+uid=501 gid=1000(node) groups=1000(node)
+```
+
+Let's run Cypress as the current host machine user but mapped to non-root `node` user.
+
+```shell
+$ docker run -it -v $PWD/src:/test -w /test -u 501:node cypress/example
+```
+
+<TODO work in progress>

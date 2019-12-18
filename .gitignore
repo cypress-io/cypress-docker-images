@@ -3,3 +3,4 @@
 test/src/.Trash-0/
 **/cypress/videos
 **/cypress/screenshots
+**/cypress/logs

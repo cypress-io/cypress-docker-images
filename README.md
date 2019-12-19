@@ -34,6 +34,8 @@ If you want to use `cypress/included` image, read [Run Cypress with a single Doc
 
 Folder [examples/included-as-non-root](examples/included-as-non-root) shows how to build a new Docker image on top of `cypress/included` image and run the tests as non-root user `node`.
 
+Folder [examples/included-as-non-root-mapped](examples/included-as-non-root-mapped) shows how to build a Docker image on top of `cypress/included` that runs with a non-root user that matches the id of the user on the host machine. This way, the permissions on any files created during the test run match the user's permissions on the host machine.
+
 Folder [examples/included-with-plugins](examples/included-with-plugins) shows how to use locally installed [Cypress plugins](https://on.cypress.io/plugins) while running `cypress/included` image.
 
 ## Common problems

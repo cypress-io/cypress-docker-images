@@ -14,6 +14,12 @@ RUN cypress verify
 RUN cypress cache path
 RUN cypress cache list
 
+# give non-root users like "node" access to run globally installed Cypress
+RUN chmod 755 /root
+# point Cypress at the /root/cache no matter what user account is used
+# see https://on.cypress.io/caching
+ENV CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
+
 RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
   "yarn version:    $(yarn -v) \n" \

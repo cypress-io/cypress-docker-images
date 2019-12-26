@@ -6,5 +6,8 @@ Read [Run Cypress with a single Docker command](https://www.cypress.io/blog/2019
 
 ```shell
 $ docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.8.1
-# runs Cypress tests from the current folder
+# runs Cypress tests from the current folder as root user
+
+$ docker run -it -v $PWD:/e2e -w /e2e -u node cypress/included:3.8.1
+# runs Cypress tests from the current folder as non-root user "node"
 ```

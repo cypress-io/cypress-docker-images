@@ -17,6 +17,7 @@ Name + Tag | Base image
 [cypress/included:3.6.1](3.6.1) | `cypress/browsers:node12.6.0-chrome77`
 [cypress/included:3.7.0](3.7.0) | `cypress/browsers:node12.6.0-chrome77`
 [cypress/included:3.8.0](3.8.0) | `cypress/browsers:node12.6.0-chrome77`
+[cypress/included:3.8.1](3.8.1) | `cypress/browsers:node12.6.0-chrome77`
 
 This image should be enough to run Cypress tests headlessly or in the interactive mode with a single Docker command like this:
 
@@ -25,6 +26,14 @@ $ docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.3.2
 ```
 
 For more information, read [Run Cypress with a single Docker command](https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command/) and [End-to-End Testing Web Apps: The Painless Way](https://mtlynch.io/painless-web-app-testing/)
+
+## Default user
+
+By default, the included images run as `root` user. You can switch the user to the second user in the image `node` or custom-mapped user, see [examples section](https://github.com/cypress-io/cypress-docker-images#examples). Starting with `cypress/included:3.8.1` we set permissions on the globally installed Cypress and set binary cache variable to allow other users read and execute access. Thus you will be able to run Cypress as non-root user by using `-u node`
+
+```shell
+$ docker run -it -v $PWD/src:/test -w /test -u node cypress/included:3.8.1
+```
 
 ## Building and testing
 

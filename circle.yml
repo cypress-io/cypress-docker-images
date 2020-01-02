@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: build 12.14.0
+          command: ./build.sh
+          working_directory: base/12.14.0
+workflows:
+  version: 2
+  build-base-images:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+                - add-circle-build

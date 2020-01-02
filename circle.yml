@@ -11,6 +11,15 @@ jobs:
       # only required if using a Docker image
       # - setup_remote_docker
       - run:
+          name: Check if image exists
+          command: |
+            if [[ "$(docker images -q cypress/base:12.14.0 2> /dev/null)" != "" ]]; then
+              echo Found image cypress/base:12.14.0
+              circleci-agent step halt
+            else
+              echo Did not find Docker image cypress/base:12.14.0
+            fi
+      - run:
           name: build 12.14.0
           command: ./build.sh
           # command: |

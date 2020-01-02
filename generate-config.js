@@ -62,7 +62,7 @@ jobs:
             EOF
 
       - run:
-          name: Check if can push to Docker hub
+          name: Check if can push to Docker Hub
           command: |
             if [[ "$CIRCLE_BRANCH" != "master" ]]; then
               echo "Not master branch, will skip pushing newly built Docker image"
@@ -71,7 +71,11 @@ jobs:
               echo "On master branch, pushing Docker image to hub"
             fi
 
-      # TODO: push the newly built image to Docker hub
+      - run:
+          name: Pushing new image to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push << parameters.dockerName >>:<< parameters.dockerTag >>
 
 workflows:
   version: 2

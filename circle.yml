@@ -1,12 +1,17 @@
 # info on building Docker images on Circle
 # https://circleci.com/docs/2.0/building-docker-images/
-version: 2
+version: 2.1
 jobs:
-  build:
+  build-base-image:
     machine: true
-    environment:
-      DOCKER_NAME: cypress/base
-      DOCKER_TAG: 12.14.0
+    parameters:
+      dockerName:
+        type: string
+        description: Image name to build
+        default: cypress/base
+      dockerTag:
+        type: string
+        description: Image tag to build like "12.14.0"
     steps:
       - checkout
       - run:
@@ -14,22 +19,23 @@ jobs:
           # using https://github.com/mishguruorg/docker-image-exists
           # to check if Docker hub has the image already
           command: |
-            if npx docker-image-exists --quiet --repo $DOCKER_NAME:$DOCKER_TAG; then
-              echo Found image $DOCKER_NAME:$DOCKER_TAG
+            if npx docker-image-exists --quiet --repo << parameters.dockerName >>:<< parameters.dockerTag >>; then
+              echo Found image << parameters.dockerName >>:<< parameters.dockerTag >>
               circleci-agent step halt
             else
-              echo Did not find Docker image $DOCKER_NAME:$DOCKER_TAG
+              echo Did not find Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
             fi
       - run:
-          name: building Docker image
+          name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
-            docker build -t $DOCKER_NAME:$DOCKER_TAG .
-          working_directory: base/$DOCKER_TAG
+            docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
+          working_directory: base/<< parameters.dockerTag >>
 workflows:
   version: 2
   build-base-images:
     jobs:
-      - build:
+      - build-base-image:
+          dockerTag: 12.14.0
           filters:
             branches:
               only:

@@ -1,0 +1,22 @@
+name: Generate config
+on:
+  push:
+    branches:
+      - master
+      - add-circle-build
+
+jobs:
+  build:
+    name: Generate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: bahmutov/npm-install@v1
+      - run: npm run build
+      - run: git status
+      # if there is a change to the circle.yml file
+      # then commit and push it
+      # https://github.com/mikeal/publish-to-github-action
+      - uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -29,8 +29,16 @@ This will create a local Docker image, for example `cypress/base:8.15.1`.
   - update the Dockerfile to derive test image from the new image
   - run the build script that will create the new Docker container, install Cypress, initialize a tiny project and run the tests
 
-5. If the new Docker image works locally, push it to the Docker hub using `docker push <image name>`
-6. Add the new image name to the README files
+5. Add the new image name to the README files
+6. Run local script to generate automatic build on CircleCI
+
+```sh
+npm run build
+```
+
+This will regenerate [circle.yml](circle.yml) file, where each base image is a separate job. The job only runs if there is no corresponding image at Docker Hub already.
+
+7. Push the changes to the repository and open a pull request. CircleCI should build the new image and test it. Once the changes have been approved and merged into `master` branch, CircleCI will build the image again and push it to Docker Hub.
 
 ## Bonus: smaller images
 

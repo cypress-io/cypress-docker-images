@@ -1,6 +1,14 @@
 # info on building Docker images on Circle
 # https://circleci.com/docs/2.0/building-docker-images/
 version: 2.1
+
+buildFilters: &buildFilters
+  filters:
+    branches:
+      only:
+        - master
+        - add-circle-build
+
 jobs:
   build-base-image:
     machine: true
@@ -36,8 +44,4 @@ workflows:
     jobs:
       - build-base-image:
           dockerTag: 12.14.0
-          filters:
-            branches:
-              only:
-                - master
-                - add-circle-build
+          <<: *buildFilters

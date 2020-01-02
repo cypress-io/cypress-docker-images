@@ -27,7 +27,7 @@ RUN apt-get update && \
   && rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g npm@latest
-RUN npm install -g yarn@latest
+RUN npm install -g -f yarn@latest
 
 # a few environment variables to make NPM installs easier
 # good colors for most applications

@@ -46,7 +46,31 @@ jobs:
           command: |
             docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: base/<< parameters.dockerTag >>
-      # TODO: run Cypress test inside the newly built image
+
+      - run:
+          name: test built image
+          command: |
+            docker build -t cypress/test -<<EOF
+            FROM << parameters.dockerName >>:<< parameters.dockerTag >>
+            RUN echo "current user: $(whoami)"
+            ENV CI=1
+            RUN npm init --yes
+            RUN npm install --save-dev cypress
+            RUN ./node_modules/.bin/cypress verify
+            RUN npx @bahmutov/cly init
+            RUN ./node_modules/.bin/cypress run
+            EOF
+
+      - run:
+          name: Check if can push to Docker hub
+          command: |
+            if [[ "$CIRCLE_BRANCH" != "master" ]]; then
+              echo "Not master branch, will skip pushing newly built Docker image"
+              circleci-agent step halt
+            else
+              echo "On master branch, pushing Docker image to hub"
+            fi
+
       # TODO: push the newly built image to Docker hub
 
 workflows:

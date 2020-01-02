@@ -5,6 +5,7 @@ jobs:
       - image: buildpack-deps:trusty
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: build 12.14.0
           command: ./build.sh

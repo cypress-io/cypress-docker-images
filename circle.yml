@@ -4,26 +4,27 @@ version: 2
 jobs:
   build:
     machine: true
-    # docker:
-    #   - image: buildpack-deps:trusty
+    environment:
+      DOCKER_NAME: cypress/base
+      DOCKER_TAG: 12.14.0
     steps:
       - checkout
-      # only required if using a Docker image
-      # - setup_remote_docker
       - run:
           name: Check if image exists
+          # using https://github.com/mishguruorg/docker-image-exists
+          # to check if Docker hub has the image already
           command: |
-            if [[ "$(docker images -q cypress/base:12.14.0 2> /dev/null)" != "" ]]; then
-              echo Found image cypress/base:12.14.0
+            if npx docker-image-exists --quiet --repo $DOCKER_NAME/$DOCKER_TAG; then
+              echo Found image $DOCKER_NAME/$DOCKER_TAG
               circleci-agent step halt
             else
-              echo Did not find Docker image cypress/base:12.14.0
+              echo Did not find Docker image $DOCKER_NAME/$DOCKER_TAG
             fi
       - run:
-          name: build 12.14.0
-          command: ./build.sh
-          # command: |
-          #   docker build -t cypress/base:12.14.0
+          name: build $DOCKER_NAME/$DOCKER_TAG
+          # command: ./build.sh
+          command: |
+            docker build -t $DOCKER_NAME/$DOCKER_TAG
           working_directory: base/12.14.0
 workflows:
   version: 2

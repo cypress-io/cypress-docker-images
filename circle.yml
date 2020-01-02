@@ -38,6 +38,9 @@ jobs:
           command: |
             docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: base/<< parameters.dockerTag >>
+      # TODO: run Cypress test inside the newly built image
+      # TODO: push the newly built image to Docker hub
+
 workflows:
   version: 2
   build-base-images:

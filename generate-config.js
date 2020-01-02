@@ -50,7 +50,7 @@ jobs:
       - run:
           name: test built image
           command: |
-            docker build -t cypress/test -<<EOF
+            docker build -t cypress/test -\\<<EOF
             FROM << parameters.dockerName >>:<< parameters.dockerTag >>
             RUN echo "current user: $(whoami)"
             ENV CI=1

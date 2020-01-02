@@ -1,11 +1,15 @@
+# info on building Docker images on Circle
+# https://circleci.com/docs/2.0/building-docker-images/
 version: 2
 jobs:
   build:
-    docker:
-      - image: buildpack-deps:trusty
+    machine: true
+    # docker:
+    #   - image: buildpack-deps:trusty
     steps:
       - checkout
-      - setup_remote_docker
+      # only required if using a Docker image
+      # - setup_remote_docker
       - run:
           name: build 12.14.0
           # command: ./build.sh

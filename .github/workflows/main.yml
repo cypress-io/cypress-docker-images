@@ -15,8 +15,9 @@ jobs:
       - run: npm run build
       - run: git status
       # if there is a change to the circle.yml file
-      # then commit and push it
+      # then commit and push it. Only do this on "master" branch
       # https://github.com/mikeal/publish-to-github-action
       - uses: mikeal/publish-to-github-action@master
+        if: github.ref == 'master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

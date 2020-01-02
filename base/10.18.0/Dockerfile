@@ -13,7 +13,7 @@ RUN apt-get update && \
   xvfb
 
 RUN npm install -g npm@latest
-RUN npm install -g yarn@latest
+RUN npm install -g -f yarn@latest
 
 # versions of local tools
 RUN echo  " node version:    $(node -v) \n" \

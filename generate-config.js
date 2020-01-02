@@ -83,6 +83,7 @@ const writeConfigFile = (images) => {
   const yml = images.map(imageAndTag => {
     // important to have indent
     const job = '      - build-base-image:\n' +
+      `          name: "${imageAndTag.tag}"\n` +
       `          dockerTag: "${imageAndTag.tag}"\n` +
       '          <<: *buildFilters\n'
     return job

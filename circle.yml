@@ -72,86 +72,114 @@ workflows:
   build-base-images:
     jobs:
       - build-base-image:
+          name: "10"
           dockerTag: "10"
           <<: *buildFilters
       - build-base-image:
+          name: "10.11.0"
           dockerTag: "10.11.0"
           <<: *buildFilters
       - build-base-image:
+          name: "10.15.3"
           dockerTag: "10.15.3"
           <<: *buildFilters
       - build-base-image:
+          name: "10.16.0"
           dockerTag: "10.16.0"
           <<: *buildFilters
       - build-base-image:
+          name: "10.18.0"
           dockerTag: "10.18.0"
           <<: *buildFilters
       - build-base-image:
+          name: "10.2.1"
           dockerTag: "10.2.1"
           <<: *buildFilters
       - build-base-image:
+          name: "11.13.0"
           dockerTag: "11.13.0"
           <<: *buildFilters
       - build-base-image:
+          name: "12.0.0"
           dockerTag: "12.0.0"
           <<: *buildFilters
       - build-base-image:
+          name: "12.1.0"
           dockerTag: "12.1.0"
           <<: *buildFilters
       - build-base-image:
+          name: "12.12.0"
           dockerTag: "12.12.0"
           <<: *buildFilters
       - build-base-image:
+          name: "12.13.0"
           dockerTag: "12.13.0"
           <<: *buildFilters
       - build-base-image:
+          name: "12.14.0"
           dockerTag: "12.14.0"
           <<: *buildFilters
       - build-base-image:
+          name: "12.4.0"
           dockerTag: "12.4.0"
           <<: *buildFilters
       - build-base-image:
+          name: "12.6.0"
           dockerTag: "12.6.0"
           <<: *buildFilters
       - build-base-image:
+          name: "13.1.0"
           dockerTag: "13.1.0"
           <<: *buildFilters
       - build-base-image:
+          name: "13.3.0"
           dockerTag: "13.3.0"
           <<: *buildFilters
       - build-base-image:
+          name: "6"
           dockerTag: "6"
           <<: *buildFilters
       - build-base-image:
+          name: "8"
           dockerTag: "8"
           <<: *buildFilters
       - build-base-image:
+          name: "8.15.1"
           dockerTag: "8.15.1"
           <<: *buildFilters
       - build-base-image:
+          name: "8.16.0"
           dockerTag: "8.16.0"
           <<: *buildFilters
       - build-base-image:
+          name: "8.2.1"
           dockerTag: "8.2.1"
           <<: *buildFilters
       - build-base-image:
+          name: "8.9.3"
           dockerTag: "8.9.3"
           <<: *buildFilters
       - build-base-image:
+          name: "8.9.3-npm-6.10.1"
           dockerTag: "8.9.3-npm-6.10.1"
           <<: *buildFilters
       - build-base-image:
+          name: "centos7"
           dockerTag: "centos7"
           <<: *buildFilters
       - build-base-image:
+          name: "centos7-12.4.0"
           dockerTag: "centos7-12.4.0"
           <<: *buildFilters
       - build-base-image:
+          name: "ubuntu16"
           dockerTag: "ubuntu16"
           <<: *buildFilters
       - build-base-image:
+          name: "ubuntu16-12.13.1"
           dockerTag: "ubuntu16-12.13.1"
           <<: *buildFilters
       - build-base-image:
+          name: "ubuntu16-8"
           dockerTag: "ubuntu16-8"
           <<: *buildFilters

@@ -14,18 +14,17 @@ jobs:
           # using https://github.com/mishguruorg/docker-image-exists
           # to check if Docker hub has the image already
           command: |
-            if npx docker-image-exists --quiet --repo $DOCKER_NAME/$DOCKER_TAG; then
-              echo Found image $DOCKER_NAME/$DOCKER_TAG
+            if npx docker-image-exists --quiet --repo $DOCKER_NAME:$DOCKER_TAG; then
+              echo Found image $DOCKER_NAME:$DOCKER_TAG
               circleci-agent step halt
             else
-              echo Did not find Docker image $DOCKER_NAME/$DOCKER_TAG
+              echo Did not find Docker image $DOCKER_NAME:$DOCKER_TAG
             fi
       - run:
-          name: build $DOCKER_NAME/$DOCKER_TAG
-          # command: ./build.sh
+          name: building Docker image
           command: |
-            docker build -t $DOCKER_NAME/$DOCKER_TAG
-          working_directory: base/12.14.0
+            docker build -t $DOCKER_NAME:$DOCKER_TAG .
+          working_directory: base/$DOCKER_TAG
 workflows:
   version: 2
   build-base-images:

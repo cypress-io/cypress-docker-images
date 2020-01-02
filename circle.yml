@@ -8,7 +8,9 @@ jobs:
       - setup_remote_docker
       - run:
           name: build 12.14.0
-          command: ./build.sh
+          # command: ./build.sh
+          command: |
+            docker build -t cypress/base:12.14.0
           working_directory: base/12.14.0
 workflows:
   version: 2

@@ -84,6 +84,9 @@ workflows:
           dockerTag: "10.16.0"
           <<: *buildFilters
       - build-base-image:
+          dockerTag: "10.18.0"
+          <<: *buildFilters
+      - build-base-image:
           dockerTag: "10.2.1"
           <<: *buildFilters
       - build-base-image:

@@ -13,16 +13,31 @@ buildFilters: &buildFilters
 
 commands:
   halt-on-branch:
+    description: Halt current CircleCI job if not on master branch
     steps:
       - run:
-          name: Check if can push to Docker Hub
+          name: Halting job if not on master branch
           command: |
             if [[ "$CIRCLE_BRANCH" != "master" ]]; then
-              echo "Not master branch, will skip pushing newly built Docker image"
+              echo "Not master branch, will skip the rest of commands"
               circleci-agent step halt
             else
-              echo "On master branch, pushing Docker image to hub"
+              echo "On master branch, can continue"
             fi
+
+  docker-push:
+    description: Log in and push a given image to Docker hub
+    parameters:
+      imageName:
+        type: string
+        description: Docker image name to push
+    steps:
+      - run:
+          name: Pushing image << parameters.imageName >> to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push << parameters.imageName >>
+
 jobs:
   build-base-image:
     machine: true
@@ -68,12 +83,8 @@ jobs:
             EOF
 
       - halt-on-branch
-
-      - run:
-          name: Pushing new image to Docker Hub
-          command: |
-            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push << parameters.dockerName >>:<< parameters.dockerTag >>
+      - docker-push:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
 workflows:
   version: 2

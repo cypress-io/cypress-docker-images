@@ -219,7 +219,7 @@ const formBaseWorkflow = (baseImages) => {
   const yml = baseImages.map(imageAndTag => {
     // important to have indent
     const job = '      - build-base-image:\n' +
-      `          name: "${imageAndTag.tag}"\n` +
+      `          name: "base ${imageAndTag.tag}"\n` +
       `          dockerTag: "${imageAndTag.tag}"\n` +
       '          <<: *buildFilters\n'
     return job
@@ -237,7 +237,7 @@ const formBrowserWorkflow = (browserImages) => {
   const yml = browserImages.map(imageAndTag => {
     // important to have indent
     const job = '      - build-browser-image:\n' +
-      `          name: "${imageAndTag.tag}"\n` +
+      `          name: "browsers ${imageAndTag.tag}"\n` +
       `          dockerTag: "${imageAndTag.tag}"\n` +
       '          <<: *buildFilters\n'
     return job
@@ -255,7 +255,7 @@ const formIncludedWorkflow = (images) => {
   const yml = images.map(imageAndTag => {
     // important to have indent
     const job = '      - build-included-image:\n' +
-      `          name: "${imageAndTag.tag}"\n` +
+      `          name: "included ${imageAndTag.tag}"\n` +
       `          dockerTag: "${imageAndTag.tag}"\n` +
       '          <<: *buildFilters\n'
     return job

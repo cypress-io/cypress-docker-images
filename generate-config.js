@@ -17,6 +17,18 @@ buildFilters: &buildFilters
         - master
         - add-circle-build
 
+commands:
+  halt-on-branch:
+    steps:
+      - run:
+          name: Check if can push to Docker Hub
+          command: |
+            if [[ "$CIRCLE_BRANCH" != "master" ]]; then
+              echo "Not master branch, will skip pushing newly built Docker image"
+              circleci-agent step halt
+            else
+              echo "On master branch, pushing Docker image to hub"
+            fi
 jobs:
   build-base-image:
     machine: true
@@ -61,15 +73,7 @@ jobs:
             RUN ./node_modules/.bin/cypress run
             EOF
 
-      - run:
-          name: Check if can push to Docker Hub
-          command: |
-            if [[ "$CIRCLE_BRANCH" != "master" ]]; then
-              echo "Not master branch, will skip pushing newly built Docker image"
-              circleci-agent step halt
-            else
-              echo "On master branch, pushing Docker image to hub"
-            fi
+      - halt-on-branch
 
       - run:
           name: Pushing new image to Docker Hub

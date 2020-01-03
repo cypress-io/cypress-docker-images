@@ -31,6 +31,27 @@ commands:
               echo "On master branch, can continue"
             fi
 
+  test-base-image:
+    description: Build a test image from base image and test it
+    parameters:
+      imageName:
+        type: string
+        description: Cypress base docker image to test
+    steps:
+      - run:
+          name: test image << parameters.imageName >>
+          command: |
+            docker build -t cypress/test -\\<<EOF
+            FROM << parameters.imageName >>
+            RUN echo "current user: $(whoami)"
+            ENV CI=1
+            RUN npm init --yes
+            RUN npm install --save-dev cypress
+            RUN ./node_modules/.bin/cypress verify
+            RUN npx @bahmutov/cly init
+            RUN ./node_modules/.bin/cypress run
+            EOF
+
   docker-push:
     description: Log in and push a given image to Docker hub
     parameters:
@@ -74,20 +95,8 @@ jobs:
             docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: base/<< parameters.dockerTag >>
 
-      - run:
-          name: test built image
-          command: |
-            docker build -t cypress/test -\\<<EOF
-            FROM << parameters.dockerName >>:<< parameters.dockerTag >>
-            RUN echo "current user: $(whoami)"
-            ENV CI=1
-            RUN npm init --yes
-            RUN npm install --save-dev cypress
-            RUN ./node_modules/.bin/cypress verify
-            RUN npx @bahmutov/cly init
-            RUN ./node_modules/.bin/cypress run
-            EOF
-
+      - test-base-image:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
       - docker-push:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>

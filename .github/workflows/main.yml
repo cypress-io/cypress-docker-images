@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - add-circle-build
 
 jobs:
   build:

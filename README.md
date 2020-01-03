@@ -1,4 +1,4 @@
-# Cypress Docker Images
+# Cypress Docker Images [![CircleCI](https://circleci.com/gh/cypress-io/cypress-docker-images/tree/master.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-docker-images/tree/master)
 
 These images provide all of the required dependencies for running Cypress in Docker.
 

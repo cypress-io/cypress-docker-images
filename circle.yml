@@ -25,6 +25,25 @@ commands:
               echo "On master branch, can continue"
             fi
 
+  halt-if-docker-image-exists:
+    description: Halt current CircleCI job if Docker image exists already
+    parameters:
+      imageName:
+        type: string
+        description: Docker image name to test
+    steps:
+      - run:
+          name: Check if image << parameters.imageName >> exists
+          # using https://github.com/mishguruorg/docker-image-exists
+          # to check if Docker hub has the image already
+          command: |
+            if npx docker-image-exists --quiet --repo << parameters.imageName >>; then
+              echo Found image << parameters.imageName >>
+              circleci-agent step halt
+            else
+              echo Did not find Docker image << parameters.imageName >>
+            fi
+
   test-base-image:
     description: Build a test image from base image and test it
     parameters:
@@ -72,17 +91,8 @@ jobs:
         description: Image tag to build like "12.14.0"
     steps:
       - checkout
-      - run:
-          name: Check if image exists
-          # using https://github.com/mishguruorg/docker-image-exists
-          # to check if Docker hub has the image already
-          command: |
-            if npx docker-image-exists --quiet --repo << parameters.dockerName >>:<< parameters.dockerTag >>; then
-              echo Found image << parameters.dockerName >>:<< parameters.dockerTag >>
-              circleci-agent step halt
-            else
-              echo Did not find Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
-            fi
+      - halt-if-docker-image-exists:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |

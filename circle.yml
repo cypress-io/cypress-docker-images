@@ -9,7 +9,7 @@ buildFilters: &buildFilters
     branches:
       only:
         - master
-        - add-circle-build
+        - automate-building-included-images-199
 
 commands:
   halt-on-branch:

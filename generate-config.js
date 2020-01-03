@@ -1,3 +1,4 @@
+// @ts-check
 // this script generates CircleCI config file by looking at the "base/*" folders
 // for each subfolder it creates a separate job
 const globby = require('globby');
@@ -71,6 +72,28 @@ commands:
             RUN ./node_modules/.bin/cypress run
             EOF
 
+  test-browser-image:
+    description: Build a test image from browser image and test it
+    parameters:
+      imageName:
+        type: string
+        description: Cypress browser docker image to test
+    steps:
+      - run:
+          name: test image << parameters.imageName >>
+          # for now assuming Chrome, in the future can pass browser name as a parameter
+          command: |
+            docker build -t cypress/test -\\<<EOF
+            FROM << parameters.imageName >>
+            RUN echo "current user: $(whoami)"
+            ENV CI=1
+            RUN npm init --yes
+            RUN npm install --save-dev cypress
+            RUN ./node_modules/.bin/cypress verify
+            RUN npx @bahmutov/cly init
+            RUN ./node_modules/.bin/cypress run --browser chrome
+            EOF
+
   docker-push:
     description: Log in and push a given image to Docker hub
     parameters:
@@ -111,6 +134,32 @@ jobs:
       - docker-push:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
+  build-browser-image:
+    machine: true
+    parameters:
+      dockerName:
+        type: string
+        description: Image name to build
+        default: cypress/browsers
+      dockerTag:
+        type: string
+        description: Image tag to build like "node12.4.0-chrome76"
+    steps:
+      - checkout
+      - halt-if-docker-image-exists:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - run:
+          name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
+          command: |
+            docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
+          working_directory: browsers/<< parameters.dockerTag >>
+
+      - test-browser-image:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - halt-on-branch
+      - docker-push:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+
 workflows:
   version: 2
 `
@@ -126,30 +175,57 @@ const formBaseWorkflow = (baseImages) => {
   })
 
   // indent is important
-  const baseWorkflowName = '  build-base-images:\n' +
+  const workflowName = '  build-base-images:\n' +
     '    jobs:\n'
 
-  const text = baseWorkflowName + yml.join('')
+  const text = workflowName + yml.join('')
   return text
 }
 
-const writeConfigFile = (baseImages) => {
+const formBrowserWorkflow = (browserImages) => {
+  const yml = browserImages.map(imageAndTag => {
+    // important to have indent
+    const job = '      - build-browser-image:\n' +
+      `          name: "${imageAndTag.tag}"\n` +
+      `          dockerTag: "${imageAndTag.tag}"\n` +
+      '          <<: *buildFilters\n'
+    return job
+  })
+
+  // indent is important
+  const workflowName = '  build-browser-images:\n' +
+    '    jobs:\n'
+
+  const text = workflowName + yml.join('')
+  return text
+}
+
+const writeConfigFile = (baseImages, browserImages) => {
   const base = formBaseWorkflow(baseImages)
-  const text = preamble + base
+  const browsers = formBrowserWorkflow(browserImages)
+  const text = preamble + base + browsers
   fs.writeFileSync('circle.yml', text, 'utf8')
   console.log('generated circle.yml')
 }
 
-(async () => {
-  const paths = await globby('base/*', {onlyDirectories: true});
+const splitImageFolderName = (folderName) => {
+  const [name, tag] = folderName.split('/')
+  return {
+    name,
+    tag
+  }
+}
 
-  const namePlusTag = paths.map(path => {
-    const [name, tag] = path.split('/')
-    return {
-      name,
-      tag
-    }
-  })
-  console.log(namePlusTag)
-  writeConfigFile(namePlusTag)
+(async () => {
+  const basePaths = await globby('base/*', {onlyDirectories: true});
+  const base = basePaths.map(splitImageFolderName)
+  console.log(' *** base images ***')
+  console.log(base)
+
+  const browsersPaths = await globby('browsers/*', {onlyDirectories: true});
+  const browsers = browsersPaths.map(splitImageFolderName)
+  console.log(' *** browser images ***')
+  console.log(browsers)
+
+  writeConfigFile(base, browsers)
 })();

@@ -11,6 +11,95 @@ buildFilters: &buildFilters
         - master
         - add-circle-build
 
+commands:
+  halt-on-branch:
+    description: Halt current CircleCI job if not on master branch
+    steps:
+      - run:
+          name: Halting job if not on master branch
+          command: |
+            if [[ "$CIRCLE_BRANCH" != "master" ]]; then
+              echo "Not master branch, will skip the rest of commands"
+              circleci-agent step halt
+            else
+              echo "On master branch, can continue"
+            fi
+
+  halt-if-docker-image-exists:
+    description: Halt current CircleCI job if Docker image exists already
+    parameters:
+      imageName:
+        type: string
+        description: Docker image name to test
+    steps:
+      - run:
+          name: Check if image << parameters.imageName >> exists
+          # using https://github.com/mishguruorg/docker-image-exists
+          # to check if Docker hub has the image already
+          command: |
+            if npx docker-image-exists --quiet --repo << parameters.imageName >>; then
+              echo Found image << parameters.imageName >>
+              circleci-agent step halt
+            else
+              echo Did not find Docker image << parameters.imageName >>
+            fi
+
+  test-base-image:
+    description: Build a test image from base image and test it
+    parameters:
+      imageName:
+        type: string
+        description: Cypress base docker image to test
+    steps:
+      - run:
+          name: test image << parameters.imageName >>
+          command: |
+            docker build -t cypress/test -\<<EOF
+            FROM << parameters.imageName >>
+            RUN echo "current user: $(whoami)"
+            ENV CI=1
+            RUN npm init --yes
+            RUN npm install --save-dev cypress
+            RUN ./node_modules/.bin/cypress verify
+            RUN npx @bahmutov/cly init
+            RUN ./node_modules/.bin/cypress run
+            EOF
+
+  test-browser-image:
+    description: Build a test image from browser image and test it
+    parameters:
+      imageName:
+        type: string
+        description: Cypress browser docker image to test
+    steps:
+      - run:
+          name: test image << parameters.imageName >>
+          # for now assuming Chrome, in the future can pass browser name as a parameter
+          command: |
+            docker build -t cypress/test -\<<EOF
+            FROM << parameters.imageName >>
+            RUN echo "current user: $(whoami)"
+            ENV CI=1
+            RUN npm init --yes
+            RUN npm install --save-dev cypress
+            RUN ./node_modules/.bin/cypress verify
+            RUN npx @bahmutov/cly init
+            RUN ./node_modules/.bin/cypress run --browser chrome
+            EOF
+
+  docker-push:
+    description: Log in and push a given image to Docker hub
+    parameters:
+      imageName:
+        type: string
+        description: Docker image name to push
+    steps:
+      - run:
+          name: Pushing image << parameters.imageName >> to Docker Hub
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push << parameters.imageName >>
+
 jobs:
   build-base-image:
     machine: true
@@ -24,52 +113,45 @@ jobs:
         description: Image tag to build like "12.14.0"
     steps:
       - checkout
-      - run:
-          name: Check if image exists
-          # using https://github.com/mishguruorg/docker-image-exists
-          # to check if Docker hub has the image already
-          command: |
-            if npx docker-image-exists --quiet --repo << parameters.dockerName >>:<< parameters.dockerTag >>; then
-              echo Found image << parameters.dockerName >>:<< parameters.dockerTag >>
-              circleci-agent step halt
-            else
-              echo Did not find Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
-            fi
+      - halt-if-docker-image-exists:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
             docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: base/<< parameters.dockerTag >>
 
-      - run:
-          name: test built image
-          command: |
-            docker build -t cypress/test -\<<EOF
-            FROM << parameters.dockerName >>:<< parameters.dockerTag >>
-            RUN echo "current user: $(whoami)"
-            ENV CI=1
-            RUN npm init --yes
-            RUN npm install --save-dev cypress
-            RUN ./node_modules/.bin/cypress verify
-            RUN npx @bahmutov/cly init
-            RUN ./node_modules/.bin/cypress run
-            EOF
+      - test-base-image:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - halt-on-branch
+      - docker-push:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
+  build-browser-image:
+    machine: true
+    parameters:
+      dockerName:
+        type: string
+        description: Image name to build
+        default: cypress/browsers
+      dockerTag:
+        type: string
+        description: Image tag to build like "node12.4.0-chrome76"
+    steps:
+      - checkout
+      - halt-if-docker-image-exists:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
-          name: Check if can push to Docker Hub
+          name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
-            if [[ "$CIRCLE_BRANCH" != "master" ]]; then
-              echo "Not master branch, will skip pushing newly built Docker image"
-              circleci-agent step halt
-            else
-              echo "On master branch, pushing Docker image to hub"
-            fi
+            docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
+          working_directory: browsers/<< parameters.dockerTag >>
 
-      - run:
-          name: Pushing new image to Docker Hub
-          command: |
-            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push << parameters.dockerName >>:<< parameters.dockerTag >>
+      - test-browser-image:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - halt-on-branch
+      - docker-push:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
 workflows:
   version: 2
@@ -186,4 +268,118 @@ workflows:
       - build-base-image:
           name: "ubuntu16-8"
           dockerTag: "ubuntu16-8"
+          <<: *buildFilters
+  build-browser-images:
+    jobs:
+      - build-browser-image:
+          name: "chrome63-ff57"
+          dockerTag: "chrome63-ff57"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "chrome65-ff57"
+          dockerTag: "chrome65-ff57"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "chrome67"
+          dockerTag: "chrome67"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "chrome67-ff57"
+          dockerTag: "chrome67-ff57"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "chrome69"
+          dockerTag: "chrome69"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node10.11.0-chrome75"
+          dockerTag: "node10.11.0-chrome75"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node10.16.0-chrome76"
+          dockerTag: "node10.16.0-chrome76"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node10.16.0-chrome77"
+          dockerTag: "node10.16.0-chrome77"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node10.16.0-chrome77-ff71"
+          dockerTag: "node10.16.0-chrome77-ff71"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node10.2.1-chrome74"
+          dockerTag: "node10.2.1-chrome74"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node11.13.0-chrome73"
+          dockerTag: "node11.13.0-chrome73"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node12.0.0-chrome73"
+          dockerTag: "node12.0.0-chrome73"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node12.0.0-chrome73-ff68"
+          dockerTag: "node12.0.0-chrome73-ff68"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node12.0.0-chrome75"
+          dockerTag: "node12.0.0-chrome75"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node12.13.0-chrome78-ff70"
+          dockerTag: "node12.13.0-chrome78-ff70"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node12.13.0-chrome78-ff70-brave78"
+          dockerTag: "node12.13.0-chrome78-ff70-brave78"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node12.14.0-chrome79-ff71"
+          dockerTag: "node12.14.0-chrome79-ff71"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node12.4.0-chrome76"
+          dockerTag: "node12.4.0-chrome76"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node12.6.0-chrome75"
+          dockerTag: "node12.6.0-chrome75"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node12.6.0-chrome77"
+          dockerTag: "node12.6.0-chrome77"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node12.8.1-chrome78-ff70"
+          dockerTag: "node12.8.1-chrome78-ff70"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node13.1.0-chrome-78-ff70"
+          dockerTag: "node13.1.0-chrome-78-ff70"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node13.3.0-chrome-79-ff70"
+          dockerTag: "node13.3.0-chrome-79-ff70"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node8.15.1-chrome73"
+          dockerTag: "node8.15.1-chrome73"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node8.2.1-chrome73"
+          dockerTag: "node8.2.1-chrome73"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node8.9.3-chrome73"
+          dockerTag: "node8.9.3-chrome73"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node8.9.3-npm6.10.1-chrome75"
+          dockerTag: "node8.9.3-npm6.10.1-chrome75"
+          <<: *buildFilters
+      - build-browser-image:
+          name: "node8.9.3-npm6.10.1-chrome76-ff68"
+          dockerTag: "node8.9.3-npm6.10.1-chrome76-ff68"
           <<: *buildFilters

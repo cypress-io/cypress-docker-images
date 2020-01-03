@@ -12,13 +12,6 @@ const preamble = `
 # https://circleci.com/docs/2.0/building-docker-images/
 version: 2.1
 
-buildFilters: &buildFilters
-  filters:
-    branches:
-      only:
-        - master
-        - add-circle-build
-
 commands:
   halt-on-branch:
     description: Halt current CircleCI job if not on master branch
@@ -220,8 +213,7 @@ const formBaseWorkflow = (baseImages) => {
     // important to have indent
     const job = '      - build-base-image:\n' +
       `          name: "base ${imageAndTag.tag}"\n` +
-      `          dockerTag: "${imageAndTag.tag}"\n` +
-      '          <<: *buildFilters\n'
+      `          dockerTag: "${imageAndTag.tag}"\n`
     return job
   })
 
@@ -238,8 +230,7 @@ const formBrowserWorkflow = (browserImages) => {
     // important to have indent
     const job = '      - build-browser-image:\n' +
       `          name: "browsers ${imageAndTag.tag}"\n` +
-      `          dockerTag: "${imageAndTag.tag}"\n` +
-      '          <<: *buildFilters\n'
+      `          dockerTag: "${imageAndTag.tag}"\n`
     return job
   })
 
@@ -256,8 +247,7 @@ const formIncludedWorkflow = (images) => {
     // important to have indent
     const job = '      - build-included-image:\n' +
       `          name: "included ${imageAndTag.tag}"\n` +
-      `          dockerTag: "${imageAndTag.tag}"\n` +
-      '          <<: *buildFilters\n'
+      `          dockerTag: "${imageAndTag.tag}"\n`
     return job
   })
 

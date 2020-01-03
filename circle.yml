@@ -4,13 +4,6 @@
 # https://circleci.com/docs/2.0/building-docker-images/
 version: 2.1
 
-buildFilters: &buildFilters
-  filters:
-    branches:
-      only:
-        - master
-        - add-circle-build
-
 commands:
   halt-on-branch:
     description: Halt current CircleCI job if not on master branch
@@ -210,278 +203,210 @@ workflows:
       - build-base-image:
           name: "base 10"
           dockerTag: "10"
-          <<: *buildFilters
       - build-base-image:
           name: "base 10.11.0"
           dockerTag: "10.11.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 10.15.3"
           dockerTag: "10.15.3"
-          <<: *buildFilters
       - build-base-image:
           name: "base 10.16.0"
           dockerTag: "10.16.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 10.18.0"
           dockerTag: "10.18.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 10.2.1"
           dockerTag: "10.2.1"
-          <<: *buildFilters
       - build-base-image:
           name: "base 11.13.0"
           dockerTag: "11.13.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 12.0.0"
           dockerTag: "12.0.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 12.1.0"
           dockerTag: "12.1.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 12.12.0"
           dockerTag: "12.12.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 12.13.0"
           dockerTag: "12.13.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 12.14.0"
           dockerTag: "12.14.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 12.4.0"
           dockerTag: "12.4.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 12.6.0"
           dockerTag: "12.6.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 13.1.0"
           dockerTag: "13.1.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 13.3.0"
           dockerTag: "13.3.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 6"
           dockerTag: "6"
-          <<: *buildFilters
       - build-base-image:
           name: "base 8"
           dockerTag: "8"
-          <<: *buildFilters
       - build-base-image:
           name: "base 8.15.1"
           dockerTag: "8.15.1"
-          <<: *buildFilters
       - build-base-image:
           name: "base 8.16.0"
           dockerTag: "8.16.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base 8.2.1"
           dockerTag: "8.2.1"
-          <<: *buildFilters
       - build-base-image:
           name: "base 8.9.3"
           dockerTag: "8.9.3"
-          <<: *buildFilters
       - build-base-image:
           name: "base 8.9.3-npm-6.10.1"
           dockerTag: "8.9.3-npm-6.10.1"
-          <<: *buildFilters
       - build-base-image:
           name: "base centos7"
           dockerTag: "centos7"
-          <<: *buildFilters
       - build-base-image:
           name: "base centos7-12.4.0"
           dockerTag: "centos7-12.4.0"
-          <<: *buildFilters
       - build-base-image:
           name: "base ubuntu16"
           dockerTag: "ubuntu16"
-          <<: *buildFilters
       - build-base-image:
           name: "base ubuntu16-12.13.1"
           dockerTag: "ubuntu16-12.13.1"
-          <<: *buildFilters
       - build-base-image:
           name: "base ubuntu16-8"
           dockerTag: "ubuntu16-8"
-          <<: *buildFilters
 
   build-browser-images:
     jobs:
       - build-browser-image:
           name: "browsers chrome63-ff57"
           dockerTag: "chrome63-ff57"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers chrome65-ff57"
           dockerTag: "chrome65-ff57"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers chrome67"
           dockerTag: "chrome67"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers chrome67-ff57"
           dockerTag: "chrome67-ff57"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers chrome69"
           dockerTag: "chrome69"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node10.11.0-chrome75"
           dockerTag: "node10.11.0-chrome75"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node10.16.0-chrome76"
           dockerTag: "node10.16.0-chrome76"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node10.16.0-chrome77"
           dockerTag: "node10.16.0-chrome77"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node10.16.0-chrome77-ff71"
           dockerTag: "node10.16.0-chrome77-ff71"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node10.2.1-chrome74"
           dockerTag: "node10.2.1-chrome74"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node11.13.0-chrome73"
           dockerTag: "node11.13.0-chrome73"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node12.0.0-chrome73"
           dockerTag: "node12.0.0-chrome73"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node12.0.0-chrome73-ff68"
           dockerTag: "node12.0.0-chrome73-ff68"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node12.0.0-chrome75"
           dockerTag: "node12.0.0-chrome75"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node12.13.0-chrome78-ff70"
           dockerTag: "node12.13.0-chrome78-ff70"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node12.13.0-chrome78-ff70-brave78"
           dockerTag: "node12.13.0-chrome78-ff70-brave78"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node12.14.0-chrome79-ff71"
           dockerTag: "node12.14.0-chrome79-ff71"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node12.4.0-chrome76"
           dockerTag: "node12.4.0-chrome76"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node12.6.0-chrome75"
           dockerTag: "node12.6.0-chrome75"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node12.6.0-chrome77"
           dockerTag: "node12.6.0-chrome77"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node12.8.1-chrome78-ff70"
           dockerTag: "node12.8.1-chrome78-ff70"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node13.1.0-chrome-78-ff70"
           dockerTag: "node13.1.0-chrome-78-ff70"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node13.3.0-chrome-79-ff70"
           dockerTag: "node13.3.0-chrome-79-ff70"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node8.15.1-chrome73"
           dockerTag: "node8.15.1-chrome73"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node8.2.1-chrome73"
           dockerTag: "node8.2.1-chrome73"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node8.9.3-chrome73"
           dockerTag: "node8.9.3-chrome73"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node8.9.3-npm6.10.1-chrome75"
           dockerTag: "node8.9.3-npm6.10.1-chrome75"
-          <<: *buildFilters
       - build-browser-image:
           name: "browsers node8.9.3-npm6.10.1-chrome76-ff68"
           dockerTag: "node8.9.3-npm6.10.1-chrome76-ff68"
-          <<: *buildFilters
 
   build-included-images:
     jobs:
       - build-included-image:
           name: "included 3.2.0"
           dockerTag: "3.2.0"
-          <<: *buildFilters
       - build-included-image:
           name: "included 3.3.0"
           dockerTag: "3.3.0"
-          <<: *buildFilters
       - build-included-image:
           name: "included 3.3.1"
           dockerTag: "3.3.1"
-          <<: *buildFilters
       - build-included-image:
           name: "included 3.3.2"
           dockerTag: "3.3.2"
-          <<: *buildFilters
       - build-included-image:
           name: "included 3.4.0"
           dockerTag: "3.4.0"
-          <<: *buildFilters
       - build-included-image:
           name: "included 3.4.1"
           dockerTag: "3.4.1"
-          <<: *buildFilters
       - build-included-image:
           name: "included 3.5.0"
           dockerTag: "3.5.0"
-          <<: *buildFilters
       - build-included-image:
           name: "included 3.6.0"
           dockerTag: "3.6.0"
-          <<: *buildFilters
       - build-included-image:
           name: "included 3.6.1"
           dockerTag: "3.6.1"
-          <<: *buildFilters
       - build-included-image:
           name: "included 3.7.0"
           dockerTag: "3.7.0"
-          <<: *buildFilters
       - build-included-image:
           name: "included 3.8.0"
           dockerTag: "3.8.0"
-          <<: *buildFilters
       - build-included-image:
           name: "included 3.8.1"
           dockerTag: "3.8.1"
-          <<: *buildFilters

@@ -87,6 +87,30 @@ commands:
             RUN ./node_modules/.bin/cypress run --browser chrome
             EOF
 
+  test-included-image:
+    description: Testing Docker image with Cypress pre-installed
+    parameters:
+      imageName:
+        type: string
+        description: Cypress included docker image to test
+    steps:
+      - run:
+          name: New test project and testing
+          command: |
+            mkdir test
+            cd test
+            npm init --yes
+            npm i -D cypress
+            npx @bahmutov/cly init
+            rm -rf package-lock.json package.json node_modules
+
+            echo "Testing Electron browser"
+            docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.4.1
+
+            echo "Testing Chrome browser"
+            docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.4.1 --browser chrome
+          working_directory: /tmp
+
   docker-push:
     description: Log in and push a given image to Docker hub
     parameters:
@@ -148,6 +172,32 @@ jobs:
           working_directory: browsers/<< parameters.dockerTag >>
 
       - test-browser-image:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - halt-on-branch
+      - docker-push:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+
+  build-included-image:
+    machine: true
+    parameters:
+      dockerName:
+        type: string
+        description: Image name to build
+        default: cypress/included
+      dockerTag:
+        type: string
+        description: Image tag to build, should match Cypress version, like "3.8.1"
+    steps:
+      - checkout
+      - halt-if-docker-image-exists:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - run:
+          name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
+          command: |
+            docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
+          working_directory: included/<< parameters.dockerTag >>
+
+      - test-included-image:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
       - docker-push:
@@ -269,6 +319,7 @@ workflows:
           name: "ubuntu16-8"
           dockerTag: "ubuntu16-8"
           <<: *buildFilters
+
   build-browser-images:
     jobs:
       - build-browser-image:
@@ -382,4 +433,55 @@ workflows:
       - build-browser-image:
           name: "node8.9.3-npm6.10.1-chrome76-ff68"
           dockerTag: "node8.9.3-npm6.10.1-chrome76-ff68"
+          <<: *buildFilters
+
+  build-included-images:
+    jobs:
+      - build-included-image:
+          name: "3.2.0"
+          dockerTag: "3.2.0"
+          <<: *buildFilters
+      - build-included-image:
+          name: "3.3.0"
+          dockerTag: "3.3.0"
+          <<: *buildFilters
+      - build-included-image:
+          name: "3.3.1"
+          dockerTag: "3.3.1"
+          <<: *buildFilters
+      - build-included-image:
+          name: "3.3.2"
+          dockerTag: "3.3.2"
+          <<: *buildFilters
+      - build-included-image:
+          name: "3.4.0"
+          dockerTag: "3.4.0"
+          <<: *buildFilters
+      - build-included-image:
+          name: "3.4.1"
+          dockerTag: "3.4.1"
+          <<: *buildFilters
+      - build-included-image:
+          name: "3.5.0"
+          dockerTag: "3.5.0"
+          <<: *buildFilters
+      - build-included-image:
+          name: "3.6.0"
+          dockerTag: "3.6.0"
+          <<: *buildFilters
+      - build-included-image:
+          name: "3.6.1"
+          dockerTag: "3.6.1"
+          <<: *buildFilters
+      - build-included-image:
+          name: "3.7.0"
+          dockerTag: "3.7.0"
+          <<: *buildFilters
+      - build-included-image:
+          name: "3.8.0"
+          dockerTag: "3.8.0"
+          <<: *buildFilters
+      - build-included-image:
+          name: "3.8.1"
+          dockerTag: "3.8.1"
           <<: *buildFilters

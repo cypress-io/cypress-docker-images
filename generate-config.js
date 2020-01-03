@@ -94,12 +94,10 @@ jobs:
 
 workflows:
   version: 2
-  build-base-images:
-    jobs:
 `
 
-const writeConfigFile = (images) => {
-  const yml = images.map(imageAndTag => {
+const formBaseWorkflow = (baseImages) => {
+  const yml = baseImages.map(imageAndTag => {
     // important to have indent
     const job = '      - build-base-image:\n' +
       `          name: "${imageAndTag.tag}"\n` +
@@ -107,15 +105,25 @@ const writeConfigFile = (images) => {
       '          <<: *buildFilters\n'
     return job
   })
-  const text = preamble + yml.join('')
+
+  // indent is important
+  const baseWorkflowName = '  build-base-images:\n' +
+    '    jobs:\n'
+
+  const text = baseWorkflowName + yml.join('')
+  return text
+}
+
+const writeConfigFile = (baseImages) => {
+  const base = formBaseWorkflow(baseImages)
+  const text = preamble + base
   fs.writeFileSync('circle.yml', text, 'utf8')
   console.log('generated circle.yml')
 }
 
 (async () => {
-	const paths = await globby('base/*', {onlyDirectories: true});
+  const paths = await globby('base/*', {onlyDirectories: true});
 
-  console.log(paths);
   const namePlusTag = paths.map(path => {
     const [name, tag] = path.split('/')
     return {

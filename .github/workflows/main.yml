@@ -21,6 +21,6 @@ jobs:
       # then commit and push it. Only do this on "master" branch
       # https://github.com/mikeal/publish-to-github-action
       - uses: mikeal/publish-to-github-action@master
-        if: github.ref == 'master'
+        if: github.ref == 'refs/heads/master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

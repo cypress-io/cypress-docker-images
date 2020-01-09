@@ -25,7 +25,7 @@ This image should be enough to run Cypress tests headlessly or in the interactiv
 $ docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.3.2
 ```
 
-If you want to see the [Cypress debug logs](https://on.cypress.io/debugging#Print-DEBUG-logs) during the run, pass environment variable `DEBUG`
+If you want to see the [Cypress debug logs](https://on.cypress.io/debugging#Print-DEBUG-logs) during the run, pass environment variable `DEBUG`:
 
 ```shell
 $ docker run -it -v $PWD:/e2e -w /e2e -e DEBUG=cypress:* cypress/included:3.8.1
@@ -33,6 +33,23 @@ $ docker run -it -v $PWD:/e2e -w /e2e -e DEBUG=cypress:* cypress/included:3.8.1
   cypress:cli NODE_OPTIONS is not set +0ms
   cypress:cli:cli program parsing arguments +3ms
   ...
+```
+
+If you want to use a different browser (assuming it is installed in the container) use:
+
+```shell
+$ docker run -it -v $PWD:/e2e -w /e2e --entrypoint=cypress cypress/included:3.8.1 run --browser chrome
+
+============================================================
+
+  (Run Starting)
+
+  ┌─────────────────────────────────
+  │ Cypress:    3.8.1
+  │ Browser:    Chrome 77
+  │ Specs:      1 found (spec.js)
+  └─────────────────────────────────
+...
 ```
 
 For more information, read [Run Cypress with a single Docker command](https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command/) and [End-to-End Testing Web Apps: The Painless Way](https://mtlynch.io/painless-web-app-testing/)

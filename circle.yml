@@ -83,6 +83,9 @@ commands:
   test-included-image:
     description: Testing Docker image with Cypress pre-installed
     parameters:
+      cypressVersion:
+        type: string
+        description: Cypress version to test
       imageName:
         type: string
         description: Cypress included docker image to test
@@ -93,15 +96,18 @@ commands:
             mkdir test
             cd test
             npm init --yes
-            npm i -D cypress
+            # installing Cypress because @bahmutov/cly scaffolding requires it
+            # https://github.com/bahmutov/cly/issues/3
+            # so we will install it, scaffold the test project and immediately remove node_modules
+            npm i -D cypress@<< parameters.cypressVersion >>
             npx @bahmutov/cly init
             rm -rf package-lock.json package.json node_modules
 
             echo "Testing Electron browser"
-            docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.4.1
+            docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >>
 
             echo "Testing Chrome browser"
-            docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.4.1 --browser chrome
+            docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >> --browser chrome
           working_directory: /tmp
 
   docker-push:
@@ -191,6 +197,7 @@ jobs:
           working_directory: included/<< parameters.dockerTag >>
 
       - test-included-image:
+          cypressVersion: << parameters.dockerTag >>
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
       - docker-push:

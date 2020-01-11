@@ -410,3 +410,6 @@ workflows:
       - build-included-image:
           name: "included 3.8.1"
           dockerTag: "3.8.1"
+      - build-included-image:
+          name: "included 3.8.2"
+          dockerTag: "3.8.2"

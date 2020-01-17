@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node ./generate-config"
+    "build": "node ./generate-config",
+    "add:base": "node ./generate-base-image"
   },
   "engines": {
     "node": ">=12"
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/cypress-io/cypress-docker-images#readme",
   "devDependencies": {
-    "globby": "10.0.1"
+    "globby": "10.0.1",
+    "shelljs": "0.8.3"
   }
 }

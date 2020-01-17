@@ -10,35 +10,16 @@ All contributors are expecting to abide by our [Code of Conduct](CODE_OF_CONDUCT
 
 To create a new base image follow these steps
 
-1. copy an existing folder, for example
+1. run `npm run add:base -- <new version>` script. For example `npm run add:base 13.6.0`
 
-```shell
-cp -r ./base/8.2.1 ./base/8.15.1
-```
+It will create a new folder `base/<new version>` and output versions of tools installed: Node, npm, yarn, etc.
 
-2. update the version label in all files in the new folder: the shell script, the Dockerfile and the README
-3. build the local image using the shell script
+2. add new line to [base/README.md](base/README.md) with new image information.
+3. add new folder to Git
+4. update [circle.yml](circle.yml) file by running `npm run build` and commit the changes.
+4. open a pull request.
 
-```sh
-./build.sh
-```
-
-This will create a local Docker image, for example `cypress/base:8.15.1`.
-
-4. Test the new image using [./test](test) script
-  - update the Dockerfile to derive test image from the new image
-  - run the build script that will create the new Docker container, install Cypress, initialize a tiny project and run the tests
-
-5. Add the new image name to the README files
-6. Run local script to generate automatic build on CircleCI
-
-```sh
-npm run build
-```
-
-This will regenerate [circle.yml](circle.yml) file, where each base image is a separate job. The job only runs if there is no corresponding image at Docker Hub already.
-
-7. Push the changes to the repository and open a pull request. CircleCI should build the new image and test it. Once the changes have been approved and merged into `master` branch, CircleCI will build the image again and push it to Docker Hub.
+The new image will be built and tested on CI and pushed to Docker Hub once the PR is approved and merged to `master`.
 
 ## Bonus: smaller images
 

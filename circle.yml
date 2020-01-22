@@ -301,9 +301,6 @@ workflows:
   build-browser-images:
     jobs:
       - build-browser-image:
-          name: "browsers chrome63-ff57"
-          dockerTag: "chrome63-ff57"
-      - build-browser-image:
           name: "browsers chrome65-ff57"
           dockerTag: "chrome65-ff57"
       - build-browser-image:

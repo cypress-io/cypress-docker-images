@@ -1,11 +1,12 @@
-# cypress/base:ubuntu16-12.13.1
+# cypress/base:ubuntu18-node12.14.1
 
-Image with Ubuntu 16 and Node 12.13.1
+Image with Ubuntu 18 and Node 12.14.1
 
 ```
-node version:    v12.13.1
-npm version:     6.12.1
-yarn version:
-debian version:  stretch/sid
+node version:    v12.14.1
+npm version:     6.13.6
+yarn version:    1.21.1
+debian version:  buster/sid
 user:            root
+git:             git version 2.17.1
 ```

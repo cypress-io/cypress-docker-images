@@ -2,7 +2,7 @@
 # FROM cypress/base:12.4.0
 # FROM cypress/browsers:node12.6.0-chrome77
 #
-FROM cypress/base:ubuntu18-node12.14.1
+FROM cypress/base:ubuntu19-node12.14.1
 
 RUN echo "current user: $(whoami)"
 RUN echo "current node: $(node -v)"

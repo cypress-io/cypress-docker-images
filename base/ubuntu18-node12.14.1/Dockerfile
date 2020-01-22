@@ -14,10 +14,13 @@ RUN npm install -g yarn@latest
 # install additional native dependencies build tools
 RUN apt install -y build-essential
 
-# Install Git client
+# install Git client
 RUN apt-get install -y git
+# install unzip utility to speed up Cypress unzips
+# https://github.com/cypress-io/cypress/releases/tag/v3.8.0
+RUN apt-get install -y unzip
 
-# Install Cypress dependencies (separate commands to avoid time outs)
+# install Cypress dependencies (separate commands to avoid time outs)
 RUN apt-get install -y \
     libgtk2.0-0
 RUN apt-get install -y \

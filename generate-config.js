@@ -233,7 +233,14 @@ const formBaseWorkflow = (baseImages) => {
 }
 
 const formBrowserWorkflow = (browserImages) => {
-  const yml = browserImages.map(imageAndTag => {
+  // not every browser image can be tested
+  // some old images do not have NPX for example
+  // so let them be
+  const skipImages = ['chrome63-ff57']
+  const isSkipped = (tag) => skipImages.includes(tag)
+  const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
+
+  const yml = browserImages.filter(isIncluded).map(imageAndTag => {
     // important to have indent
     const job = '      - build-browser-image:\n' +
       `          name: "browsers ${imageAndTag.tag}"\n` +

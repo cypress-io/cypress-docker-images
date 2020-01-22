@@ -297,6 +297,9 @@ workflows:
       - build-base-image:
           name: "base ubuntu18-node12.14.1"
           dockerTag: "ubuntu18-node12.14.1"
+      - build-base-image:
+          name: "base ubuntu19-node12.14.1"
+          dockerTag: "ubuntu19-node12.14.1"
 
   build-browser-images:
     jobs:

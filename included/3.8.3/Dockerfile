@@ -10,13 +10,14 @@ FROM cypress/browsers:node12.6.0-chrome77
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
 ENV CI=1
-ARG CYPRESS_VERSION="3.8.3"
 
 # should be root user
 RUN echo "whoami: $(whoami)"
 RUN npm config -g set user $(whoami)
+
+# command "id" should print:
 # uid=0(root) gid=0(root) groups=0(root)
-# meaning root
+# which means the current user is root
 RUN id
 
 # point Cypress at the /root/cache no matter what user account is used

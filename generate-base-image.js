@@ -112,7 +112,7 @@ echo "Building $LOCAL_NAME"
 docker build -t $LOCAL_NAME .
 `
 
-const buildFilename = path.join(outputFolder, 'build.hs')
+const buildFilename = path.join(outputFolder, 'build.sh')
 fs.writeFileSync(buildFilename, buildScript.trim() + '\n', 'utf8')
 shelljs.chmod('a+x', buildFilename)
 console.log('Saved %s', buildFilename)

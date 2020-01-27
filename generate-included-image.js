@@ -16,7 +16,7 @@ if (!baseImageTag) {
   process.exit(1)
 }
 
-const outputFolder = path.join('base', versionTag)
+const outputFolder = path.join('included', versionTag)
 if (shelljs.test('-d', outputFolder)) {
   console.log('removing existing folder "%s"', outputFolder)
   shelljs.rm('-rf', outputFolder)
@@ -37,13 +37,14 @@ FROM ${baseImageTag}
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
 ENV CI=1
-ARG CYPRESS_VERSION="3.8.3"
 
 # should be root user
 RUN echo "whoami: $(whoami)"
 RUN npm config -g set user $(whoami)
+
+# command "id" should print:
 # uid=0(root) gid=0(root) groups=0(root)
-# meaning root
+# which means the current user is root
 RUN id
 
 # point Cypress at the /root/cache no matter what user account is used
@@ -115,7 +116,7 @@ echo "Building $LOCAL_NAME"
 docker build -t $LOCAL_NAME .
 `
 
-const buildFilename = path.join(outputFolder, 'build.hs')
+const buildFilename = path.join(outputFolder, 'build.sh')
 fs.writeFileSync(buildFilename, buildScript.trim() + '\n', 'utf8')
 shelljs.chmod('a+x', buildFilename)
 console.log('Saved %s', buildFilename)
@@ -125,6 +126,6 @@ Please add the newly generated folder ${outputFolder} to Git and update CircleCI
 
     npm run build
 
-Build the Docker container locally to make sure it is correct and update "base/README.md" list
+Build the Docker container locally to make sure it is correct and update "included/README.md" list
 of images with the new image information.
 `)

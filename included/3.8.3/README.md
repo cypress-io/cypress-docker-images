@@ -1,6 +1,6 @@
 # cypress/included:3.8.3
 
-Read [Run Cypress with a single Docker command](https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command/)
+Read [Run Cypress with a single Docker command][blog post url]
 
 ## Run tests
 
@@ -8,3 +8,5 @@ Read [Run Cypress with a single Docker command](https://www.cypress.io/blog/2019
 $ docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.8.3
 # runs Cypress tests from the current folder
 ```
+
+[blog post url]: https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command/

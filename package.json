@@ -10,7 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node ./generate-config",
-    "add:base": "node ./generate-base-image"
+    "add:base": "node ./generate-base-image",
+    "add:included": "node ./generate-included-image"
   },
   "engines": {
     "node": ">=12"

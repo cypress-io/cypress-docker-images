@@ -8,9 +8,11 @@ All contributors are expecting to abide by our [Code of Conduct](CODE_OF_CONDUCT
 
 ## Development
 
+### Add new base image
+
 To create a new base image follow these steps
 
-1. run `npm run add:base -- <new version>` script. For example `npm run add:base 13.6.0`
+1. run `npm run add:base -- <new version>` script. For example `npm run add:base -- 13.6.0`
 
 It will create a new folder `base/<new version>` and output versions of tools installed: Node, npm, yarn, etc.
 
@@ -20,6 +22,23 @@ It will create a new folder `base/<new version>` and output versions of tools in
 4. open a pull request.
 
 The new image will be built and tested on CI and pushed to Docker Hub once the PR is approved and merged to `master`.
+
+### Add new image with browsers
+
+TODO: https://github.com/cypress-io/cypress-docker-images/issues/215
+
+### Add new included image
+
+To create a new image with Cypress pre-installed globally
+
+1. run `npm run add:included -- <Cypress version> <base image tag>`. For example `npm run add:included -- 3.8.3 cypress/browsers:node12.6.0-chrome77`.
+
+This will create new folder `included/<Cypress version>`
+
+2. add new line to [included/README.md](included/README.md) file with the new image information
+3. add new folder to Git
+4. update [circle.yml](circle.yml) file by running `npm run build` and commit the changes.
+4. open a pull request.
 
 ## Bonus: smaller images
 

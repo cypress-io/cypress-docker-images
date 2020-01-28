@@ -85,3 +85,7 @@ The tests should finish successfully using local image. Now push the image to th
 ```shell
 docker push cypress/included:3.3.2
 ```
+
+## GitHub Action
+
+You can quickly run your tests in GitHub Actions using these images, see [cypress-gh-action-included](https://github.com/bahmutov/cypress-gh-action-included) repository.

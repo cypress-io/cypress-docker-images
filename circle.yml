@@ -50,7 +50,7 @@ commands:
       - run:
           name: confirm image has Node << parameters.nodeVersion >>
           command: |
-            if [[ $(docker run -it << parameters.imageName >> node --version) == "<< parameters.nodeVersion >>"* ]];
+            if [[ $(docker run -it << parameters.imageName >> node --version) == "<< parameters.nodeVersion >>" ]];
             then
               echo "Base image has the expected version of Node";
             else

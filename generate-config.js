@@ -125,6 +125,11 @@ commands:
         type: string
         description: Docker image name to push
     steps:
+      # before pushing, let's check again that the Docker Hub does not have the image
+      # accidental rebuild and overwrite of an image is bad, since it can bump every tool
+      # https://github.com/cypress-io/cypress/issues/6335
+      - halt-if-docker-image-exists:
+          imageName: << parameters.imageName >>
       - run:
           name: Pushing image << parameters.imageName >> to Docker Hub
           command: |

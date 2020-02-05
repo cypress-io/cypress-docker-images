@@ -49,13 +49,14 @@ commands:
     steps:
       - run:
           name: confirm image has Node << parameters.nodeVersion >>
+          # do not run Docker in the interactive mode - adds control characters!
           command: |
-            if [[ $(docker run -it << parameters.imageName >> node --version) == "<< parameters.nodeVersion >>" ]];
-            then
+            version=$(docker run << parameters.imageName >> node --version)
+            if [ "$version" == "<< parameters.nodeVersion >>" ]; then
               echo "Base image has the expected version of Node";
             else
               echo "Problem: base image has unexpected Node version"
-              docker run -it << parameters.imageName >> node --version
+              echo "Expected << parameters.nodeVersion >> and got $version"
               exit 1
             fi
       - run:

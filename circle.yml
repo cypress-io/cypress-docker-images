@@ -370,6 +370,9 @@ workflows:
           name: "browsers node13.3.0-chrome-79-ff70"
           dockerTag: "node13.3.0-chrome-79-ff70"
       - build-browser-image:
+          name: "browsers node13.6.0-chrome-80-ff72"
+          dockerTag: "node13.6.0-chrome-80-ff72"
+      - build-browser-image:
           name: "browsers node8.15.1-chrome73"
           dockerTag: "node8.15.1-chrome73"
       - build-browser-image:

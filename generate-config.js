@@ -61,7 +61,7 @@ commands:
           command: |
             version=$(docker run << parameters.imageName >> node --version)
             if [ "$version" == "<< parameters.nodeVersion >>" ]; then
-              echo "Base image has the expected version of Node";
+              echo "Base image has the expected version of Node << parameters.nodeVersion >>";
             else
               echo "Problem: base image has unexpected Node version"
               echo "Expected << parameters.nodeVersion >> and got $version"

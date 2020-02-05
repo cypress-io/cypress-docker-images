@@ -58,14 +58,14 @@ commands:
       - run:
           name: confirm image has Node << parameters.nodeVersion >>
           command: |
-          if [[ $(docker run -it << parameters.imageName >> node --version) == "<< parameters.nodeVersion >>"* ]];
-          then
-            echo "Base image has the expected version of Node";
-          else
-            echo "Problem: base image has unexpected Node version"
-            docker run -it << parameters.imageName >> node --version
-            exit 1
-          fi
+            if [[ $(docker run -it << parameters.imageName >> node --version) == "<< parameters.nodeVersion >>"* ]];
+            then
+              echo "Base image has the expected version of Node";
+            else
+              echo "Problem: base image has unexpected Node version"
+              docker run -it << parameters.imageName >> node --version
+              exit 1
+            fi
       - run:
           name: test image << parameters.imageName >>
           command: |
@@ -167,6 +167,7 @@ jobs:
           working_directory: base/<< parameters.dockerTag >>
 
       - test-base-image:
+          nodeVersion: v<< parameters.dockerTag >>
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
       - docker-push:

@@ -140,6 +140,11 @@ commands:
         type: string
         description: Docker image name to push
     steps:
+      # before pushing, let's check again that the Docker Hub does not have the image
+      # accidental rebuild and overwrite of an image is bad, since it can bump every tool
+      # https://github.com/cypress-io/cypress/issues/6335
+      - halt-if-docker-image-exists:
+          imageName: << parameters.imageName >>
       - run:
           name: Pushing image << parameters.imageName >> to Docker Hub
           command: |
@@ -171,8 +176,11 @@ jobs:
           nodeVersion: v<< parameters.dockerTag >>
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
-      - docker-push:
-          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - run: |
+          echo 🛑 automatic pushing to Docker hub disabled
+          echo until we can verify that we do not overwrite browser images
+      # - docker-push:
+      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
   build-browser-image:
     machine: true
@@ -197,8 +205,11 @@ jobs:
       - test-browser-image:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
-      - docker-push:
-          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - run: |
+          echo 🛑 automatic pushing to Docker hub disabled
+          echo until we can verify that we do not overwrite browser images
+      # - docker-push:
+      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
   build-included-image:
     machine: true
@@ -224,8 +235,11 @@ jobs:
           cypressVersion: << parameters.dockerTag >>
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
-      - docker-push:
-          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - run: |
+          echo 🛑 automatic pushing to Docker hub disabled
+          echo until we can verify that we do not overwrite browser images
+      # - docker-push:
+      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
 workflows:
   version: 2

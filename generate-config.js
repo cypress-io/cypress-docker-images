@@ -48,10 +48,25 @@ commands:
   test-base-image:
     description: Build a test image from base image and test it
     parameters:
+      nodeVersion:
+        type: string
+        description: Node version to expect in the base image, starts with "v"
       imageName:
         type: string
         description: Cypress base docker image to test
     steps:
+      - run:
+          name: confirm image has Node << parameters.nodeVersion >>
+          # do not run Docker in the interactive mode - adds control characters!
+          command: |
+            version=$(docker run << parameters.imageName >> node --version)
+            if [ "$version" == "<< parameters.nodeVersion >>" ]; then
+              echo "Base image has the expected version of Node << parameters.nodeVersion >>";
+            else
+              echo "Problem: base image has unexpected Node version"
+              echo "Expected << parameters.nodeVersion >> and got $version"
+              exit 1
+            fi
       - run:
           name: test image << parameters.imageName >>
           command: |
@@ -158,6 +173,7 @@ jobs:
           working_directory: base/<< parameters.dockerTag >>
 
       - test-base-image:
+          nodeVersion: v<< parameters.dockerTag >>
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
       - run: |

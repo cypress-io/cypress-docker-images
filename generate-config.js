@@ -115,6 +115,7 @@ commands:
     steps:
       - run:
           name: New test project and testing
+          timeout: '4m'
           command: |
             mkdir test
             cd test

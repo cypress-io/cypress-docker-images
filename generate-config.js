@@ -155,8 +155,11 @@ jobs:
       - test-base-image:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
-      - docker-push:
-          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - run: |
+          echo 🛑 automatic pushing to Docker hub disabled
+          echo until we can verify that we do not overwrite browser images
+      # - docker-push:
+      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
   build-browser-image:
     machine: true
@@ -181,8 +184,11 @@ jobs:
       - test-browser-image:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
-      - docker-push:
-          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - run: |
+          echo 🛑 automatic pushing to Docker hub disabled
+          echo until we can verify that we do not overwrite browser images
+      # - docker-push:
+      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
   build-included-image:
     machine: true
@@ -208,8 +214,11 @@ jobs:
           cypressVersion: << parameters.dockerTag >>
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
-      - docker-push:
-          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - run: |
+          echo 🛑 automatic pushing to Docker hub disabled
+          echo until we can verify that we do not overwrite browser images
+      # - docker-push:
+      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
 workflows:
   version: 2

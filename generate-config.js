@@ -99,7 +99,8 @@ commands:
           command: |
             version=$(docker run << parameters.imageName >> google-chrome --version)
             if [[ "$version" =~ ^"<< parameters.chromeVersion >>" ]]; then
-              echo "Image has the expected version of Chrome << parameters.chromeVersion >>";
+              echo "Image has the expected version of Chrome << parameters.chromeVersion >>"
+              echo "found $version"
             else
               echo "Problem: image has unexpected Chrome version"
               echo "Expected << parameters.chromeVersion >> and got $version"

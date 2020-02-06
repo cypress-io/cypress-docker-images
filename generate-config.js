@@ -88,7 +88,23 @@ commands:
       imageName:
         type: string
         description: Cypress browser docker image to test
+      chromeVersion:
+        type: string
+        description: Chrome version to expect in the base image, starts with "Google Chrome XX"
     steps:
+      - run:
+          name: confirm image has Chrome << parameters.chromeVersion >>
+          # do not run Docker in the interactive mode - adds control characters!
+          # and use Bash regex string comparison
+          command: |
+            version=$(docker run << parameters.imageName >> google-chrome --version)
+            if [[ "$version" =~ ^"<< parameters.nodeVersion >>" ]]; then
+              echo "Image has the expected version of Chrome << parameters.chromeVersion >>";
+            else
+              echo "Problem: image has unexpected Chrome version"
+              echo "Expected << parameters.chromeVersion >> and got $version"
+              exit 1
+            fi
       - run:
           name: test image << parameters.imageName >>
           no_output_timeout: '3m'

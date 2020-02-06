@@ -69,6 +69,7 @@ commands:
             fi
       - run:
           name: test image << parameters.imageName >>
+          no_output_timeout: '3m'
           command: |
             docker build -t cypress/test -\\<<EOF
             FROM << parameters.imageName >>
@@ -90,6 +91,7 @@ commands:
     steps:
       - run:
           name: test image << parameters.imageName >>
+          no_output_timeout: '3m'
           # for now assuming Chrome, in the future can pass browser name as a parameter
           command: |
             docker build -t cypress/test -\\<<EOF
@@ -115,7 +117,7 @@ commands:
     steps:
       - run:
           name: New test project and testing
-          timeout: '4m'
+          no_output_timeout: '3m'
           command: |
             mkdir test
             cd test

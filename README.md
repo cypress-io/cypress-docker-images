@@ -4,11 +4,11 @@ These images provide all of the required dependencies for running Cypress in Doc
 
 We build three main images, click on the image name to see the available tags and versions.
 
-Image | Default | Description
---- | --- | ---
-[cypress/base](base) | `cypress/base:8` | All system dependencies, no browsers.
-[cypress/browsers](browsers) | `cypress/browsers:chrome67` | All system dependencies and browser(s).
-[cypress/included](included) | `cypress/included:3.2.0` | All system dependencies and the Cypress test runner installed globally.
+Image | Default | Description | Monthly pulls
+--- | --- | --- | ---
+[cypress/base](base) | `cypress/base:8` | All system dependencies, no browsers. | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/base.svg?maxAge=604800)](https://hub.docker.com/r/cypress/base/)
+[cypress/browsers](browsers) | `cypress/browsers:chrome67` | All system dependencies and browser(s). | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/browsers.svg?maxAge=604800)](https://hub.docker.com/r/cypress/browsers/)
+[cypress/included](included) | `cypress/included:3.2.0` | All system dependencies and the Cypress test runner installed globally. | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/included.svg?maxAge=604800)](https://hub.docker.com/r/cypress/included/)
 
 Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need.
 

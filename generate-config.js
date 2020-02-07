@@ -286,13 +286,9 @@ const fullChromeVersion = (version) =>
   `Google Chrome ${version}`
 
 const findChromeVersion = (imageAndTag) => {
-  // maybe the folder has "chromeXX" name, so extract "XX" part
-  let matches = /chrome(\d+)/.exec(imageAndTag)
-  if (matches && matches[1]) {
-    return fullChromeVersion(matches[1])
-  }
-
-  matches = /chrome-(\d+)/.exec(imageAndTag)
+  // image name like "nodeX.Y.Z-chromeXX..."
+  // the folder has "chromeXX" name, so extract the "XX" part
+  const matches = /chrome(\d+)/.exec(imageAndTag)
   if (matches && matches[1]) {
     return fullChromeVersion(matches[1])
   }

@@ -437,16 +437,16 @@ workflows:
           dockerTag: "node12.8.1-chrome78-ff70"
           chromeVersion: "Google Chrome 78"
       - build-browser-image:
-          name: "browsers node13.1.0-chrome-78-ff70"
-          dockerTag: "node13.1.0-chrome-78-ff70"
+          name: "browsers node13.1.0-chrome78-ff70"
+          dockerTag: "node13.1.0-chrome78-ff70"
           chromeVersion: "Google Chrome 78"
       - build-browser-image:
           name: "browsers node13.3.0-chrome79-ff70"
           dockerTag: "node13.3.0-chrome79-ff70"
           chromeVersion: "Google Chrome 79"
       - build-browser-image:
-          name: "browsers node13.6.0-chrome-80-ff72"
-          dockerTag: "node13.6.0-chrome-80-ff72"
+          name: "browsers node13.6.0-chrome80-ff72"
+          dockerTag: "node13.6.0-chrome80-ff72"
           chromeVersion: "Google Chrome 80"
       - build-browser-image:
           name: "browsers node8.15.1-chrome73"

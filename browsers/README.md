@@ -14,9 +14,15 @@ Name + Tag | Base image | Chrome | Firefox
 [cypress/browsers:node12.6.0-chrome75](./node12.6.0-chrome75) | `cypress/base:12.6.0` | `75.0.3770.100` | 🚫
 [cypress/browsers:node12.8.1-chrome78-ff70](./node12.8.1-chrome78-ff70) | `cypress/browsers:node12.13.0-chrome78-ff70` | `78.0.3904.97` | `70.0.1`
 [cypress/browsers:node12.13.0-chrome78-ff70](./node12.13.0-chrome78-ff70) | `cypress/base:12.13.0` | `78.0.3904.97` | `70.0.1`
-[cypress/browsers:node13.6.0-chrome-80-ff72](./node13.6.0-chrome-80-ff72) | `cypress/base:13.6.0` | `80.0.3987.87` | `72.0.2`
+[cypress/browsers:node13.6.0-chrome80-ff72](./node13.6.0-chrome80-ff72) | `cypress/base:13.6.0` | `80.0.3987.87` | `72.0.2`
 
-Other images:
+## Naming scheme
+
+Each Docker image is named `cypress/browsers:node<full Node version>-chrome<Chrome major version>`. If the image has Firefox browser, then it is named `cypress/browsers:node<full Node version>-chrome<Chrome major version>-ff<Firefox major version>`.
+
+## Other images
+
+Other (older) images:
 
 - Node 6 + Chrome 63 + Firefox 57 [/chrome63-ff57](chrome63-ff57)
 - Node 8 + Chrome 65 + Firefox 57 [/chrome65-ff57](chrome65-ff57)

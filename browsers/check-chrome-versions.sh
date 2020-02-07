@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# misc
+docker pull cypress/browsers:chrome67-ff57
+docker run cypress/browsers:chrome67-ff57 google-chrome --version
+echo ""
+
+
+# Node 8
 docker pull cypress/browsers:node8.9.3-npm6.10.1-chrome76-ff68
 docker run cypress/browsers:node8.9.3-npm6.10.1-chrome76-ff68 google-chrome --version
 echo ""

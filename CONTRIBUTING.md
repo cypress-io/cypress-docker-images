@@ -27,6 +27,8 @@ The new image will be built and tested on CI and pushed to Docker Hub once the P
 
 TODO: https://github.com/cypress-io/cypress-docker-images/issues/215
 
+**Important:** prefer to use exact browser versions for repeatable builds. You can find the previous official Chrome version numbers at [https://chromereleases.googleblog.com/](https://chromereleases.googleblog.com/).
+
 ### Add new included image
 
 To create a new image with Cypress pre-installed globally

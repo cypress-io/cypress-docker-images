@@ -7,13 +7,17 @@ USER root
 RUN node --version
 RUN echo "force new chrome here"
 
-# install Chromebrowser
-RUN \
-  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-  echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
-  apt-get update && \
-  apt-get install -y dbus-x11 google-chrome-stable && \
-  rm -rf /var/lib/apt/lists/*
+# Chrome dependencies
+RUN apt-get update
+RUN apt-get install -y fonts-liberation libappindicator3-1 xdg-utils lsb-release
+
+# install Chrome browser
+ENV CHROME_VERSION 67.0.3396.62
+RUN wget -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}-1_amd64.deb" && \
+  dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \
+  apt-get install -f -y && \
+  rm -f /usr/src/google-chrome-stable_current_amd64.deb
+RUN google-chrome --version
 
 # "fake" dbus address to prevent errors
 # https://github.com/SeleniumHQ/docker-selenium/issues/87
@@ -29,13 +33,13 @@ RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.moz
 RUN apt-get update && apt-get install -y zip
 
 # versions of local tools
-RUN node -v
-RUN npm -v
-RUN yarn -v
-RUN google-chrome --version
-RUN firefox --version
-RUN zip --version
-RUN git --version
+RUN echo " node version:    $(node -v) \n" \
+  "npm version:     $(npm -v) \n" \
+  "yarn version:    $(yarn -v) \n" \
+  "debian version:  $(cat /etc/debian_version) \n" \
+  "Chrome version:  $(google-chrome --version) \n" \
+  "Firefox version: $(firefox --version) \n" \
+  "git version:     $(git --version) \n"
 
 # a few environment variables to make NPM installs easier
 # good colors for most applications

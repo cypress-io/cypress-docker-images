@@ -26,15 +26,16 @@ commands:
         description: Docker image name to test
     steps:
       - run:
-          name: Check if image << parameters.imageName >> exists
-          # using https://github.com/mishguruorg/docker-image-exists
-          # to check if Docker hub has the image already
+          name: Check if image << parameters.imageName >> exists or Docker hub does not respond
+          # using https://github.com/cypress-io/docker-image-not-found
+          # to check if Docker hub definitely does not have this image
           command: |
-            if npx docker-image-exists --quiet --repo << parameters.imageName >>; then
-              echo Found image << parameters.imageName >>
-              circleci-agent step halt
+            if npx docker-image-not-found --repo << parameters.imageName >>; then
+              echo Docker hub says image << parameters.imageName >> does not exist
             else
-              echo Did not find Docker image << parameters.imageName >>
+              echo Docker hub has image << parameters.imageName >> or not responding
+              echo We should stop in this case
+              circleci-agent step halt
             fi
 
   test-base-image:

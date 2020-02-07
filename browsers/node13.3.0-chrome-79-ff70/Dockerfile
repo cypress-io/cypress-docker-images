@@ -5,16 +5,16 @@ USER root
 RUN node --version
 RUN echo "force new chrome here!"
 
-# install Chromebrowser
-RUN \
-  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-  echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
+# Chrome dependencies
 RUN apt-get update
-# disabled dbus install - could not get it to install
-# but tested an example project, and Chrome seems to run fine
-# RUN apt-get install -y dbus-x11
-RUN apt-get install -y google-chrome-stable
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y fonts-liberation libappindicator3-1 xdg-utils
+
+# install Chrome browser
+ENV CHROME_VERSION 79.0.3945.79
+RUN wget -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}-1_amd64.deb" && \
+  dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \
+  apt-get install -f -y && \
+  rm -f /usr/src/google-chrome-stable_current_amd64.deb
 
 # "fake" dbus address to prevent errors
 # https://github.com/SeleniumHQ/docker-selenium/issues/87

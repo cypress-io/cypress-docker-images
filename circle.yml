@@ -80,7 +80,24 @@ commands:
       imageName:
         type: string
         description: Cypress browser docker image to test
+      chromeVersion:
+        type: string
+        description: Chrome version to expect in the base image, starts with "Google Chrome XX"
     steps:
+      - run:
+          name: confirm image has Chrome << parameters.chromeVersion >>
+          # do not run Docker in the interactive mode - adds control characters!
+          # and use Bash regex string comparison
+          command: |
+            version=$(docker run << parameters.imageName >> google-chrome --version)
+            if [[ "$version" =~ ^"<< parameters.chromeVersion >>" ]]; then
+              echo "Image has the expected version of Chrome << parameters.chromeVersion >>"
+              echo "found $version"
+            else
+              echo "Problem: image has unexpected Chrome version"
+              echo "Expected << parameters.chromeVersion >> and got $version"
+              exit 1
+            fi
       - run:
           name: test image << parameters.imageName >>
           no_output_timeout: '3m'
@@ -187,6 +204,9 @@ jobs:
       dockerTag:
         type: string
         description: Image tag to build like "node12.4.0-chrome76"
+      chromeVersion:
+        type: string
+        description: Chrome version to expect in the base image, starts with "Google Chrome XX"
     steps:
       - checkout
       - halt-if-docker-image-exists:
@@ -199,6 +219,7 @@ jobs:
 
       - test-browser-image:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+          chromeVersion: << parameters.chromeVersion >>
       - halt-on-branch
       - run: |
           echo 🛑 automatic pushing to Docker hub disabled
@@ -342,87 +363,115 @@ workflows:
       - build-browser-image:
           name: "browsers chrome65-ff57"
           dockerTag: "chrome65-ff57"
+          chromeVersion: "Google Chrome 65"
       - build-browser-image:
           name: "browsers chrome67"
           dockerTag: "chrome67"
+          chromeVersion: "Google Chrome 67"
       - build-browser-image:
           name: "browsers chrome67-ff57"
           dockerTag: "chrome67-ff57"
+          chromeVersion: "Google Chrome 67"
       - build-browser-image:
           name: "browsers chrome69"
           dockerTag: "chrome69"
+          chromeVersion: "Google Chrome 69"
       - build-browser-image:
           name: "browsers node10.11.0-chrome75"
           dockerTag: "node10.11.0-chrome75"
+          chromeVersion: "Google Chrome 75"
       - build-browser-image:
           name: "browsers node10.16.0-chrome76"
           dockerTag: "node10.16.0-chrome76"
+          chromeVersion: "Google Chrome 76"
       - build-browser-image:
           name: "browsers node10.16.0-chrome77"
           dockerTag: "node10.16.0-chrome77"
+          chromeVersion: "Google Chrome 77"
       - build-browser-image:
           name: "browsers node10.16.0-chrome77-ff71"
           dockerTag: "node10.16.0-chrome77-ff71"
+          chromeVersion: "Google Chrome 77"
       - build-browser-image:
           name: "browsers node10.2.1-chrome74"
           dockerTag: "node10.2.1-chrome74"
+          chromeVersion: "Google Chrome 74"
       - build-browser-image:
           name: "browsers node11.13.0-chrome73"
           dockerTag: "node11.13.0-chrome73"
+          chromeVersion: "Google Chrome 73"
       - build-browser-image:
           name: "browsers node12.0.0-chrome73"
           dockerTag: "node12.0.0-chrome73"
+          chromeVersion: "Google Chrome 73"
       - build-browser-image:
           name: "browsers node12.0.0-chrome73-ff68"
           dockerTag: "node12.0.0-chrome73-ff68"
+          chromeVersion: "Google Chrome 73"
       - build-browser-image:
           name: "browsers node12.0.0-chrome75"
           dockerTag: "node12.0.0-chrome75"
+          chromeVersion: "Google Chrome 75"
       - build-browser-image:
           name: "browsers node12.13.0-chrome78-ff70"
           dockerTag: "node12.13.0-chrome78-ff70"
+          chromeVersion: "Google Chrome 78"
       - build-browser-image:
           name: "browsers node12.13.0-chrome78-ff70-brave78"
           dockerTag: "node12.13.0-chrome78-ff70-brave78"
+          chromeVersion: "Google Chrome 78"
       - build-browser-image:
           name: "browsers node12.14.0-chrome79-ff71"
           dockerTag: "node12.14.0-chrome79-ff71"
+          chromeVersion: "Google Chrome 79"
       - build-browser-image:
           name: "browsers node12.4.0-chrome76"
           dockerTag: "node12.4.0-chrome76"
+          chromeVersion: "Google Chrome 76"
       - build-browser-image:
           name: "browsers node12.6.0-chrome75"
           dockerTag: "node12.6.0-chrome75"
+          chromeVersion: "Google Chrome 75"
       - build-browser-image:
           name: "browsers node12.6.0-chrome77"
           dockerTag: "node12.6.0-chrome77"
+          chromeVersion: "Google Chrome 77"
       - build-browser-image:
           name: "browsers node12.8.1-chrome78-ff70"
           dockerTag: "node12.8.1-chrome78-ff70"
+          chromeVersion: "Google Chrome 78"
       - build-browser-image:
           name: "browsers node13.1.0-chrome-78-ff70"
           dockerTag: "node13.1.0-chrome-78-ff70"
+          chromeVersion: "Google Chrome 78"
       - build-browser-image:
           name: "browsers node13.3.0-chrome-79-ff70"
           dockerTag: "node13.3.0-chrome-79-ff70"
+          chromeVersion: "Google Chrome 79"
       - build-browser-image:
           name: "browsers node13.6.0-chrome-80-ff72"
           dockerTag: "node13.6.0-chrome-80-ff72"
+          chromeVersion: "Google Chrome 80"
       - build-browser-image:
           name: "browsers node8.15.1-chrome73"
           dockerTag: "node8.15.1-chrome73"
+          chromeVersion: "Google Chrome 73"
       - build-browser-image:
           name: "browsers node8.2.1-chrome73"
           dockerTag: "node8.2.1-chrome73"
+          chromeVersion: "Google Chrome 73"
       - build-browser-image:
           name: "browsers node8.9.3-chrome73"
           dockerTag: "node8.9.3-chrome73"
+          chromeVersion: "Google Chrome 73"
       - build-browser-image:
           name: "browsers node8.9.3-npm6.10.1-chrome75"
           dockerTag: "node8.9.3-npm6.10.1-chrome75"
+          chromeVersion: "Google Chrome 75"
       - build-browser-image:
           name: "browsers node8.9.3-npm6.10.1-chrome76-ff68"
           dockerTag: "node8.9.3-npm6.10.1-chrome76-ff68"
+          chromeVersion: "Google Chrome 76"
 
   build-included-images:
     jobs:

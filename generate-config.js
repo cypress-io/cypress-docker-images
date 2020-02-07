@@ -127,7 +127,7 @@ commands:
     parameters:
       cypressVersion:
         type: string
-        description: Cypress version to test
+        description: Cypress version to test, like "4.0.0"
       imageName:
         type: string
         description: Cypress included docker image to test
@@ -136,15 +136,11 @@ commands:
           name: New test project and testing
           no_output_timeout: '3m'
           command: |
+            node --version
             mkdir test
             cd test
-            npm init --yes
-            # installing Cypress because @bahmutov/cly scaffolding requires it
-            # https://github.com/bahmutov/cly/issues/3
-            # so we will install it, scaffold the test project and immediately remove node_modules
-            npm i -D cypress@<< parameters.cypressVersion >>
-            npx @bahmutov/cly init
-            rm -rf package-lock.json package.json node_modules
+            echo "Initializing test project"
+            npx @bahmutov/cly init --cypress-version << parameters.cypressVersion >>
 
             echo "Testing Electron browser"
             docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >>

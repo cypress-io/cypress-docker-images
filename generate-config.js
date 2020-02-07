@@ -88,7 +88,24 @@ commands:
       imageName:
         type: string
         description: Cypress browser docker image to test
+      chromeVersion:
+        type: string
+        description: Chrome version to expect in the base image, starts with "Google Chrome XX"
     steps:
+      - run:
+          name: confirm image has Chrome << parameters.chromeVersion >>
+          # do not run Docker in the interactive mode - adds control characters!
+          # and use Bash regex string comparison
+          command: |
+            version=$(docker run << parameters.imageName >> google-chrome --version)
+            if [[ "$version" =~ ^"<< parameters.chromeVersion >>" ]]; then
+              echo "Image has the expected version of Chrome << parameters.chromeVersion >>"
+              echo "found $version"
+            else
+              echo "Problem: image has unexpected Chrome version"
+              echo "Expected << parameters.chromeVersion >> and got $version"
+              exit 1
+            fi
       - run:
           name: test image << parameters.imageName >>
           no_output_timeout: '3m'
@@ -195,6 +212,9 @@ jobs:
       dockerTag:
         type: string
         description: Image tag to build like "node12.4.0-chrome76"
+      chromeVersion:
+        type: string
+        description: Chrome version to expect in the base image, starts with "Google Chrome XX"
     steps:
       - checkout
       - halt-if-docker-image-exists:
@@ -207,6 +227,7 @@ jobs:
 
       - test-browser-image:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+          chromeVersion: << parameters.chromeVersion >>
       - halt-on-branch
       - run: |
           echo 🛑 automatic pushing to Docker hub disabled
@@ -265,6 +286,24 @@ const formBaseWorkflow = (baseImages) => {
   return text
 }
 
+const fullChromeVersion = (version) =>
+  `Google Chrome ${version}`
+
+const findChromeVersion = (imageAndTag) => {
+  // maybe the folder has "chromeXX" name, so extract "XX" part
+  let matches = /chrome(\d+)/.exec(imageAndTag)
+  if (matches && matches[1]) {
+    return fullChromeVersion(matches[1])
+  }
+
+  matches = /chrome-(\d+)/.exec(imageAndTag)
+  if (matches && matches[1]) {
+    return fullChromeVersion(matches[1])
+  }
+
+  return null
+}
+
 const formBrowserWorkflow = (browserImages) => {
   // not every browser image can be tested
   // some old images do not have NPX for example
@@ -274,10 +313,16 @@ const formBrowserWorkflow = (browserImages) => {
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 
   const yml = browserImages.filter(isIncluded).map(imageAndTag => {
+    const chromeVersion = findChromeVersion(imageAndTag.tag)
+    if (!chromeVersion) {
+      throw new Error(`Cannot find Chrome version from tag ${imageAndTag.tag}`)
+    }
+
     // important to have indent
     const job = '      - build-browser-image:\n' +
       `          name: "browsers ${imageAndTag.tag}"\n` +
-      `          dockerTag: "${imageAndTag.tag}"\n`
+      `          dockerTag: "${imageAndTag.tag}"\n` +
+      `          chromeVersion: "${chromeVersion}"\n`
     return job
   })
 

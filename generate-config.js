@@ -256,11 +256,8 @@ jobs:
           cypressVersion: << parameters.dockerTag >>
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
-      - run: |
-          echo 🛑 automatic pushing to Docker hub disabled
-          echo until we can verify that we do not overwrite browser images
-      # - docker-push:
-      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - docker-push:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
 workflows:
   version: 2

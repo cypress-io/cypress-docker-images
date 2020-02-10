@@ -193,11 +193,8 @@ jobs:
           nodeVersion: v<< parameters.dockerTag >>
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - halt-on-branch
-      - run: |
-          echo 🛑 automatic pushing to Docker hub disabled
-          echo until we can verify that we do not overwrite browser images
-      # - docker-push:
-      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - docker-push:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
   build-browser-image:
     machine: true
@@ -226,11 +223,8 @@ jobs:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
           chromeVersion: << parameters.chromeVersion >>
       - halt-on-branch
-      - run: |
-          echo 🛑 automatic pushing to Docker hub disabled
-          echo until we can verify that we do not overwrite browser images
-      # - docker-push:
-      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - docker-push:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
   build-included-image:
     machine: true

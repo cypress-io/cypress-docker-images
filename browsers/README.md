@@ -4,8 +4,6 @@
 
 > Image with all operating system dependencies and a pre-installed browser, **but NOT the test runner itself**. See [cypress/included](../included) images if you need pre-installed Cypress in the image.
 
-Image `cypress/browsers:chrome69` is tagged [`latest`](https://hub.docker.com/r/cypress/browsers/tags/)
-
 Name + Tag | Base image | Chrome | Firefox
 --- | --- | --- | ---
 [cypress/browsers:node8.9.3-npm6.10.1-chrome75](./node8.9.3-npm6.10.1-chrome75) | `cypress/base:8.9.3-npm-6.10.1` | `75.0.3770.100` | 🚫
@@ -47,3 +45,15 @@ Other (older) images:
 - Node 13.3.0 + Chrome 79 + Firefox 70 [node13.3.0-chrome79-ff70](node13.3.0-chrome79-ff70)
 
 We only provide browsers for `Debian`, but you can use our base images and build your own. See Cypress [Docker documentation](https://on.cypress.io/docker).
+
+## Tags
+
+You can find all published image tags in the tables above or at [Docker Hub](https://hub.docker.com/r/cypress/browsers/tags/). We recommend using a full image tag, rather than `latest` for immutable builds.
+
+```
+# NOT RECOMMENDED
+FROM cypress/browsers:latest
+
+# Best practice
+FROM cypress/browsers:node13.6.0-chrome80-ff72
+```

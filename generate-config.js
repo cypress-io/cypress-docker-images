@@ -12,6 +12,9 @@ const preamble = `
 # https://circleci.com/docs/2.0/building-docker-images/
 version: 2.1
 
+orbs:
+  node: circleci/node@1.1
+
 commands:
   halt-on-branch:
     description: Halt current CircleCI job if not on master branch
@@ -169,6 +172,17 @@ commands:
             docker push << parameters.imageName >>
 
 jobs:
+  lint-markdown:
+    executor:
+      name: node/default
+      tag: '12'
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm ci
+      - run: npm run check:markdown
+
   build-base-image:
     machine: true
     parameters:
@@ -255,6 +269,9 @@ jobs:
 
 workflows:
   version: 2
+  lint:
+    jobs:
+      - lint-markdown
 `
 
 const formBaseWorkflow = (baseImages) => {
@@ -340,7 +357,7 @@ const writeConfigFile = (baseImages, browserImages, includedImages) => {
   const browsers = formBrowserWorkflow(browserImages)
   const included = formIncludedWorkflow(includedImages)
 
-  const text = preamble + base + os.EOL + browsers + os.EOL + included
+  const text = preamble.trim() + os.EOL + base + os.EOL + browsers + os.EOL + included
   fs.writeFileSync('circle.yml', text, 'utf8')
   console.log('generated circle.yml')
 }

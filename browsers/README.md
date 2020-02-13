@@ -7,7 +7,7 @@
 Name + Tag | Base image | Chrome | Firefox
 --- | --- | --- | ---
 [cypress/browsers:node8.9.3-npm6.10.1-chrome75](./node8.9.3-npm6.10.1-chrome75) | `cypress/base:8.9.3-npm-6.10.1` | `75.0.3770.100` | 🚫
-[cypress/browsers:node10.16.0-chrome77-ff71](./cypress/browsers:node10.16.0-chrome77-ff71) | `cypress/browsers:node10.16.0-chrome77` | `77.0.3865.90` | `71.0`
+[cypress/browsers:node10.16.0-chrome77-ff71](./node10.16.0-chrome77-ff71) | `cypress/browsers:node10.16.0-chrome77` | `77.0.3865.90` | `71.0`
 [cypress/browsers:node12.4.0-chrome76](./node12.4.0-chrome76) | `cypress/base:12.4.0` | `76.0.3809.87` | 🚫
 [cypress/browsers:node12.6.0-chrome75](./node12.6.0-chrome75) | `cypress/base:12.6.0` | `75.0.3770.100` | 🚫
 [cypress/browsers:node12.8.1-chrome78-ff70](./node12.8.1-chrome78-ff70) | `cypress/browsers:node12.13.0-chrome78-ff70` | `78.0.3904.97` | `70.0.1`

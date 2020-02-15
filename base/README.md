@@ -69,4 +69,4 @@ nvm ls-remote | grep LTS
 
 <div id="note1">
 
-**1:** image `cypress/base:8.16.0` includes fonts with Chinese characters
+**1:** this image includes fonts with Chinese characters

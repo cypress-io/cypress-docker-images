@@ -15,6 +15,11 @@ if (!baseImageTag) {
   console.error('expected base Docker image tag like "cypress/browsers:node12.6.0-chrome77"')
   process.exit(1)
 }
+if (!baseImageTag.startsWith('cypress/browsers:')) {
+  console.error('expected the base Docker image tag to be one of "cypress/browsers:*"')
+  console.error('but it was "%s"', baseImageTag)
+  process.exit(1)
+}
 
 const outputFolder = path.join('included', versionTag)
 if (shelljs.test('-d', outputFolder)) {

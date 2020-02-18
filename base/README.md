@@ -32,6 +32,7 @@ cypress/base:12.8.1 | 12.8.1 | Debian | [/12.8.1](12.8.1) | 6.13.7 | 1.22.0 | [1
 cypress/base:12.12.0 | 12.12.0 | Debian | [/12.12.0](12.12.0) | 6.12.0 | 1.19.1 | [1](#note1)
 cypress/base:12.13.0 | 12.13.0 | Debian | [/12.13.0](12.13.0) | 6.13.0 | 1.19.1 | [1](#note1)
 cypress/base:12.14.0 | 12.14.0 | Debian | [/12.14.0](12.14.0) | 6.13.4 | 1.21.1 | [1](#note1)
+cypress/base:12.16.0 | 12.16.0 | Debian | [/12.16.0](12.16.0) | 6.13.7 | 1.22.0 | [1](#note1)
 cypress/base:13.1.0 | 13.1.0 | Debian | [/13.1.0](13.1.0) | 6.13.1 | 1.19.1 | [1](#note1)
 cypress/base:13.3.0 | 13.3.0 | Debian | [/13.3.0](13.3.0) | 6.13.4 | 1.21.1 | [1](#note1)
 cypress/base:13.6.0 | 13.6.0 | Debian 10.2 | [/13.6.0](13.6.0) | 6.13.6 | 1.21.1 | [1](#note1)
@@ -50,19 +51,23 @@ cypress/base:ubuntu19-node12.14.1 | 12.14.1 | Ubuntu 19.0.4 | [ubuntu19-node12.1
 Node release schedule at [nodejs/Release](https://github.com/nodejs/Release) and one can find LTS versions using [nvm](https://github.com/creationix/nvm) tool
 
 ```text
-nvm ls-remote
+nvm ls-remote | grep LTS
 ...
-  v8.14.1   (LTS: Carbon)
-  v8.15.0   (LTS: Carbon)
-  v8.15.1   (Latest LTS: Carbon)
+  v8.16.1   (LTS: Carbon)
+  v8.16.2   (LTS: Carbon)
+  v8.17.0   (Latest LTS: Carbon)
 ...
-  v10.15.1   (LTS: Dubnium)
-  v10.15.2   (LTS: Dubnium)
-  v10.15.3   (Latest LTS: Dubnium)
+  v10.18.0   (LTS: Dubnium)
+  v10.18.1   (LTS: Dubnium)
+  v10.19.0   (Latest LTS: Dubnium)
+...
+  v12.14.1   (LTS: Erbium)
+  v12.15.0   (LTS: Erbium)
+  v12.16.0   (Latest LTS: Erbium)
 ```
 
 ## Notes
 
 <div id="note1">
 
-**1:** image `cypress/base:8.16.0` includes fonts with Chinese characters
+**1:** this image includes fonts with Chinese characters

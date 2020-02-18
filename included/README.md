@@ -68,7 +68,21 @@ $ docker run -it -v $PWD/src:/test -w /test -u node cypress/included:3.8.1
 
 ## Building and testing
 
-To build a new image, clone an existing folder, update version strings and build the Docker image locally. Then test it by creating a new project and running headless tests. For example:
+To build a new image use command from the root of the repo
+
+```shell
+$ npm run add:included -- <Cypress version> <cypress/base:image>
+# example
+$ npm run add:included -- 4.0.2 cypress/browsers:node13.6.0-chrome80-ff72
+```
+
+You should also update the `circle.yml` file after creating the new image with
+
+```shell
+$ npm run build
+```
+
+You can test the new image by creating a new project and running headless tests. For example:
 
 ```shell
 cd /tmp

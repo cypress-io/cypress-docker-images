@@ -26,11 +26,7 @@ RUN apt-get update && apt-get install -y zip
 
 # add codecs needed for video playback in firefox
 # https://github.com/cypress-io/cypress-docker-images/issues/150
-RUN apt-get install apt-transport-https -y && \
-curl https://download.videolan.org/pub/debian/videolan-apt.asc | apt-key add - && \
-echo 'deb https://download.videolan.org/pub/debian/stable ./' | tee /etc/apt/sources.list.d/libdvdcss.list && \
-apt-get update && \
-apt-get install mplayer2 -y
+RUN apt-get install mplayer -y
 
 # install Firefox browser
 ARG FIREFOX_VERSION=72.0.2

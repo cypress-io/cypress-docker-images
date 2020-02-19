@@ -67,7 +67,7 @@ ENV npm_config_loglevel warn
 ENV npm_config_unsafe_perm true
 
 # Node libraries
-RUN echo "node -p process.versions"
+RUN node -p process.versions
 
 # versions of local tools
 RUN echo  " node version:    $(node -v) \\n" \\

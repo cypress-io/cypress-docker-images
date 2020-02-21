@@ -5,7 +5,9 @@
 # build it with command
 #   docker build -t cypress/base:8.0.0 .
 #
-FROM node:8.0.0-buster
+
+# NOTE: manual edit - there is no node:8.0.0-buster that we typically use
+FROM node:8.0.0
 
 RUN apt-get update && \
   apt-get install --no-install-recommends -y \

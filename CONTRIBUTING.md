@@ -14,7 +14,7 @@ To create a new base image follow these steps
 
 1. run `npm run add:base -- <new version>` script. For example `npm run add:base -- 13.6.0`
 
-It will create a new folder `base/<new version>` and output versions of tools installed: Node, npm, yarn, etc.
+It will create a new folder `base/<new version>` and output versions of tools installed: Node, npm, yarn, etc. See [generate-base-image.js](generate-base-image.js) file for details.
 
 2. add new line to [base/README.md](base/README.md) with new image information.
 3. add new folder to Git
@@ -22,6 +22,10 @@ It will create a new folder `base/<new version>` and output versions of tools in
 4. open a pull request.
 
 The new image will be built and tested on CI and pushed to Docker Hub once the PR is approved and merged to `master`.
+
+**note:** we should install the latest NPM and Yarn versions in the base image to ensure old images do not include NPM and Yarn with known issues that have been fixed already.
+
+**note 2:** we install Chinese fonts in the base image to allow correct testing of [cypress-documentation](https://github.com/cypress-io/cypress-documentation) site that includes several translations of the Cypress docs. Without Chinese fonts the pages have broken rendering.
 
 ### Add new image with browsers
 

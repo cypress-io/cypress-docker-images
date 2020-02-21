@@ -35,8 +35,12 @@ RUN apt-get update && \
   # clean up
   && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g npm@latest
+# for some reason, npm commands were failing with "cannot find strip-ansi module"
+# so keeping the npm@5.0.0 version
+RUN npm --version
+
 RUN npm install -g yarn@latest --force
+RUN yarn --version
 
 # a few environment variables to make NPM installs easier
 # good colors for most applications

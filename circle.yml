@@ -332,6 +332,9 @@ workflows:
           name: "base 8"
           dockerTag: "8"
       - build-base-image:
+          name: "base 8.0.0"
+          dockerTag: "8.0.0"
+      - build-base-image:
           name: "base 8.15.1"
           dockerTag: "8.15.1"
       - build-base-image:

@@ -1,4 +1,4 @@
-# this file was manually changed to re-install NPM using apt-install
+# this file was manually changed to re-install latest NPM
 # otherwise the default NPM was broken and could not install files and urls
 # see https://github.com/cypress-io/cypress/pull/6569
 
@@ -39,13 +39,50 @@ RUN apt-get update && \
   # clean up
   && rm -rf /var/lib/apt/lists/*
 
-# for some reason, npm commands were failing with "cannot find strip-ansi module"
-# so keeping the npm@5.0.0 version
-RUN apt-get update && \
-  apt-get install npm --yes
-RUN npm --version
+# the current tools
+RUN which node
+RUN which npm
 
+# Replace shell with bash so we can source files
+# RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+# Set debconf to run non-interactively
+# RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+# or ~/.nvm , depending
+# ENV NVM_DIR /usr/local/nvm
+# ENV NODE_VERSION 8.0.0
+
+# RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+# RUN /bin/bash -c "source $NVM_DIR/nvm.sh && nvm install $NODE_VERSION && nvm use --delete-prefix $NODE_VERSION"
+# ENV NODE_PATH $NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
+# ENV PATH      $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
+
+# RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+# Install nvm with node and npm
+# RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash \
+#     && . $NVM_DIR/nvm.sh \
+#     && nvm install $NODE_VERSION \
+#     && nvm alias default $NODE_VERSION \
+#     && nvm use default
+# ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+# ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
+
+# RUN echo "Node path is $NODE_PATH"
+# RUN echo "path is $PATH"
+# RUN which node
+# RUN which npm
+
+# RUN nvm install v8.0.0
+# RUN apt-get update
+# RUN apt-get install npm --yes
+RUN npm --version
+RUN npm install npm@latest
+RUN echo "current bin path $(npm bin)"
 RUN npm install -g yarn@latest --force
+
+RUN which npm
+RUN rm /usr/local/bin/npm
+RUN ln -s /node_modules/.bin/npm /usr/local/bin/npm
+RUN npm --version
 RUN yarn --version
 
 # a few environment variables to make NPM installs easier

@@ -1,11 +1,12 @@
-# FROM cypress/base:10.11.0
+FROM cypress/base:8.0.0
 # FROM cypress/base:12.4.0
 # FROM cypress/browsers:node12.6.0-chrome77
 #
-FROM cypress/base:ubuntu19-node12.14.1
+# FROM cypress/base:ubuntu19-node12.14.1
 
 RUN echo "current user: $(whoami)"
 RUN echo "current node: $(node -v)"
+RUN echo "current npm:  $(npm -v)"
 
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
@@ -14,7 +15,9 @@ ENV CI=1
 RUN npm init --yes
 
 # # install either a specific version of Cypress
-RUN npm install --save-dev cypress@3.8.2
+ENV CYPRESS_INSTALL_BINARY=https://cdn.cypress.io/beta/binary/4.0.3/darwin-x64/circle-develop-cb0f32b0b4913cbb403f2e7c51b23ecad50ece9f-266831/cypress.zip
+# RUN npm install --save-dev cypress@4.0.2
+RUN npm install https://cdn.cypress.io/beta/npm/4.0.3/circle-develop-cb0f32b0b4913cbb403f2e7c51b23ecad50ece9f-266811/cypress.tgz
 # # or install a beta version of Cypress using environment variables
 # # ENV CYPRESS_INSTALL_BINARY=https://cdn.cypress.io/beta/binary/3.3.0/linux64/circle-develop-40502cbfb7b934afce0a7b1dba4141dab4adb202-100529/cypress.zip
 # # RUN npm install https://cdn.cypress.io/beta/npm/3.3.0/circle-develop-40502cbfb7b934afce0a7b1dba4141dab4adb202-100527/cypress.tgz

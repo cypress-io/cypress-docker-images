@@ -42,47 +42,17 @@ RUN apt-get update && \
 # the current tools
 RUN which node
 RUN which npm
-
-# Replace shell with bash so we can source files
-# RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-# Set debconf to run non-interactively
-# RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-# or ~/.nvm , depending
-# ENV NVM_DIR /usr/local/nvm
-# ENV NODE_VERSION 8.0.0
-
-# RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
-# RUN /bin/bash -c "source $NVM_DIR/nvm.sh && nvm install $NODE_VERSION && nvm use --delete-prefix $NODE_VERSION"
-# ENV NODE_PATH $NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
-# ENV PATH      $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
-
-# RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
-# Install nvm with node and npm
-# RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash \
-#     && . $NVM_DIR/nvm.sh \
-#     && nvm install $NODE_VERSION \
-#     && nvm alias default $NODE_VERSION \
-#     && nvm use default
-# ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
-# ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
-
-# RUN echo "Node path is $NODE_PATH"
-# RUN echo "path is $PATH"
-# RUN which node
-# RUN which npm
-
-# RUN nvm install v8.0.0
-# RUN apt-get update
-# RUN apt-get install npm --yes
 RUN npm --version
 RUN npm install npm@latest
 RUN echo "current bin path $(npm bin)"
-RUN npm install -g yarn@latest --force
-
+# npm fails to install over it globally
+# so we will install the latest npm locally and thenk link in place of global npm
 RUN which npm
 RUN rm /usr/local/bin/npm
 RUN ln -s /node_modules/.bin/npm /usr/local/bin/npm
 RUN npm --version
+
+RUN npm install -g yarn@latest --force
 RUN yarn --version
 
 # a few environment variables to make NPM installs easier

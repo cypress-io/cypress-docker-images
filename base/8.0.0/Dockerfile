@@ -1,4 +1,4 @@
-# this file was manually changed to re-install NPM using apt-install
+# this file was manually changed to re-install latest NPM
 # otherwise the default NPM was broken and could not install files and urls
 # see https://github.com/cypress-io/cypress/pull/6569
 
@@ -39,10 +39,17 @@ RUN apt-get update && \
   # clean up
   && rm -rf /var/lib/apt/lists/*
 
-# for some reason, npm commands were failing with "cannot find strip-ansi module"
-# so keeping the npm@5.0.0 version
-RUN apt-get update && \
-  apt-get install npm --yes
+# the current tools
+RUN which node
+RUN which npm
+RUN npm --version
+RUN npm install npm@latest
+RUN echo "current bin path $(npm bin)"
+# npm fails to install over it globally
+# so we will install the latest npm locally and thenk link in place of global npm
+RUN which npm
+RUN rm /usr/local/bin/npm
+RUN ln -s /node_modules/.bin/npm /usr/local/bin/npm
 RUN npm --version
 
 RUN npm install -g yarn@latest --force

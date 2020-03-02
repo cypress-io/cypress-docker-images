@@ -114,6 +114,23 @@ commands:
               echo "Expected << parameters.chromeVersion >> and got $version"
               exit 1
             fi
+
+      - when:
+          condition: << parameters.firefoxVersion >>
+          steps:
+          - run:
+              name: confirm the image has Firefox << parameters.firefoxVersion >>
+              command: |
+                version=$(docker run << parameters.imageName >> firefox --version)
+                if [[ "$version" =~ ^"<< parameters.firefoxVersion >>" ]]; then
+                  echo "Image has the expected version of Firefox << parameters.firefoxVersion >>"
+                  echo "found $version"
+                else
+                  echo "Problem: image has unexpected Firefox version"
+                  echo "Expected << parameters.firefoxVersion >> and got $version"
+                  exit 1
+                fi
+
       - run:
           name: test image << parameters.imageName >>
           no_output_timeout: '3m'

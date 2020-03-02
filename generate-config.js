@@ -95,6 +95,10 @@ commands:
       chromeVersion:
         type: string
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
+      firefoxVersion:
+        type: string
+        default: ''
+        description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
     steps:
       - run:
           name: confirm image has Chrome << parameters.chromeVersion >>
@@ -110,10 +114,26 @@ commands:
               echo "Expected << parameters.chromeVersion >> and got $version"
               exit 1
             fi
+
+      - when:
+          condition: << parameters.firefoxVersion >>
+          steps:
+          - run:
+              name: confirm the image has Firefox << parameters.firefoxVersion >>
+              command: |
+                version=$(docker run << parameters.imageName >> firefox --version)
+                if [[ "$version" =~ ^"<< parameters.firefoxVersion >>" ]]; then
+                  echo "Image has the expected version of Firefox << parameters.firefoxVersion >>"
+                  echo "found $version"
+                else
+                  echo "Problem: image has unexpected Firefox version"
+                  echo "Expected << parameters.firefoxVersion >> and got $version"
+                  exit 1
+                fi
+
       - run:
           name: test image << parameters.imageName >>
           no_output_timeout: '3m'
-          # for now assuming Chrome, in the future can pass browser name as a parameter
           command: |
             docker build -t cypress/test -\\<<EOF
             FROM << parameters.imageName >>
@@ -123,13 +143,28 @@ commands:
             RUN npm install --save-dev cypress
             RUN ./node_modules/.bin/cypress verify
             RUN npx @bahmutov/cly init
-            RUN if [[ << parameters.imageName >> = *"-chrome"* ]]; then \\
-              ./node_modules/.bin/cypress run --browser chrome \\
-            fi
-            RUN if [[ << parameters.imageName >> = *"-ff"* ]]; then \\
-              ./node_modules/.bin/cypress run --browser firefox \\
-            fi
             EOF
+
+      - run:
+          name: Test built-in Electron browser
+          no_output_timeout: '1m'
+          command: docker run cypress/test ./node_modules/.bin/cypress run
+
+      - when:
+          condition: << parameters.chromeVersion >>
+          steps:
+          - run:
+              name: Test << parameters.chromeVersion >>
+              no_output_timeout: '1m'
+              command: docker run cypress/test ./node_modules/.bin/cypress run --browser chrome
+
+      - when:
+          condition: << parameters.firefoxVersion >>
+          steps:
+          - run:
+              name: Test << parameters.firefoxVersion >>
+              no_output_timeout: '1m'
+              command: docker run cypress/test ./node_modules/.bin/cypress run --browser firefox
 
   test-included-image:
     description: Testing Docker image with Cypress pre-installed
@@ -228,6 +263,10 @@ jobs:
       chromeVersion:
         type: string
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
+      firefoxVersion:
+        type: string
+        default: ''
+        description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
     steps:
       - checkout
       - halt-if-docker-image-exists:
@@ -237,10 +276,10 @@ jobs:
           command: |
             docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: browsers/<< parameters.dockerTag >>
-
       - test-browser-image:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
           chromeVersion: << parameters.chromeVersion >>
+          firefoxVersion: << parameters.firefoxVersion >>
       - halt-on-branch
       - docker-push:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
@@ -299,12 +338,26 @@ const formBaseWorkflow = (baseImages) => {
 const fullChromeVersion = (version) =>
   `Google Chrome ${version}`
 
+const fullFirefoxVersion = (version) =>
+  `Mozilla Firefox ${version}`
+
 const findChromeVersion = (imageAndTag) => {
   // image name like "nodeX.Y.Z-chromeXX..."
   // the folder has "chromeXX" name, so extract the "XX" part
   const matches = /chrome(\d+)/.exec(imageAndTag)
   if (matches && matches[1]) {
     return fullChromeVersion(matches[1])
+  }
+
+  return null
+}
+
+const findFirefoxVersion = (imageAndTag) => {
+  // image name like "nodeX.Y.Z-chromeXX-ffYY..."
+  // the folder has "ffYY" name, so extract the "YY" part
+  const matches = /-ff(\d+)/.exec(imageAndTag)
+  if (matches && matches[1]) {
+    return fullFirefoxVersion(matches[1])
   }
 
   return null
@@ -323,12 +376,17 @@ const formBrowserWorkflow = (browserImages) => {
     if (!chromeVersion) {
       throw new Error(`Cannot find Chrome version from tag ${imageAndTag.tag}`)
     }
+    const firefoxVersion = findFirefoxVersion(imageAndTag.tag)
 
     // important to have indent
-    const job = '      - build-browser-image:\n' +
+    let job = '      - build-browser-image:\n' +
       `          name: "browsers ${imageAndTag.tag}"\n` +
       `          dockerTag: "${imageAndTag.tag}"\n` +
       `          chromeVersion: "${chromeVersion}"\n`
+    if (firefoxVersion) {
+      job += `          firefoxVersion: "${firefoxVersion}"\n`
+    }
+
     return job
   })
 

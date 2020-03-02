@@ -95,6 +95,10 @@ commands:
       chromeVersion:
         type: string
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
+      firefoxVersion:
+        type: string
+        default: ''
+        description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
     steps:
       - run:
           name: confirm image has Chrome << parameters.chromeVersion >>
@@ -228,6 +232,10 @@ jobs:
       chromeVersion:
         type: string
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
+      firefoxVersion:
+        type: string
+        default: ''
+        description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
     steps:
       - checkout
       - halt-if-docker-image-exists:
@@ -237,10 +245,10 @@ jobs:
           command: |
             docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: browsers/<< parameters.dockerTag >>
-
       - test-browser-image:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
           chromeVersion: << parameters.chromeVersion >>
+          firefoxVersion: << parameters.firefoxVersion >>
       - halt-on-branch
       - docker-push:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
@@ -299,12 +307,26 @@ const formBaseWorkflow = (baseImages) => {
 const fullChromeVersion = (version) =>
   `Google Chrome ${version}`
 
+const fullFirefoxVersion = (version) =>
+  `Mozilla Firefox ${version}`
+
 const findChromeVersion = (imageAndTag) => {
   // image name like "nodeX.Y.Z-chromeXX..."
   // the folder has "chromeXX" name, so extract the "XX" part
   const matches = /chrome(\d+)/.exec(imageAndTag)
   if (matches && matches[1]) {
     return fullChromeVersion(matches[1])
+  }
+
+  return null
+}
+
+const findFirefoxVersion = (imageAndTag) => {
+  // image name like "nodeX.Y.Z-chromeXX-ffYY..."
+  // the folder has "ffYY" name, so extract the "YY" part
+  const matches = /-ff(\d+)/.exec(imageAndTag)
+  if (matches && matches[1]) {
+    return fullFirefoxVersion(matches[1])
   }
 
   return null
@@ -323,12 +345,17 @@ const formBrowserWorkflow = (browserImages) => {
     if (!chromeVersion) {
       throw new Error(`Cannot find Chrome version from tag ${imageAndTag.tag}`)
     }
+    const firefoxVersion = findFirefoxVersion(imageAndTag.tag)
 
     // important to have indent
-    const job = '      - build-browser-image:\n' +
+    let job = '      - build-browser-image:\n' +
       `          name: "browsers ${imageAndTag.tag}"\n` +
       `          dockerTag: "${imageAndTag.tag}"\n` +
       `          chromeVersion: "${chromeVersion}"\n`
+    if (firefoxVersion) {
+      job += `          firefoxVersion: "${firefoxVersion}"\n`
+    }
+
     return job
   })
 

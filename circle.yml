@@ -86,6 +86,10 @@ commands:
       chromeVersion:
         type: string
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
+      firefoxVersion:
+        type: string
+        default: ''
+        description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
     steps:
       - run:
           name: confirm image has Chrome << parameters.chromeVersion >>
@@ -219,6 +223,10 @@ jobs:
       chromeVersion:
         type: string
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
+      firefoxVersion:
+        type: string
+        default: ''
+        description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
     steps:
       - checkout
       - halt-if-docker-image-exists:
@@ -228,10 +236,10 @@ jobs:
           command: |
             docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: browsers/<< parameters.dockerTag >>
-
       - test-browser-image:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
           chromeVersion: << parameters.chromeVersion >>
+          firefoxVersion: << parameters.firefoxVersion >>
       - halt-on-branch
       - docker-push:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
@@ -388,6 +396,7 @@ workflows:
           name: "browsers chrome65-ff57"
           dockerTag: "chrome65-ff57"
           chromeVersion: "Google Chrome 65"
+          firefoxVersion: "Mozilla Firefox 57"
       - build-browser-image:
           name: "browsers chrome67"
           dockerTag: "chrome67"
@@ -396,6 +405,7 @@ workflows:
           name: "browsers chrome67-ff57"
           dockerTag: "chrome67-ff57"
           chromeVersion: "Google Chrome 67"
+          firefoxVersion: "Mozilla Firefox 57"
       - build-browser-image:
           name: "browsers chrome69"
           dockerTag: "chrome69"
@@ -416,6 +426,12 @@ workflows:
           name: "browsers node10.16.0-chrome77-ff71"
           dockerTag: "node10.16.0-chrome77-ff71"
           chromeVersion: "Google Chrome 77"
+          firefoxVersion: "Mozilla Firefox 71"
+      - build-browser-image:
+          name: "browsers node10.16.3-chrome80-ff73"
+          dockerTag: "node10.16.3-chrome80-ff73"
+          chromeVersion: "Google Chrome 80"
+          firefoxVersion: "Mozilla Firefox 73"
       - build-browser-image:
           name: "browsers node10.2.1-chrome74"
           dockerTag: "node10.2.1-chrome74"
@@ -432,6 +448,7 @@ workflows:
           name: "browsers node12.0.0-chrome73-ff68"
           dockerTag: "node12.0.0-chrome73-ff68"
           chromeVersion: "Google Chrome 73"
+          firefoxVersion: "Mozilla Firefox 68"
       - build-browser-image:
           name: "browsers node12.0.0-chrome75"
           dockerTag: "node12.0.0-chrome75"
@@ -440,22 +457,27 @@ workflows:
           name: "browsers node12.13.0-chrome78-ff70"
           dockerTag: "node12.13.0-chrome78-ff70"
           chromeVersion: "Google Chrome 78"
+          firefoxVersion: "Mozilla Firefox 70"
       - build-browser-image:
           name: "browsers node12.13.0-chrome78-ff70-brave78"
           dockerTag: "node12.13.0-chrome78-ff70-brave78"
           chromeVersion: "Google Chrome 78"
+          firefoxVersion: "Mozilla Firefox 70"
       - build-browser-image:
           name: "browsers node12.13.0-chrome80-ff73"
           dockerTag: "node12.13.0-chrome80-ff73"
           chromeVersion: "Google Chrome 80"
+          firefoxVersion: "Mozilla Firefox 73"
       - build-browser-image:
           name: "browsers node12.14.0-chrome79-ff71"
           dockerTag: "node12.14.0-chrome79-ff71"
           chromeVersion: "Google Chrome 79"
+          firefoxVersion: "Mozilla Firefox 71"
       - build-browser-image:
           name: "browsers node12.16.1-chrome80-ff73"
           dockerTag: "node12.16.1-chrome80-ff73"
           chromeVersion: "Google Chrome 80"
+          firefoxVersion: "Mozilla Firefox 73"
       - build-browser-image:
           name: "browsers node12.4.0-chrome76"
           dockerTag: "node12.4.0-chrome76"
@@ -472,22 +494,27 @@ workflows:
           name: "browsers node12.8.1-chrome78-ff70"
           dockerTag: "node12.8.1-chrome78-ff70"
           chromeVersion: "Google Chrome 78"
+          firefoxVersion: "Mozilla Firefox 70"
       - build-browser-image:
           name: "browsers node12.8.1-chrome80-ff72"
           dockerTag: "node12.8.1-chrome80-ff72"
           chromeVersion: "Google Chrome 80"
+          firefoxVersion: "Mozilla Firefox 72"
       - build-browser-image:
           name: "browsers node13.1.0-chrome78-ff70"
           dockerTag: "node13.1.0-chrome78-ff70"
           chromeVersion: "Google Chrome 78"
+          firefoxVersion: "Mozilla Firefox 70"
       - build-browser-image:
           name: "browsers node13.3.0-chrome79-ff70"
           dockerTag: "node13.3.0-chrome79-ff70"
           chromeVersion: "Google Chrome 79"
+          firefoxVersion: "Mozilla Firefox 70"
       - build-browser-image:
           name: "browsers node13.6.0-chrome80-ff72"
           dockerTag: "node13.6.0-chrome80-ff72"
           chromeVersion: "Google Chrome 80"
+          firefoxVersion: "Mozilla Firefox 72"
       - build-browser-image:
           name: "browsers node8.15.1-chrome73"
           dockerTag: "node8.15.1-chrome73"
@@ -508,6 +535,7 @@ workflows:
           name: "browsers node8.9.3-npm6.10.1-chrome76-ff68"
           dockerTag: "node8.9.3-npm6.10.1-chrome76-ff68"
           chromeVersion: "Google Chrome 76"
+          firefoxVersion: "Mozilla Firefox 68"
 
   build-included-images:
     jobs:

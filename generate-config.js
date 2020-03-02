@@ -144,12 +144,8 @@ commands:
             RUN npm install --save-dev cypress
             RUN ./node_modules/.bin/cypress verify
             RUN npx @bahmutov/cly init
-            RUN if [[ << parameters.imageName >> = *"-chrome"* ]]; then
-              ./node_modules/.bin/cypress run --browser chrome
-            fi
-            RUN if [[ << parameters.imageName >> = *"-ff"* ]]; then
-              ./node_modules/.bin/cypress run --browser firefox
-            fi
+            RUN if [[ << parameters.imageName >> = *"-chrome"* ]]; then ./node_modules/.bin/cypress run --browser chrome; fi
+            RUN if [[ << parameters.imageName >> = *"-ff"* ]]; then ./node_modules/.bin/cypress run --browser firefox; fi
             EOF
 
   test-included-image:

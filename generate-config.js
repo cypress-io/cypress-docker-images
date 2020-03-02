@@ -134,7 +134,6 @@ commands:
       - run:
           name: test image << parameters.imageName >>
           no_output_timeout: '3m'
-          # for now assuming Chrome, in the future can pass browser name as a parameter
           command: |
             docker build -t cypress/test -\\<<EOF
             FROM << parameters.imageName >>
@@ -146,15 +145,26 @@ commands:
             RUN npx @bahmutov/cly init
             EOF
 
+      - run:
+          name: Test built-in Electron browser
+          no_output_timeout: '1m'
+          command: docker run cypress/test ./node_modules/.bin/cypress run
+
       - when:
           condition: << parameters.chromeVersion >>
           steps:
-          - run: docker run cypress/test ./node_modules/.bin/cypress run --browser chrome
+          - run:
+              name: Test << parameters.chromeVersion >>
+              no_output_timeout: '1m'
+              command: docker run cypress/test ./node_modules/.bin/cypress run --browser chrome
 
       - when:
           condition: << parameters.firefoxVersion >>
           steps:
-          - run: docker run cypress/test ./node_modules/.bin/cypress run --browser firefox
+          - run:
+              name: Test << parameters.firefoxVersion >>
+              no_output_timeout: '1m'
+              command: docker run cypress/test ./node_modules/.bin/cypress run --browser firefox
 
   test-included-image:
     description: Testing Docker image with Cypress pre-installed

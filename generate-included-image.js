@@ -2,15 +2,15 @@
 const path = require('path')
 const fs = require('fs')
 const shelljs = require('shelljs')
+const {isStrictSemver} = require('./utils')
 
 const versionTag = process.argv[2]
 const baseImageTag = process.argv[3]
 
-if (!versionTag) {
+if (!versionTag || !isStrictSemver(versionTag)) {
   console.error('expected Cypress version argument like "3.8.3"')
   process.exit(1)
 }
-// TODO validate version tag to follow semver
 if (!baseImageTag) {
   console.error('expected base Docker image tag like "cypress/browsers:node12.6.0-chrome77"')
   process.exit(1)

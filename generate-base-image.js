@@ -2,14 +2,14 @@
 const path = require('path')
 const fs = require('fs')
 const shelljs = require('shelljs')
+const {isStrictSemver} = require('./utils')
 
 const versionTag = process.argv[2]
 
-if (!versionTag) {
+if (!versionTag || !isStrictSemver(versionTag)) {
   console.error('expected version tag argument like "13.6.0"')
   process.exit(1)
 }
-// TODO validate version tag to follow semver
 
 const outputFolder = path.join('base', versionTag)
 if (shelljs.test('-d', outputFolder)) {

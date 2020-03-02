@@ -56,6 +56,18 @@ In that case run install with `npm install --unsafe-perm` flag, or set an enviro
 npm_config_unsafe_perm: true
 ```
 
+### Blank screen in Chrome
+
+When running headed tests with X11 forwarding in Cypress v4 you might see blank Chrome screen. Try disabling memory sharing by setting the following environment variables
+
+```
+export QT_X11_NO_MITSHM=1
+export _X11_NO_MITSHM=1
+export _MITSHM=0
+```
+
+See [issue #270](https://github.com/cypress-io/cypress-docker-images/issues/270)
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)

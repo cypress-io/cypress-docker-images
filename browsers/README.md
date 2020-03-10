@@ -12,6 +12,7 @@ Name + Tag | Base image | Chrome | Firefox
 [cypress/browsers:node12.6.0-chrome75](./node12.6.0-chrome75) | `cypress/base:12.6.0` | `75.0.3770.100` | 🚫
 [cypress/browsers:node12.8.1-chrome78-ff70](./node12.8.1-chrome78-ff70) | `cypress/browsers:node12.13.0-chrome78-ff70` | `78.0.3904.97` | `70.0.1`
 [cypress/browsers:node12.13.0-chrome78-ff70](./node12.13.0-chrome78-ff70) | `cypress/base:12.13.0` | `78.0.3904.97` | `70.0.1`
+[cypress/browsers:node12.13.0-chrome80-ff74](./node12.13.0-chrome80-ff74) | `node:12.13.0-buster` | `80.0.3987.116` | `74.0`
 [cypress/browsers:node12.16.1-chrome80-ff73](./node12.16.1-chrome80-ff73) | `cypress/base:12.16.1` | `80.0.3987.122` | `73.0.1`
 [cypress/browsers:node12.8.1-chrome80-ff72](./node12.8.1-chrome80-ff72) | `cypress/base:node12.8.1` | `80.0.3987.87` | `72.0.2`
 [cypress/browsers:node13.6.0-chrome80-ff72](./node13.6.0-chrome80-ff72) | `cypress/base:13.6.0` | `80.0.3987.87` | `72.0.2`

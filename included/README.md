@@ -32,6 +32,8 @@ This image should be enough to run Cypress tests headlessly or in the interactiv
 $ docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.3.2
 ```
 
+## Debug
+
 If you want to see the [Cypress debug logs](https://on.cypress.io/debugging#Print-DEBUG-logs) during the run, pass environment variable `DEBUG`:
 
 ```shell
@@ -41,6 +43,51 @@ $ docker run -it -v $PWD:/e2e -w /e2e -e DEBUG=cypress:* cypress/included:3.8.1
   cypress:cli:cli program parsing arguments +3ms
   ...
 ```
+
+## Entry
+
+These images have its entry point set to `cypress run`. If you want to run a different command, you need to set `--entrypoint=cypress` and specify arguments AFTER the image name. For example, to print the Cypress information using `cypress info` command
+
+```shell
+$ docker run -it --entrypoint=cypress cypress/included:4.2.0 info
+Displaying Cypress info...
+
+Detected 2 browsers installed:
+
+1. Chrome
+  - Name: chrome
+  - Channel: stable
+  - Version: 80.0.3987.116
+  - Executable: google-chrome
+
+2. Firefox
+  - Name: firefox
+  - Channel: stable
+  - Version: 74.0
+  - Executable: firefox
+
+Note: to run these browsers, pass <name>:<channel> to the '--browser' field
+
+Examples:
+- cypress run --browser firefox
+- cypress run --browser chrome
+
+Learn More: https://on.cypress.io/launching-browsers
+
+Proxy Settings: none detected
+Environment Variables:
+CYPRESS_CACHE_FOLDER: /root/.cache/Cypress
+
+Application Data: /root/.config/cypress/cy/development
+Browser Profiles: /root/.config/cypress/cy/development/browsers
+Binary Caches: /root/.cache/Cypress
+
+Cypress Version: 4.2.0
+System Platform: linux (Debian - 10.1)
+System Memory: 2.09 GB free 285 MB
+```
+
+## Browser
 
 If you want to use a different browser (assuming it is installed in the container) use:
 

@@ -241,6 +241,33 @@ jobs:
       - docker-push:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
+  build-base-slim-image:
+    machine: true
+    parameters:
+      dockerName:
+        type: string
+        description: Image name to build
+        default: cypress/base-slim
+      dockerTag:
+        type: string
+        description: Image tag to build like "12.14.0"
+    steps:
+      - checkout
+      - halt-if-docker-image-exists:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - run:
+          name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
+          command: |
+            docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
+          working_directory: base/<< parameters.dockerTag >>
+
+      - test-base-image:
+          nodeVersion: v<< parameters.dockerTag >>
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - halt-on-branch
+      - docker-push:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+
   build-browser-image:
     machine: true
     parameters:
@@ -420,6 +447,12 @@ workflows:
       - build-base-image:
           name: "base ubuntu19-node12.14.1"
           dockerTag: "ubuntu19-node12.14.1"
+
+  build-base-slim-images:
+    jobs:
+      - build-base-slim-image:
+          name: "base-slim 13.6.0"
+          dockerTag: "13.6.0"
 
   build-browser-images:
     jobs:

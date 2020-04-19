@@ -54,12 +54,14 @@ commands:
           name: confirm image has Node << parameters.nodeVersion >>
           # do not run Docker in the interactive mode - adds control characters!
           command: |
+            expectedVersion="<< parameters.nodeVersion >>"
             version=$(docker run << parameters.imageName >> node --version)
-            if [ "$version" == "<< parameters.nodeVersion >>" ]; then
-              echo "Base image has the expected version of Node << parameters.nodeVersion >>";
+            expectedVersion="${expectedVersion/-slim/}"
+            if [ "$version" == "$expectedVersion" ]; then
+              echo "Base image has the expected version of Node $expectedVersion";
             else
               echo "Problem: base image has unexpected Node version"
-              echo "Expected << parameters.nodeVersion >> and got $version"
+              echo "Expected $expectedVersion and got $version"
               exit 1
             fi
       - run:
@@ -357,6 +359,9 @@ workflows:
       - build-base-image:
           name: "base 12.16.1"
           dockerTag: "12.16.1"
+      - build-base-image:
+          name: "base 12.16.2-slim"
+          dockerTag: "12.16.2-slim"
       - build-base-image:
           name: "base 12.4.0"
           dockerTag: "12.4.0"

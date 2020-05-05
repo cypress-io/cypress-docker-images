@@ -8,7 +8,7 @@ RUN echo "force new chrome here"
 # install Chromebrowser
 RUN \
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-  echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
+  echo "deb https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
   apt-get update && \
   apt-get install -y dbus-x11 google-chrome-stable && \
   rm -rf /var/lib/apt/lists/*
@@ -22,11 +22,11 @@ RUN apt-get update && apt-get install -y zip
 
 # versions of local tools
 RUN echo  " node version:    $(node -v) \n" \
-          "npm version:     $(npm -v) \n" \
-          "yarn version:    $(yarn -v) \n" \
-          "debian version:  $(cat /etc/debian_version) \n" \
-          "Chrome version:  $(google-chrome --version) \n" \
-          "git version:     $(git --version) \n"
+  "npm version:     $(npm -v) \n" \
+  "yarn version:    $(yarn -v) \n" \
+  "debian version:  $(cat /etc/debian_version) \n" \
+  "Chrome version:  $(google-chrome --version) \n" \
+  "git version:     $(git --version) \n"
 
 # a few environment variables to make NPM installs easier
 # good colors for most applications

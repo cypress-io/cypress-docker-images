@@ -6,7 +6,7 @@ Main images that include all operating system dependencies necessary to run Cypr
 
 Each tag is in a sub folder, named after Node version or OS it is built on.
 
-Image `cypress/base:8` is tagged [`latest`](https://hub.docker.com/r/cypress/base/tags/)
+Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/base/tags/)
 
 Name + Tag | Node | Operating System | Link | NPM version | Yarn version | Notes
 --- | --- | --- | --- | --- | --- | ---

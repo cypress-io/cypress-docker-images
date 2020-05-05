@@ -6,7 +6,7 @@ We build three main images, click on the image name to see the available tags an
 
 Image | Default | Description | Monthly pulls
 --- | --- | --- | ---
-[cypress/base](base) | `cypress/base:8` | All system dependencies, no browsers. | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/base.svg?maxAge=604800)](https://hub.docker.com/r/cypress/base/)
+[cypress/base](base) | `cypress/base:12` | All system dependencies, no browsers. | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/base.svg?maxAge=604800)](https://hub.docker.com/r/cypress/base/)
 [cypress/browsers](browsers) | `cypress/browsers:chrome67` | All system dependencies and browser(s). | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/browsers.svg?maxAge=604800)](https://hub.docker.com/r/cypress/browsers/)
 [cypress/included](included) | `cypress/included:3.2.0` | All system dependencies and the Cypress test runner installed globally. | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/included.svg?maxAge=604800)](https://hub.docker.com/r/cypress/included/)
 

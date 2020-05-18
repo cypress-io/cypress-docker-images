@@ -6,7 +6,7 @@ Main images that include all operating system dependencies necessary to run Cypr
 
 Each tag is in a sub folder, named after Node version or OS it is built on.
 
-Image `cypress/base:8` is tagged [`latest`](https://hub.docker.com/r/cypress/base/tags/)
+Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/base/tags/)
 
 Name + Tag | Node | Operating System | Link | NPM version | Yarn version | Notes
 --- | --- | --- | --- | --- | --- | ---
@@ -36,9 +36,11 @@ cypress/base:12.13.0 | 12.13.0 | Debian | [/12.13.0](12.13.0) | 6.13.0 | 1.19.1 
 cypress/base:12.14.0 | 12.14.0 | Debian | [/12.14.0](12.14.0) | 6.13.4 | 1.21.1 | [1](#note1)
 cypress/base:12.16.0 | 12.16.0 | Debian | [/12.16.0](12.16.0) | 6.13.7 | 1.22.0 | [1](#note1)
 cypress/base:12.16.1 | 12.16.1 | Debian | [/12.16.1](12.16.1) | 6.14.1 | 1.22.0 | [1](#note1)
+cypress/base:12.16.2 | 12.16.2 | Debian | [/12.16.2](12.16.2) | 6.14.5 | 1.22.4 | [1](#note1)
 cypress/base:13.1.0 | 13.1.0 | Debian | [/13.1.0](13.1.0) | 6.13.1 | 1.19.1 | [1](#note1)
 cypress/base:13.3.0 | 13.3.0 | Debian | [/13.3.0](13.3.0) | 6.13.4 | 1.21.1 | [1](#note1)
 cypress/base:13.6.0 | 13.6.0 | Debian 10.2 | [/13.6.0](13.6.0) | 6.13.6 | 1.21.1 | [1](#note1)
+cypress/base:14.0.0 | 14.0.0 | Debian 10.3 | [/14.0.0](14.0.0) | 6.14.4 | 1.22.4 | [1](#note1)
 cypress/base:centos7 | 6 | CentOS | [/centos7](centos7) | 3.10.10 | 🚫
 cypress/base:centos7-12.4.0 | 12.4.0 | CentOS | [/centos7](centos7) | 6.9.0 | 1.16.0
 cypress/base:ubuntu16 | 6 | Ubuntu | [/ubuntu16](ubuntu16) | 3.10.10 | 🚫

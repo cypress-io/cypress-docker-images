@@ -33,6 +33,8 @@ TODO: https://github.com/cypress-io/cypress-docker-images/issues/215
 
 **Important:** prefer to use exact browser versions for repeatable builds. You can find the previous official Chrome version numbers at [https://chromereleases.googleblog.com/](https://chromereleases.googleblog.com/).
 
+**Important:** use `https:` to download browsers
+
 ### Add new included image
 
 To create a new image with Cypress pre-installed globally

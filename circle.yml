@@ -64,7 +64,7 @@ commands:
             fi
       - run:
           name: test image << parameters.imageName >>
-          no_output_timeout: '3m'
+          no_output_timeout: "3m"
           command: |
             docker build -t cypress/test -\<<EOF
             FROM << parameters.imageName >>
@@ -88,7 +88,7 @@ commands:
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
       firefoxVersion:
         type: string
-        default: ''
+        default: ""
         description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
     steps:
       - run:
@@ -109,22 +109,22 @@ commands:
       - when:
           condition: << parameters.firefoxVersion >>
           steps:
-          - run:
-              name: confirm the image has Firefox << parameters.firefoxVersion >>
-              command: |
-                version=$(docker run << parameters.imageName >> firefox --version)
-                if [[ "$version" =~ ^"<< parameters.firefoxVersion >>" ]]; then
-                  echo "Image has the expected version of Firefox << parameters.firefoxVersion >>"
-                  echo "found $version"
-                else
-                  echo "Problem: image has unexpected Firefox version"
-                  echo "Expected << parameters.firefoxVersion >> and got $version"
-                  exit 1
-                fi
+            - run:
+                name: confirm the image has Firefox << parameters.firefoxVersion >>
+                command: |
+                  version=$(docker run << parameters.imageName >> firefox --version)
+                  if [[ "$version" =~ ^"<< parameters.firefoxVersion >>" ]]; then
+                    echo "Image has the expected version of Firefox << parameters.firefoxVersion >>"
+                    echo "found $version"
+                  else
+                    echo "Problem: image has unexpected Firefox version"
+                    echo "Expected << parameters.firefoxVersion >> and got $version"
+                    exit 1
+                  fi
 
       - run:
           name: test image << parameters.imageName >>
-          no_output_timeout: '3m'
+          no_output_timeout: "3m"
           command: |
             docker build -t cypress/test -\<<EOF
             FROM << parameters.imageName >>
@@ -138,24 +138,24 @@ commands:
 
       - run:
           name: Test built-in Electron browser
-          no_output_timeout: '1m'
+          no_output_timeout: "1m"
           command: docker run cypress/test ./node_modules/.bin/cypress run
 
       - when:
           condition: << parameters.chromeVersion >>
           steps:
-          - run:
-              name: Test << parameters.chromeVersion >>
-              no_output_timeout: '1m'
-              command: docker run cypress/test ./node_modules/.bin/cypress run --browser chrome
+            - run:
+                name: Test << parameters.chromeVersion >>
+                no_output_timeout: "1m"
+                command: docker run cypress/test ./node_modules/.bin/cypress run --browser chrome
 
       - when:
           condition: << parameters.firefoxVersion >>
           steps:
-          - run:
-              name: Test << parameters.firefoxVersion >>
-              no_output_timeout: '1m'
-              command: docker run cypress/test ./node_modules/.bin/cypress run --browser firefox
+            - run:
+                name: Test << parameters.firefoxVersion >>
+                no_output_timeout: "1m"
+                command: docker run cypress/test ./node_modules/.bin/cypress run --browser firefox
 
   test-included-image:
     description: Testing Docker image with Cypress pre-installed
@@ -169,7 +169,7 @@ commands:
     steps:
       - run:
           name: New test project and testing
-          no_output_timeout: '3m'
+          no_output_timeout: "3m"
           command: |
             node --version
             mkdir test
@@ -206,7 +206,7 @@ jobs:
   lint-markdown:
     executor:
       name: node/default
-      tag: '12'
+      tag: "12"
     steps:
       - checkout
       - node/with-cache:
@@ -256,7 +256,7 @@ jobs:
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
       firefoxVersion:
         type: string
-        default: ''
+        default: ""
         description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
     steps:
       - checkout
@@ -378,6 +378,9 @@ workflows:
       - build-base-image:
           name: "base 13.6.0"
           dockerTag: "13.6.0"
+      - build-base-image:
+          name: "base 13.8.0"
+          dockerTag: "13.8.0"
       - build-base-image:
           name: "base 14.0.0"
           dockerTag: "14.0.0"

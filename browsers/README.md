@@ -4,20 +4,20 @@
 
 > Image with all operating system dependencies and a pre-installed browser, **but NOT the test runner itself**. See [cypress/included](../included) images if you need pre-installed Cypress in the image.
 
-| Name + Tag                                                                      | Base image                                   | Chrome          | Firefox  |
-| ------------------------------------------------------------------------------- | -------------------------------------------- | --------------- | -------- |
-| [cypress/browsers:node8.9.3-npm6.10.1-chrome75](./node8.9.3-npm6.10.1-chrome75) | `cypress/base:8.9.3-npm-6.10.1`              | `75.0.3770.100` | 🚫       |
-| [cypress/browsers:node10.16.0-chrome77-ff71](./node10.16.0-chrome77-ff71)       | `cypress/browsers:node10.16.0-chrome77`      | `77.0.3865.90`  | `71.0`   |
-| [cypress/browsers:node12.4.0-chrome76](./node12.4.0-chrome76)                   | `cypress/base:12.4.0`                        | `76.0.3809.87`  | 🚫       |
-| [cypress/browsers:node12.6.0-chrome75](./node12.6.0-chrome75)                   | `cypress/base:12.6.0`                        | `75.0.3770.100` | 🚫       |
-| [cypress/browsers:node12.8.1-chrome78-ff70](./node12.8.1-chrome78-ff70)         | `cypress/browsers:node12.13.0-chrome78-ff70` | `78.0.3904.97`  | `70.0.1` |
-| [cypress/browsers:node12.13.0-chrome78-ff70](./node12.13.0-chrome78-ff70)       | `cypress/base:12.13.0`                       | `78.0.3904.97`  | `70.0.1` |
-| [cypress/browsers:node12.13.0-chrome80-ff74](./node12.13.0-chrome80-ff74)       | `node:12.13.0-buster`                        | `80.0.3987.116` | `74.0`   |
-| [cypress/browsers:node12.16.1-chrome80-ff73](./node12.16.1-chrome80-ff73)       | `cypress/base:12.16.1`                       | `80.0.3987.122` | `73.0.1` |
-| [cypress/browsers:node12.16.2-chrome81-ff75](./node12.16.2-chrome81-ff75)       | `cypress/base:12.16.2`                       | `81.0.4044.113` | `75.0`   |
-| [cypress/browsers:node12.8.1-chrome80-ff72](./node12.8.1-chrome80-ff72)         | `cypress/base:node12.8.1`                    | `80.0.3987.87`  | `72.0.2` |
-| [cypress/browsers:node13.6.0-chrome80-ff72](./node13.6.0-chrome80-ff72)         | `cypress/base:13.6.0`                        | `80.0.3987.87`  | `72.0.2` |
-| [cypress/browsers:node13.8.0-chrome81-ff75](./node13.8.0-chrome81-ff75)         | `cypress/base:13.8.0`                        | `81.0.4044.113` | `75.0`   |
+Name + Tag | Base image | Chrome | Firefox
+--- | --- | --- | ---
+[cypress/browsers:node8.9.3-npm6.10.1-chrome75](./node8.9.3-npm6.10.1-chrome75) | `cypress/base:8.9.3-npm-6.10.1` | `75.0.3770.100` | 🚫
+[cypress/browsers:node10.16.0-chrome77-ff71](./node10.16.0-chrome77-ff71) | `cypress/browsers:node10.16.0-chrome77` | `77.0.3865.90` | `71.0`
+[cypress/browsers:node12.4.0-chrome76](./node12.4.0-chrome76) | `cypress/base:12.4.0` | `76.0.3809.87` | 🚫
+[cypress/browsers:node12.6.0-chrome75](./node12.6.0-chrome75) | `cypress/base:12.6.0` | `75.0.3770.100` | 🚫
+[cypress/browsers:node12.8.1-chrome78-ff70](./node12.8.1-chrome78-ff70) | `cypress/browsers:node12.13.0-chrome78-ff70` | `78.0.3904.97` | `70.0.1`
+[cypress/browsers:node12.13.0-chrome78-ff70](./node12.13.0-chrome78-ff70) | `cypress/base:12.13.0` | `78.0.3904.97` | `70.0.1`
+[cypress/browsers:node12.13.0-chrome80-ff74](./node12.13.0-chrome80-ff74) | `node:12.13.0-buster` | `80.0.3987.116` | `74.0`
+[cypress/browsers:node12.16.1-chrome80-ff73](./node12.16.1-chrome80-ff73) | `cypress/base:12.16.1` | `80.0.3987.122` | `73.0.1`
+[cypress/browsers:node12.16.2-chrome81-ff75](./node12.16.2-chrome81-ff75) | `cypress/base:12.16.2` | `81.0.4044.113` | `75.0`
+[cypress/browsers:node12.8.1-chrome80-ff72](./node12.8.1-chrome80-ff72) | `cypress/base:node12.8.1` | `80.0.3987.87` | `72.0.2`
+[cypress/browsers:node13.6.0-chrome80-ff72](./node13.6.0-chrome80-ff72) | `cypress/base:13.6.0` | `80.0.3987.87` | `72.0.2`
+[cypress/browsers:node13.8.0-chrome81-ff75](./node13.8.0-chrome81-ff75) | `cypress/base:13.8.0` | `81.0.4044.113` | `75.0`
 
 ## Naming scheme
 

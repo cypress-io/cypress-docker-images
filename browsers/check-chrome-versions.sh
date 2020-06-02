@@ -62,3 +62,7 @@ echo ""
 docker pull cypress/browsers:node13.6.0-chrome-80-ff72
 docker run cypress/browsers:node13.6.0-chrome-80-ff72 google-chrome --version
 echo ""
+
+docker pull cypress/browsers:node13.8.0-chrome81-ff75
+docker run cypress/browsers:node13.8.0-chrome81-ff75 google-chrome --version
+echo ""

@@ -1,4 +1,4 @@
-# cypress/browsers:node12.16.1-chrome80-ff73
+# cypress/browsers:node12.16.2-chrome81-ff75
 
 A complete image with all operating system dependencies for Cypress, Chrome
 81 and Firefox 75 browsers.

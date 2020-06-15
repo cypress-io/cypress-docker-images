@@ -532,6 +532,11 @@ workflows:
           chromeVersion: "Google Chrome 81"
           firefoxVersion: "Mozilla Firefox 75"
       - build-browser-image:
+          name: "browsers node12.18.0-chrome83-ff77"
+          dockerTag: "node12.18.0-chrome83-ff77"
+          chromeVersion: "Google Chrome 83"
+          firefoxVersion: "Mozilla Firefox 77"
+      - build-browser-image:
           name: "browsers node12.4.0-chrome76"
           dockerTag: "node12.4.0-chrome76"
           chromeVersion: "Google Chrome 76"

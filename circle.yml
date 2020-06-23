@@ -313,6 +313,9 @@ workflows:
           name: "base 10"
           dockerTag: "10"
       - build-base-image:
+          name: "base 10.0.0"
+          dockerTag: "10.0.0"
+      - build-base-image:
           name: "base 10.11.0"
           dockerTag: "10.11.0"
       - build-base-image:

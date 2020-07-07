@@ -668,6 +668,9 @@ workflows:
           name: "included 4.1.0"
           dockerTag: "4.1.0"
       - build-included-image:
+          name: "included 4.10.0"
+          dockerTag: "4.10.0"
+      - build-included-image:
           name: "included 4.2.0"
           dockerTag: "4.2.0"
       - build-included-image:

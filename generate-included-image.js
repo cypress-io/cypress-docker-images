@@ -79,6 +79,9 @@ RUN chmod 755 /root
 # otherwise the base image might have old versions
 RUN npm i -g yarn@latest npm@latest
 
+# wait-on is a useful utility for waiting for a server to start
+RUN npm i -g wait-on@latest
+
 RUN echo  " node version:    $(node -v) \\n" \\
   "npm version:     $(npm -v) \\n" \\
   "yarn version:    $(yarn -v) \\n" \\

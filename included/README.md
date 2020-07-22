@@ -169,3 +169,19 @@ You can quickly run your tests in GitHub Actions using these images, see [cypres
 ## GitLab CI
 
 You can use the included images to run Cypress tests on GitLab CI, see how in [cypress-example-included](https://gitlab.com/cypress-io/cypress-example-included) repository.
+
+## Wait-on
+
+After `cypress/included:4.11.0` we include globally installed [wait-on](https://github.com/jeffbski/wait-on#readme) utility. To use it, you would set the entry point to wait for a specific site to respond, then run Cypress:
+
+```shell
+# execute the Cypress container once
+docker run --rm \ # remove container after finish
+  -v ./e2e:/e2e \ # map current folder to "e2e" folder
+  --workdir=/e2e \
+  --entrypoint="" \ # remove default entrypoint command
+  cypress/included:4.12.0 \
+  # wait for the local site to respond
+  # then run Cypress tests
+  /bin/bash -c 'wait-on http://127.0.0.1:3000 && cypress run'
+```

@@ -320,7 +320,58 @@ workflows:
 `
 
 const formBaseWorkflow = (baseImages) => {
-  const yml = baseImages.map(imageAndTag => {
+  // skip images that already have been built
+  // one can update this list if the number of
+  // build jobs in circleci grows too long
+  const skipImages = [
+    '6',
+    '8',
+    '8.0.0',
+    '8.15.1',
+    '8.16.0',
+    '8.2.1',
+    '8.9.3',
+    '8.9.3-npm-6.10.1',
+    '10',
+    '10.0.0',
+    '10.11.0',
+    '10.15.3',
+    '10.16.0',
+    '10.16.3',
+    '10.18.0',
+    '10.18.1',
+    '10.2.1',
+    '11.13.0',
+    '12.0.0',
+    '12.1.0',
+    '12.12.0',
+    '12.13.0',
+    '12.14.0',
+    '12.14.1',
+    '12.16.0',
+    '12.16.1',
+    '12.16.2',
+    '12.18.0',
+    '12.18.2',
+    '12.4.0',
+    '12.6.0',
+    '12.8.1',
+    '13.1.0',
+    '13.3.0',
+    '13.6.0',
+    '13.8.0',
+    'centos7',
+    'centos7-12.4.0',
+    'ubuntu16',
+    'ubuntu16-12.13.1',
+    'ubuntu16-8',
+    'ubuntu18-node12.14.1',
+    'ubuntu19-node12.14.1'
+  ]
+  const isSkipped = (tag) => skipImages.includes(tag)
+  const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
+
+  const yml = baseImages.filter(isIncluded).map(imageAndTag => {
     // important to have indent
     const job = '      - build-base-image:\n' +
       `          name: "base ${imageAndTag.tag}"\n` +
@@ -437,14 +488,14 @@ const formBrowserWorkflow = (browserImages) => {
   return text
 }
 
-const formIncludedWorkflow = (browserImages) => {
+const formIncludedWorkflow = (images) => {
   // skip images that have been built already
   const isSkipped = (tag) => {
     return semver.lte(tag, '4.12.0')
   }
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 
-  const yml = browserImages.filter(isIncluded).map(imageAndTag => {
+  const yml = images.filter(isIncluded).map(imageAndTag => {
     // important to have indent
     const job = '      - build-included-image:\n' +
       `          name: "included ${imageAndTag.tag}"\n` +

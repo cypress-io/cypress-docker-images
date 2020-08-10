@@ -360,6 +360,7 @@ const formBaseWorkflow = (baseImages) => {
     '13.3.0',
     '13.6.0',
     '13.8.0',
+    '14.0.0',
     'centos7',
     'centos7-12.4.0',
     'ubuntu16',

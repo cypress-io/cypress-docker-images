@@ -369,6 +369,7 @@ const formBrowserWorkflow = (browserImages) => {
   // some old images do not have NPX for example
   // so let them be
   const skipImages = [
+    'chrome63-ff57',
     'chrome65-ff57',
     'chrome67',
     'chrome67-ff57',

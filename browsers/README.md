@@ -20,6 +20,7 @@ Name + Tag | Base image | Chrome | Firefox
 [cypress/browsers:node12.8.1-chrome80-ff72](./node12.8.1-chrome80-ff72) | `cypress/base:node12.8.1` | `80.0.3987.87` | `72.0.2`
 [cypress/browsers:node13.6.0-chrome80-ff72](./node13.6.0-chrome80-ff72) | `cypress/base:13.6.0` | `80.0.3987.87` | `72.0.2`
 [cypress/browsers:node13.8.0-chrome81-ff75](./node13.8.0-chrome81-ff75) | `cypress/base:13.8.0` | `81.0.4044.113` | `75.0`
+[cypress/browsers:node14.7.0-chrome84](./node13.8.0-chrome81-ff75) | `cypress/base:14.7.0` | `84.0.4147.105` | 🚫
 
 ## Naming scheme
 

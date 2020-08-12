@@ -1,4 +1,4 @@
-# cypress/browsers:node13.8.0-chrome81-ff75
+# cypress/browsers:node14.7.0-chrome84
 
 A complete image with all operating system dependencies for Cypress, Chrome 84.
 

@@ -59,19 +59,26 @@ commands:
       imageName:
         type: string
         description: Cypress base docker image to test
+      checkNodeVersion:
+        type: boolean
+        description: Check if the FROM image name is strict Node version
+        default: true
     steps:
-      - run:
-          name: confirm image has Node << parameters.nodeVersion >>
-          # do not run Docker in the interactive mode - adds control characters!
-          command: |
-            version=$(docker run << parameters.imageName >> node --version)
-            if [ "$version" == "<< parameters.nodeVersion >>" ]; then
-              echo "Base image has the expected version of Node << parameters.nodeVersion >>";
-            else
-              echo "Problem: base image has unexpected Node version"
-              echo "Expected << parameters.nodeVersion >> and got $version"
-              exit 1
-            fi
+      - when:
+          condition: << parameters.checkNodeVersion >>
+          steps:
+          - run:
+              name: confirm image has Node << parameters.nodeVersion >>
+              # do not run Docker in the interactive mode - adds control characters!
+              command: |
+                version=$(docker run << parameters.imageName >> node --version)
+                if [ "$version" == "<< parameters.nodeVersion >>" ]; then
+                  echo "Base image has the expected version of Node << parameters.nodeVersion >>";
+                else
+                  echo "Problem: base image has unexpected Node version"
+                  echo "Expected << parameters.nodeVersion >> and got $version"
+                  exit 1
+                fi
       - run:
           name: test image << parameters.imageName >>
           no_output_timeout: '3m'
@@ -234,6 +241,10 @@ jobs:
       dockerTag:
         type: string
         description: Image tag to build like "12.14.0"
+      checkNodeVersion:
+        type: boolean
+        description: Check if the FROM image name is strict Node version
+        default: true
     steps:
       - checkout
       - halt-if-docker-image-exists:
@@ -247,6 +258,7 @@ jobs:
       - test-base-image:
           nodeVersion: v<< parameters.dockerTag >>
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+          checkNodeVersion: << parameters.checkNodeVersion >>
       - halt-on-branch
       - docker-push:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
@@ -374,9 +386,12 @@ const formBaseWorkflow = (baseImages) => {
 
   const yml = baseImages.filter(isIncluded).map(imageAndTag => {
     // important to have indent
-    const job = '      - build-base-image:\n' +
+    let job = '      - build-base-image:\n' +
       `          name: "base ${imageAndTag.tag}"\n` +
       `          dockerTag: "${imageAndTag.tag}"\n`
+    if (imageAndTag.tag === '12.0.0-libgbm') {
+      job += '          checkNodeVersion: false\n'
+    }
     return job
   })
 

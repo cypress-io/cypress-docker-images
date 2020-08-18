@@ -1,7 +1,7 @@
 FROM cypress/base:12.0.0
 
 RUN apt-get update && \
-  apt-get install --no-install-recommends -y \
+  apt-get install -y \
   libgbm-dev \
   # clean up
   && rm -rf /var/lib/apt/lists/*

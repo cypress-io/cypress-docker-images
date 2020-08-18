@@ -326,6 +326,9 @@ workflows:
           dockerTag: "12.0.0-libgbm"
           checkNodeVersion: false
       - build-base-image:
+          name: "base 12.18.3"
+          dockerTag: "12.18.3"
+      - build-base-image:
           name: "base 14.5.0"
           dockerTag: "14.5.0"
       - build-base-image:

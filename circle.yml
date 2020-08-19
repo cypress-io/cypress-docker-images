@@ -347,5 +347,5 @@ workflows:
   build-included-images:
     jobs:
       - build-included-image:
-          name: "included 4.12.1"
-          dockerTag: "4.12.1"
+          name: "included 5.0.0"
+          dockerTag: "5.0.0"

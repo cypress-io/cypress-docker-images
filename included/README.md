@@ -2,7 +2,7 @@
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/included.svg?maxAge=604800)](https://hub.docker.com/r/cypress/included/)
 
-Docker image with operating system and Cypress installed globally.
+> Docker images with all operating system dependencies, Cypress, and some pre-installed browsers.
 
 Name + Tag | Base image
 --- | ---

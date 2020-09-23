@@ -1,4 +1,4 @@
-FROM cypress/base:12.14.1
+FROM cypress/base:13.8.0
 
 USER root
 
@@ -10,9 +10,9 @@ RUN apt-get install -y fonts-liberation libappindicator3-1 xdg-utils
 
 # install Chrome browser
 ENV CHROME_VERSION 85.0.4183.121
-RUN wget -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}-1_amd64.deb" &&
-  dpkg -i /usr/src/google-chrome-stable_current_amd64.deb
-apt-get install -f -y &&
+RUN wget -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}-1_amd64.deb" && \
+  dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \
+  apt-get install -f -y && \
   rm -f /usr/src/google-chrome-stable_current_amd64.deb
 RUN google-chrome --version
 
@@ -29,13 +29,13 @@ RUN apt-get install mplayer -y
 
 # install Firefox browser
 ARG FIREFOX_VERSION=81.0
-RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.bz2 &&
-  tar -C /opt -xjf /tmp/firefox.tar.bz2 &&
-  rm /tmp/firefox.tar.bz2 &&
-  ln -fs /opt/firefox/firefox /usr/bin/firefox
+RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.bz2 \
+  && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
+  && rm /tmp/firefox.tar.bz2 \
+  && ln -fs /opt/firefox/firefox /usr/bin/firefox
 
 # versions of local tools
-RUN echo " node version:    $(node -v) \n" \
+RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
   "yarn version:    $(yarn -v) \n" \
   "debian version:  $(cat /etc/debian_version) \n" \

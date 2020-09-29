@@ -344,6 +344,11 @@ workflows:
   build-browser-images:
     jobs:
       - build-browser-image:
+          name: "browsers node12.14.1-chrome85-ff81"
+          dockerTag: "node12.14.1-chrome85-ff81"
+          chromeVersion: "Google Chrome 85"
+          firefoxVersion: "Mozilla Firefox 81"
+      - build-browser-image:
           name: "browsers node13.8.0-chrome81-ff75"
           dockerTag: "node13.8.0-chrome81-ff75"
           chromeVersion: "Google Chrome 81"
@@ -352,11 +357,6 @@ workflows:
           name: "browsers node14.7.0-chrome84"
           dockerTag: "node14.7.0-chrome84"
           chromeVersion: "Google Chrome 84"
-      - build-browser-image:
-          name: "browsers node12.14.1-chrome85-ff81"
-          dockerTag: "node12.14.1-chrome85-ff81"
-          chromeVersion: "Google Chrome 85"
-          firefoxVersion: "Mozilla Firefox 81"
 
   build-included-images:
     jobs:
@@ -372,3 +372,6 @@ workflows:
       - build-included-image:
           name: "included 5.2.0"
           dockerTag: "5.2.0"
+      - build-included-image:
+          name: "included 5.3.0"
+          dockerTag: "5.3.0"

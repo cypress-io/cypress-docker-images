@@ -340,6 +340,9 @@ workflows:
       - build-base-image:
           name: "base 14.7.0"
           dockerTag: "14.7.0"
+      - build-base-image:
+          name: "base manjaro-14.12.0"
+          dockerTag: "manjaro-14.12.0"
 
   build-browser-images:
     jobs:

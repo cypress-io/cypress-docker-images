@@ -389,7 +389,8 @@ const formBaseWorkflow = (baseImages) => {
     let job = '      - build-base-image:\n' +
       `          name: "base ${imageAndTag.tag}"\n` +
       `          dockerTag: "${imageAndTag.tag}"\n`
-    if (imageAndTag.tag === '12.0.0-libgbm') {
+    // do not check Node versions in some custom images
+    if (imageAndTag.tag === '12.0.0-libgbm' || imageAndTag.tag === 'manjaro-14.12.0') {
       job += '          checkNodeVersion: false\n'
     }
     return job

@@ -36,11 +36,6 @@ RUN pacman --noconfirm -S \
   xorg-server-xvfb
 
 RUN npm i -g yarn@latest npm@latest
-
-#### browser setup ####
-RUN pacman --noconfirm -S firefox
-
-#### cypress setup ####
 RUN npm config -g set user $(whoami)
 RUN id
 

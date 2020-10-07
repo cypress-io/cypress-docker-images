@@ -59,6 +59,7 @@ cypress/base:ubuntu16-8 | 8.16.2 | Ubuntu | [/ubuntu16-8](ubuntu16-8) | 6.4.1 | 
 cypress/base:ubuntu16-12.13.1 | 12.13.1 | Ubuntu | [/ubuntu16-12.13.1](ubuntu16-12.13.1) | 6.12.1 | 🚫
 cypress/base:ubuntu18-node12.14.1 | 12.14.1 | Ubuntu 18.04.3 | [ubuntu18-node12.14.1](ubuntu18-node12.14.1) | 6.13.6 | 1.21.1
 cypress/base:ubuntu19-node12.14.1 | 12.14.1 | Ubuntu 19.0.4 | [ubuntu19-node12.14.1](ubuntu19-node12.14.1) | 6.13.6 | 1.21.1
+cypress/base:manjaro-node14.12.0 | 14.12.0 | Manjaro | [manjaro-14.12.0](manjaro-14.12.0) | 6.14.8 | 1.22.10
 
 ## ⚠️ Node.js Support
 

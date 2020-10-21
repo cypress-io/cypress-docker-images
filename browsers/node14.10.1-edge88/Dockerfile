@@ -13,6 +13,8 @@ RUN rm microsoft.gpg
 ## Install Edge
 RUN apt-get update
 RUN apt-get install -y microsoft-edge-dev
+# Add a link to the browser that allows Cypress to find it
+RUN ln -s /usr/bin/microsoft-edge /usr/bin/edge
 
 # Add zip utility - it comes in very handy
 RUN apt-get update && apt-get install -y zip
@@ -22,7 +24,7 @@ RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
   "yarn version:    $(yarn -v) \n" \
   "Debian version:  $(cat /etc/debian_version) \n" \
-  "Edge version:    $(microsoft-edge --version) \n" \
+  "Edge version:    $(edge --version) \n" \
   "git version:     $(git --version) \n" \
   "whoami:          $(whoami) \n"
 

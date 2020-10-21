@@ -102,26 +102,34 @@ commands:
         description: Cypress browser docker image to test
       chromeVersion:
         type: string
+        default: ''
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
       firefoxVersion:
         type: string
         default: ''
         description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
+      edgeVersion:
+        type: string
+        default: ''
+        description: Edge version to expect in the base image, starts with "Microsoft Edge XX"
     steps:
-      - run:
-          name: confirm image has Chrome << parameters.chromeVersion >>
-          # do not run Docker in the interactive mode - adds control characters!
-          # and use Bash regex string comparison
-          command: |
-            version=$(docker run << parameters.imageName >> google-chrome --version)
-            if [[ "$version" =~ ^"<< parameters.chromeVersion >>" ]]; then
-              echo "Image has the expected version of Chrome << parameters.chromeVersion >>"
-              echo "found $version"
-            else
-              echo "Problem: image has unexpected Chrome version"
-              echo "Expected << parameters.chromeVersion >> and got $version"
-              exit 1
-            fi
+      - when:
+          condition: << parameters.chromeVersion >>
+          steps:
+          - run:
+              name: confirm image has Chrome << parameters.chromeVersion >>
+              # do not run Docker in the interactive mode - adds control characters!
+              # and use Bash regex string comparison
+              command: |
+                version=$(docker run << parameters.imageName >> google-chrome --version)
+                if [[ "$version" =~ ^"<< parameters.chromeVersion >>" ]]; then
+                  echo "Image has the expected version of Chrome << parameters.chromeVersion >>"
+                  echo "found $version"
+                else
+                  echo "Problem: image has unexpected Chrome version"
+                  echo "Expected << parameters.chromeVersion >> and got $version"
+                  exit 1
+                fi
 
       - when:
           condition: << parameters.firefoxVersion >>
@@ -136,6 +144,22 @@ commands:
                 else
                   echo "Problem: image has unexpected Firefox version"
                   echo "Expected << parameters.firefoxVersion >> and got $version"
+                  exit 1
+                fi
+
+      - when:
+          condition: << parameters.edgeVersion >>
+          steps:
+          - run:
+              name: confirm the image has Edge << parameters.edgeVersion >>
+              command: |
+                version=$(docker run << parameters.imageName >> edge --version)
+                if [[ "$version" =~ ^"<< parameters.edgeVersion >>" ]]; then
+                  echo "Image has the expected version of Edge << parameters.edgeVersion >>"
+                  echo "found $version"
+                else
+                  echo "Problem: image has unexpected Edge version"
+                  echo "Expected << parameters.edgeVersion >> and got $version"
                   exit 1
                 fi
 
@@ -275,11 +299,16 @@ jobs:
         description: Image tag to build like "node12.4.0-chrome76"
       chromeVersion:
         type: string
+        default: ''
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
       firefoxVersion:
         type: string
         default: ''
         description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
+      edgeVersion:
+        type: string
+        default: ''
+        description: Edge version to expect in the base image, starts with "Microsoft Edge XX"
     steps:
       - checkout
       - halt-if-docker-image-exists:
@@ -293,6 +322,7 @@ jobs:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
           chromeVersion: << parameters.chromeVersion >>
           firefoxVersion: << parameters.firefoxVersion >>
+          edgeVersion: << parameters.edgeVersion >>
       - halt-on-branch
       - docker-push:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
@@ -410,6 +440,9 @@ const fullChromeVersion = (version) =>
 const fullFirefoxVersion = (version) =>
   `Mozilla Firefox ${version}`
 
+const fullEdgeVersion = (version) =>
+  `Microsoft Edge ${version}`
+
 const findChromeVersion = (imageAndTag) => {
   // image name like "nodeX.Y.Z-chromeXX..."
   // the folder has "chromeXX" name, so extract the "XX" part
@@ -427,6 +460,17 @@ const findFirefoxVersion = (imageAndTag) => {
   const matches = /-ff(\d+)/.exec(imageAndTag)
   if (matches && matches[1]) {
     return fullFirefoxVersion(matches[1])
+  }
+
+  return null
+}
+
+const findEdgeVersion = (imageAndTag) => {
+  // image name like "nodeX.Y.Z-edgeXX"
+  // so we will extract "XX" part
+  const matches = /-edge(\d+)/.exec(imageAndTag)
+  if (matches && matches[1]) {
+    return fullEdgeVersion(matches[1])
   }
 
   return null
@@ -480,18 +524,29 @@ const formBrowserWorkflow = (browserImages) => {
 
   const yml = browserImages.filter(isIncluded).map(imageAndTag => {
     const chromeVersion = findChromeVersion(imageAndTag.tag)
-    if (!chromeVersion) {
-      throw new Error(`Cannot find Chrome version from tag ${imageAndTag.tag}`)
-    }
     const firefoxVersion = findFirefoxVersion(imageAndTag.tag)
+    const edgeVersion = findEdgeVersion(imageAndTag.tag)
+    const foundBrowser = chromeVersion || firefoxVersion || edgeVersion
+
+    if (!foundBrowser) {
+      throw new Error(`Cannot find any browsers from image tag "${imageAndTag.tag}"`)
+    }
 
     // important to have indent
     let job = '      - build-browser-image:\n' +
       `          name: "browsers ${imageAndTag.tag}"\n` +
-      `          dockerTag: "${imageAndTag.tag}"\n` +
-      `          chromeVersion: "${chromeVersion}"\n`
+      `          dockerTag: "${imageAndTag.tag}"\n`
+
+    if (chromeVersion) {
+      job += `          chromeVersion: "${chromeVersion}"\n`
+    }
+
     if (firefoxVersion) {
       job += `          firefoxVersion: "${firefoxVersion}"\n`
+    }
+
+    if (edgeVersion) {
+      job += `          edgeVersion: "${edgeVersion}"\n`
     }
 
     return job

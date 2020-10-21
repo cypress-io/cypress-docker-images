@@ -4,8 +4,8 @@
 
 > Docker image with all operating system dependencies and some pre-installed browsers, **but NOT Cypress itself**. See [cypress/included](../included) images if you need Cypress pre-installed in the image.
 
-Name + Tag | Base image | Chrome | Firefox
---- | --- | --- | ---
+Name + Tag | Base image | Chrome | Firefox | Edge
+--- | --- | --- | --- | ---
 [cypress/browsers:node8.9.3-npm6.10.1-chrome75](./node8.9.3-npm6.10.1-chrome75) | `cypress/base:8.9.3-npm-6.10.1` | `75.0.3770.100` | 🚫
 [cypress/browsers:node10.16.0-chrome77-ff71](./node10.16.0-chrome77-ff71) | `cypress/browsers:node10.16.0-chrome77` | `77.0.3865.90` | `71.0`
 [cypress/browsers:node12.4.0-chrome76](./node12.4.0-chrome76) | `cypress/base:12.4.0` | `76.0.3809.87` | 🚫
@@ -22,6 +22,7 @@ Name + Tag | Base image | Chrome | Firefox
 [cypress/browsers:node13.8.0-chrome81-ff75](./node13.8.0-chrome81-ff75) | `cypress/base:13.8.0` | `81.0.4044.113` | `75.0`
 [cypress/browsers:node14.7.0-chrome84](./node14.7.0-chrome84) | `cypress/base:14.7.0` | `84.0.4147.105` | 🚫
 [cypress/browsers:node12.14.1-chrome85-ff81](./node12.14.1-chrome85-ff81) | `cypress/base:12.14.1` | `85.0.4183.121` | `81.0`
+[cypress/browsers:node14.10.1-edge88](./node14.10.1-edge88) | `cypress/base:14.10.1` | 🚫 | 🚫 | `88.0.673.0 dev`
 
 ## Naming scheme
 

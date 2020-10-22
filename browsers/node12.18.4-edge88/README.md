@@ -5,7 +5,7 @@ A complete image with all operating system dependencies for Cypress and [Microso
 [Dockerfile](Dockerfile)
 
 ```text
-node versions:   v12.18.4
+node version:    v12.18.4
 npm version:     6.14.8
 yarn version:    1.22.10
 Debian version:  10.5

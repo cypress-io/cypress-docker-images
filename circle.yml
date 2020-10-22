@@ -229,8 +229,6 @@ commands:
             RUN npm install --save-dev cypress
             RUN ./node_modules/.bin/cypress verify
             RUN echo '{}' > cypress.json
-
-            RUN ./node_modules/.bin/cypress run
             EOF
 
       - when:

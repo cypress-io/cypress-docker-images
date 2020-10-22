@@ -8,6 +8,10 @@ All contributors are expecting to abide by our [Code of Conduct](CODE_OF_CONDUCT
 
 ## Development
 
+### Replacing existing images
+
+⚠️ As a rule, unless there are extraordinary circumstances, we do NOT replace the existing Docker images. Replacing the images already used by people is dangerous, since it replaces the versions of tools without warning. We have such failed experience once, and do not want to repeat this mistake. Thus instead of replacing an existing image, in 99% of the cases we publish a new Docker image.
+
 ### Add new base image
 
 To create a new base image follow these steps

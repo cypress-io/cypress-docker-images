@@ -226,6 +226,47 @@ commands:
               no_output_timeout: '1m'
               command: docker run cypress/test ./node_modules/.bin/cypress run --browser edge
 
+      - run:
+          name: scaffold image << parameters.imageName >> using Kitchensink
+          no_output_timeout: '3m'
+          command: |
+            docker build -t cypress/test-kitchensink -\\<<EOF
+            FROM << parameters.imageName >>
+            RUN echo "current user: $(whoami)"
+            ENV CI=1
+            ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
+            RUN npm init --yes
+            RUN npm install --save-dev cypress
+            RUN ./node_modules/.bin/cypress verify
+            RUN echo '{}' > cypress.json
+
+            RUN ./node_modules/.bin/cypress run
+            EOF
+
+      - when:
+          condition: << parameters.chromeVersion >>
+          steps:
+          - run:
+              name: Test << parameters.chromeVersion >>
+              no_output_timeout: '1m'
+              command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser chrome
+
+      - when:
+          condition: << parameters.firefoxVersion >>
+          steps:
+          - run:
+              name: Test << parameters.firefoxVersion >>
+              no_output_timeout: '1m'
+              command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser firefox
+
+      - when:
+          condition: << parameters.edgeVersion >>
+          steps:
+          - run:
+              name: Test << parameters.edgeVersion >>
+              no_output_timeout: '1m'
+              command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser edge
+
   test-included-image:
     description: Testing Docker image with Cypress pre-installed
     parameters:

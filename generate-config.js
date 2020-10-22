@@ -88,10 +88,30 @@ commands:
             RUN echo "current user: $(whoami)"
             ENV CI=1
             RUN npm init --yes
-            RUN npm install --save-dev cypress
+            RUN npm install --save-dev cypress cypress-expect
             RUN ./node_modules/.bin/cypress verify
             RUN npx @bahmutov/cly init
+            # run Cypress by itself
             RUN ./node_modules/.bin/cypress run
+            # run Cypress using module API and confirm number of passing tests
+            RUN ./node_modules/.bin/cypress-expect run --passing 1
+            EOF
+
+      - run:
+          name: test image << parameters.imageName >> using Kitchensink
+          no_output_timeout: '3m'
+          command: |
+            docker build -t cypress/test-kitchensink -\\<<EOF
+            FROM << parameters.imageName >>
+            RUN echo "current user: $(whoami)"
+            ENV CI=1
+            ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
+            RUN npm init --yes
+            RUN npm install --save-dev cypress cypress-expect
+            RUN ./node_modules/.bin/cypress verify
+            RUN echo '{}' > cypress.json
+            # run Cypress and confirm minimum number of passing tets
+            RUN ./node_modules/.bin/cypress-expect run --min-passing 100
             EOF
 
   test-browser-image:

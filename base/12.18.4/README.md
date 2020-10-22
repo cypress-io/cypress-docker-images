@@ -16,3 +16,13 @@ RUN npm install --save-dev cypress
 RUN $(npm bin)/cypress verify
 RUN $(npm bin)/cypress run
 ```
+
+Versions
+
+```
+node version:    v12.18.4
+npm version:     6.14.8
+yarn version:    1.22.10
+debian version:  10.5
+user:            root
+```

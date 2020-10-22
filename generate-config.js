@@ -94,6 +94,22 @@ commands:
             RUN ./node_modules/.bin/cypress run
             EOF
 
+      - run:
+          name: test image << parameters.imageName >> using Kitchensink
+          no_output_timeout: '3m'
+          command: |
+            docker build -t cypress/test-kitchensink -\\<<EOF
+            FROM << parameters.imageName >>
+            RUN echo "current user: $(whoami)"
+            ENV CI=1
+            ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
+            RUN npm init --yes
+            RUN npm install --save-dev cypress
+            RUN ./node_modules/.bin/cypress verify
+            RUN echo '{}' > cypress.json
+            RUN ./node_modules/.bin/cypress run
+            EOF
+
   test-browser-image:
     description: Build a test image from browser image and test it
     parameters:

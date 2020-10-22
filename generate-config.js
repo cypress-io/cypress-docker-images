@@ -14,7 +14,7 @@ const preamble = `
 version: 2.1
 
 orbs:
-  node: circleci/node@1.1
+  node: circleci/node@4.1.0
 
 commands:
   halt-on-branch:
@@ -275,11 +275,8 @@ commands:
         type: string
         description: Cypress included docker image to test
     steps:
-      - run:
-          name: Install node@v12
-          command: |
-            ./load-nvm.sh
-            nvm install v12
+      - node/install:
+          lts: true
 
       - run:
           name: Scaffold test project and testing
@@ -287,7 +284,6 @@ commands:
           env:
             CYPRESS_INTERNAL_FORCE_SCAFFOLD: 1
           command: |
-            ./load-nvm.sh
             node --version
             mkdir test
             cd test
@@ -330,9 +326,7 @@ jobs:
       tag: '12'
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm ci
+      - node/install-packages
       - run: npm run check:markdown
 
   build-base-image:

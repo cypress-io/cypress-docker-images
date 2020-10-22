@@ -323,7 +323,7 @@ jobs:
   lint-markdown:
     executor:
       name: node/default
-      tag: '12'
+      tag: '12.18.4'
     steps:
       - checkout
       - node/install-packages

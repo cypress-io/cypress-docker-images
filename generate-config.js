@@ -412,8 +412,9 @@ jobs:
         description: Image tag to build, should match Cypress version, like "3.8.1"
     steps:
       - checkout
-      - halt-if-docker-image-exists:
-          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      # temporary to test the included image
+      # - halt-if-docker-image-exists:
+      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
@@ -636,7 +637,7 @@ const formBrowserWorkflow = (browserImages) => {
 const formIncludedWorkflow = (images) => {
   // skip images that have been built already
   const isSkipped = (tag) => {
-    return semver.lte(tag, '4.12.0')
+    return semver.lte(tag, '5.3.0')
   }
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 

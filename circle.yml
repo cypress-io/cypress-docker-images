@@ -402,8 +402,9 @@ jobs:
         description: Image tag to build, should match Cypress version, like "3.8.1"
     steps:
       - checkout
-      - halt-if-docker-image-exists:
-          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      # temporary to test the included image
+      # - halt-if-docker-image-exists:
+      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
@@ -483,21 +484,6 @@ workflows:
 
   build-included-images:
     jobs:
-      - build-included-image:
-          name: "included 4.12.1"
-          dockerTag: "4.12.1"
-      - build-included-image:
-          name: "included 5.0.0"
-          dockerTag: "5.0.0"
-      - build-included-image:
-          name: "included 5.1.0"
-          dockerTag: "5.1.0"
-      - build-included-image:
-          name: "included 5.2.0"
-          dockerTag: "5.2.0"
-      - build-included-image:
-          name: "included 5.3.0"
-          dockerTag: "5.3.0"
       - build-included-image:
           name: "included 5.4.0"
           dockerTag: "5.4.0"

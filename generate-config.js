@@ -276,14 +276,20 @@ commands:
         description: Cypress included docker image to test
     steps:
       - run:
-          name: New test project and testing
+          name: Scaffold test project and testing
           no_output_timeout: '3m'
+          env:
+            CYPRESS_INTERNAL_FORCE_SCAFFOLD: 1
           command: |
             node --version
             mkdir test
             cd test
-            echo "Initializing test project"
-            npx @bahmutov/cly init --cypress-version << parameters.cypressVersion >>
+            echo "*** Initializing the test project **"
+            npm init --yes
+            npm install --save-dev cypress
+            npx cypress verify
+            echo "*** scaffold and run all tests ***"
+            echo '{}' > cypress.json
 
             echo "Testing Electron browser"
             docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >>

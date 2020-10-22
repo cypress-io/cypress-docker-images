@@ -266,11 +266,18 @@ commands:
         description: Cypress included docker image to test
     steps:
       - run:
+          name: Install node@v12
+          command: |
+            ./load-nvm.sh
+            nvm install v12
+
+      - run:
           name: Scaffold test project and testing
           no_output_timeout: '3m'
           env:
             CYPRESS_INTERNAL_FORCE_SCAFFOLD: 1
           command: |
+            ./load-nvm.sh
             node --version
             mkdir test
             cd test

@@ -432,6 +432,9 @@ workflows:
           name: "base 12.18.4"
           dockerTag: "12.18.4"
       - build-base-image:
+          name: "base 12.19.0"
+          dockerTag: "12.19.0"
+      - build-base-image:
           name: "base 14.10.1"
           dockerTag: "14.10.1"
       - build-base-image:

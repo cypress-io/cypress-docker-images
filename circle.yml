@@ -78,10 +78,30 @@ commands:
             RUN echo "current user: $(whoami)"
             ENV CI=1
             RUN npm init --yes
-            RUN npm install --save-dev cypress
+            RUN npm install --save-dev cypress cypress-expect
             RUN ./node_modules/.bin/cypress verify
             RUN npx @bahmutov/cly init
+            # run Cypress by itself
             RUN ./node_modules/.bin/cypress run
+            # run Cypress using module API and confirm number of passing tests
+            RUN ./node_modules/.bin/cypress-expect run --passing 1
+            EOF
+
+      - run:
+          name: test image << parameters.imageName >> using Kitchensink
+          no_output_timeout: '3m'
+          command: |
+            docker build -t cypress/test-kitchensink -\<<EOF
+            FROM << parameters.imageName >>
+            RUN echo "current user: $(whoami)"
+            ENV CI=1
+            ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
+            RUN npm init --yes
+            RUN npm install --save-dev cypress cypress-expect
+            RUN ./node_modules/.bin/cypress verify
+            RUN echo '{}' > cypress.json
+            # run Cypress and confirm minimum number of passing tets
+            RUN ./node_modules/.bin/cypress-expect run --min-passing 100
             EOF
 
   test-browser-image:
@@ -195,6 +215,45 @@ commands:
               name: Test << parameters.edgeVersion >>
               no_output_timeout: '1m'
               command: docker run cypress/test ./node_modules/.bin/cypress run --browser edge
+
+      - run:
+          name: scaffold image << parameters.imageName >> using Kitchensink
+          no_output_timeout: '3m'
+          command: |
+            docker build -t cypress/test-kitchensink -\<<EOF
+            FROM << parameters.imageName >>
+            RUN echo "current user: $(whoami)"
+            ENV CI=1
+            ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
+            RUN npm init --yes
+            RUN npm install --save-dev cypress
+            RUN ./node_modules/.bin/cypress verify
+            RUN echo '{}' > cypress.json
+            EOF
+
+      - when:
+          condition: << parameters.chromeVersion >>
+          steps:
+          - run:
+              name: Test << parameters.chromeVersion >>
+              no_output_timeout: '1m'
+              command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser chrome
+
+      - when:
+          condition: << parameters.firefoxVersion >>
+          steps:
+          - run:
+              name: Test << parameters.firefoxVersion >>
+              no_output_timeout: '1m'
+              command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser firefox
+
+      - when:
+          condition: << parameters.edgeVersion >>
+          steps:
+          - run:
+              name: Test << parameters.edgeVersion >>
+              no_output_timeout: '1m'
+              command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser edge
 
   test-included-image:
     description: Testing Docker image with Cypress pre-installed
@@ -376,6 +435,9 @@ workflows:
           name: "base 14.10.1"
           dockerTag: "14.10.1"
       - build-base-image:
+          name: "base 14.15.0"
+          dockerTag: "14.15.0"
+      - build-base-image:
           name: "base 14.5.0"
           dockerTag: "14.5.0"
       - build-base-image:
@@ -398,6 +460,10 @@ workflows:
           dockerTag: "node12.18.3-chrome83-ff77"
           chromeVersion: "Google Chrome 83"
           firefoxVersion: "Mozilla Firefox 77"
+      - build-browser-image:
+          name: "browsers node12.18.4-edge88"
+          dockerTag: "node12.18.4-edge88"
+          edgeVersion: "Microsoft Edge 88"
       - build-browser-image:
           name: "browsers node13.8.0-chrome81-ff75"
           dockerTag: "node13.8.0-chrome81-ff75"
@@ -432,3 +498,6 @@ workflows:
       - build-included-image:
           name: "included 5.4.0"
           dockerTag: "5.4.0"
+      - build-included-image:
+          name: "included 5.5.0"
+          dockerTag: "5.5.0"

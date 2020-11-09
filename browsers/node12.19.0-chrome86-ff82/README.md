@@ -10,8 +10,8 @@ node version:    v12.19.0
 npm version:     6.14.8
 yarn version:    1.22.10
 debian version:  10.6
-Chrome version:  Google Chrome 86.0.4240.111
-Firefox version: Mozilla Firefox 82.0
+Chrome version:  Google Chrome 86.0.4240.193
+Firefox version: Mozilla Firefox 82.0.3
 git version:     git version 2.20.1
 ```
 

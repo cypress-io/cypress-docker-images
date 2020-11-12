@@ -468,6 +468,11 @@ workflows:
           dockerTag: "node12.18.4-edge88"
           edgeVersion: "Microsoft Edge 88"
       - build-browser-image:
+          name: "browsers node12.19.0-chrome86-ff82"
+          dockerTag: "node12.19.0-chrome86-ff82"
+          chromeVersion: "Google Chrome 86"
+          firefoxVersion: "Mozilla Firefox 82"
+      - build-browser-image:
           name: "browsers node13.8.0-chrome81-ff75"
           dockerTag: "node13.8.0-chrome81-ff75"
           chromeVersion: "Google Chrome 81"

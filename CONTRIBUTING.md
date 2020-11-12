@@ -45,6 +45,8 @@ To create a new image with Cypress pre-installed globally
 
 1. run `npm run add:included -- <Cypress version> <base image tag>`. For example `npm run add:included -- 3.8.3 cypress/browsers:node12.6.0-chrome77`.
 
+**important ⚠️** please use `cypress/browsers` Docker image with the Node version that **matches** the Node version bundled inside Cypress you are about to install there.
+
 This will create new folder `included/<Cypress version>`
 
 2. add new line to [included/README.md](included/README.md) file with the new image information

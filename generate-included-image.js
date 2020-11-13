@@ -79,6 +79,9 @@ RUN chmod 755 /root
 # otherwise the base image might have old versions
 RUN npm i -g yarn@latest npm@latest
 
+# should print Cypress version
+# plus Electron and bundled Node versions
+RUN cypress version
 RUN echo  " node version:    $(node -v) \\n" \\
   "npm version:     $(npm -v) \\n" \\
   "yarn version:    $(yarn -v) \\n" \\

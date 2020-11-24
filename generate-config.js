@@ -290,7 +290,9 @@ commands:
             export CYPRESS_NODE_VERSION=$(docker run --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version --component node)
             echo "Included Node $NODE_VERSION"
             echo "Cypress includes Node $CYPRESS_NODE_VERSION"
-            if [ "$NODE_VERSION" = "$CYPRESS_NODE_VERSION" ]; then
+            # "node --version" returns something like "v12.1.2"
+            # and "cypres version ..." returns just "12.1.2"
+            if [ "$NODE_VERSION" = "v$CYPRESS_NODE_VERSION" ]; then
               echo "Node versions match"
             else
               echo "Node version mismatch 🔥"

@@ -276,6 +276,12 @@ commands:
         description: Cypress included docker image to test
     steps:
       - run:
+          name: 'Check Node version'
+          command: |
+            export NODE_VERSION=$(node --version)
+            export CYPRESS_NODE_VERSION=$(cypress version --component node)
+            echo "Included Node $NODE_VERSION Cypress includes Node $CYPRESS_NODE_VERSION"
+      - run:
           name: New test project and testing
           no_output_timeout: '3m'
           command: |

@@ -280,7 +280,8 @@ commands:
           command: |
             export NODE_VERSION=$(docker run -it --entrypoint node cypress/included:<< parameters.cypressVersion >> --version)
             export CYPRESS_NODE_VERSION=$(docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version --component node)
-            echo "Included Node $NODE_VERSION Cypress includes Node $CYPRESS_NODE_VERSION"
+            echo "Included Node $NODE_VERSION"
+            echo "Cypress includes Node $CYPRESS_NODE_VERSION"
       - run:
           name: 'Print info'
           command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> info

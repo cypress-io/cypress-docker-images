@@ -276,7 +276,9 @@ commands:
               echo "Node versions match"
             else
               echo "Node version mismatch 🔥"
-              exit 1
+              # TODO make sure there are no extra characters in the versions
+              # https://github.com/cypress-io/cypress-docker-images/issues/411
+              # exit 1
             fi
       - run:
           name: 'Print info'

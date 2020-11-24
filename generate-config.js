@@ -636,7 +636,7 @@ const formBrowserWorkflow = (browserImages) => {
 const formIncludedWorkflow = (images) => {
   // skip images that have been built already
   const isSkipped = (tag) => {
-    return semver.lte(tag, '4.12.0')
+    return semver.lt(tag, '6.0.0')
   }
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 

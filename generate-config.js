@@ -341,8 +341,8 @@ commands:
           no_output_timeout: '3m'
           command: |
             node --version
-            mkdir test
-            cd test
+            mkdir test-kitchensink
+            cd test-kitchensink
 
             npm init -y
             echo '{}' > cypress.json
@@ -353,7 +353,7 @@ commands:
             echo "Testing Chrome browser"
             docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_INTERNAL_FORCE_SCAFFOLD=1 cypress/included:<< parameters.cypressVersion >> --browser chrome
 
-          working_directory: /tmp-kitchensink
+          working_directory: /tmp
 
   docker-push:
     description: Log in and push a given image to Docker hub

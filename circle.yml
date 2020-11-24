@@ -276,8 +276,8 @@ commands:
       - run:
           name: 'Check Node version'
           command: |
-            export NODE_VERSION=$(docker run -it --entrypoint node cypress/included:<< parameters.cypressVersion >> --version)
-            export CYPRESS_NODE_VERSION=$(docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version --component node)
+            export NODE_VERSION=$(docker run --entrypoint node cypress/included:<< parameters.cypressVersion >> --version)
+            export CYPRESS_NODE_VERSION=$(docker run --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version --component node)
             echo "Included Node $NODE_VERSION"
             echo "Cypress includes Node $CYPRESS_NODE_VERSION"
             if [ "$NODE_VERSION" = "$CYPRESS_NODE_VERSION" ]; then

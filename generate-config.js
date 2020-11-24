@@ -471,9 +471,8 @@ jobs:
         description: Image tag to build, should match Cypress version, like "3.8.1"
     steps:
       - checkout
-      # temporarily in this PR
-      # - halt-if-docker-image-exists:
-      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      - halt-if-docker-image-exists:
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |

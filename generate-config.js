@@ -276,6 +276,24 @@ commands:
         description: Cypress included docker image to test
     steps:
       - run:
+          name: 'Check Node version'
+          command: |
+            export NODE_VERSION=$(docker run -it --entrypoint node cypress/included:<< parameters.cypressVersion >> --version)
+            export CYPRESS_NODE_VERSION=$(docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version --component node)
+            echo "Included Node $NODE_VERSION"
+            echo "Cypress includes Node $CYPRESS_NODE_VERSION"
+            if [ "$NODE_VERSION" = "$CYPRESS_NODE_VERSION" ]; then
+              echo "Node versions match"
+            else
+              echo "Node version mismatch 🔥"
+              # TODO make sure there are no extra characters in the versions
+              # https://github.com/cypress-io/cypress-docker-images/issues/411
+              # exit 1
+            fi
+      - run:
+          name: 'Print info'
+          command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> info
+      - run:
           name: New test project and testing
           no_output_timeout: '3m'
           command: |
@@ -630,7 +648,7 @@ const formBrowserWorkflow = (browserImages) => {
 const formIncludedWorkflow = (images) => {
   // skip images that have been built already
   const isSkipped = (tag) => {
-    return semver.lte(tag, '4.12.0')
+    return semver.lt(tag, '6.0.0')
   }
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 

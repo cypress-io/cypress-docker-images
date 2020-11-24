@@ -266,6 +266,24 @@ commands:
         description: Cypress included docker image to test
     steps:
       - run:
+          name: 'Check Node version'
+          command: |
+            export NODE_VERSION=$(docker run -it --entrypoint node cypress/included:<< parameters.cypressVersion >> --version)
+            export CYPRESS_NODE_VERSION=$(docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version --component node)
+            echo "Included Node $NODE_VERSION"
+            echo "Cypress includes Node $CYPRESS_NODE_VERSION"
+            if [ "$NODE_VERSION" = "$CYPRESS_NODE_VERSION" ]; then
+              echo "Node versions match"
+            else
+              echo "Node version mismatch 🔥"
+              # TODO make sure there are no extra characters in the versions
+              # https://github.com/cypress-io/cypress-docker-images/issues/411
+              # exit 1
+            fi
+      - run:
+          name: 'Print info'
+          command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> info
+      - run:
           name: New test project and testing
           no_output_timeout: '3m'
           command: |
@@ -494,26 +512,5 @@ workflows:
   build-included-images:
     jobs:
       - build-included-image:
-          name: "included 4.12.1"
-          dockerTag: "4.12.1"
-      - build-included-image:
-          name: "included 5.0.0"
-          dockerTag: "5.0.0"
-      - build-included-image:
-          name: "included 5.1.0"
-          dockerTag: "5.1.0"
-      - build-included-image:
-          name: "included 5.2.0"
-          dockerTag: "5.2.0"
-      - build-included-image:
-          name: "included 5.3.0"
-          dockerTag: "5.3.0"
-      - build-included-image:
-          name: "included 5.4.0"
-          dockerTag: "5.4.0"
-      - build-included-image:
-          name: "included 5.5.0"
-          dockerTag: "5.5.0"
-      - build-included-image:
-          name: "included 5.6.0"
-          dockerTag: "5.6.0"
+          name: "included 6.0.0"
+          dockerTag: "6.0.0"

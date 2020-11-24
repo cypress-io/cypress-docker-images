@@ -69,6 +69,7 @@ RUN cypress verify
 RUN cypress cache path
 RUN cypress cache list
 RUN cypress info
+RUN cypress version
 
 # give every user read access to the "/root" folder where the binary is cached
 # we really only need to worry about the top folder, fortunately

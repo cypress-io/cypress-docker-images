@@ -265,6 +265,42 @@ commands:
               no_output_timeout: '1m'
               command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser edge
 
+  test-included-image-versions:
+    description: Testing pre-installed versions
+    parameters:
+      cypressVersion:
+        type: string
+        description: Cypress version to test, like "4.0.0"
+      imageName:
+        type: string
+        description: Cypress included docker image to test
+    steps:
+      - run:
+          name: 'Print versions'
+          command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version
+
+      - run:
+          name: 'Print info'
+          command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> info
+
+      - run:
+          name: 'Check Node version'
+          command: |
+            export NODE_VERSION=$(docker run --entrypoint node cypress/included:<< parameters.cypressVersion >> --version)
+            export CYPRESS_NODE_VERSION=$(docker run --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version --component node)
+            echo "Included Node $NODE_VERSION"
+            echo "Cypress includes Node $CYPRESS_NODE_VERSION"
+            # "node --version" returns something like "v12.1.2"
+            # and "cypres version ..." returns just "12.1.2"
+            if [ "$NODE_VERSION" = "v$CYPRESS_NODE_VERSION" ]; then
+              echo "Node versions match"
+            else
+              echo "Node version mismatch 🔥"
+              # TODO make sure there are no extra characters in the versions
+              # https://github.com/cypress-io/cypress-docker-images/issues/411
+              # exit 1
+            fi
+
   test-included-image:
     description: Testing Docker image with Cypress pre-installed
     parameters:
@@ -276,24 +312,6 @@ commands:
         description: Cypress included docker image to test
     steps:
       - run:
-          name: 'Check Node version'
-          command: |
-            export NODE_VERSION=$(docker run -it --entrypoint node cypress/included:<< parameters.cypressVersion >> --version)
-            export CYPRESS_NODE_VERSION=$(docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version --component node)
-            echo "Included Node $NODE_VERSION"
-            echo "Cypress includes Node $CYPRESS_NODE_VERSION"
-            if [ "$NODE_VERSION" = "$CYPRESS_NODE_VERSION" ]; then
-              echo "Node versions match"
-            else
-              echo "Node version mismatch 🔥"
-              # TODO make sure there are no extra characters in the versions
-              # https://github.com/cypress-io/cypress-docker-images/issues/411
-              # exit 1
-            fi
-      - run:
-          name: 'Print info'
-          command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> info
-      - run:
           name: New test project and testing
           no_output_timeout: '3m'
           command: |
@@ -303,11 +321,40 @@ commands:
             echo "Initializing test project"
             npx @bahmutov/cly init --cypress-version << parameters.cypressVersion >>
 
-            echo "Testing Electron browser"
+            echo "Testing using Electron browser"
             docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >>
 
-            echo "Testing Chrome browser"
+            echo "Testing using Chrome browser"
             docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >> --browser chrome
+          working_directory: /tmp
+
+  test-included-image-using-kitchensink:
+    description: Testing Cypress pre-installed using Kitchensink
+    parameters:
+      cypressVersion:
+        type: string
+        description: Cypress version to test, like "4.0.0"
+      imageName:
+        type: string
+        description: Cypress included docker image to test
+    steps:
+      - run:
+          name: Testing Kitchensink
+          no_output_timeout: '3m'
+          command: |
+            node --version
+            mkdir test-kitchensink
+            cd test-kitchensink
+
+            npm init -y
+            echo '{}' > cypress.json
+
+            echo "Testing using Electron browser"
+            docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_INTERNAL_FORCE_SCAFFOLD=1 cypress/included:<< parameters.cypressVersion >>
+
+            echo "Testing using Chrome browser"
+            docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_INTERNAL_FORCE_SCAFFOLD=1 cypress/included:<< parameters.cypressVersion >> --browser chrome
+
           working_directory: /tmp
 
   docker-push:
@@ -432,9 +479,18 @@ jobs:
             docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: included/<< parameters.dockerTag >>
 
+      - test-included-image-versions:
+          cypressVersion: << parameters.dockerTag >>
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+
       - test-included-image:
           cypressVersion: << parameters.dockerTag >>
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+
+      - test-included-image-using-kitchensink:
+          cypressVersion: << parameters.dockerTag >>
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+
       - halt-on-branch
       - docker-push:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>

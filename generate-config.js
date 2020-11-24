@@ -321,10 +321,10 @@ commands:
             echo "Initializing test project"
             npx @bahmutov/cly init --cypress-version << parameters.cypressVersion >>
 
-            echo "Testing Electron browser"
+            echo "Testing using Electron browser"
             docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >>
 
-            echo "Testing Chrome browser"
+            echo "Testing using Chrome browser"
             docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >> --browser chrome
           working_directory: /tmp
 
@@ -339,7 +339,7 @@ commands:
         description: Cypress included docker image to test
     steps:
       - run:
-          name: New test project and testing
+          name: Testing Kitchensink
           no_output_timeout: '3m'
           command: |
             node --version
@@ -349,10 +349,10 @@ commands:
             npm init -y
             echo '{}' > cypress.json
 
-            echo "Testing Electron browser"
+            echo "Testing using Electron browser"
             docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_INTERNAL_FORCE_SCAFFOLD=1 cypress/included:<< parameters.cypressVersion >>
 
-            echo "Testing Chrome browser"
+            echo "Testing using Chrome browser"
             docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_INTERNAL_FORCE_SCAFFOLD=1 cypress/included:<< parameters.cypressVersion >> --browser chrome
 
           working_directory: /tmp

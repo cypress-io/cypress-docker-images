@@ -255,8 +255,8 @@ commands:
               no_output_timeout: '1m'
               command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser edge
 
-  test-included-image:
-    description: Testing Docker image with Cypress pre-installed
+  test-included-image-versions:
+    description: Testing pre-installed versions
     parameters:
       cypressVersion:
         type: string
@@ -265,6 +265,14 @@ commands:
         type: string
         description: Cypress included docker image to test
     steps:
+      - run:
+          name: 'Print versions'
+          command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version
+
+      - run:
+          name: 'Print info'
+          command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> info
+
       - run:
           name: 'Check Node version'
           command: |
@@ -280,9 +288,17 @@ commands:
               # https://github.com/cypress-io/cypress-docker-images/issues/411
               # exit 1
             fi
-      - run:
-          name: 'Print info'
-          command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> info
+
+  test-included-image:
+    description: Testing Docker image with Cypress pre-installed
+    parameters:
+      cypressVersion:
+        type: string
+        description: Cypress version to test, like "4.0.0"
+      imageName:
+        type: string
+        description: Cypress included docker image to test
+    steps:
       - run:
           name: New test project and testing
           no_output_timeout: '3m'
@@ -414,17 +430,23 @@ jobs:
         description: Image tag to build, should match Cypress version, like "3.8.1"
     steps:
       - checkout
-      - halt-if-docker-image-exists:
-          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+      # temporarily in this PR
+      # - halt-if-docker-image-exists:
+      #    imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
             docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: included/<< parameters.dockerTag >>
 
+      - test-included-image-versions:
+          cypressVersion: << parameters.dockerTag >>
+          imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+
       - test-included-image:
           cypressVersion: << parameters.dockerTag >>
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+
       - halt-on-branch
       - docker-push:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>

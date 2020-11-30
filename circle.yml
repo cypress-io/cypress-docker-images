@@ -568,5 +568,5 @@ workflows:
   build-included-images:
     jobs:
       - build-included-image:
-          name: "included 6.0.0"
-          dockerTag: "6.0.0"
+          name: "included 6.0.1"
+          dockerTag: "6.0.1"

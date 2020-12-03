@@ -509,6 +509,9 @@ workflows:
           name: "base 12.19.0"
           dockerTag: "12.19.0"
       - build-base-image:
+          name: "base 12.20.0-slim"
+          dockerTag: "12.20.0-slim"
+      - build-base-image:
           name: "base 14.10.1"
           dockerTag: "14.10.1"
       - build-base-image:

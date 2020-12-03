@@ -509,6 +509,9 @@ workflows:
           name: "base 12.19.0"
           dockerTag: "12.19.0"
       - build-base-image:
+          name: "base 12.20.0-slim"
+          dockerTag: "12.20.0-slim"
+      - build-base-image:
           name: "base 14.10.1"
           dockerTag: "14.10.1"
       - build-base-image:
@@ -551,6 +554,10 @@ workflows:
           dockerTag: "node12.19.0-chrome86-ff82"
           chromeVersion: "Google Chrome 86"
           firefoxVersion: "Mozilla Firefox 82"
+      - build-browser-image:
+          name: "browsers node12.20.0-slim-chrome86"
+          dockerTag: "node12.20.0-slim-chrome86"
+          chromeVersion: "Google Chrome 86"
       - build-browser-image:
           name: "browsers node13.8.0-chrome81-ff75"
           dockerTag: "node13.8.0-chrome81-ff75"

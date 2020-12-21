@@ -581,3 +581,6 @@ workflows:
       - build-included-image:
           name: "included 6.1.0"
           dockerTag: "6.1.0"
+      - build-included-image:
+          name: "included 6.2.0"
+          dockerTag: "6.2.0"

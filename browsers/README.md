@@ -27,6 +27,7 @@ Name + Tag | Base image | Chrome | Firefox | Edge
 [cypress/browsers:node12.14.1-chrome85-ff81](./node12.14.1-chrome85-ff81) | `cypress/base:12.14.1` | `85.0.4183.121` | `81.0`
 [cypress/browsers:node14.10.1-edge88](./node14.10.1-edge88) | `cypress/base:14.10.1` | 🚫 | 🚫 | `88.0.673.0 dev`
 [cypress/browsers:node14.15.0-chrome86-ff82](./node14.15.0-chrome86-ff82) | `cypress/base:14.15.0` | `86.0.4240.193` | `82.0.3`
+[cypress/browsers:node14.16.0-chrome86-ff82](./node14.16.0-chrome86-ff82) | `cypress/base:14.16.0` | `86.0.4240.193` | `82.0.3`
 
 To find the available Chrome versions, check [https://chromium.cypress.io/](https://chromium.cypress.io/)
 

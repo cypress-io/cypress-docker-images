@@ -76,9 +76,10 @@ RUN cypress version
 RUN ls -la /root
 RUN chmod 755 /root
 
-# always grab the latest NPM and Yarn
+# always grab the latest Yarn
 # otherwise the base image might have old versions
-RUN npm i -g yarn@latest npm@latest
+# NPM does not need to be installed as it is already included with Node.
+RUN npm i -g yarn@latest
 
 # should print Cypress version
 # plus Electron and bundled Node versions

@@ -22,6 +22,8 @@ RUN install -d -m 0755 -o appuser -g appuser /home/appuser
 
 # move test runner binary folder to the non-root's user home directory
 RUN mv /root/.cache /home/appuser/.cache
+# make sure cypress looks in the right place
+ENV CYPRESS_CACHE_FOLDER=/home/appuser/.cache/Cypress
 
 USER appuser
 # show user effective id and group - it should be non-zero

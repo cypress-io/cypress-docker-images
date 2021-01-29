@@ -1,4 +1,4 @@
-FROM cypress/included:3.8.0
+FROM cypress/included:5.6.0
 
 # "root"
 RUN whoami

@@ -2,6 +2,7 @@ version: 0.2
 
 env:
   variables:
+    PUBLIC_ECR_ALIAS: "s9l6w2o6"
     IMAGE_REPO_NAME: "browsers"
     IMAGE_TAG: "node12.18.3-chrome87-ff82"
 
@@ -16,9 +17,9 @@ phases:
       - echo Building the Docker image...          
       - cd $IMAGE_REPO_NAME/$IMAGE_TAG
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG      
+      - docker tag public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker push public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG

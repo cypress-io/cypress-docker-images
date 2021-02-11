@@ -8,7 +8,7 @@ batch:
   fast-fail: false
   build-list:
     - identifier: browsers-node12.18.3-chrome87-ff82
-      #ignore-failure: true
+      buildspec: buildspec-build-list.yml
       env:
         image: aws/codebuild/standard:5.0
         type: LINUX_CONTAINER
@@ -17,8 +17,9 @@ batch:
         variables:
           IMAGE_REPO_NAME: "browsers"
           IMAGE_TAG: "node12.18.3-chrome87-ff82"
-    - identifier: browsers-node12.18.4-edge88
       #ignore-failure: true
+    - identifier: browsers-node12.18.4-edge88
+      buildspec: buildspec-build-list.yml
       env:
         image: aws/codebuild/standard:5.0
         type: LINUX_CONTAINER
@@ -27,25 +28,4 @@ batch:
         variables:
           IMAGE_REPO_NAME: "browsers"
           IMAGE_TAG: "node12.18.4-edge88"
-
-phases:
-  pre_build:
-    commands:
-      - aws --version
-      - echo Check if $IMAGE_TAG is in ECR...
-      - ./find-ecr-image.sh $IMAGE_REPO_NAME $IMAGE_TAG -p
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      - aws ecr-public get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin public.ecr.aws/$PUBLIC_ECR_ALIAS
-  build:
-    commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...          
-      - cd $IMAGE_REPO_NAME/$IMAGE_TAG
-      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker image...
-      - docker push public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
+      #ignore-failure: true

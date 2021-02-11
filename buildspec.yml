@@ -7,8 +7,8 @@ env:
 batch:
   fast-fail: false
   build-list:
-    ignore-failure: true
     - identifier: browsers-node12.18.3-chrome87-ff82
+      ignore-failure: true
       env:
         type: LINUX_CONTAINER
         privileged-mode: true

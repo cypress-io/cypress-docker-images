@@ -32,6 +32,7 @@ phases:
   pre_build:
     commands:
       - aws --version
+      - aws ecr-public describe-images --repository-name=$IMAGE_REPO_NAME --image-ids=imageTag=$IMAGE_TAG
       - echo Check if $IMAGE_TAG is in ECR...
       - ./find-ecr-image.sh $IMAGE_REPO_NAME $IMAGE_TAG -p
       - echo Logging in to Amazon ECR...

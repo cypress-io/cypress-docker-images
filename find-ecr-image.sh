@@ -37,7 +37,7 @@ fi
 if [[ $? == 0 ]]; then
     IMAGE_TAGS="$( echo ${IMAGE_META} | jq '.imageDetails[0].imageTags[0]' -r )"
     echo "$1:$2 found"
+    exit 1
 else
     echo "$1:$2 not found"
-    exit 1
 fi

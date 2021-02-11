@@ -16,7 +16,6 @@ batch:
         variables:
           IMAGE_REPO_NAME: "browsers"
           IMAGE_TAG: "node12.18.3-chrome87-ff82"
-      #ignore-failure: true
     - identifier: browsersnode12184edge88
       env:
         image: aws/codebuild/standard:5.0
@@ -26,13 +25,11 @@ batch:
         variables:
           IMAGE_REPO_NAME: "browsers"
           IMAGE_TAG: "node12.18.4-edge88"
-      #ignore-failure: true
 
 phases:
   pre_build:
     commands:
       - aws --version
-      - aws ecr-public describe-images --repository-name=$IMAGE_REPO_NAME --image-ids=imageTag=$IMAGE_TAG
       - echo Check if $IMAGE_TAG is in ECR...
       - ./find-ecr-image.sh $IMAGE_REPO_NAME $IMAGE_TAG -p
       - echo Logging in to Amazon ECR...

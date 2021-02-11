@@ -16,6 +16,15 @@ batch:
         variables:
           IMAGE_REPO_NAME: "browsers"
           IMAGE_TAG: "node12.18.3-chrome87-ff82"
+    - identifier: browsers-node12.18.4-edge88
+      ignore-failure: true
+      env:
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "browsers"
+          IMAGE_TAG: "node12.18.4-edge88"
 
 phases:
   pre_build:

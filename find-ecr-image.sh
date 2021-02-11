@@ -27,6 +27,7 @@ if [[ $# -lt 2 ]] || [[ "$1" == "-h" ]]; then
 fi
 
 if [[ "$3" == "-p" ]] || [[ "$3" == "--public" ]]; then
+    echo "Public"
     # public repository
     IMAGE_META="$( aws ecr-public describe-images --repository-name=$1 --image-ids=imageTag=$2 2> /dev/null )"
 else

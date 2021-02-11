@@ -7,7 +7,7 @@ env:
 batch:
   fast-fail: false
   build-list:
-    - identifier: browsers-node12-18-3-chrome87-ff82
+    - identifier: browsersnode12183chrome87ff82
       buildspec: buildspec-build-list.yml
       env:
         image: aws/codebuild/standard:5.0
@@ -18,7 +18,7 @@ batch:
           IMAGE_REPO_NAME: "browsers"
           IMAGE_TAG: "node12.18.3-chrome87-ff82"
       #ignore-failure: true
-    - identifier: browsers-node12-18-4-edge88
+    - identifier: browsersnode12184edge88
       buildspec: buildspec-build-list.yml
       env:
         image: aws/codebuild/standard:5.0

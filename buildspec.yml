@@ -12,8 +12,7 @@ batch:
       type: LINUX_CONTAINER
       privileged-mode: true
       compute-type: BUILD_GENERAL1_MEDIUM
-
-    - identifier: browsers-node12.18.3-chrome87-ff82
+    - identifier: browsers-node12-18-3-chrome87-ff82
       env:
         variables:
           IMAGE_REPO_NAME: "browsers"

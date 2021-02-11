@@ -3,8 +3,21 @@ version: 0.2
 env:
   variables:
     PUBLIC_ECR_ALIAS: "s9l6w2o6"
-    IMAGE_REPO_NAME: "browsers"
-    IMAGE_TAG: "node12.18.3-chrome87-ff82"
+
+batch:
+  fast-fail: false
+  build-list:
+    ignore-failure: true
+    env:
+      type: LINUX_CONTAINER
+      privileged-mode: true
+      compute-type: BUILD_GENERAL1_MEDIUM
+
+    - identifier: browsers-node12.18.3-chrome87-ff82
+      env:
+        variables:
+          IMAGE_REPO_NAME: "browsers"
+          IMAGE_TAG: "node12.18.3-chrome87-ff82"
 
 phases:
   pre_build:

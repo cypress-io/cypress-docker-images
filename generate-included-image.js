@@ -39,6 +39,9 @@ const Dockerfile = `
 #
 FROM ${baseImageTag}
 
+# Update the dependencies to get the latest and greatest (and safest!) packages. 
+RUN apt update && apt upgrade -y
+
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
 ENV CI=1

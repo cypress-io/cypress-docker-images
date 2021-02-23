@@ -805,13 +805,42 @@ const formAwsCodeBuildBaseWorkflow = (baseImages) => {
   return text
 }
 
+const formAwsCodeBuildBrowserWorkflow = (baseImages) => {
+  // skip images that already have been built
+  // one can update this list if the number of
+  // build jobs in AWS CodeBuild grows too long
+  const isSkipped = (tag) => skipBaseImages.includes(tag)
+  const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
+
+  const yml = baseImages.filter(isIncluded).map(imageAndTag => {
+    console.log('imageAndTag', imageAndTag)
+    // @ts-ignore
+    const tagSlug = slugify(imageAndTag.tag, '-')
+    console.log('tagSlug', tagSlug)
+    const identifier = camelCase(`${imageAndTag.name}${imageAndTag.tag}`)
+    let job = `    - identifier: ${identifier}
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "${imageAndTag.name}"
+          IMAGE_TAG: "${imageAndTag.tag}"\n`
+    return job
+  })
+
+  const text = yml.join('')
+  return text
+}
+
 const writeBuildspecConfigFile = (baseImages, browserImages, includedImages) => {
   const base = formAwsCodeBuildBaseWorkflow(baseImages)
-  //const browsers = formBrowserWorkflow(browserImages)
+  const browsers = formAwsCodeBuildBrowserWorkflow(browserImages)
   //const included = formIncludedWorkflow(includedImages)
 
   //const text = preamble.trim() + os.EOL + base + os.EOL + browsers + os.EOL + included
-  const text = awsCodeBuildPreamble.trim() + os.EOL + base + os.EOL + awsCodeBuildPostamble.trim()
+  const text = awsCodeBuildPreamble.trim() + os.EOL + base + os.EOL + browsers + os.EOL + awsCodeBuildPostamble.trim()
   fs.writeFileSync('buildspec.yml', text, 'utf8')
   console.log('generated buildspec.yml')
 }

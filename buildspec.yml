@@ -1,5 +1,4 @@
 version: 0.2
-
 env:
   variables:
     PUBLIC_ECR_ALIAS: "s9l6w2o6"
@@ -7,24 +6,105 @@ env:
 batch:
   fast-fail: false
   build-list:
-    - identifier: browsersnode12183chrome87ff82
+    - identifier: base10220
       env:
         image: aws/codebuild/standard:5.0
         type: LINUX_CONTAINER
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "browsers"
-          IMAGE_TAG: "node12.18.3-chrome87-ff82"
-    - identifier: browsersnode12184edge88
+          IMAGE_REPO_NAME: "base"
+          IMAGE_TAG: "10.22.0"
+    - identifier: base1200Libgbm
       env:
         image: aws/codebuild/standard:5.0
         type: LINUX_CONTAINER
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "browsers"
-          IMAGE_TAG: "node12.18.4-edge88"
+          IMAGE_REPO_NAME: "base"
+          IMAGE_TAG: "12.0.0-libgbm"
+    - identifier: base12183
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "base"
+          IMAGE_TAG: "12.18.3"
+    - identifier: base12184
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "base"
+          IMAGE_TAG: "12.18.4"
+    - identifier: base12190
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "base"
+          IMAGE_TAG: "12.19.0"
+    - identifier: base14101
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "base"
+          IMAGE_TAG: "14.10.1"
+    - identifier: base14150
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "base"
+          IMAGE_TAG: "14.15.0"
+    - identifier: base14154
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "base"
+          IMAGE_TAG: "14.15.4"
+    - identifier: base1450
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "base"
+          IMAGE_TAG: "14.5.0"
+    - identifier: base1470
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "base"
+          IMAGE_TAG: "14.7.0"
+    - identifier: basemanjaro14120
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "base"
+          IMAGE_TAG: "manjaro-14.12.0"
 
 phases:
   pre_build:
@@ -37,13 +117,11 @@ phases:
       - aws ecr-public get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin public.ecr.aws/$PUBLIC_ECR_ALIAS
   build:
     commands:
-      - echo Build started on `date`
       - echo Building the Docker image...          
       - cd $IMAGE_REPO_NAME/$IMAGE_TAG
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
-      - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG

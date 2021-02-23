@@ -784,15 +784,11 @@ const formAwsCodeBuildBaseWorkflow = (baseImages) => {
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 
   const yml = baseImages.filter(isIncluded).map(imageAndTag => {
-    // important to have indent
-    // let job = '      - build-base-image:\n' +
-    //   `          name: "base ${imageAndTag.tag}"\n` +
-    //   `          dockerTag: "${imageAndTag.tag}"\n`
     console.log('imageAndTag', imageAndTag)
     // @ts-ignore
     const tagSlug = slugify(imageAndTag.tag, '-')
     console.log('tagSlug', tagSlug)
-    const identifier = camelCase(`${imageAndTag.name}${tagSlug}`)
+    const identifier = camelCase(`${imageAndTag.name}${imageAndTag.tag}`)
     let job = `    - identifier: ${identifier}
       env:
         image: aws/codebuild/standard:5.0
@@ -800,16 +796,12 @@ const formAwsCodeBuildBaseWorkflow = (baseImages) => {
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "browsers"
-          IMAGE_TAG: "node12.18.3-chrome87-ff82"`
+          IMAGE_REPO_NAME: "${imageAndTag.name}"
+          IMAGE_TAG: "${imageAndTag.tag}"\n`
     return job
   })
 
-  // indent is important
-  const workflowName = '  build-base-images:\n' +
-    '    jobs:\n'
-
-  const text = workflowName + yml.join('')
+  const text = yml.join('')
   return text
 }
 

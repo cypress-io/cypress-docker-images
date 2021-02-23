@@ -120,7 +120,7 @@ phases:
   build:
     commands:
       - echo Building the Docker image...          
-      - cd $IMAGE_REPO_NAME/$IMAGE_TAG
+      - cd $IMAGE_DIR/$IMAGE_TAG
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
@@ -800,6 +800,7 @@ const formAwsCodeBuildBaseWorkflow = (baseImages) => {
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
           IMAGE_REPO_NAME: "cypress/${imageAndTag.name}"
+          IMAGE_DIR: "${imageAndTag.name}"
           IMAGE_TAG: "${imageAndTag.tag}"\n`
     return job
   })
@@ -829,6 +830,7 @@ const formAwsCodeBuildBrowserWorkflow = (baseImages) => {
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
           IMAGE_REPO_NAME: "cypress/${imageAndTag.name}"
+          IMAGE_DIR: "${imageAndTag.name}"
           IMAGE_TAG: "${imageAndTag.tag}"\n`
     return job
   })
@@ -858,6 +860,7 @@ const formAwsCodeBuildIncludedWorkflow = (baseImages) => {
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
           IMAGE_REPO_NAME: "cypress/${imageAndTag.name}"
+          IMAGE_DIR: "${imageAndTag.name}"
           IMAGE_TAG: "${imageAndTag.tag}"\n`
     return job
   })

@@ -799,7 +799,7 @@ const formAwsCodeBuildBaseWorkflow = (baseImages) => {
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "${imageAndTag.name}"
+          IMAGE_REPO_NAME: "cypress/${imageAndTag.name}"
           IMAGE_TAG: "${imageAndTag.tag}"\n`
     return job
   })
@@ -828,7 +828,7 @@ const formAwsCodeBuildBrowserWorkflow = (baseImages) => {
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "${imageAndTag.name}"
+          IMAGE_REPO_NAME: "cypress/${imageAndTag.name}"
           IMAGE_TAG: "${imageAndTag.tag}"\n`
     return job
   })
@@ -857,7 +857,7 @@ const formAwsCodeBuildIncludedWorkflow = (baseImages) => {
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "${imageAndTag.name}"
+          IMAGE_REPO_NAME: "cypress/${imageAndTag.name}"
           IMAGE_TAG: "${imageAndTag.tag}"\n`
     return job
   })

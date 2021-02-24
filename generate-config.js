@@ -100,7 +100,7 @@ const awsCodeBuildPreamble = `
 version: 0.2
 env:
   variables:
-    PUBLIC_ECR_ALIAS: "s9l6w2o6"
+    PUBLIC_ECR_ALIAS: "cypress-io"
 
 batch:
   fast-fail: false

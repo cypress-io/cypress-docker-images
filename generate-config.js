@@ -871,10 +871,11 @@ const formAwsCodeBuildIncludedWorkflow = (baseImages) => {
 
 const writeBuildspecConfigFile = (baseImages, browserImages, includedImages) => {
   const base = formAwsCodeBuildBaseWorkflow(baseImages)
-  const browsers = formAwsCodeBuildBrowserWorkflow(browserImages)
-  const included = formAwsCodeBuildIncludedWorkflow(includedImages)
+  // const browsers = formAwsCodeBuildBrowserWorkflow(browserImages)
+  // const included = formAwsCodeBuildIncludedWorkflow(includedImages)
 
-  const text = awsCodeBuildPreamble.trim() + os.EOL + base + os.EOL + browsers + os.EOL + included + os.EOL + awsCodeBuildPostamble.trim()
+  //const text = awsCodeBuildPreamble.trim() + os.EOL + base + os.EOL + browsers + os.EOL + included + os.EOL + awsCodeBuildPostamble.trim()
+  const text = awsCodeBuildPreamble.trim() + os.EOL + base + os.EOL + awsCodeBuildPostamble.trim()
   fs.writeFileSync('buildspec.yml', text, 'utf8')
   console.log('generated buildspec.yml')
 }

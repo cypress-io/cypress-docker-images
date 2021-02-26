@@ -58,7 +58,6 @@ RUN apt-get update && \\
   # clean up
   && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g npm@latest
 RUN npm --version
 
 RUN npm install -g yarn@latest --force

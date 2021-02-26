@@ -87,6 +87,7 @@ commands:
             FROM << parameters.imageName >>
             RUN echo "current user: $(whoami)"
             ENV CI=1
+            WORKDIR /app
             RUN npm init --yes
             RUN npm install --save-dev cypress cypress-expect
             RUN ./node_modules/.bin/cypress verify
@@ -106,6 +107,7 @@ commands:
             RUN echo "current user: $(whoami)"
             ENV CI=1
             ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
+            WORKDIR /app
             RUN npm init --yes
             RUN npm install --save-dev cypress cypress-expect
             RUN ./node_modules/.bin/cypress verify

@@ -74,6 +74,9 @@ ENV npm_config_unsafe_perm true
 # Node libraries
 RUN node -p process.versions
 
+# Show where Node loads required modules from
+RUN node -p 'module.paths'
+
 # versions of local tools
 RUN echo  " node version:    $(node -v) \\n" \\
   "npm version:     $(npm -v) \\n" \\

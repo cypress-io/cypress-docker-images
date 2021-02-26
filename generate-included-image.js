@@ -39,7 +39,7 @@ const Dockerfile = `
 #
 FROM ${baseImageTag}
 
-# Update the dependencies to get the latest and greatest (and safest!) packages. 
+# Update the dependencies to get the latest and greatest (and safest!) packages.
 RUN apt update && apt upgrade -y
 
 # avoid too many progress messages
@@ -83,6 +83,9 @@ RUN chmod 755 /root
 # otherwise the base image might have old versions
 # NPM does not need to be installed as it is already included with Node.
 RUN npm i -g yarn@latest
+
+# Show where Node loads required modules from
+RUN node -p 'module.paths'
 
 # should print Cypress version
 # plus Electron and bundled Node versions

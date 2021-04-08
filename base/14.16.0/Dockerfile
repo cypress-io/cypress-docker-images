@@ -5,7 +5,7 @@
 # build it with command
 #   docker build -t cypress/base:14.16.0 .
 #
-FROM node:14.16.0-buster
+FROM node:14.16.0-buster-slim
 
 RUN apt-get update && \
   apt-get install --no-install-recommends -y \
@@ -34,27 +34,24 @@ RUN apt-get update && \
   ttf-wqy-microhei \
   xfonts-wqy \
   # clean up
+  && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-
-RUN npm --version
-
-RUN npm install -g yarn@latest --force
-RUN yarn --version
 
 # a few environment variables to make NPM installs easier
 # good colors for most applications
-ENV TERM xterm
-# avoid million NPM install messages
-ENV npm_config_loglevel warn
-# allow installing when the main user is root
-ENV npm_config_unsafe_perm true
+ENV TERM=xterm \
+  # avoid million NPM install messages
+  npm_config_loglevel=warn \
+  # allow installing when the main user is root
+  npm_config_unsafe_perm=true
 
-# Node libraries
-RUN node -p process.versions
-
-# versions of local tools
-RUN echo  " node version:    $(node -v) \n" \
-  "npm version:     $(npm -v) \n" \
-  "yarn version:    $(yarn -v) \n" \
-  "debian version:  $(cat /etc/debian_version) \n" \
-  "user:            $(whoami) \n"
+RUN npm --version \
+  && npm install -g yarn@latest --force \
+  && yarn --version \
+  && node -p process.versions \
+  # versions of local tools
+  && echo " node version:    $(node -v) \n" \
+    "npm version:     $(npm -v) \n" \
+    "yarn version:    $(yarn -v) \n" \
+    "debian version:  $(cat /etc/debian_version) \n" \
+    "user:            $(whoami) \n"

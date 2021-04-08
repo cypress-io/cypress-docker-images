@@ -18,8 +18,9 @@ ENV CHROME_VERSION=89.0.4389.72 \
 
 # Chrome dependencies
 RUN apt-get update \
-  && apt-get install -y \
+  && apt-get install -y --no-install-recommends \
     bzip2 \
+    ca-certificates \
     fonts-liberation \
     libappindicator3-1 \
     # add codecs needed for video playback in firefox
@@ -35,7 +36,7 @@ RUN apt-get update \
 
 RUN wget --no-verbose -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}-1_amd64.deb" && \
   dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \
-  apt-get install -f -y \
+  apt-get install -f -y --no-install-recommends \
   && rm -f /usr/src/google-chrome-stable_current_amd64.deb \
   apt-get clean
 

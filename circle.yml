@@ -637,3 +637,6 @@ workflows:
       - build-included-image:
           name: "included 7.0.1"
           dockerTag: "7.0.1"
+      - build-included-image:
+          name: "included 7.1.0"
+          dockerTag: "7.1.0"

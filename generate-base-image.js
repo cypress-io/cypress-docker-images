@@ -42,6 +42,9 @@ RUN apt-get update && \\
   libxtst6 \\
   xauth \\
   xvfb \\
+  # install text editors
+  vim-tiny \\
+  nano \\
   # install emoji font
   fonts-noto-color-emoji \\
   # install Chinese fonts

@@ -59,6 +59,7 @@ cypress/base:14.15.4 | 14.15.4 | Debian 10.5 | [/14.15.4](14.15.4) | 6.14.10 | 1
 cypress/base:14.16.0 | 14.16.0 | Debian 10.8 | [/14.16.0](14.16.0) | 7.5.6 | 1.22.10 | [1](#note1)
 cypress/base:centos7 | 6 | CentOS | [/centos7](centos7) | 3.10.10 | 🚫
 cypress/base:centos7-12.4.0 | 12.4.0 | CentOS | [/centos7](centos7) | 6.9.0 | 1.16.0
+cypress/base:centos8 | 15 | CentOS | [/centos8](centos8) | 3.10.10 | 🚫
 cypress/base:ubuntu16 | 6 | Ubuntu | [/ubuntu16](ubuntu16) | 3.10.10 | 🚫
 cypress/base:ubuntu16-8 | 8.16.2 | Ubuntu | [/ubuntu16-8](ubuntu16-8) | 6.4.1 | 🚫
 cypress/base:ubuntu16-12.13.1 | 12.13.1 | Ubuntu | [/ubuntu16-12.13.1](ubuntu16-12.13.1) | 6.12.1 | 🚫

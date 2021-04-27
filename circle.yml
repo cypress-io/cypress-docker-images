@@ -643,3 +643,6 @@ workflows:
       - build-included-image:
           name: "included 7.1.0"
           dockerTag: "7.1.0"
+      - build-included-image:
+          name: "included 7.2.0"
+          dockerTag: "7.2.0"

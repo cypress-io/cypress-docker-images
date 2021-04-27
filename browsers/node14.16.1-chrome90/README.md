@@ -1,4 +1,4 @@
-# cypress/browsers:node14.16.1-chrome89
+# cypress/browsers:node14.16.1-chrome90
 
 A complete image with all operating system dependencies for Cypress, Chrome 89.
 

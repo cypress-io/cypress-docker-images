@@ -209,3 +209,14 @@ docker run --rm \ # remove container after finish
   # wait for the local site to respond
   # then run Cypress tests
   /bin/bash -c 'npx wait-on http://127.0.0.1:3000 && cypress run'
+```
+
+## Restrict CPU
+
+If you want to simulate slow container, run the Docker container with `--cpus` parameter, for example, let's debug the browser detection problems when the CPU is (very) slow:
+
+```shell
+docker run -it -v $PWD:/e2e -w /e2e --cpus=0.02 \
+  -e DEBUG=cypress:launcher --entrypoint=cypress \
+  cypress/included:7.2.0 info
+```

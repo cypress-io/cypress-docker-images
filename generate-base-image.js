@@ -60,6 +60,7 @@ RUN apt-get update && \\
   xfonts-wqy \\
   # clean up
   && rm -rf /var/lib/apt/lists/*
+  && apt-get clean
 
 RUN npm --version
 

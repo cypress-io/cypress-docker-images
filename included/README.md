@@ -64,7 +64,7 @@ Name + Tag | Base image
 This image should be enough to run Cypress tests headlessly or in the interactive mode with a single Docker command like this:
 
 ```shell
-$ docker run -it -v $PWD:/e2e -w /e2e cypress/included:3.3.2
+$ docker run -it -v $PWD:/e2e -w /e2e cypress/included:7.3.0
 ```
 
 ## Debug
@@ -120,6 +120,23 @@ Binary Caches: /root/.cache/Cypress
 Cypress Version: 4.2.0
 System Platform: linux (Debian - 10.1)
 System Memory: 2.09 GB free 285 MB
+```
+
+## Keep the container
+
+Every time you run `docker run` you spawn a new container. That container then stops after the tests finish, but there is nothing Cypress can do about it - it is the Docker command `docker run ...` that controls this behavior.
+
+If you are running a lot of tests again and again, you might start the container once using Bash as the entrypoint, instead of the default `cypress` command. Then you can execute the `cypress run` or any other commands, while still in the same container:
+
+```
+$ docker run -it -v $PWD:/e2e -w /e2e \
+  --entrypoint=/bin/bash cypress/included:7.3.0
+# we are inside the container
+# let's run the tests
+root@814ed01841fe:/e2e# cypress run
+....
+# run the tests again
+root@814ed01841fe:/e2e# cypress run
 ```
 
 ## Browser

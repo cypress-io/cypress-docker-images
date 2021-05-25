@@ -60,6 +60,7 @@ Name + Tag | Base image
 [cypress/included:7.1.0](7.1.0) | `cypress/browsers:node14.16.0-chrome89-ff77`
 [cypress/included:7.2.0](7.2.0) | `cypress/browsers:node14.16.0-chrome89-ff77`
 [cypress/included:7.3.0](7.3.0) | `cypress/browsers:node14.16.0-chrome89-ff77`
+[cypress/included:7.4.0](7.4.0) | `cypress/browsers:node14.16.0-chrome89-ff77`
 
 This image should be enough to run Cypress tests headlessly or in the interactive mode with a single Docker command like this:
 

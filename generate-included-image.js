@@ -39,6 +39,9 @@ const Dockerfile = `
 #
 FROM ${baseImageTag}
 
+# Update the dependencies to get the latest and greatest (and safest!) packages.
+RUN apt update && apt upgrade -y
+
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
 ENV CI=1
@@ -76,9 +79,13 @@ RUN cypress version
 RUN ls -la /root
 RUN chmod 755 /root
 
-# always grab the latest NPM and Yarn
+# always grab the latest Yarn
 # otherwise the base image might have old versions
-RUN npm i -g yarn@latest npm@latest
+# NPM does not need to be installed as it is already included with Node.
+RUN npm i -g yarn@latest
+
+# Show where Node loads required modules from
+RUN node -p 'module.paths'
 
 # should print Cypress version
 # plus Electron and bundled Node versions

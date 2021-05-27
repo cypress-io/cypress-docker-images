@@ -42,6 +42,9 @@ RUN apt-get update && \\
   libxtst6 \\
   xauth \\
   xvfb \\
+  # install text editors
+  vim-tiny \\
+  nano \\
   # install emoji font
   fonts-noto-color-emoji \\
   # install Chinese fonts
@@ -57,8 +60,8 @@ RUN apt-get update && \\
   xfonts-wqy \\
   # clean up
   && rm -rf /var/lib/apt/lists/*
+  && apt-get clean
 
-RUN npm install -g npm@latest
 RUN npm --version
 
 RUN npm install -g yarn@latest --force
@@ -74,6 +77,9 @@ ENV npm_config_unsafe_perm true
 
 # Node libraries
 RUN node -p process.versions
+
+# Show where Node loads required modules from
+RUN node -p 'module.paths'
 
 # versions of local tools
 RUN echo  " node version:    $(node -v) \\n" \\

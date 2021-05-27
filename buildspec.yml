@@ -86,6 +86,16 @@ batch:
           IMAGE_REPO_NAME: "cypress/base"
           IMAGE_DIR: "base"
           IMAGE_TAG: "14.15.4"
+    - identifier: base14160
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "14.16.0"
     - identifier: base1450
       env:
         image: aws/codebuild/standard:5.0
@@ -147,6 +157,16 @@ batch:
           IMAGE_REPO_NAME: "cypress/browsers"
           IMAGE_DIR: "browsers"
           IMAGE_TAG: "node12.18.3-chrome87-ff82"
+    - identifier: browsersnode12183Chrome89Ff86
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/browsers"
+          IMAGE_DIR: "browsers"
+          IMAGE_TAG: "node12.18.3-chrome89-ff86"
     - identifier: browsersnode12184Edge88
       env:
         image: aws/codebuild/standard:5.0
@@ -197,6 +217,36 @@ batch:
           IMAGE_REPO_NAME: "cypress/browsers"
           IMAGE_DIR: "browsers"
           IMAGE_TAG: "node14.15.0-chrome86-ff82"
+    - identifier: browsersnode14160Chrome89Ff77
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/browsers"
+          IMAGE_DIR: "browsers"
+          IMAGE_TAG: "node14.16.0-chrome89-ff77"
+    - identifier: browsersnode14160Chrome89Ff86
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/browsers"
+          IMAGE_DIR: "browsers"
+          IMAGE_TAG: "node14.16.0-chrome89-ff86"
+    - identifier: browsersnode14160Chrome90Ff88
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/browsers"
+          IMAGE_DIR: "browsers"
+          IMAGE_TAG: "node14.16.0-chrome90-ff88"
     - identifier: browsersnode1470Chrome84
       env:
         image: aws/codebuild/standard:5.0
@@ -668,6 +718,106 @@ batch:
           IMAGE_REPO_NAME: "cypress/included"
           IMAGE_DIR: "included"
           IMAGE_TAG: "6.5.0"
+    - identifier: included660
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "6.6.0"
+    - identifier: included670
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "6.7.0"
+    - identifier: included671
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "6.7.1"
+    - identifier: included680
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "6.8.0"
+    - identifier: included700
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "7.0.0"
+    - identifier: included701
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "7.0.1"
+    - identifier: included710
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "7.1.0"
+    - identifier: included720
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "7.2.0"
+    - identifier: included730
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "7.3.0"
+    - identifier: included740
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "7.4.0"
 
 phases:
   pre_build:

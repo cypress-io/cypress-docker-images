@@ -124,6 +124,15 @@ System Platform: linux (Debian - 10.1)
 System Memory: 2.09 GB free 285 MB
 ```
 
+### Entry with arguments
+
+If you want to provide Cypress command line arguments, specify the entry point and the arguments. For example to run tests with recording and parallel mode using custom build ID "abc123" we can use:
+
+```shell
+$ docker run -it --entrypoint=cypress cypress/included:7.5.0 \
+  run --record --parallel --ci-build-id abc123
+```
+
 ## Keep the container
 
 Every time you run `docker run` you spawn a new container. That container then stops after the tests finish, but there is nothing Cypress can do about it - it is the Docker command `docker run ...` that controls this behavior.

@@ -116,6 +116,46 @@ batch:
           IMAGE_REPO_NAME: "cypress/base"
           IMAGE_DIR: "base"
           IMAGE_TAG: "14.7.0"
+    - identifier: base1600
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "16.0.0"
+    - identifier: base1610
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "16.1.0"
+    - identifier: base1620
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "16.2.0"
+    - identifier: base1630
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "16.3.0"
     - identifier: basemanjaro14120
       env:
         image: aws/codebuild/standard:5.0
@@ -818,6 +858,16 @@ batch:
           IMAGE_REPO_NAME: "cypress/included"
           IMAGE_DIR: "included"
           IMAGE_TAG: "7.4.0"
+    - identifier: included750
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "7.5.0"
 
 phases:
   pre_build:

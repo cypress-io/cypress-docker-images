@@ -70,3 +70,20 @@ echo ""
 docker pull cypress/browsers:node13.8.0-chrome81-ff75
 docker run cypress/browsers:node13.8.0-chrome81-ff75 google-chrome --version
 echo ""
+
+# Node 16
+docker pull cypress/browsers:node16.0.0-chrome91-ff89
+docker run cypress/browsers:node16.0.0-chrome91-ff89 google-chrome --version
+echo ""
+
+docker pull cypress/browsers:node16.1.0-chrome91-ff89
+docker run cypress/browsers:node16.1.0-chrome91-ff89 google-chrome --version
+echo ""
+
+docker pull cypress/browsers:node16.2.0-chrome91-ff89
+docker run cypress/browsers:node16.2.0-chrome91-ff89 google-chrome --version
+echo ""
+
+docker pull cypress/browsers:node16.3.0-chrome91-ff89
+docker run cypress/browsers:node16.3.0-chrome91-ff89 google-chrome --version
+echo ""

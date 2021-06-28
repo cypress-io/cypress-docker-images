@@ -2,7 +2,7 @@
 set e+x
 
 # build image with Cypress dependencies
-LOCAL_NAME=cypress/base:14.16.0
+LOCAL_NAME=cypress/base:14.17.1
 
 echo "Building $LOCAL_NAME"
 docker build -t $LOCAL_NAME .

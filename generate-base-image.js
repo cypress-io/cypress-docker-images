@@ -59,7 +59,8 @@ RUN apt-get update && \\
   ttf-wqy-microhei \\
   xfonts-wqy \\
   # clean up
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \\
+  && apt-get clean
 
 RUN npm --version
 

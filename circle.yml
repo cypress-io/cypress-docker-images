@@ -592,6 +592,11 @@ workflows:
           chromeVersion: "Google Chrome 89"
           firefoxVersion: "Mozilla Firefox 86"
       - build-browser-image:
+          name: "browsers node14.16.0-chrome90-ff88"
+          dockerTag: "node14.16.0-chrome90-ff88"
+          chromeVersion: "Google Chrome 90"
+          firefoxVersion: "Mozilla Firefox 88"
+      - build-browser-image:
           name: "browsers node14.17.1-chrome91"
           dockerTag: "node14.17.1-chrome91"
           chromeVersion: "Google Chrome 91"
@@ -650,3 +655,15 @@ workflows:
       - build-included-image:
           name: "included 7.2.0"
           dockerTag: "7.2.0"
+      - build-included-image:
+          name: "included 7.3.0"
+          dockerTag: "7.3.0"
+      - build-included-image:
+          name: "included 7.4.0"
+          dockerTag: "7.4.0"
+      - build-included-image:
+          name: "included 7.5.0"
+          dockerTag: "7.5.0"
+      - build-included-image:
+          name: "included 7.6.0"
+          dockerTag: "7.6.0"

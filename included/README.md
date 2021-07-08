@@ -61,6 +61,9 @@ Name + Tag | Base image
 [cypress/included:7.2.0](7.2.0) | `cypress/browsers:node14.16.0-chrome89-ff77`
 [cypress/included:7.3.0](7.3.0) | `cypress/browsers:node14.16.0-chrome89-ff77`
 [cypress/included:7.4.0](7.4.0) | `cypress/browsers:node14.16.0-chrome89-ff77`
+[cypress/included:7.5.0](7.5.0) | `cypress/browsers:node14.16.0-chrome89-ff86`
+[cypress/included:7.6.0](7.6.0) | `cypress/browsers:node14.16.0-chrome89-ff86`
+[cypress/included:7.7.0](7.7.0) | `cypress/browsers:node14.16.0-chrome89-ff86`
 
 This image should be enough to run Cypress tests headlessly or in the interactive mode with a single Docker command like this:
 
@@ -121,6 +124,15 @@ Binary Caches: /root/.cache/Cypress
 Cypress Version: 4.2.0
 System Platform: linux (Debian - 10.1)
 System Memory: 2.09 GB free 285 MB
+```
+
+### Entry with arguments
+
+If you want to provide Cypress command line arguments, specify the entry point and the arguments. For example to run tests with recording and parallel mode using custom build ID "abc123" we can use:
+
+```shell
+$ docker run -it --entrypoint=cypress cypress/included:7.5.0 \
+  run --record --parallel --ci-build-id abc123
 ```
 
 ## Keep the container

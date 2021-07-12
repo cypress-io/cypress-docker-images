@@ -1,7 +1,7 @@
 # cypress/browsers:node14.17.0-chrome91-ff89
 
 A complete image with all operating system dependencies for Cypress, Chrome
-89 and Firefox 86 browsers.
+91 and Firefox 89 browsers.
 
 [Dockerfile](Dockerfile)
 

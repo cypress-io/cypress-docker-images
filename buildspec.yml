@@ -257,6 +257,16 @@ batch:
           IMAGE_REPO_NAME: "cypress/browsers"
           IMAGE_DIR: "browsers"
           IMAGE_TAG: "node14.16.0-chrome90-ff88"
+    - identifier: browsersnode14170Chrome91Ff89
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/browsers"
+          IMAGE_DIR: "browsers"
+          IMAGE_TAG: "node14.17.0-chrome91-ff89"
     - identifier: browsersnode1470Chrome84
       env:
         image: aws/codebuild/standard:5.0
@@ -870,7 +880,7 @@ phases:
       - aws ecr-public get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin public.ecr.aws/$PUBLIC_ECR_ALIAS
   build:
     commands:
-      - echo Building the Docker image...
+      - echo Building the Docker image...          
       - cd $IMAGE_DIR/$IMAGE_TAG
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG

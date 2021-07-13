@@ -602,6 +602,11 @@ workflows:
           chromeVersion: "Google Chrome 91"
           firefoxVersion: "Mozilla Firefox 89"
       - build-browser-image:
+          name: "browsers node14.17.0-chrome88-ff89"
+          dockerTag: "node14.17.0-chrome88-ff89"
+          chromeVersion: "Google Chrome 88"
+          firefoxVersion: "Mozilla Firefox 89"
+      - build-browser-image:
           name: "browsers node14.7.0-chrome84"
           dockerTag: "node14.7.0-chrome84"
           chromeVersion: "Google Chrome 84"

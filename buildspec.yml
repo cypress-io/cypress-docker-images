@@ -257,16 +257,6 @@ batch:
           IMAGE_REPO_NAME: "cypress/browsers"
           IMAGE_DIR: "browsers"
           IMAGE_TAG: "node14.16.0-chrome90-ff88"
-    - identifier: browsersnode14170Chrome91Ff89
-      env:
-        image: aws/codebuild/standard:5.0
-        type: LINUX_CONTAINER
-        privileged-mode: true
-        compute-type: BUILD_GENERAL1_MEDIUM
-        variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node14.17.0-chrome91-ff89"
     - identifier: browsersnode14170Chrome88Ff89
       env:
         image: aws/codebuild/standard:5.0
@@ -277,6 +267,16 @@ batch:
           IMAGE_REPO_NAME: "cypress/browsers"
           IMAGE_DIR: "browsers"
           IMAGE_TAG: "node14.17.0-chrome88-ff89"
+    - identifier: browsersnode14170Chrome91Ff89
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/browsers"
+          IMAGE_DIR: "browsers"
+          IMAGE_TAG: "node14.17.0-chrome91-ff89"
     - identifier: browsersnode1470Chrome84
       env:
         image: aws/codebuild/standard:5.0

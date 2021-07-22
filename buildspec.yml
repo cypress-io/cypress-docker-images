@@ -126,6 +126,46 @@ batch:
           IMAGE_REPO_NAME: "cypress/base"
           IMAGE_DIR: "base"
           IMAGE_TAG: "14.7.0"
+    - identifier: base1600
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "16.0.0"
+    - identifier: base1610
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "16.1.0"
+    - identifier: base1620
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "16.2.0"
+    - identifier: base1630
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "16.3.0"
     - identifier: basemanjaro14120
       env:
         image: aws/codebuild/standard:5.0
@@ -890,7 +930,7 @@ phases:
       - aws ecr-public get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin public.ecr.aws/$PUBLIC_ECR_ALIAS
   build:
     commands:
-      - echo Building the Docker image...          
+      - echo Building the Docker image...
       - cd $IMAGE_DIR/$IMAGE_TAG
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG

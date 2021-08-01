@@ -41,7 +41,7 @@ FROM ${baseImageTag}
 
 # Update the dependencies to get the latest and greatest (and safest!) packages.
 RUN apt update && \\
-  apt upgrade -y  \\
+  apt upgrade --no-install-recommends -y  \\
   # clean up
   && rm -rf /usr/share/doc && \\
     rm -rf /usr/share/man && \\

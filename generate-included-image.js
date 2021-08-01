@@ -40,7 +40,12 @@ const Dockerfile = `
 FROM ${baseImageTag}
 
 # Update the dependencies to get the latest and greatest (and safest!) packages.
-RUN apt update && apt upgrade -y
+RUN apt update && \\
+  apt upgrade -y  \\
+  # clean up
+  && rm -rf /usr/share/doc && \\
+    rm -rf /usr/share/man && \\
+    rm -rf /var/lib/apt/lists/*
 
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243

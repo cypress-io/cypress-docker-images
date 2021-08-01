@@ -73,20 +73,33 @@ $ docker push cypress/base:12
 $ docker push cypress/base:latest
 ```
 
-## Bonus: smaller images
+## Minimize image sizes
 
-Pull request [#83](https://github.com/cypress-io/cypress-docker-images/pull/83) shows how to create smaller Docker images. Follow that PR's advice when creating new images.
+### Clean up `apt-get` artifacts
 
-To see the final size of an image, you can use command [`docker images`](https://docs.docker.com/engine/reference/commandline/images/)
+Calling `apt-get` creates artifacts that are not necessary to the image, and these artifacts bloat the image size and all images that inherit from it.
 
+To avoid bloating the Docker layers with extraneous files, after every `RUN` call with `apt-get`, add these cleanup commands within the same `RUN`:
+
+```bash
+rm -rf /usr/share/doc && \
+  rm -rf /usr/share/man && \
+  rm -rf /var/lib/apt/lists/*
 ```
-$ docker images --format "{{.Tag}} {{.Size}}" cypress/base:11.13.0
-11.13.0 969MB
-```
 
-I would put this information into the image folder README file.
+### Use the `--no-install-recommends` with `apt-get`
 
-## Bonus 2: tool versions
+Whenever upgrading or installing packages with `apt-get`, use the `--no-install-recommends` flag to ensure that `apt-get` installs only the minimum packages required.
+
+### Omit `apt-get clean`
+
+Per the official Docker documentation, you don't need to add `apt-get clean`, since the Docker images implicitly run that command after every `apt-get` execution.
+
+>Official Debian and Ubuntu images automatically run `apt-get clean`, so explicit invocation is not required.
+
+-[Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run)
+
+## Tool versions
 
 It is a good idea to print versions of the installed tools and username at the end of the build, like
 

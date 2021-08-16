@@ -8,7 +8,7 @@
 FROM cypress/browsers:node14.16.0-chrome90-ff88
 
 # Update the dependencies to get the latest and greatest (and safest!) packages.
-RUN apt update && apt upgrade -y
+RUN apt update --allow-releaseinfo-change && apt upgrade -y
 
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243

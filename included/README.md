@@ -99,7 +99,7 @@ $ docker run -it --entrypoint=cypress cypress/included:7.7.0 --help
 To run a single spec using Chrome browser:
 
 ```shell
-$ docker run -it --entrypoint=cypress cypress/included:7.7.0 --spec cypress/integration/spec-a.js --browser chrome
+$ docker run -it --entrypoint=cypress cypress/included:7.7.0 run --spec cypress/integration/spec-a.js --browser chrome
 ```
 
 ## Entry

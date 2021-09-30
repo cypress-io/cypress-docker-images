@@ -6,7 +6,16 @@ env:
 batch:
   fast-fail: false
   build-list:
-
+    - identifier: base14173
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "14.17.3"
 
 phases:
   pre_build:

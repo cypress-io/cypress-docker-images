@@ -495,8 +495,8 @@ workflows:
   build-base-images:
     jobs:
       - build-base-image:
-          name: "base 10.22.0"
-          dockerTag: "10.22.0"
+          name: "base 14.17.3"
+          dockerTag: "14.17.3"
 
   build-browser-images:
     jobs:

@@ -523,5 +523,5 @@ workflows:
   build-included-images:
     jobs:
       - build-included-image:
-          name: "included 8.5.0"
-          dockerTag: "8.5.0"
+          name: "included 8.6.0"
+          dockerTag: "8.6.0"

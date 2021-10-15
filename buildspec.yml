@@ -6,6 +6,136 @@ env:
 batch:
   fast-fail: false
   build-list:
+    - identifier: base10220
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "10.22.0"
+    - identifier: base1200Libgbm
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "12.0.0-libgbm"
+    - identifier: base12183
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "12.18.3"
+    - identifier: base12184
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "12.18.4"
+    - identifier: base12190
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "12.19.0"
+    - identifier: base14101
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "14.10.1"
+    - identifier: base14150
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "14.15.0"
+    - identifier: base14154
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "14.15.4"
+    - identifier: base14160
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "14.16.0"
+    - identifier: base14170
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "14.17.0"
+    - identifier: base14173
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "14.17.3"
+    - identifier: base1450
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "14.5.0"
+    - identifier: base1470
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "14.7.0"
     - identifier: base1600
       env:
         image: aws/codebuild/standard:5.0
@@ -88,7 +218,7 @@ phases:
       - aws ecr-public get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin public.ecr.aws/$PUBLIC_ECR_ALIAS
   build:
     commands:
-      - echo Building the Docker image...
+      - echo Building the Docker image...          
       - cd $IMAGE_DIR/$IMAGE_TAG
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG

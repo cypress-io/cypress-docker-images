@@ -75,6 +75,9 @@ ENV npm_config_loglevel warn
 # allow installing when the main user is root
 ENV npm_config_unsafe_perm true
 
+# Use computer-optimized locale with UTF-8 support
+ENV LANG=C.UTF-8
+
 # Node libraries
 RUN node -p process.versions
 

@@ -76,7 +76,7 @@ ENV npm_config_loglevel warn
 ENV npm_config_unsafe_perm true
 
 # Use computer-optimized locale with UTF-8 support
-ENV LANG=C.UTF-8
+ENV LANG C.UTF-8
 
 # Node libraries
 RUN node -p process.versions

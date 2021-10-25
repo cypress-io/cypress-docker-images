@@ -78,8 +78,8 @@ commands:
             RUN echo "current user: $(whoami)"
             ENV CI=1
             WORKDIR /app
-            RUN yarn init --yes
-            RUN yarn add --dev cypress cypress-expect
+            RUN npm init --yes
+            RUN npm install --save-dev cypress cypress-expect
             RUN ./node_modules/.bin/cypress verify
             RUN npx @bahmutov/cly init
             # run Cypress by itself
@@ -98,8 +98,8 @@ commands:
             ENV CI=1
             ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
             WORKDIR /app
-            RUN yarn init --yes
-            RUN yarn add --dev cypress cypress-expect
+            RUN npm init --yes
+            RUN npm install --save-dev cypress cypress-expect
             RUN ./node_modules/.bin/cypress verify
             RUN echo '{}' > cypress.json
             # run Cypress and confirm minimum number of passing tets
@@ -183,7 +183,6 @@ commands:
             FROM << parameters.imageName >>
             RUN echo "current user: $(whoami)"
             ENV CI=1
-            WORKDIR /app
             RUN npm init --yes
             RUN npm install --save-dev cypress
             RUN ./node_modules/.bin/cypress verify
@@ -226,7 +225,6 @@ commands:
             docker build -t cypress/test-kitchensink -\<<EOF
             FROM << parameters.imageName >>
             RUN echo "current user: $(whoami)"
-            WORKDIR /app
             ENV CI=1
             ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
             RUN npm init --yes
@@ -531,6 +529,9 @@ workflows:
           name: "base 14.17.3"
           dockerTag: "14.17.3"
       - build-base-image:
+          name: "base 14.18.1"
+          dockerTag: "14.18.1"
+      - build-base-image:
           name: "base 14.5.0"
           dockerTag: "14.5.0"
       - build-base-image:
@@ -641,6 +642,93 @@ workflows:
 
   build-included-images:
     jobs:
+      - build-included-image:
+          name: "included 6.0.0"
+          dockerTag: "6.0.0"
+      - build-included-image:
+          name: "included 6.0.1"
+          dockerTag: "6.0.1"
+      - build-included-image:
+          name: "included 6.1.0"
+          dockerTag: "6.1.0"
+      - build-included-image:
+          name: "included 6.2.0"
+          dockerTag: "6.2.0"
+      - build-included-image:
+          name: "included 6.2.1"
+          dockerTag: "6.2.1"
+      - build-included-image:
+          name: "included 6.3.0"
+          dockerTag: "6.3.0"
+      - build-included-image:
+          name: "included 6.4.0"
+          dockerTag: "6.4.0"
+      - build-included-image:
+          name: "included 6.5.0"
+          dockerTag: "6.5.0"
+      - build-included-image:
+          name: "included 6.6.0"
+          dockerTag: "6.6.0"
+      - build-included-image:
+          name: "included 6.7.0"
+          dockerTag: "6.7.0"
+      - build-included-image:
+          name: "included 6.7.1"
+          dockerTag: "6.7.1"
+      - build-included-image:
+          name: "included 6.8.0"
+          dockerTag: "6.8.0"
+      - build-included-image:
+          name: "included 7.0.0"
+          dockerTag: "7.0.0"
+      - build-included-image:
+          name: "included 7.0.1"
+          dockerTag: "7.0.1"
+      - build-included-image:
+          name: "included 7.1.0"
+          dockerTag: "7.1.0"
+      - build-included-image:
+          name: "included 7.2.0"
+          dockerTag: "7.2.0"
+      - build-included-image:
+          name: "included 7.3.0"
+          dockerTag: "7.3.0"
+      - build-included-image:
+          name: "included 7.4.0"
+          dockerTag: "7.4.0"
+      - build-included-image:
+          name: "included 7.5.0"
+          dockerTag: "7.5.0"
+      - build-included-image:
+          name: "included 7.6.0"
+          dockerTag: "7.6.0"
+      - build-included-image:
+          name: "included 7.7.0"
+          dockerTag: "7.7.0"
+      - build-included-image:
+          name: "included 8.0.0"
+          dockerTag: "8.0.0"
+      - build-included-image:
+          name: "included 8.1.0"
+          dockerTag: "8.1.0"
+      - build-included-image:
+          name: "included 8.2.0"
+          dockerTag: "8.2.0"
+      - build-included-image:
+          name: "included 8.3.0"
+          dockerTag: "8.3.0"
+      - build-included-image:
+          name: "included 8.3.1"
+          dockerTag: "8.3.1"
+      - build-included-image:
+          name: "included 8.4.0"
+          dockerTag: "8.4.0"
+      - build-included-image:
+          name: "included 8.4.1"
+          dockerTag: "8.4.1"
+      - build-included-image:
+          name: "included 8.5.0"
+          dockerTag: "8.5.0"
       - build-included-image:
           name: "included 8.6.0"
           dockerTag: "8.6.0"

@@ -553,6 +553,9 @@ workflows:
           name: "base 16.5.0"
           dockerTag: "16.5.0"
       - build-base-image:
+          name: "base 16.13.0"
+          dockerTag: "16.13.0"
+      - build-base-image:
           name: "base manjaro-14.12.0"
           dockerTag: "manjaro-14.12.0"
           checkNodeVersion: false

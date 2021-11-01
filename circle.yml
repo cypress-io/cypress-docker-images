@@ -639,6 +639,10 @@ workflows:
           dockerTag: "node16.5.0-chrome94-ff93"
           chromeVersion: "Google Chrome 94"
           firefoxVersion: "Mozilla Firefox 93"
+      - build-browser-image:
+          name: "browsers node16.13.0-chrome95"
+          dockerTag: "node16.13.0-chrome95"
+          chromeVersion: "Google Chrome 95"
 
   build-included-images:
     jobs:

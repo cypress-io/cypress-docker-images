@@ -1048,6 +1048,16 @@ batch:
           IMAGE_REPO_NAME: "cypress/included"
           IMAGE_DIR: "included"
           IMAGE_TAG: "8.7.0"
+    - identifier: included880
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "8.8.0"
 
 phases:
   pre_build:

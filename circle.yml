@@ -735,3 +735,6 @@ workflows:
       - build-included-image:
           name: "included 8.7.0"
           dockerTag: "8.7.0"
+      - build-included-image:
+          name: "included 9.0.0"
+          dockerTag: "9.0.0"

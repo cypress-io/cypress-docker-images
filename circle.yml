@@ -541,6 +541,9 @@ workflows:
           name: "base 16.1.0"
           dockerTag: "16.1.0"
       - build-base-image:
+          name: "base 16.13.0"
+          dockerTag: "16.13.0"
+      - build-base-image:
           name: "base 16.2.0"
           dockerTag: "16.2.0"
       - build-base-image:

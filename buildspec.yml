@@ -156,6 +156,16 @@ batch:
           IMAGE_REPO_NAME: "cypress/base"
           IMAGE_DIR: "base"
           IMAGE_TAG: "16.1.0"
+    - identifier: base16130
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "16.13.0"
     - identifier: base1620
       env:
         image: aws/codebuild/standard:5.0
@@ -1068,6 +1078,36 @@ batch:
           IMAGE_REPO_NAME: "cypress/included"
           IMAGE_DIR: "included"
           IMAGE_TAG: "8.7.0"
+    - identifier: included900
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "9.0.0"
+    - identifier: included910
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "9.1.0"
+    - identifier: included911
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/included"
+          IMAGE_DIR: "included"
+          IMAGE_TAG: "9.1.1"
 
 phases:
   pre_build:
@@ -1080,7 +1120,7 @@ phases:
       - aws ecr-public get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin public.ecr.aws/$PUBLIC_ECR_ALIAS
   build:
     commands:
-      - echo Building the Docker image...          
+      - echo Building the Docker image...
       - cd $IMAGE_DIR/$IMAGE_TAG
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG

@@ -34,7 +34,7 @@ Name + Tag | Base image | Chrome | Firefox | Edge
 [cypress/browsers:node14.17.0-chrome91-ff89](./node14.17.0-chrome91-ff89) | `cypress/base:14.17.0` | `91.0.4472.114` | `89.0.2`
 [cypress/browsers:node16.5.0-chrome94-ff93](./node16.5.0-chrome94-ff93) | `cypress/base:16.5.0` | `94.0.4606.71` | `93.0`
 
-To find the available Chrome versions, check [https://chromium.cypress.io/](https://chromium.cypress.io/)
+To find the available Chrome versions, check [https://chromium.cypress.io/](https://chromium.cypress.io/).
 
 ## Naming scheme
 

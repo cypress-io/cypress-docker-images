@@ -495,131 +495,98 @@ workflows:
   build-base-images:
     jobs:
       - build-base-image:
-          name: "base 10.22.0"
           dockerTag: "10.22.0"
       - build-base-image:
-          name: "base 12.0.0-libgbm"
           dockerTag: "12.0.0-libgbm"
           checkNodeVersion: false
       - build-base-image:
-          name: "base 12.18.3"
           dockerTag: "12.18.3"
       - build-base-image:
-          name: "base 12.18.4"
           dockerTag: "12.18.4"
       - build-base-image:
-          name: "base 12.19.0"
           dockerTag: "12.19.0"
       - build-base-image:
-          name: "base 14.10.1"
           dockerTag: "14.10.1"
       - build-base-image:
-          name: "base 14.15.0"
           dockerTag: "14.15.0"
       - build-base-image:
-          name: "base 14.15.4"
           dockerTag: "14.15.4"
       - build-base-image:
-          name: "base 14.16.0"
           dockerTag: "14.16.0"
       - build-base-image:
-          name: "base 14.17.0"
           dockerTag: "14.17.0"
       - build-base-image:
-          name: "base 14.17.3"
           dockerTag: "14.17.3"
       - build-base-image:
-          name: "base 14.18.1"
           dockerTag: "14.18.1"
       - build-base-image:
-          name: "base 14.5.0"
           dockerTag: "14.5.0"
       - build-base-image:
-          name: "base 14.7.0"
           dockerTag: "14.7.0"
       - build-base-image:
-          name: "base 16.0.0"
           dockerTag: "16.0.0"
       - build-base-image:
-          name: "base 16.1.0"
           dockerTag: "16.1.0"
       - build-base-image:
-          name: "base 16.13.0"
           dockerTag: "16.13.0"
       - build-base-image:
-          name: "base 16.2.0"
           dockerTag: "16.2.0"
       - build-base-image:
-          name: "base 16.3.0"
           dockerTag: "16.3.0"
       - build-base-image:
-          name: "base 16.4.0"
           dockerTag: "16.4.0"
       - build-base-image:
-          name: "base 16.5.0"
           dockerTag: "16.5.0"
       - build-base-image:
-          name: "base manjaro-14.12.0"
+          dockerTag: "7.3.0"
+      - build-base-image:
           dockerTag: "manjaro-14.12.0"
           checkNodeVersion: false
 
   build-browser-images:
     jobs:
       - build-browser-image:
-          name: "browsers node12.14.1-chrome85-ff81"
           dockerTag: "node12.14.1-chrome85-ff81"
           chromeVersion: "Google Chrome 85"
           firefoxVersion: "Mozilla Firefox 81"
       - build-browser-image:
-          name: "browsers node12.18.3-chrome83-ff77"
           dockerTag: "node12.18.3-chrome83-ff77"
           chromeVersion: "Google Chrome 83"
           firefoxVersion: "Mozilla Firefox 77"
       - build-browser-image:
-          name: "browsers node12.18.3-chrome87-ff82"
           dockerTag: "node12.18.3-chrome87-ff82"
           chromeVersion: "Google Chrome 87"
           firefoxVersion: "Mozilla Firefox 82"
       - build-browser-image:
-          name: "browsers node12.18.3-chrome89-ff86"
           dockerTag: "node12.18.3-chrome89-ff86"
           chromeVersion: "Google Chrome 89"
           firefoxVersion: "Mozilla Firefox 86"
       - build-browser-image:
-          name: "browsers node12.18.4-edge88"
           dockerTag: "node12.18.4-edge88"
           edgeVersion: "Microsoft Edge 88"
       - build-browser-image:
-          name: "browsers node12.19.0-chrome86-ff82"
           dockerTag: "node12.19.0-chrome86-ff82"
           chromeVersion: "Google Chrome 86"
           firefoxVersion: "Mozilla Firefox 82"
       - build-browser-image:
-          name: "browsers node13.8.0-chrome81-ff75"
           dockerTag: "node13.8.0-chrome81-ff75"
           chromeVersion: "Google Chrome 81"
           firefoxVersion: "Mozilla Firefox 75"
       - build-browser-image:
-          name: "browsers node14.10.1-edge88"
           dockerTag: "node14.10.1-edge88"
           edgeVersion: "Microsoft Edge 88"
       - build-browser-image:
-          name: "browsers node14.15.0-chrome86-ff82"
-          dockerTag: "node14.15.0-chrome86-ff82"
           chromeVersion: "Google Chrome 86"
           firefoxVersion: "Mozilla Firefox 82"
       - build-browser-image:
-          name: "browsers node14.16.0-chrome89-ff77"
           dockerTag: "node14.16.0-chrome89-ff77"
           chromeVersion: "Google Chrome 89"
           firefoxVersion: "Mozilla Firefox 77"
       - build-browser-image:
-          name: "browsers node14.16.0-chrome89-ff86"
           dockerTag: "node14.16.0-chrome89-ff86"
           chromeVersion: "Google Chrome 89"
           firefoxVersion: "Mozilla Firefox 86"
       - build-browser-image:
-          name: "browsers node14.16.0-chrome90-ff88"
           dockerTag: "node14.16.0-chrome90-ff88"
           chromeVersion: "Google Chrome 90"
           firefoxVersion: "Mozilla Firefox 88"
@@ -629,16 +596,13 @@ workflows:
           chromeVersion: "Google Chrome 88"
           firefoxVersion: "Mozilla Firefox 89"
       - build-browser-image:
-          name: "browsers node14.17.0-chrome91-ff89"
           dockerTag: "node14.17.0-chrome91-ff89"
           chromeVersion: "Google Chrome 91"
           firefoxVersion: "Mozilla Firefox 89"
       - build-browser-image:
-          name: "browsers node14.7.0-chrome84"
           dockerTag: "node14.7.0-chrome84"
           chromeVersion: "Google Chrome 84"
       - build-browser-image:
-          name: "browsers node16.5.0-chrome94-ff93"
           dockerTag: "node16.5.0-chrome94-ff93"
           chromeVersion: "Google Chrome 94"
           firefoxVersion: "Mozilla Firefox 93"
@@ -646,107 +610,72 @@ workflows:
   build-included-images:
     jobs:
       - build-included-image:
-          name: "included 6.0.0"
           dockerTag: "6.0.0"
       - build-included-image:
-          name: "included 6.0.1"
           dockerTag: "6.0.1"
       - build-included-image:
-          name: "included 6.1.0"
           dockerTag: "6.1.0"
       - build-included-image:
-          name: "included 6.2.0"
           dockerTag: "6.2.0"
       - build-included-image:
-          name: "included 6.2.1"
           dockerTag: "6.2.1"
       - build-included-image:
-          name: "included 6.3.0"
           dockerTag: "6.3.0"
       - build-included-image:
-          name: "included 6.4.0"
           dockerTag: "6.4.0"
       - build-included-image:
-          name: "included 6.5.0"
           dockerTag: "6.5.0"
       - build-included-image:
-          name: "included 6.6.0"
           dockerTag: "6.6.0"
       - build-included-image:
-          name: "included 6.7.0"
           dockerTag: "6.7.0"
       - build-included-image:
-          name: "included 6.7.1"
           dockerTag: "6.7.1"
       - build-included-image:
-          name: "included 6.8.0"
           dockerTag: "6.8.0"
       - build-included-image:
-          name: "included 7.0.0"
           dockerTag: "7.0.0"
       - build-included-image:
-          name: "included 7.0.1"
           dockerTag: "7.0.1"
       - build-included-image:
-          name: "included 7.1.0"
           dockerTag: "7.1.0"
       - build-included-image:
-          name: "included 7.2.0"
           dockerTag: "7.2.0"
       - build-included-image:
-          name: "included 7.3.0"
           dockerTag: "7.3.0"
       - build-included-image:
-          name: "included 7.4.0"
           dockerTag: "7.4.0"
       - build-included-image:
-          name: "included 7.5.0"
           dockerTag: "7.5.0"
       - build-included-image:
-          name: "included 7.6.0"
           dockerTag: "7.6.0"
       - build-included-image:
-          name: "included 7.7.0"
           dockerTag: "7.7.0"
       - build-included-image:
-          name: "included 8.0.0"
           dockerTag: "8.0.0"
       - build-included-image:
-          name: "included 8.1.0"
           dockerTag: "8.1.0"
       - build-included-image:
-          name: "included 8.2.0"
           dockerTag: "8.2.0"
       - build-included-image:
-          name: "included 8.3.0"
           dockerTag: "8.3.0"
       - build-included-image:
-          name: "included 8.3.1"
           dockerTag: "8.3.1"
       - build-included-image:
-          name: "included 8.4.0"
           dockerTag: "8.4.0"
       - build-included-image:
-          name: "included 8.4.1"
           dockerTag: "8.4.1"
       - build-included-image:
-          name: "included 8.5.0"
           dockerTag: "8.5.0"
       - build-included-image:
-          name: "included 8.6.0"
           dockerTag: "8.6.0"
       - build-included-image:
-          name: "included 8.7.0"
           dockerTag: "8.7.0"
       - build-included-image:
-          name: "included 9.0.0"
           dockerTag: "9.0.0"
       - build-included-image:
-          name: "included 9.1.0"
           dockerTag: "9.1.0"
       - build-included-image:
-          name: "included 9.1.1"
           dockerTag: "9.1.1"
       - build-included-image:
-          name: "included 9.2.0"
           dockerTag: "9.2.0"

@@ -538,7 +538,7 @@ workflows:
       - build-base-image:
           dockerTag: "16.5.0"
       - build-base-image:
-          dockerTag: "7.3.0"
+          dockerTag: "17.3.0"
       - build-base-image:
           dockerTag: "manjaro-14.12.0"
           checkNodeVersion: false
@@ -576,6 +576,7 @@ workflows:
           dockerTag: "node14.10.1-edge88"
           edgeVersion: "Microsoft Edge 88"
       - build-browser-image:
+          dockerTag: "node14.15.0-chrome86-ff82"
           chromeVersion: "Google Chrome 86"
           firefoxVersion: "Mozilla Firefox 82"
       - build-browser-image:

@@ -1,7 +1,7 @@
 // @ts-check
 // this script generates CircleCI config file by looking at the "base/*" folders
 // for each subfolder it creates a separate job
-const globby = require('globby');
+const globby = require('globby')
 const fs = require('fs')
 const path = require('path')
 const os = require('os')
@@ -53,8 +53,8 @@ const skipBaseImages = [
   'ubuntu16-12.13.1',
   'ubuntu16-8',
   'ubuntu18-node12.14.1',
-  'ubuntu19-node12.14.1'
-];
+  'ubuntu19-node12.14.1',
+]
 
 const skipBrowserImages = [
   'chrome63-ff57',
@@ -93,7 +93,7 @@ const skipBrowserImages = [
   'node12.8.1-chrome80-ff72',
   'node13.1.0-chrome78-ff70',
   'node13.3.0-chrome79-ff70',
-  'node13.6.0-chrome80-ff72'
+  'node13.6.0-chrome80-ff72',
 ]
 
 const awsCodeBuildPreamble = `
@@ -633,9 +633,10 @@ const formBaseWorkflow = (baseImages) => {
   const isSkipped = (tag) => skipBaseImages.includes(tag)
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 
-  const yml = baseImages.filter(isIncluded).map(imageAndTag => {
+  const yml = baseImages.filter(isIncluded).map((imageAndTag) => {
     // important to have indent
-    let job = '      - build-base-image:\n' +
+    let job =
+      '      - build-base-image:\n' +
       `          name: "base ${imageAndTag.tag}"\n` +
       `          dockerTag: "${imageAndTag.tag}"\n`
     // do not check Node versions in some custom images
@@ -646,21 +647,17 @@ const formBaseWorkflow = (baseImages) => {
   })
 
   // indent is important
-  const workflowName = '  build-base-images:\n' +
-    '    jobs:\n'
+  const workflowName = '  build-base-images:\n' + '    jobs:\n'
 
   const text = workflowName + yml.join('')
   return text
 }
 
-const fullChromeVersion = (version) =>
-  `Google Chrome ${version}`
+const fullChromeVersion = (version) => `Google Chrome ${version}`
 
-const fullFirefoxVersion = (version) =>
-  `Mozilla Firefox ${version}`
+const fullFirefoxVersion = (version) => `Mozilla Firefox ${version}`
 
-const fullEdgeVersion = (version) =>
-  `Microsoft Edge ${version}`
+const fullEdgeVersion = (version) => `Microsoft Edge ${version}`
 
 const findChromeVersion = (imageAndTag) => {
   // image name like "nodeX.Y.Z-chromeXX..."
@@ -702,7 +699,7 @@ const formBrowserWorkflow = (browserImages) => {
   const isSkipped = (tag) => skipBrowserImages.includes(tag)
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 
-  const yml = browserImages.filter(isIncluded).map(imageAndTag => {
+  const yml = browserImages.filter(isIncluded).map((imageAndTag) => {
     const chromeVersion = findChromeVersion(imageAndTag.tag)
     const firefoxVersion = findFirefoxVersion(imageAndTag.tag)
     const edgeVersion = findEdgeVersion(imageAndTag.tag)
@@ -713,7 +710,8 @@ const formBrowserWorkflow = (browserImages) => {
     }
 
     // important to have indent
-    let job = '      - build-browser-image:\n' +
+    let job =
+      '      - build-browser-image:\n' +
       `          name: "browsers ${imageAndTag.tag}"\n` +
       `          dockerTag: "${imageAndTag.tag}"\n`
 
@@ -733,8 +731,7 @@ const formBrowserWorkflow = (browserImages) => {
   })
 
   // indent is important
-  const workflowName = '  build-browser-images:\n' +
-    '    jobs:\n'
+  const workflowName = '  build-browser-images:\n' + '    jobs:\n'
 
   const text = workflowName + yml.join('')
   return text
@@ -747,17 +744,17 @@ const formIncludedWorkflow = (images) => {
   }
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 
-  const yml = images.filter(isIncluded).map(imageAndTag => {
+  const yml = images.filter(isIncluded).map((imageAndTag) => {
     // important to have indent
-    const job = '      - build-included-image:\n' +
+    const job =
+      '      - build-included-image:\n' +
       `          name: "included ${imageAndTag.tag}"\n` +
       `          dockerTag: "${imageAndTag.tag}"\n`
     return job
   })
 
   // indent is important
-  const workflowName = '  build-included-images:\n' +
-    '    jobs:\n'
+  const workflowName = '  build-included-images:\n' + '    jobs:\n'
 
   const text = workflowName + yml.join('')
   return text
@@ -777,7 +774,7 @@ const splitImageFolderName = (folderName) => {
   const [name, tag] = folderName.split('/')
   return {
     name,
-    tag
+    tag,
   }
 }
 
@@ -788,7 +785,7 @@ const formAwsCodeBuildBaseWorkflow = (baseImages) => {
   const isSkipped = (tag) => skipBaseImages.includes(tag)
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 
-  const yml = baseImages.filter(isIncluded).map(imageAndTag => {
+  const yml = baseImages.filter(isIncluded).map((imageAndTag) => {
     console.log('imageAndTag', imageAndTag)
     // @ts-ignore
     const tagSlug = slugify(imageAndTag.tag, '-')
@@ -818,7 +815,7 @@ const formAwsCodeBuildBrowserWorkflow = (baseImages) => {
   const isSkipped = (tag) => skipBrowserImages.includes(tag)
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 
-  const yml = baseImages.filter(isIncluded).map(imageAndTag => {
+  const yml = baseImages.filter(isIncluded).map((imageAndTag) => {
     console.log('imageAndTag', imageAndTag)
     // @ts-ignore
     const tagSlug = slugify(imageAndTag.tag, '-')
@@ -848,7 +845,7 @@ const formAwsCodeBuildIncludedWorkflow = (baseImages) => {
   const isSkipped = (tag) => skipBaseImages.includes(tag)
   const isIncluded = (imageAndTag) => !isSkipped(imageAndTag.tag)
 
-  const yml = baseImages.filter(isIncluded).map(imageAndTag => {
+  const yml = baseImages.filter(isIncluded).map((imageAndTag) => {
     console.log('imageAndTag', imageAndTag)
     // @ts-ignore
     const tagSlug = slugify(imageAndTag.tag, '-')
@@ -876,27 +873,36 @@ const writeBuildspecConfigFile = (baseImages, browserImages, includedImages) => 
   const browsers = formAwsCodeBuildBrowserWorkflow(browserImages)
   const included = formAwsCodeBuildIncludedWorkflow(includedImages)
 
-  const text = awsCodeBuildPreamble.trim() + os.EOL + base + os.EOL + browsers + os.EOL + included + os.EOL + awsCodeBuildPostamble.trim()
+  const text =
+    awsCodeBuildPreamble.trim() +
+    os.EOL +
+    base +
+    os.EOL +
+    browsers +
+    os.EOL +
+    included +
+    os.EOL +
+    awsCodeBuildPostamble.trim()
   fs.writeFileSync('buildspec.yml', text, 'utf8')
   console.log('generated buildspec.yml')
 }
 
-(async () => {
-  const basePaths = await globby('base/*', {onlyDirectories: true});
+;(async () => {
+  const basePaths = await globby('base/*', { onlyDirectories: true })
   const base = basePaths.map(splitImageFolderName)
   console.log(' *** base images ***')
   console.log(base)
 
-  const browsersPaths = await globby('browsers/*', {onlyDirectories: true});
+  const browsersPaths = await globby('browsers/*', { onlyDirectories: true })
   const browsers = browsersPaths.map(splitImageFolderName)
   console.log(' *** browser images ***')
   console.log(browsers)
 
-  const includedPaths = await globby('included/*', {onlyDirectories: true});
+  const includedPaths = await globby('included/*', { onlyDirectories: true })
   const included = includedPaths.map(splitImageFolderName)
   console.log(' *** included images ***')
   console.log(included)
 
   writeConfigFile(base, browsers, included)
   writeBuildspecConfigFile(base, browsers, included)
-})();
+})()

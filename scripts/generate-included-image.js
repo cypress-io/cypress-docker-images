@@ -2,7 +2,7 @@
 const path = require('path')
 const fs = require('fs')
 const shelljs = require('shelljs')
-const {isStrictSemver} = require('./utils')
+const { isStrictSemver } = require('../utils')
 
 const versionTag = process.argv[2]
 const baseImageTag = process.argv[3]

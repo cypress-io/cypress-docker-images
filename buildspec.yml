@@ -1,7 +1,7 @@
 version: 0.2
 env:
   variables:
-    PUBLIC_ECR_ALIAS: "cypress-io"
+    PUBLIC_ECR_ALIAS: 'cypress-io'
 
 batch:
   fast-fail: false
@@ -13,9 +13,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "10.22.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '10.22.0'
     - identifier: base1200Libgbm
       env:
         image: aws/codebuild/standard:5.0
@@ -23,9 +23,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "12.0.0-libgbm"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '12.0.0-libgbm'
     - identifier: base12183
       env:
         image: aws/codebuild/standard:5.0
@@ -33,9 +33,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "12.18.3"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '12.18.3'
     - identifier: base12184
       env:
         image: aws/codebuild/standard:5.0
@@ -43,9 +43,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "12.18.4"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '12.18.4'
     - identifier: base12190
       env:
         image: aws/codebuild/standard:5.0
@@ -53,9 +53,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "12.19.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '12.19.0'
     - identifier: base12228
       env:
         image: aws/codebuild/standard:5.0
@@ -63,9 +63,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "12.22.8"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '12.22.8'
     - identifier: base14101
       env:
         image: aws/codebuild/standard:5.0
@@ -73,9 +73,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "14.10.1"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '14.10.1'
     - identifier: base14150
       env:
         image: aws/codebuild/standard:5.0
@@ -83,9 +83,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "14.15.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '14.15.0'
     - identifier: base14154
       env:
         image: aws/codebuild/standard:5.0
@@ -93,9 +93,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "14.15.4"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '14.15.4'
     - identifier: base14160
       env:
         image: aws/codebuild/standard:5.0
@@ -103,9 +103,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "14.16.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '14.16.0'
     - identifier: base14170
       env:
         image: aws/codebuild/standard:5.0
@@ -113,9 +113,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "14.17.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '14.17.0'
     - identifier: base14173
       env:
         image: aws/codebuild/standard:5.0
@@ -123,9 +123,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "14.17.3"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '14.17.3'
     - identifier: base14181
       env:
         image: aws/codebuild/standard:5.0
@@ -133,9 +133,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "14.18.1"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '14.18.1'
     - identifier: base1450
       env:
         image: aws/codebuild/standard:5.0
@@ -143,9 +143,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "14.5.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '14.5.0'
     - identifier: base1470
       env:
         image: aws/codebuild/standard:5.0
@@ -153,9 +153,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "14.7.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '14.7.0'
     - identifier: base1600
       env:
         image: aws/codebuild/standard:5.0
@@ -163,9 +163,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "16.0.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '16.0.0'
     - identifier: base1610
       env:
         image: aws/codebuild/standard:5.0
@@ -173,9 +173,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "16.1.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '16.1.0'
     - identifier: base16130
       env:
         image: aws/codebuild/standard:5.0
@@ -183,9 +183,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "16.13.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '16.13.0'
     - identifier: base1620
       env:
         image: aws/codebuild/standard:5.0
@@ -193,9 +193,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "16.2.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '16.2.0'
     - identifier: base1630
       env:
         image: aws/codebuild/standard:5.0
@@ -203,9 +203,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "16.3.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '16.3.0'
     - identifier: base1640
       env:
         image: aws/codebuild/standard:5.0
@@ -213,9 +213,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "16.4.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '16.4.0'
     - identifier: base1650
       env:
         image: aws/codebuild/standard:5.0
@@ -223,9 +223,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "16.5.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: '16.5.0'
     - identifier: basemanjaro14120
       env:
         image: aws/codebuild/standard:5.0
@@ -233,9 +233,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/base"
-          IMAGE_DIR: "base"
-          IMAGE_TAG: "manjaro-14.12.0"
+          IMAGE_REPO_NAME: 'cypress/base'
+          IMAGE_DIR: 'base'
+          IMAGE_TAG: 'manjaro-14.12.0'
 
     - identifier: browsersnode12141Chrome85Ff81
       env:
@@ -244,9 +244,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node12.14.1-chrome85-ff81"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node12.14.1-chrome85-ff81'
     - identifier: browsersnode12183Chrome83Ff77
       env:
         image: aws/codebuild/standard:5.0
@@ -254,9 +254,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node12.18.3-chrome83-ff77"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node12.18.3-chrome83-ff77'
     - identifier: browsersnode12183Chrome87Ff82
       env:
         image: aws/codebuild/standard:5.0
@@ -264,9 +264,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node12.18.3-chrome87-ff82"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node12.18.3-chrome87-ff82'
     - identifier: browsersnode12183Chrome89Ff86
       env:
         image: aws/codebuild/standard:5.0
@@ -274,9 +274,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node12.18.3-chrome89-ff86"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node12.18.3-chrome89-ff86'
     - identifier: browsersnode12184Edge88
       env:
         image: aws/codebuild/standard:5.0
@@ -284,9 +284,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node12.18.4-edge88"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node12.18.4-edge88'
     - identifier: browsersnode12190Chrome86Ff82
       env:
         image: aws/codebuild/standard:5.0
@@ -294,9 +294,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node12.19.0-chrome86-ff82"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node12.19.0-chrome86-ff82'
     - identifier: browsersnode1380Chrome81Ff75
       env:
         image: aws/codebuild/standard:5.0
@@ -304,9 +304,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node13.8.0-chrome81-ff75"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node13.8.0-chrome81-ff75'
     - identifier: browsersnode14101Edge88
       env:
         image: aws/codebuild/standard:5.0
@@ -314,9 +314,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node14.10.1-edge88"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node14.10.1-edge88'
     - identifier: browsersnode14150Chrome86Ff82
       env:
         image: aws/codebuild/standard:5.0
@@ -324,9 +324,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node14.15.0-chrome86-ff82"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node14.15.0-chrome86-ff82'
     - identifier: browsersnode14150Chrome96Ff94
       env:
         image: aws/codebuild/standard:5.0
@@ -334,9 +334,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node14.15.0-chrome96-ff94"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node14.15.0-chrome96-ff94'
     - identifier: browsersnode14160Chrome89Ff77
       env:
         image: aws/codebuild/standard:5.0
@@ -344,9 +344,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node14.16.0-chrome89-ff77"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node14.16.0-chrome89-ff77'
     - identifier: browsersnode14160Chrome89Ff86
       env:
         image: aws/codebuild/standard:5.0
@@ -354,9 +354,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node14.16.0-chrome89-ff86"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node14.16.0-chrome89-ff86'
     - identifier: browsersnode14160Chrome90Ff88
       env:
         image: aws/codebuild/standard:5.0
@@ -364,9 +364,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node14.16.0-chrome90-ff88"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node14.16.0-chrome90-ff88'
     - identifier: browsersnode14170Chrome88Ff89
       env:
         image: aws/codebuild/standard:5.0
@@ -374,9 +374,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node14.17.0-chrome88-ff89"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node14.17.0-chrome88-ff89'
     - identifier: browsersnode14170Chrome91Ff89
       env:
         image: aws/codebuild/standard:5.0
@@ -384,9 +384,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node14.17.0-chrome91-ff89"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node14.17.0-chrome91-ff89'
     - identifier: browsersnode1470Chrome84
       env:
         image: aws/codebuild/standard:5.0
@@ -394,9 +394,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node14.7.0-chrome84"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node14.7.0-chrome84'
     - identifier: browsersnode1650Chrome94Ff93
       env:
         image: aws/codebuild/standard:5.0
@@ -404,9 +404,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/browsers"
-          IMAGE_DIR: "browsers"
-          IMAGE_TAG: "node16.5.0-chrome94-ff93"
+          IMAGE_REPO_NAME: 'cypress/browsers'
+          IMAGE_DIR: 'browsers'
+          IMAGE_TAG: 'node16.5.0-chrome94-ff93'
 
     - identifier: included320
       env:
@@ -415,9 +415,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.2.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.2.0'
     - identifier: included330
       env:
         image: aws/codebuild/standard:5.0
@@ -425,9 +425,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.3.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.3.0'
     - identifier: included331
       env:
         image: aws/codebuild/standard:5.0
@@ -435,9 +435,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.3.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.3.1'
     - identifier: included332
       env:
         image: aws/codebuild/standard:5.0
@@ -445,9 +445,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.3.2"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.3.2'
     - identifier: included340
       env:
         image: aws/codebuild/standard:5.0
@@ -455,9 +455,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.4.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.4.0'
     - identifier: included341
       env:
         image: aws/codebuild/standard:5.0
@@ -465,9 +465,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.4.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.4.1'
     - identifier: included350
       env:
         image: aws/codebuild/standard:5.0
@@ -475,9 +475,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.5.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.5.0'
     - identifier: included360
       env:
         image: aws/codebuild/standard:5.0
@@ -485,9 +485,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.6.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.6.0'
     - identifier: included361
       env:
         image: aws/codebuild/standard:5.0
@@ -495,9 +495,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.6.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.6.1'
     - identifier: included370
       env:
         image: aws/codebuild/standard:5.0
@@ -505,9 +505,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.7.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.7.0'
     - identifier: included380
       env:
         image: aws/codebuild/standard:5.0
@@ -515,9 +515,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.8.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.8.0'
     - identifier: included381
       env:
         image: aws/codebuild/standard:5.0
@@ -525,9 +525,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.8.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.8.1'
     - identifier: included382
       env:
         image: aws/codebuild/standard:5.0
@@ -535,9 +535,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.8.2"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.8.2'
     - identifier: included383
       env:
         image: aws/codebuild/standard:5.0
@@ -545,9 +545,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "3.8.3"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '3.8.3'
     - identifier: included400
       env:
         image: aws/codebuild/standard:5.0
@@ -555,9 +555,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.0.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.0.0'
     - identifier: included401
       env:
         image: aws/codebuild/standard:5.0
@@ -565,9 +565,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.0.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.0.1'
     - identifier: included402
       env:
         image: aws/codebuild/standard:5.0
@@ -575,9 +575,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.0.2"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.0.2'
     - identifier: included410
       env:
         image: aws/codebuild/standard:5.0
@@ -585,9 +585,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.1.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.1.0'
     - identifier: included4100
       env:
         image: aws/codebuild/standard:5.0
@@ -595,9 +595,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.10.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.10.0'
     - identifier: included4110
       env:
         image: aws/codebuild/standard:5.0
@@ -605,9 +605,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.11.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.11.0'
     - identifier: included4120
       env:
         image: aws/codebuild/standard:5.0
@@ -615,9 +615,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.12.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.12.0'
     - identifier: included4121
       env:
         image: aws/codebuild/standard:5.0
@@ -625,9 +625,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.12.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.12.1'
     - identifier: included420
       env:
         image: aws/codebuild/standard:5.0
@@ -635,9 +635,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.2.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.2.0'
     - identifier: included430
       env:
         image: aws/codebuild/standard:5.0
@@ -645,9 +645,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.3.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.3.0'
     - identifier: included440
       env:
         image: aws/codebuild/standard:5.0
@@ -655,9 +655,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.4.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.4.0'
     - identifier: included441
       env:
         image: aws/codebuild/standard:5.0
@@ -665,9 +665,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.4.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.4.1'
     - identifier: included450
       env:
         image: aws/codebuild/standard:5.0
@@ -675,9 +675,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.5.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.5.0'
     - identifier: included460
       env:
         image: aws/codebuild/standard:5.0
@@ -685,9 +685,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.6.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.6.0'
     - identifier: included470
       env:
         image: aws/codebuild/standard:5.0
@@ -695,9 +695,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.7.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.7.0'
     - identifier: included480
       env:
         image: aws/codebuild/standard:5.0
@@ -705,9 +705,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.8.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.8.0'
     - identifier: included490
       env:
         image: aws/codebuild/standard:5.0
@@ -715,9 +715,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "4.9.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '4.9.0'
     - identifier: included500
       env:
         image: aws/codebuild/standard:5.0
@@ -725,9 +725,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "5.0.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '5.0.0'
     - identifier: included510
       env:
         image: aws/codebuild/standard:5.0
@@ -735,9 +735,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "5.1.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '5.1.0'
     - identifier: included520
       env:
         image: aws/codebuild/standard:5.0
@@ -745,9 +745,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "5.2.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '5.2.0'
     - identifier: included530
       env:
         image: aws/codebuild/standard:5.0
@@ -755,9 +755,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "5.3.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '5.3.0'
     - identifier: included540
       env:
         image: aws/codebuild/standard:5.0
@@ -765,9 +765,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "5.4.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '5.4.0'
     - identifier: included550
       env:
         image: aws/codebuild/standard:5.0
@@ -775,9 +775,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "5.5.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '5.5.0'
     - identifier: included560
       env:
         image: aws/codebuild/standard:5.0
@@ -785,9 +785,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "5.6.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '5.6.0'
     - identifier: included600
       env:
         image: aws/codebuild/standard:5.0
@@ -795,9 +795,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.0.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.0.0'
     - identifier: included601
       env:
         image: aws/codebuild/standard:5.0
@@ -805,9 +805,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.0.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.0.1'
     - identifier: included610
       env:
         image: aws/codebuild/standard:5.0
@@ -815,9 +815,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.1.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.1.0'
     - identifier: included620
       env:
         image: aws/codebuild/standard:5.0
@@ -825,9 +825,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.2.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.2.0'
     - identifier: included621
       env:
         image: aws/codebuild/standard:5.0
@@ -835,9 +835,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.2.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.2.1'
     - identifier: included630
       env:
         image: aws/codebuild/standard:5.0
@@ -845,9 +845,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.3.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.3.0'
     - identifier: included640
       env:
         image: aws/codebuild/standard:5.0
@@ -855,9 +855,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.4.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.4.0'
     - identifier: included650
       env:
         image: aws/codebuild/standard:5.0
@@ -865,9 +865,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.5.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.5.0'
     - identifier: included660
       env:
         image: aws/codebuild/standard:5.0
@@ -875,9 +875,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.6.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.6.0'
     - identifier: included670
       env:
         image: aws/codebuild/standard:5.0
@@ -885,9 +885,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.7.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.7.0'
     - identifier: included671
       env:
         image: aws/codebuild/standard:5.0
@@ -895,9 +895,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.7.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.7.1'
     - identifier: included680
       env:
         image: aws/codebuild/standard:5.0
@@ -905,9 +905,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "6.8.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '6.8.0'
     - identifier: included700
       env:
         image: aws/codebuild/standard:5.0
@@ -915,9 +915,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "7.0.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '7.0.0'
     - identifier: included701
       env:
         image: aws/codebuild/standard:5.0
@@ -925,9 +925,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "7.0.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '7.0.1'
     - identifier: included710
       env:
         image: aws/codebuild/standard:5.0
@@ -935,9 +935,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "7.1.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '7.1.0'
     - identifier: included720
       env:
         image: aws/codebuild/standard:5.0
@@ -945,9 +945,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "7.2.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '7.2.0'
     - identifier: included730
       env:
         image: aws/codebuild/standard:5.0
@@ -955,9 +955,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "7.3.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '7.3.0'
     - identifier: included740
       env:
         image: aws/codebuild/standard:5.0
@@ -965,9 +965,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "7.4.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '7.4.0'
     - identifier: included750
       env:
         image: aws/codebuild/standard:5.0
@@ -975,9 +975,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "7.5.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '7.5.0'
     - identifier: included760
       env:
         image: aws/codebuild/standard:5.0
@@ -985,9 +985,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "7.6.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '7.6.0'
     - identifier: included770
       env:
         image: aws/codebuild/standard:5.0
@@ -995,9 +995,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "7.7.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '7.7.0'
     - identifier: included810
       env:
         image: aws/codebuild/standard:5.0
@@ -1005,9 +1005,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "8.1.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '8.1.0'
     - identifier: included820
       env:
         image: aws/codebuild/standard:5.0
@@ -1015,9 +1015,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "8.2.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '8.2.0'
     - identifier: included830
       env:
         image: aws/codebuild/standard:5.0
@@ -1025,9 +1025,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "8.3.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '8.3.0'
     - identifier: included831
       env:
         image: aws/codebuild/standard:5.0
@@ -1035,9 +1035,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "8.3.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '8.3.1'
     - identifier: included840
       env:
         image: aws/codebuild/standard:5.0
@@ -1045,9 +1045,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "8.4.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '8.4.0'
     - identifier: included841
       env:
         image: aws/codebuild/standard:5.0
@@ -1055,9 +1055,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "8.4.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '8.4.1'
     - identifier: included850
       env:
         image: aws/codebuild/standard:5.0
@@ -1065,9 +1065,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "8.5.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '8.5.0'
     - identifier: included860
       env:
         image: aws/codebuild/standard:5.0
@@ -1075,9 +1075,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "8.6.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '8.6.0'
     - identifier: included870
       env:
         image: aws/codebuild/standard:5.0
@@ -1085,9 +1085,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "8.7.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '8.7.0'
     - identifier: included900
       env:
         image: aws/codebuild/standard:5.0
@@ -1095,9 +1095,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "9.0.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '9.0.0'
     - identifier: included910
       env:
         image: aws/codebuild/standard:5.0
@@ -1105,9 +1105,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "9.1.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '9.1.0'
     - identifier: included911
       env:
         image: aws/codebuild/standard:5.0
@@ -1115,9 +1115,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "9.1.1"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '9.1.1'
     - identifier: included920
       env:
         image: aws/codebuild/standard:5.0
@@ -1125,9 +1125,9 @@ batch:
         privileged-mode: true
         compute-type: BUILD_GENERAL1_MEDIUM
         variables:
-          IMAGE_REPO_NAME: "cypress/included"
-          IMAGE_DIR: "included"
-          IMAGE_TAG: "9.2.0"
+          IMAGE_REPO_NAME: 'cypress/included'
+          IMAGE_DIR: 'included'
+          IMAGE_TAG: '9.2.0'
 
 phases:
   pre_build:

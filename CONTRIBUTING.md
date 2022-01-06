@@ -18,12 +18,12 @@ To create a new base image follow these steps
 
 1. run `npm run add:base -- <new version>` script. For example `npm run add:base -- 13.6.0`
 
-It will create a new folder `base/<new version>` and output versions of tools installed: Node, npm, yarn, etc. See [generate-base-image.js](generate-base-image.js) file for details.
+It will create a new folder `base/<new version>` and output versions of tools installed: Node, npm, yarn, etc. See [generate-base-image.js](scripts/generate-base-image.js) file for details.
 
 2. add new line to [base/README.md](base/README.md) with new image information.
 3. add new folder to Git
 4. update [circle.yml](circle.yml) file by running `npm run build` and commit the changes.
-4. open a pull request.
+5. open a pull request.
 
 The new image will be built and tested on CI and pushed to Docker Hub once the PR is approved and merged to `master`.
 
@@ -47,12 +47,12 @@ To create a new image with Cypress pre-installed globally
 
 **important ⚠️** please use `cypress/browsers` Docker image with the Node version that **matches** the Node version bundled inside Cypress you are about to install there.
 
-This will create new folder `included/<Cypress version>`
+This will create new folder `included/<Cypress version>` See [generate-included-image.js](scripts/generate-included-image.js) file for details.
 
 2. add new line to [included/README.md](included/README.md) file with the new image information
 3. add new folder to Git
 4. update [circle.yml](circle.yml) file by running `npm run build` and commit the changes.
-4. open a pull request.
+5. open a pull request.
 
 ## Tagging the latest image
 

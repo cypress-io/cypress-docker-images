@@ -906,3 +906,5 @@ const writeBuildspecConfigFile = (baseImages, browserImages, includedImages) => 
   writeConfigFile(base, browsers, included)
   writeBuildspecConfigFile(base, browsers, included)
 })()
+
+// module.exports = { awsCodeBuildPreamble, awsCodeBuildPostamble, preamble }

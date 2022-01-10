@@ -1,4 +1,4 @@
-const semver = require('semver')
+const semver = require("semver")
 
 const isStrictSemver = (s) => {
   const parsed = semver.valid(s)

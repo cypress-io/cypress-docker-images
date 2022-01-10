@@ -11,6 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node ./scripts/generate-config",
     "add:base": "node ./scripts/generate-base-image",
+    "add:browser": "node ./scripts/generate-browser-image",
     "add:included": "node ./scripts/generate-included-image",
     "check:markdown": "find . -type f -name '*.md' ! -path './node_modules/*' ! -path './examples/*' | xargs -L1 npx markdown-link-check --quiet",
     "format": "prettier --write ."

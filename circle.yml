@@ -73,7 +73,7 @@ commands:
                   name: test image << parameters.imageName >>
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test -<<EOF
+                      docker build -t cypress/test -\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -92,7 +92,7 @@ commands:
                   name: test image << parameters.imageName >> using Kitchensink
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test-kitchensink -<<EOF
+                      docker build -t cypress/test-kitchensink -\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -179,10 +179,11 @@ commands:
                   name: test image << parameters.imageName >>
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test -<<EOF
+                      docker build -t cypress/test -\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
+                      WORKDIR /app
                       RUN npm init --yes
                       RUN npm install --save-dev cypress
                       RUN ./node_modules/.bin/cypress verify
@@ -222,7 +223,7 @@ commands:
                   name: scaffold image << parameters.imageName >> using Kitchensink
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test-kitchensink -<<EOF
+                      docker build -t cypress/test-kitchensink -\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -492,8 +493,10 @@ workflows:
     lint:
         jobs:
             - lint-markdown
-    build-included-images:
+    build-browser-images:
         jobs:
-            - build-included-image:
-                name: "included 9.2.0"
-                dockerTag: "9.2.0"
+            - build-browser-image:
+                name: "browser node16.5.0-chrome94-ff93"
+                dockerTag: "node16.5.0-chrome94-ff93"
+                chromeVersion: "Google Chrome 94"
+                firefoxVersion: "Mozilla Firefox 93"

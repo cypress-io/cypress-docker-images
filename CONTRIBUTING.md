@@ -22,8 +22,7 @@ It will create a new folder `base/<new version>` and output versions of tools in
 
 2. add new line to [base/README.md](base/README.md) with new image information.
 3. add new folder to Git
-4. update [circle.yml](circle.yml) file by running `npm run build` and commit the changes.
-5. open a pull request.
+4. open a pull request.
 
 The new image will be built and tested on CI and pushed to Docker Hub once the PR is approved and merged to `master`.
 
@@ -39,6 +38,18 @@ TODO: https://github.com/cypress-io/cypress-docker-images/issues/215
 
 **Important:** use `https:` to download browsers
 
+### Add new browser image
+
+To create a new image with the specific browser versions needed to run your cypress tests.
+
+1. run `npm run add:browser <base image tag> --chrome=<chrome version> --firefox=<firefox version> --edge=<edge version>`. For example `npm run add:browser 16.5.0 --chrome=94.0.4606.71 --firefox=93.0`.
+
+This will create new folder `browser/node<node version>-chrome<chrome version>-ff<firefox version>-edge<edge version>` See [generate-browser-image.js](scripts/generate-browser-image.js) file for details.
+
+2. add new line to [included/README.md](included/README.md) file with the new image information
+3. add new folder to Git
+4. open a pull request.
+
 ### Add new included image
 
 To create a new image with Cypress pre-installed globally
@@ -51,8 +62,7 @@ This will create new folder `included/<Cypress version>` See [generate-included-
 
 2. add new line to [included/README.md](included/README.md) file with the new image information
 3. add new folder to Git
-4. update [circle.yml](circle.yml) file by running `npm run build` and commit the changes.
-5. open a pull request.
+4. open a pull request.
 
 ## Tagging the latest image
 

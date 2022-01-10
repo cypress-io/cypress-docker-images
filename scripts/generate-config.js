@@ -1,19 +1,18 @@
-const path = require('path')
-const fs = require('fs')
-const { camelCase } = require('lodash')
-const os = require('os')
-const { isStrictSemver } = require('../utils')
+const path = require("path")
+const fs = require("fs")
+const { camelCase } = require("lodash")
+const os = require("os")
 
 const imageType = process.argv[2]
 const versionTag = process.argv[3]
 
 if (!imageType) {
-  console.error('expected an image type like includuded')
+  console.error("expected an image type like includuded")
   process.exit(1)
 }
 
-if (!versionTag || !isStrictSemver(versionTag)) {
-  console.error('expected Cypress version argument like 3.8.3')
+if (!versionTag) {
+  console.error("expected Cypress version argument like 3.8.3")
   process.exit(1)
 }
 
@@ -123,7 +122,7 @@ commands:
                   name: test image << parameters.imageName >>
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test -\<<EOF
+                      docker build -t cypress/test -\\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -142,7 +141,7 @@ commands:
                   name: test image << parameters.imageName >> using Kitchensink
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test-kitchensink -\<<EOF
+                      docker build -t cypress/test-kitchensink -\\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -229,10 +228,11 @@ commands:
                   name: test image << parameters.imageName >>
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test -\<<EOF
+                      docker build -t cypress/test -\\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
+                      WORKDIR /app
                       RUN npm init --yes
                       RUN npm install --save-dev cypress
                       RUN ./node_modules/.bin/cypress verify
@@ -272,7 +272,7 @@ commands:
                   name: scaffold image << parameters.imageName >> using Kitchensink
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test-kitchensink -\<<EOF
+                      docker build -t cypress/test-kitchensink -\\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -545,20 +545,43 @@ workflows:
 `
 
 const splitImageFolderName = (folderName) => {
-  const [name, tag] = folderName.split('/')
+  const [name, tag] = folderName.split("/")
   return { name, tag }
 }
 
 const getImageType = (image) => {
-  return image.name.includes('base') ? 'base' : image.name.includes('browsers') ? 'browsers' : 'included'
+  return image.name.includes("base") ? "base" : image.name.includes("browser") ? "browser" : "included"
 }
 const formWorkflow = (image) => {
-  const yml = `    build-${getImageType(image)}-images:
+  let yml = `    build-${getImageType(image)}-images:
         jobs:
             - build-${getImageType(image)}-image:
                 name: "${getImageType(image)} ${image.tag}"
                 dockerTag: "${image.tag}"`
 
+  // add browser versions
+  if (getImageType(image) === "browser") {
+    if (image.tag.includes("-chrome")) {
+      yml =
+        yml +
+        `
+                chromeVersion: "Google Chrome ${image.tag.substr(image.tag.indexOf("-chrome") + 7, 2)}"`
+    }
+
+    if (image.tag.includes("-ff")) {
+      yml =
+        yml +
+        `
+                firefoxVersion: "Mozilla Firefox ${image.tag.substr(image.tag.indexOf("-ff") + 3, 2)}"`
+    }
+
+    if (image.tag.includes("-edge")) {
+      yml =
+        yml +
+        `
+                edgeVersion: "Microsoft Edge ${image.tag.substr(image.tag.indexOf("-edge") + 5, 2)}"`
+    }
+  }
   return yml
 }
 
@@ -580,22 +603,22 @@ const formAwsBuildWorkflow = (image) => {
 const writeConfigFile = (image) => {
   const workflow = formWorkflow(image)
   const text = preamble.trim() + os.EOL + workflow
-  fs.writeFileSync('circle.yml', text, 'utf8')
-  console.log('generated circle.yml')
+  fs.writeFileSync("circle.yml", text, "utf8")
+  console.log("generated circle.yml")
 }
 
 const writeBuildSpecConfigFile = (image) => {
   const workflow = formAwsBuildWorkflow(image)
   const text = awsCodeBuildPreamble.trim() + os.EOL + workflow + os.EOL + awsCodeBuildPostamble.trim()
-  fs.writeFileSync('buildspec.yml', text, 'utf8')
-  console.log('generated buildspec.yml')
+  fs.writeFileSync("buildspec.yml", text, "utf8")
+  console.log("generated buildspec.yml")
 }
 
 const outputFolder = path.join(imageType, versionTag)
-console.log('** outputFolder **', outputFolder)
+console.log("** outputFolder **", outputFolder)
 
 const image = splitImageFolderName(outputFolder)
-console.log('** image **')
+console.log("** image **")
 console.log(image)
 
 writeConfigFile(image)

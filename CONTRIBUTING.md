@@ -16,53 +16,37 @@ All contributors are expecting to abide by our [Code of Conduct](CODE_OF_CONDUCT
 
 To create a new base image follow these steps
 
-1. run `npm run add:base -- <new version>` script. For example `npm run add:base -- 13.6.0`
+1. run `yarn add:base -- <new version>` script. For example `yarn add:base -- 13.6.0`
 
 It will create a new folder `base/<new version>` and output versions of tools installed: Node, npm, yarn, etc. See [generate-base-image.js](scripts/generate-base-image.js) file for details.
 
-2. add new line to [base/README.md](base/README.md) with new image information.
-3. add new folder to Git
-4. open a pull request.
+2. open a pull request.
 
 The new image will be built and tested on CI and pushed to Docker Hub once the PR is approved and merged to `master`.
 
-**note:** we should install the latest NPM and Yarn versions in the base image to ensure old images do not include NPM and Yarn with known issues that have been fixed already.
-
-**note 2:** we install Chinese fonts in the base image to allow correct testing of [cypress-documentation](https://github.com/cypress-io/cypress-documentation) site that includes several translations of the Cypress docs. Without Chinese fonts the pages have broken rendering.
-
-### Add new image with browsers
-
-TODO: https://github.com/cypress-io/cypress-docker-images/issues/215
-
-**Important:** prefer to use exact browser versions for repeatable builds. You can find the previous official Chrome version numbers at [https://chromereleases.googleblog.com/](https://chromereleases.googleblog.com/).
-
-**Important:** use `https:` to download browsers
+**note 1:** we install Chinese fonts in the base image to allow correct testing of [cypress-documentation](https://github.com/cypress-io/cypress-documentation) site that includes several translations of the Cypress docs. Without Chinese fonts the pages have broken rendering.
 
 ### Add new browser image
 
 To create a new image with the specific browser versions needed to run your cypress tests.
 
-1. run `npm run add:browser <base image tag> --chrome=<chrome version> --firefox=<firefox version> --edge=<edge version>`. For example `npm run add:browser 16.5.0 --chrome=94.0.4606.71 --firefox=93.0`.
+1. run `yarn add:browser <base image tag> --chrome=<chrome version> --firefox=<firefox version> --edge=<edge version>`. For example `yarn add:browser 16.5.0 --chrome=94.0.4606.71 --firefox=93.0`.
 
 This will create new folder `browser/node<node version>-chrome<chrome version>-ff<firefox version>-edge<edge version>` See [generate-browser-image.js](scripts/generate-browser-image.js) file for details.
 
-2. add new line to [included/README.md](included/README.md) file with the new image information
-3. add new folder to Git
-4. open a pull request.
+2. open a pull request.
 
 ### Add new included image
 
 To create a new image with Cypress pre-installed globally
 
-1. run `npm run add:included -- <Cypress version> <base image tag>`. For example `npm run add:included -- 3.8.3 cypress/browsers:node12.6.0-chrome77`.
+1. run `yarn add:included -- <Cypress version> <base image tag>`. For example `yarn add:included -- 3.8.3 cypress/browsers:node12.6.0-chrome77`.
 
 **important ⚠️** please use `cypress/browsers` Docker image with the Node version that **matches** the Node version bundled inside Cypress you are about to install there.
 
 This will create new folder `included/<Cypress version>` See [generate-included-image.js](scripts/generate-included-image.js) file for details.
 
-2. add new line to [included/README.md](included/README.md) file with the new image information
-3. add new folder to Git
-4. open a pull request.
+2. open a pull request.
 
 ## Tagging the latest image
 

@@ -170,3 +170,6 @@ require("child_process").fork(__dirname + "/generate-browser-readme.js", [
   `cypress/browsers:${imageVersion}`,
   `--chrome=${chromeVersion} --firefox=${firefoxVersion} --edge=${edgeVersion}`,
 ])
+
+// ASK USER IF THEY WANT TO COMMIT CHANGES
+require("child_process").fork(__dirname, "/generate-commit.js", ["browsers", imageVersion])

@@ -1,6 +1,6 @@
-console.log('in plugins file')
+console.log("in plugins file")
 module.exports = (on, config) => {
-  on('task', {
-    failed: require('cypress-failed-log/src/failed')(),
+  on("task", {
+    failed: require("cypress-failed-log/src/failed")(),
   })
 }

@@ -1,8 +1,10 @@
 // creates new folder included/<Cypress version> with Dockerfile and README file
-const path = require('path')
-const fs = require('fs')
-const shelljs = require('shelljs')
-const { isStrictSemver } = require('../utils')
+const path = require("path")
+const fs = require("fs")
+const shelljs = require("shelljs")
+const { isStrictSemver } = require("../utils")
+const { camelCase } = require("lodash")
+const os = require("os")
 
 const versionTag = process.argv[2]
 const baseImageTag = process.argv[3]
@@ -15,16 +17,16 @@ if (!baseImageTag) {
   console.error('expected base Docker image tag like "cypress/browsers:node12.6.0-chrome77"')
   process.exit(1)
 }
-if (!baseImageTag.startsWith('cypress/browsers:')) {
+if (!baseImageTag.startsWith("cypress/browsers:")) {
   console.error('expected the base Docker image tag to be one of "cypress/browsers:*"')
   console.error('but it was "%s"', baseImageTag)
   process.exit(1)
 }
 
-const outputFolder = path.join('included', versionTag)
-if (shelljs.test('-d', outputFolder)) {
+const outputFolder = path.join("included", versionTag)
+if (shelljs.test("-d", outputFolder)) {
   console.log('removing existing folder "%s"', outputFolder)
-  shelljs.rm('-rf', outputFolder)
+  shelljs.rm("-rf", outputFolder)
 }
 console.log('creating "%s"', outputFolder)
 shelljs.mkdir(outputFolder)
@@ -100,9 +102,9 @@ RUN echo  " node version:    $(node -v) \\n" \\
 
 ENTRYPOINT ["cypress", "run"]
 `
-const dockerFilename = path.join(outputFolder, 'Dockerfile')
-fs.writeFileSync(dockerFilename, Dockerfile.trim() + '\n', 'utf8')
-console.log('Saved %s', dockerFilename)
+const dockerFilename = path.join(outputFolder, "Dockerfile")
+fs.writeFileSync(dockerFilename, Dockerfile.trim() + "\n", "utf8")
+console.log("Saved %s", dockerFilename)
 
 const README = `
 <!--
@@ -125,9 +127,9 @@ $ docker run -it -v $PWD:/e2e -w /e2e cypress/included:${versionTag}
 [blog post url]: https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command/
 `
 
-const readmeFilename = path.join(outputFolder, 'README.md')
-fs.writeFileSync(readmeFilename, README.trim() + '\n', 'utf8')
-console.log('Saved %s', readmeFilename)
+const readmeFilename = path.join(outputFolder, "README.md")
+fs.writeFileSync(readmeFilename, README.trim() + "\n", "utf8")
+console.log("Saved %s", readmeFilename)
 
 // to make building images simpler and to follow the same pattern as previous builds
 const buildScript = `
@@ -141,16 +143,13 @@ echo "Building $LOCAL_NAME"
 docker build -t $LOCAL_NAME .
 `
 
-const buildFilename = path.join(outputFolder, 'build.sh')
-fs.writeFileSync(buildFilename, buildScript.trim() + '\n', 'utf8')
-shelljs.chmod('a+x', buildFilename)
-console.log('Saved %s', buildFilename)
+const buildFilename = path.join(outputFolder, "build.sh")
+fs.writeFileSync(buildFilename, buildScript.trim() + "\n", "utf8")
+shelljs.chmod("a+x", buildFilename)
+console.log("Saved %s", buildFilename)
 
 console.log(`
-Please add the newly generated folder ${outputFolder} to Git and update CircleCI file with
+Please add the newly generated folder ${outputFolder} to Git. Build the Docker container locally to make sure it is correct`)
 
-    npm run build
-
-Build the Docker container locally to make sure it is correct and update "included/README.md" list
-of images with the new image information.
-`)
+// GENERATE INCLUDED CONFIG
+require("child_process").fork(__dirname + "/generate-config.js", ["included", versionTag])

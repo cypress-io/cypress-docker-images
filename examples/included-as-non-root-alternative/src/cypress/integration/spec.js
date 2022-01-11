@@ -1,9 +1,9 @@
-describe('page', () => {
+describe("page", () => {
   beforeEach(() => {
-    cy.visit('index.html')
+    cy.visit("index.html")
   })
 
-  it('has h2', () => {
-    cy.contains('h2', 'test')
+  it("has h2", () => {
+    cy.contains("h2", "test")
   })
 })

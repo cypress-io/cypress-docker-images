@@ -9,4 +9,8 @@ const isStrictSemver = (s) => {
   return cleaned === s
 }
 
-module.exports = { isStrictSemver }
+const isAValidImageScope = (s) => {
+  return s === "base" || s === "browsers" || s === "included"
+}
+
+module.exports = { isStrictSemver, isAValidImageScope }

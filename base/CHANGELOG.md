@@ -1,13 +1,3 @@
-# cypress/base
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/cypress/base.svg?maxAge=604800)](https://hub.docker.com/r/cypress/base/)
-
-> Docker images that include all operating system dependencies necessary to run Cypress, **but NOT Cypress itself** and no pre-installed browsers. See [cypress/included](../included) images if you need Cypress pre-installed in the image. See [cypress/browsers](../browsers) images if you need some browsers pre-installed in the image.
-
-Each tag is in a sub folder, named after Node version or OS it is built on.
-
-Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/base/tags/)
-
 | Name + Tag                        | Node    | Operating System | Link                                         | NPM version | Yarn version | Notes       |
 | --------------------------------- | ------- | ---------------- | -------------------------------------------- | ----------- | ------------ | ----------- |
 | cypress/base:6                    | 6       | Debian           | [/6](6)                                      | 3.10.10     | 1.6.0        |
@@ -76,37 +66,4 @@ Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/ba
 | cypress/base:ubuntu16-12.13.1     | 12.13.1 | Ubuntu           | [/ubuntu16-12.13.1](ubuntu16-12.13.1)        | 6.12.1      | 🚫           |
 | cypress/base:ubuntu18-node12.14.1 | 12.14.1 | Ubuntu 18.04.3   | [ubuntu18-node12.14.1](ubuntu18-node12.14.1) | 6.13.6      | 1.21.1       |
 | cypress/base:ubuntu19-node12.14.1 | 12.14.1 | Ubuntu 19.0.4    | [ubuntu19-node12.14.1](ubuntu19-node12.14.1) | 6.13.6      | 1.21.1       |
-| cypress/base:manjaro-node14.12.0  | 14.12.0 | Manjaro          | [manjaro-14.12.0](manjaro-14.12.0)           | 6.14.8      | 1.22.10      |
-
-> **Note** All Base Images install the latest versions of NPM & Yarn
-## ⚠️ Node.js Support
-
-Cypress 4.0+ no longer supports Node.js versions below 8.0.0. See our [Migration Guide](https://on.cypress.io/migration-guide#Node-js-8-support).
-
-Using 6.x images is not recommended, and we do not plan to release new versions of Cypress tested on Node.js below 8.0.0.
-
-## Information
-
-Node release schedule at [nodejs/Release](https://github.com/nodejs/Release) and one can find LTS versions using [nvm](https://github.com/creationix/nvm) tool
-
-```text
-nvm ls-remote | grep LTS
-...
-  v8.16.1   (LTS: Carbon)
-  v8.16.2   (LTS: Carbon)
-  v8.17.0   (Latest LTS: Carbon)
-...
-  v10.18.0   (LTS: Dubnium)
-  v10.18.1   (LTS: Dubnium)
-  v10.19.0   (Latest LTS: Dubnium)
-...
-  v12.14.1   (LTS: Erbium)
-  v12.15.0   (LTS: Erbium)
-  v12.16.0   (Latest LTS: Erbium)
-```
-
-## Notes
-
-<div id="note1">
-
-**1:** this image includes fonts with Chinese characters
+| cypress/base:manjaro-node14.12.0  | 14.12.0 | Manjaro          | [manjaro-14.12.0](manjaro-14.12.0)           | 6.14.8      | 1.22.10      | 

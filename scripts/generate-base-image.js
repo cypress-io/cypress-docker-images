@@ -141,3 +141,6 @@ Please add the newly generated folder ${outputFolder} to Git. Build the Docker c
 
 // Generate Base Config
 require("child_process").fork(__dirname + "/generate-config.js", ["base", versionTag])
+
+// GENERATE BASE README WITH UPDATED CHANGELOG
+require("child_process").fork(__dirname + "/generate-base-readme.js", [versionTag])

@@ -153,3 +153,6 @@ Please add the newly generated folder ${outputFolder} to Git. Build the Docker c
 
 // GENERATE INCLUDED CONFIG
 require("child_process").fork(__dirname + "/generate-config.js", ["included", versionTag])
+
+// GENERATE INCLUDED README WITH UPDATE CHANGELOG
+require("child_process").fork(__dirname + "/generate-included-readme.js", [versionTag, baseImageTag])

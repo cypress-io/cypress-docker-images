@@ -5,7 +5,7 @@
 # build this image with command
 #   docker build -t cypress/included:8.7.0 .
 #
-FROM gcr.io/codefresh-inc/cypress/browsers:node16.13.0-chrome91-ff89
+FROM gcr.io/codefresh-inc/cypress/browsers:node16.13.2-chrome91-ff89
 
 # Update the dependencies to get the latest and greatest (and safest!) packages.
 RUN apt update && apt upgrade -y && apt-get install apt-transport-https ca-certificates gnupg lsb-release -y

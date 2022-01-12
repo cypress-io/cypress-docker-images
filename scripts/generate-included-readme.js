@@ -245,10 +245,10 @@ fs.readFile(changeLogPath, (err, data) => {
   const updatedChangeLog = `${data.toString()} \n[cypress/included:${versionTag}](${versionTag}) | \`${baseImageTag}\``
 
   fs.writeFileSync(changeLogPath, updatedChangeLog.trim() + "\n", "utf8")
-  console.log("Saved %s", updatedChangeLog)
+  console.log("Saved CHANGELOG.md at %s", changeLogPath)
 
   const readme = `${ReadMeDockerPulls} \n ${updatedChangeLog} \n ${ReadMeInstructions}`
 
   fs.writeFileSync(readmePath, readme.trim() + "\n", "utf8")
-  console.log("Saved %s", readmePath)
+  console.log("Saved README.md at %s", readmePath)
 })

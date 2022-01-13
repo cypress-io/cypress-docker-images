@@ -144,3 +144,6 @@ require("child_process").fork(__dirname + "/generate-config.js", ["base", versio
 
 // GENERATE BASE README WITH UPDATED CHANGELOG
 require("child_process").fork(__dirname + "/generate-base-readme.js", [versionTag])
+
+// ASK USER IF THEY WANT TO COMMIT CHANGES
+require("child_process").fork(__dirname + "/generate-commit.js", ["base", versionTag])

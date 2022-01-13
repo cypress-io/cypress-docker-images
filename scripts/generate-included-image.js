@@ -156,3 +156,6 @@ require("child_process").fork(__dirname + "/generate-config.js", ["included", ve
 
 // GENERATE INCLUDED README WITH UPDATE CHANGELOG
 require("child_process").fork(__dirname + "/generate-included-readme.js", [versionTag, baseImageTag])
+
+// ASK USER IF THEY WANT TO COMMIT CHANGES
+require("child_process").fork(__dirname + "/generate-commit.js", ["included", versionTag])

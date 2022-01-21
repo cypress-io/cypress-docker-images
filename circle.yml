@@ -550,6 +550,9 @@ workflows:
           name: "base 16.13.0"
           dockerTag: "16.13.0"
       - build-base-image:
+          name: "base 16.13.2"
+          dockerTag: "16.13.2"
+      - build-base-image:
           name: "base 16.2.0"
           dockerTag: "16.2.0"
       - build-base-image:
@@ -653,6 +656,11 @@ workflows:
           dockerTag: "node16.13.0-chrome95-ff94"
           chromeVersion: "Google Chrome 95"
           firefoxVersion: "Mozilla Firefox 94"
+      - build-browser-image:
+          name: "browsers node16.13.2-chrome97-ff96"
+          dockerTag: "node16.13.2-chrome97-ff96"
+          chromeVersion: "Google Chrome 97"
+          firefoxVersion: "Mozilla Firefox 96"
       - build-browser-image:
           name: "browsers node16.5.0-chrome94-ff93"
           dockerTag: "node16.5.0-chrome94-ff93"

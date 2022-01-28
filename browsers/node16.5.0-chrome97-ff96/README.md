@@ -11,7 +11,7 @@ A complete image with all operating system dependencies for Cypress, Chrome
  yarn version:    1.22.15 
  debian version:  10.10 
  Chrome version:  Google Chrome 97.0.4692.71  
- Firefox version: Mozilla Firefox 96.0.2 
+ Firefox version: Mozilla Firefox 96.0.3
  git version:     git version 2.20.1 
  whoami:          root 
 ```

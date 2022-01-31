@@ -186,6 +186,16 @@ batch:
           IMAGE_REPO_NAME: "cypress/base"
           IMAGE_DIR: "base"
           IMAGE_TAG: "16.13.0"
+    - identifier: base16132
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "16.13.2"
     - identifier: base1620
       env:
         image: aws/codebuild/standard:5.0
@@ -417,6 +427,16 @@ batch:
           IMAGE_REPO_NAME: "cypress/browsers"
           IMAGE_DIR: "browsers"
           IMAGE_TAG: "node16.13.0-chrome95-ff94"
+    - identifier: browsersnode16132Chrome97Ff96
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/browsers"
+          IMAGE_DIR: "browsers"
+          IMAGE_TAG: "node16.13.2-chrome97-ff96"
     - identifier: browsersnode1650Chrome94Ff93
       env:
         image: aws/codebuild/standard:5.0

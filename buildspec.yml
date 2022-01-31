@@ -1217,7 +1217,7 @@ batch:
         variables:
           IMAGE_REPO_NAME: "cypress/included"
           IMAGE_DIR: "included"
-          IMAGE_TAG: "9.4.0"
+          IMAGE_TAG: "9.4.1"
 
 phases:
   pre_build:

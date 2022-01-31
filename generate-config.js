@@ -136,7 +136,7 @@ const preamble = `
 version: 2.1
 
 orbs:
-  node: circleci/node@1.1
+  node: circleci/node@5.0.0
 
 commands:
   halt-on-branch:

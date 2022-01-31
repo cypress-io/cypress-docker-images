@@ -380,7 +380,8 @@ jobs:
       - run: npm run check:markdown
 
   build-base-image:
-    machine: true
+    machine:
+      image: ubuntu-2004:202111-02
     parameters:
       dockerName:
         type: string
@@ -412,7 +413,8 @@ jobs:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
   build-browser-image:
-    machine: true
+    machine:
+      image: ubuntu-2004:202111-02
     parameters:
       dockerName:
         type: string
@@ -452,7 +454,8 @@ jobs:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
   build-included-image:
-    machine: true
+    machine:
+      image: ubuntu-2004:202111-02
     parameters:
       dockerName:
         type: string

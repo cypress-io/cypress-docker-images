@@ -5,6 +5,9 @@ const shelljs = require("shelljs")
 const { isStrictSemver } = require("../utils")
 
 const versionTag = process.argv[2]
+const slimTag = process.argv[3]
+
+const baseNodeImage = slimTag ? "buster-slim" : "buster"
 
 if (!versionTag || !isStrictSemver(versionTag)) {
   console.error('expected version tag argument like "13.6.0"')
@@ -25,9 +28,9 @@ const Dockerfile = `
 # https://on.cypress.io/docker and https://on.cypress.io/ci
 #
 # build it with command
-#   docker build -t cypress/base:${versionTag} .
+#   docker build -t cypress/base:${imageName} .
 #
-FROM node:${versionTag}-buster
+FROM node:${versionTag}-${baseNodeImage}
 
 RUN apt-get update && \\
   apt-get install --no-install-recommends -y \\
@@ -62,34 +65,29 @@ RUN apt-get update && \\
   && rm -rf /var/lib/apt/lists/* \\
   && apt-get clean
 
-RUN npm --version
-
-RUN npm install -g yarn@latest --force
-RUN yarn --version
-
 # a few environment variables to make NPM installs easier
 # good colors for most applications
-ENV TERM xterm
+ENV TERM=xterm \\
 # avoid million NPM install messages
-ENV npm_config_loglevel warn
+  npm_config_loglevel=warn \\
 # allow installing when the main user is root
-ENV npm_config_unsafe_perm true
+  npm_config_unsafe_perm=true
 
-# Node libraries
-RUN node -p process.versions
-
-# Show where Node loads required modules from
-RUN node -p 'module.paths'
-
-# versions of local tools
-RUN echo  " node version:    $(node -v) \\n" \\
-  "npm version:     $(npm -v) \\n" \\
-  "yarn version:    $(yarn -v) \\n" \\
-  "debian version:  $(cat /etc/debian_version) \\n" \\
-  "user:            $(whoami) \\n"
+RUN npm --version \\
+  && npm install -g yarn@latest --force \\
+  && yarn --version \\
+  && node -p process.versions \\
+  && node -p 'module.paths' \\
+  && echo  " node version:    $(node -v) \\n" \\
+    "npm version:     $(npm -v) \\n" \\
+    "yarn version:    $(yarn -v) \\n" \\
+    "debian version:  $(cat /etc/debian_version) \\n" \\
+    "user:            $(whoami) \\n"
 `
+
 const dockerFilename = path.join(outputFolder, "Dockerfile")
 fs.writeFileSync(dockerFilename, Dockerfile.trim() + "\n", "utf8")
+
 console.log("Saved %s", dockerFilename)
 
 const README = `
@@ -115,6 +113,7 @@ RUN $(npm bin)/cypress run
 
 const readmeFilename = path.join(outputFolder, "README.md")
 fs.writeFileSync(readmeFilename, README.trim() + "\n", "utf8")
+
 console.log("Saved %s", readmeFilename)
 
 // to make building images simpler and to follow the same pattern as previous builds
@@ -132,6 +131,7 @@ docker build -t $LOCAL_NAME .
 const buildFilename = path.join(outputFolder, "build.sh")
 fs.writeFileSync(buildFilename, buildScript.trim() + "\n", "utf8")
 shelljs.chmod("a+x", buildFilename)
+
 console.log("Saved %s", buildFilename)
 
 console.log(`

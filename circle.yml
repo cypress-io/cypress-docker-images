@@ -57,21 +57,21 @@ commands:
       - when:
           condition: << parameters.checkNodeVersion >>
           steps:
-          - run:
-              name: confirm image has Node << parameters.nodeVersion >>
-              # do not run Docker in the interactive mode - adds control characters!
-              command: |
-                version=$(docker run << parameters.imageName >> node --version)
-                if [ "$version" == "<< parameters.nodeVersion >>" ]; then
-                  echo "Base image has the expected version of Node << parameters.nodeVersion >>";
-                else
-                  echo "Problem: base image has unexpected Node version"
-                  echo "Expected << parameters.nodeVersion >> and got $version"
-                  exit 1
-                fi
+            - run:
+                name: confirm image has Node << parameters.nodeVersion >>
+                # do not run Docker in the interactive mode - adds control characters!
+                command: |
+                  version=$(docker run << parameters.imageName >> node --version)
+                  if [ "$version" == "<< parameters.nodeVersion >>" ]; then
+                    echo "Base image has the expected version of Node << parameters.nodeVersion >>";
+                  else
+                    echo "Problem: base image has unexpected Node version"
+                    echo "Expected << parameters.nodeVersion >> and got $version"
+                    exit 1
+                  fi
       - run:
           name: test image << parameters.imageName >>
-          no_output_timeout: '3m'
+          no_output_timeout: "3m"
           command: |
             docker build -t cypress/test -\<<EOF
             FROM << parameters.imageName >>
@@ -90,7 +90,7 @@ commands:
 
       - run:
           name: test image << parameters.imageName >> using Kitchensink
-          no_output_timeout: '3m'
+          no_output_timeout: "3m"
           command: |
             docker build -t cypress/test-kitchensink -\<<EOF
             FROM << parameters.imageName >>
@@ -114,75 +114,76 @@ commands:
         description: Cypress browser docker image to test
       chromeVersion:
         type: string
-        default: ''
+        default: ""
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
       firefoxVersion:
         type: string
-        default: ''
+        default: ""
         description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
       edgeVersion:
         type: string
-        default: ''
+        default: ""
         description: Edge version to expect in the base image, starts with "Microsoft Edge XX"
     steps:
       - when:
           condition: << parameters.chromeVersion >>
           steps:
-          - run:
-              name: confirm image has Chrome << parameters.chromeVersion >>
-              # do not run Docker in the interactive mode - adds control characters!
-              # and use Bash regex string comparison
-              command: |
-                version=$(docker run << parameters.imageName >> google-chrome --version)
-                if [[ "$version" =~ ^"<< parameters.chromeVersion >>" ]]; then
-                  echo "Image has the expected version of Chrome << parameters.chromeVersion >>"
-                  echo "found $version"
-                else
-                  echo "Problem: image has unexpected Chrome version"
-                  echo "Expected << parameters.chromeVersion >> and got $version"
-                  exit 1
-                fi
+            - run:
+                name: confirm image has Chrome << parameters.chromeVersion >>
+                # do not run Docker in the interactive mode - adds control characters!
+                # and use Bash regex string comparison
+                command: |
+                  version=$(docker run << parameters.imageName >> google-chrome --version)
+                  if [[ "$version" =~ ^"<< parameters.chromeVersion >>" ]]; then
+                    echo "Image has the expected version of Chrome << parameters.chromeVersion >>"
+                    echo "found $version"
+                  else
+                    echo "Problem: image has unexpected Chrome version"
+                    echo "Expected << parameters.chromeVersion >> and got $version"
+                    exit 1
+                  fi
 
       - when:
           condition: << parameters.firefoxVersion >>
           steps:
-          - run:
-              name: confirm the image has Firefox << parameters.firefoxVersion >>
-              command: |
-                version=$(docker run << parameters.imageName >> firefox --version)
-                if [[ "$version" =~ ^"<< parameters.firefoxVersion >>" ]]; then
-                  echo "Image has the expected version of Firefox << parameters.firefoxVersion >>"
-                  echo "found $version"
-                else
-                  echo "Problem: image has unexpected Firefox version"
-                  echo "Expected << parameters.firefoxVersion >> and got $version"
-                  exit 1
-                fi
+            - run:
+                name: confirm the image has Firefox << parameters.firefoxVersion >>
+                command: |
+                  version=$(docker run << parameters.imageName >> firefox --version)
+                  if [[ "$version" =~ ^"<< parameters.firefoxVersion >>" ]]; then
+                    echo "Image has the expected version of Firefox << parameters.firefoxVersion >>"
+                    echo "found $version"
+                  else
+                    echo "Problem: image has unexpected Firefox version"
+                    echo "Expected << parameters.firefoxVersion >> and got $version"
+                    exit 1
+                  fi
 
       - when:
           condition: << parameters.edgeVersion >>
           steps:
-          - run:
-              name: confirm the image has Edge << parameters.edgeVersion >>
-              command: |
-                version=$(docker run << parameters.imageName >> edge --version)
-                if [[ "$version" =~ ^"<< parameters.edgeVersion >>" ]]; then
-                  echo "Image has the expected version of Edge << parameters.edgeVersion >>"
-                  echo "found $version"
-                else
-                  echo "Problem: image has unexpected Edge version"
-                  echo "Expected << parameters.edgeVersion >> and got $version"
-                  exit 1
-                fi
+            - run:
+                name: confirm the image has Edge << parameters.edgeVersion >>
+                command: |
+                  version=$(docker run << parameters.imageName >> edge --version)
+                  if [[ "$version" =~ ^"<< parameters.edgeVersion >>" ]]; then
+                    echo "Image has the expected version of Edge << parameters.edgeVersion >>"
+                    echo "found $version"
+                  else
+                    echo "Problem: image has unexpected Edge version"
+                    echo "Expected << parameters.edgeVersion >> and got $version"
+                    exit 1
+                  fi
 
       - run:
           name: test image << parameters.imageName >>
-          no_output_timeout: '3m'
+          no_output_timeout: "3m"
           command: |
             docker build -t cypress/test -\<<EOF
             FROM << parameters.imageName >>
             RUN echo "current user: $(whoami)"
             ENV CI=1
+            WORKDIR /app
             RUN npm init --yes
             RUN npm install --save-dev cypress
             RUN ./node_modules/.bin/cypress verify
@@ -191,42 +192,43 @@ commands:
 
       - run:
           name: Test built-in Electron browser
-          no_output_timeout: '1m'
+          no_output_timeout: "1m"
           command: docker run cypress/test ./node_modules/.bin/cypress run
 
       - when:
           condition: << parameters.chromeVersion >>
           steps:
-          - run:
-              name: Test << parameters.chromeVersion >>
-              no_output_timeout: '1m'
-              command: docker run cypress/test ./node_modules/.bin/cypress run --browser chrome
+            - run:
+                name: Test << parameters.chromeVersion >>
+                no_output_timeout: "1m"
+                command: docker run cypress/test ./node_modules/.bin/cypress run --browser chrome
 
       - when:
           condition: << parameters.firefoxVersion >>
           steps:
-          - run:
-              name: Test << parameters.firefoxVersion >>
-              no_output_timeout: '1m'
-              command: docker run cypress/test ./node_modules/.bin/cypress run --browser firefox
+            - run:
+                name: Test << parameters.firefoxVersion >>
+                no_output_timeout: "1m"
+                command: docker run cypress/test ./node_modules/.bin/cypress run --browser firefox
 
       - when:
           condition: << parameters.edgeVersion >>
           steps:
-          - run:
-              name: Test << parameters.edgeVersion >>
-              no_output_timeout: '1m'
-              command: docker run cypress/test ./node_modules/.bin/cypress run --browser edge
+            - run:
+                name: Test << parameters.edgeVersion >>
+                no_output_timeout: "1m"
+                command: docker run cypress/test ./node_modules/.bin/cypress run --browser edge
 
       - run:
           name: scaffold image << parameters.imageName >> using Kitchensink
-          no_output_timeout: '3m'
+          no_output_timeout: "3m"
           command: |
             docker build -t cypress/test-kitchensink -\<<EOF
             FROM << parameters.imageName >>
             RUN echo "current user: $(whoami)"
             ENV CI=1
             ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
+            WORKDIR /app
             RUN npm init --yes
             RUN npm install --save-dev cypress
             RUN ./node_modules/.bin/cypress verify
@@ -236,26 +238,26 @@ commands:
       - when:
           condition: << parameters.chromeVersion >>
           steps:
-          - run:
-              name: Test << parameters.chromeVersion >>
-              no_output_timeout: '1m'
-              command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser chrome
+            - run:
+                name: Test << parameters.chromeVersion >>
+                no_output_timeout: "1m"
+                command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser chrome
 
       - when:
           condition: << parameters.firefoxVersion >>
           steps:
-          - run:
-              name: Test << parameters.firefoxVersion >>
-              no_output_timeout: '1m'
-              command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser firefox
+            - run:
+                name: Test << parameters.firefoxVersion >>
+                no_output_timeout: "1m"
+                command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser firefox
 
       - when:
           condition: << parameters.edgeVersion >>
           steps:
-          - run:
-              name: Test << parameters.edgeVersion >>
-              no_output_timeout: '1m'
-              command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser edge
+            - run:
+                name: Test << parameters.edgeVersion >>
+                no_output_timeout: "1m"
+                command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser edge
 
   test-included-image-versions:
     description: Testing pre-installed versions
@@ -268,15 +270,15 @@ commands:
         description: Cypress included docker image to test
     steps:
       - run:
-          name: 'Print versions'
+          name: "Print versions"
           command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version
 
       - run:
-          name: 'Print info'
+          name: "Print info"
           command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> info
 
       - run:
-          name: 'Check Node version'
+          name: "Check Node version"
           command: |
             export NODE_VERSION=$(docker run --entrypoint node cypress/included:<< parameters.cypressVersion >> --version)
             export CYPRESS_NODE_VERSION=$(docker run --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version --component node)
@@ -305,7 +307,7 @@ commands:
     steps:
       - run:
           name: New test project and testing
-          no_output_timeout: '3m'
+          no_output_timeout: "3m"
           command: |
             node --version
             mkdir test
@@ -332,7 +334,7 @@ commands:
     steps:
       - run:
           name: Testing Kitchensink
-          no_output_timeout: '3m'
+          no_output_timeout: "3m"
           command: |
             node --version
             mkdir test-kitchensink
@@ -371,12 +373,12 @@ jobs:
   lint-markdown:
     executor:
       name: node/default
-      tag: '12'
+      tag: "12"
     steps:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm ci
+            - run: yarn install --frozen-lockfile
       - run: npm run check:markdown
 
   build-base-image:
@@ -425,15 +427,15 @@ jobs:
         description: Image tag to build like "node12.4.0-chrome76"
       chromeVersion:
         type: string
-        default: ''
+        default: ""
         description: Chrome version to expect in the base image, starts with "Google Chrome XX"
       firefoxVersion:
         type: string
-        default: ''
+        default: ""
         description: Firefox version to expect in the base image, starts with "Mozilla Firefox XX"
       edgeVersion:
         type: string
-        default: ''
+        default: ""
         description: Edge version to expect in the base image, starts with "Microsoft Edge XX"
     steps:
       - checkout

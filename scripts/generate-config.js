@@ -426,7 +426,7 @@ jobs:
             - checkout
             - node/with-cache:
                   steps:
-                      - run: npm ci
+                      - run: yarn install --frozen-lockfile
             - run: npm run check:markdown
 
     build-base-image:

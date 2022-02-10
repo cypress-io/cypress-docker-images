@@ -68,7 +68,7 @@ $ docker run -it --entrypoint=cypress cypress/included:9.4.1 --spec cypress/inte
 These images have its entry point set to \`cypress run\`. If you want to run a different command, you need to set \`--entrypoint=cypress\` and specify arguments AFTER the image name. For example, to print the Cypress information using \`cypress info\` command
 
 \`\`\`shell
-$ docker run -it --entrypoint=cypress cypress/included:4.2.0 info
+$ docker run -it --entrypoint=cypress cypress/included:9.4.1 info
 Displaying Cypress info...
 
 Detected 2 browsers installed:

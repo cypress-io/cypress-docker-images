@@ -13,18 +13,12 @@ RUN apt-get update && \
   libgtk-3-0 \
   libnotify-dev \
   libgconf-2-4 \
-  libgbm-dev \
   libnss3 \
   libxss1 \
   libasound2 \
   libxtst6 \
   xauth \
   xvfb \
-  # install text editors
-  vim-tiny \
-  nano \
-  # install emoji font
-  fonts-noto-color-emoji \
   # install Chinese fonts
   # this list was copied from https://github.com/jim3ma/docker-leanote
   fonts-arphic-bkai00mp \
@@ -37,13 +31,10 @@ RUN apt-get update && \
   ttf-wqy-microhei \
   xfonts-wqy \
   # clean up
-  && rm -rf /var/lib/apt/lists/* \
-  && apt-get clean
+  && rm -rf /var/lib/apt/lists/*
 
-RUN npm --version
-
+RUN npm install -g npm@latest
 RUN npm install -g yarn@latest --force
-RUN yarn --version
 
 # a few environment variables to make NPM installs easier
 # good colors for most applications
@@ -52,12 +43,6 @@ ENV TERM xterm
 ENV npm_config_loglevel warn
 # allow installing when the main user is root
 ENV npm_config_unsafe_perm true
-
-# Node libraries
-RUN node -p process.versions
-
-# Show where Node loads required modules from
-RUN node -p 'module.paths'
 
 # versions of local tools
 RUN echo  " node version:    $(node -v) \n" \

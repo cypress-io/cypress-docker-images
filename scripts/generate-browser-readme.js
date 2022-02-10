@@ -81,7 +81,7 @@ FROM cypress/browsers:latest
 FROM cypress/browsers:node13.6.0-chrome80-ff72
 \`\`\``
 
-const generateBaseVersion = baseImageTag.substring(baseImageTag.indexOf("node") + 4, baseImageTag.indexOf("-chrome"))
+const generateBaseVersion = baseImageTag.substring(baseImageTag.indexOf("node") + 4, baseImageTag.indexOf("-"))
 
 const generateBrowserVersion = (version) => {
   return version ? version : `🚫`

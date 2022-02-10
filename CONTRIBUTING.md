@@ -4,7 +4,7 @@ Thanks for taking the time to contribute! :smile:
 
 ## Code of Conduct
 
-All contributors are expecting to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
+All contributors are expecting to abide by our [Code of Conduct](https://github.com/cypress-io/cypress/blob/develop/CODE_OF_CONDUCT.md).
 
 ## Development
 

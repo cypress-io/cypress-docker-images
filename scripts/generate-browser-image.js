@@ -172,4 +172,4 @@ require("child_process").fork(__dirname + "/generate-browser-readme.js", [
 ])
 
 // ASK USER IF THEY WANT TO COMMIT CHANGES
-require("child_process").fork(__dirname, "/generate-commit.js", ["browsers", imageVersion])
+require("child_process").fork(__dirname + "/generate-commit.js", ["browsers", imageVersion])

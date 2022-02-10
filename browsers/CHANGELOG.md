@@ -26,4 +26,9 @@ Name + Tag | Base image | Chrome | Firefox | Edge
 [cypress/browsers:node14.16.0-chrome89-ff77](./node14.16.0-chrome89-ff77) | `cypress/base:14.16.0` | `89.0.4389.72` | `77.0`
 [cypress/browsers:node14.16.0-chrome89-ff86](./node14.16.0-chrome89-ff86) | `cypress/base:14.16.0` | `89.0.4389.72` | `86.0.1`
 [cypress/browsers:node14.17.0-chrome91-ff89](./node14.17.0-chrome91-ff89) | `cypress/base:14.17.0` | `91.0.4472.114` | `89.0.2`
-[cypress/browsers:node16.5.0-chrome94-ff93](./node16.5.0-chrome94-ff93) | `cypress/base:16.5.0` | `94.0.4606.71` | `93.0`
+[cypress/browsers:node16.5.0-chrome94-ff93](./node16.5.0-chrome94-ff93) | `cypress/base:16.5.0` | `94.0.4606.71` | `93.0` 
+[cypress/browsers:node16.5.0-chrome94-ff93](./node16.5.0-chrome94-ff93) | `cypress/base:16.5.0` | `94.0.4606.71 --firefox=93.0 --edge=undefined` | `94.0.4606.71 --firefox=93.0 --edge=undefined` | `94.0.4606.71 --firefox=93.0 --edge=undefined`
+ 
+[cypress/browsers:node16.5.0-chrome94-ff93](./node16.5.0-chrome94-ff93) | `cypress/base:16.5.0` | `94.0.4606.71 --firefox=93.0 --edge=undefined` | `94.0.4606.71 --firefox=93.0 --edge=undefined` | `94.0.4606.71 --firefox=93.0 --edge=undefined`
+ 
+[cypress/browsers:node16.5.0-chrome94-ff93](./node16.5.0-chrome94-ff93) | `cypress/base:16.5.0` | `94.0.4606.71 --firefox=93.0 --edge=undefined` | `94.0.4606.71 --firefox=93.0 --edge=undefined` | `94.0.4606.71 --firefox=93.0 --edge=undefined`

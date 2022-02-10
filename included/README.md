@@ -163,7 +163,7 @@ System Memory: 2.09 GB free 285 MB
 If you want to provide Cypress command line arguments, specify the entry point and the arguments. For example to run tests with recording and parallel mode using custom build ID "abc123" we can use:
 
 ```shell
-$ docker run -it --entrypoint=cypress cypress/included:7.5.0   run --record --parallel --ci-build-id abc123
+$ docker run -it --entrypoint=cypress cypress/included:9.4.1   run --record --parallel --ci-build-id abc123
 ```
 
 ## Keep the container
@@ -173,7 +173,7 @@ Every time you run `docker run` you spawn a new container. That container then s
 If you are running a lot of tests again and again, you might start the container once using Bash as the entrypoint, instead of the default `cypress` command. Then you can execute the `cypress run` or any other commands, while still in the same container:
 
 ```
-$ docker run -it -v $PWD:/e2e -w /e2e   --entrypoint=/bin/bash cypress/included:7.3.0
+$ docker run -it -v $PWD:/e2e -w /e2e   --entrypoint=/bin/bash cypress/included:9.4.1
 # we are inside the container
 # let's run the tests
 root@814ed01841fe:/e2e# cypress run
@@ -276,5 +276,5 @@ docker run --rm  # remove container after finish
 If you want to simulate slow container, run the Docker container with `--cpus` parameter, for example, let's debug the browser detection problems when the CPU is (very) slow:
 
 ```shell
-docker run -it -v $PWD:/e2e -w /e2e --cpus=0.02   -e DEBUG=cypress:launcher --entrypoint=cypress   cypress/included:7.2.0 info
+docker run -it -v $PWD:/e2e -w /e2e --cpus=0.02   -e DEBUG=cypress:launcher --entrypoint=cypress   cypress/included:9.4.1 info
 ```

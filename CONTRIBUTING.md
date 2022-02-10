@@ -24,7 +24,7 @@ It will create a new folder `base/<new version>` and output versions of tools in
 
 The new image will be built and tested on CI and pushed to Docker Hub once the PR is approved and merged to `master`.
 
-**note 1:** we install Chinese fonts in the base image to allow correct testing of [cypress-documentation](https://github.com/cypress-io/cypress-documentation) site that includes several translations of the Cypress docs. Without Chinese fonts the pages have broken rendering.
+**note:** we install Chinese fonts in the base image to allow correct testing of [cypress-documentation](https://github.com/cypress-io/cypress-documentation) site that includes several translations of the Cypress docs. Without Chinese fonts the pages have broken rendering.
 
 ### Add new browser image
 
@@ -32,7 +32,7 @@ To create a new image with the specific browser versions needed to run your cypr
 
 1. run `yarn add:browser <base image tag> --chrome=<chrome version> --firefox=<firefox version> --edge=<edge version>`. For example `yarn add:browser 16.5.0 --chrome=94.0.4606.71 --firefox=93.0`.
 
-This will create new folder `browser/node<node version>-chrome<chrome version>-ff<firefox version>-edge<edge version>` See [generate-browser-image.js](scripts/generate-browser-image.js) file for details.
+This will create a new folder `browser/node<node version>-chrome<chrome version>-ff<firefox version>-edge<edge version>` See [generate-browser-image.js](scripts/generate-browser-image.js) file for details.
 
 2. open a pull request.
 
@@ -44,7 +44,7 @@ To create a new image with Cypress pre-installed globally
 
 **important ⚠️** please use `cypress/browsers` Docker image with the Node version that **matches** the Node version bundled inside Cypress you are about to install there.
 
-This will create new folder `included/<Cypress version>` See [generate-included-image.js](scripts/generate-included-image.js) file for details.
+This will create a new folder `included/<Cypress version>` See [generate-included-image.js](scripts/generate-included-image.js) file for details.
 
 2. open a pull request.
 

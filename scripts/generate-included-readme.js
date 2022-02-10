@@ -1,13 +1,12 @@
 const fs = require("fs")
 const path = require("path")
-const shelljs = require("shelljs")
 const { isStrictSemver } = require("../utils")
 
 const versionTag = process.argv[2]
 const baseImageTag = process.argv[3]
 
 if (!versionTag || !isStrictSemver(versionTag)) {
-  console.error('expected Cypress version argument like "3.8.3"')
+  console.error('expected Cypress version argument like "9.4.1"')
   process.exit(1)
 }
 

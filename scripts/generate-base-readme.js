@@ -1,5 +1,4 @@
 const fs = require("fs")
-const { version } = require("os")
 const path = require("path")
 const { isStrictSemver } = require("../utils")
 

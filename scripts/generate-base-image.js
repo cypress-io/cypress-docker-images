@@ -1,10 +1,8 @@
 // creates new folder base/<version tag> with Dockerfile and README file
 const path = require("path")
 const fs = require("fs")
-const os = require("os")
 const shelljs = require("shelljs")
 const { isStrictSemver } = require("../utils")
-const { camelCase } = require("lodash")
 
 const versionTag = process.argv[2]
 

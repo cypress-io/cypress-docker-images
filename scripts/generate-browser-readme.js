@@ -1,6 +1,5 @@
 const fs = require("fs")
 const path = require("path")
-const shelljs = require("shelljs")
 
 const baseImageTag = process.argv[2]
 const chromeVersion = process.argv

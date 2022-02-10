@@ -3,8 +3,6 @@ const path = require("path")
 const fs = require("fs")
 const shelljs = require("shelljs")
 const { isStrictSemver } = require("../utils")
-const { camelCase } = require("lodash")
-const os = require("os")
 
 const versionTag = process.argv[2]
 const baseImageTag = process.argv[3]

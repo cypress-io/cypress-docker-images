@@ -35,11 +35,14 @@ const imageVersion = `${generateNodeVersionFolderName}${generateChromeVersionFol
 
 const outputFolder = path.join("browsers", imageVersion)
 
+let isExistingFolder = false
+
 if (shelljs.test("-d", outputFolder)) {
-  console.log('removing existing folder "%s"', outputFolder)
+  isExistingFolder = true
+  console.log("Removing existing folder %s", outputFolder)
   shelljs.rm("-rf", outputFolder)
 }
-console.log('creating "%s"', outputFolder)
+console.log("Creating %s \n", outputFolder)
 shelljs.mkdir(outputFolder)
 
 const Dockerfile = `
@@ -113,7 +116,7 @@ ENV npm_config_unsafe_perm true
 
 const dockerFilename = path.join(outputFolder, "Dockerfile")
 fs.writeFileSync(dockerFilename, Dockerfile.trim() + "\n", "utf8")
-console.log("Saves %s", dockerFilename)
+console.log("Saved %s", dockerFilename)
 
 const README = `
 <!--
@@ -156,20 +159,23 @@ docker build -t $LOCAL_NAME .
 const buildFilename = path.join(outputFolder, "build.sh")
 fs.writeFileSync(buildFilename, buildScript.trim() + "\n", "utf8")
 shelljs.chmod("a+x", buildFilename)
-console.log("Saved %s", buildFilename)
+console.log("Saved %s \n", buildFilename)
 
 console.log(
-  `Please add the newly generated folder ${outputFolder} to Git. Build the Docker container locally to make sure it is correct`,
+  `Please add the newly generated folder ${outputFolder} to Git. Build the Docker container locally to make sure it is correct. \n`,
 )
 
 // GENERATE BROWSER CONFIG
 require("child_process").fork(__dirname + "/generate-config.js", ["browser", imageVersion])
 
-// GENERATE BROWSER README & UPDATE CHANGELOG
-require("child_process").fork(__dirname + "/generate-browser-readme.js", [
-  `cypress/browsers:${imageVersion}`,
-  `--chrome=${chromeVersion} --firefox=${firefoxVersion} --edge=${edgeVersion}`,
-])
+// Do not update README and CHANGELOG for browsers folder if folder already existed
+if (!isExistingFolder) {
+  // GENERATE BROWSER README & UPDATE CHANGELOG
+  require("child_process").fork(__dirname + "/generate-browser-readme.js", [
+    `cypress/browsers:${imageVersion}`,
+    `--chrome=${chromeVersion} --firefox=${firefoxVersion} --edge=${edgeVersion}`,
+  ])
+}
 
 // ASK USER IF THEY WANT TO COMMIT CHANGES
 require("child_process").fork(__dirname + "/generate-commit.js", ["browsers", imageVersion])

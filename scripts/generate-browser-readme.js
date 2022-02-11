@@ -2,15 +2,10 @@ const fs = require("fs")
 const path = require("path")
 
 const baseImageTag = process.argv[2]
-const chromeVersion = process.argv
-  .find((arg) => arg.includes("--chrome"))
-  ?.substring(process.argv.find((arg) => arg.includes("--chrome")).indexOf("=") + 1)
-const firefoxVersion = process.argv
-  .find((arg) => arg.includes("--firefox"))
-  ?.substring(process.argv.find((arg) => arg.includes("--firefox")).indexOf("=") + 1)
-const edgeVersion = process.argv
-  .find((arg) => arg.includes("--edge"))
-  ?.substring(process.argv.find((arg) => arg.includes("--edge")).indexOf("=") + 1)
+
+const chromeVersion = process.argv.find((arg) => arg.includes("--chrome"))?.match(/(?<=--chrome=).*?(?=\s|$)/g)[0]
+const firefoxVersion = process.argv.find((arg) => arg.includes("--firefox"))?.match(/(?<=--firefox=).*?(?=\s|$)/g)[0]
+const edgeVersion = process.argv.find((arg) => arg.includes("--edge"))?.match(/(?<=--edge=).*?(?=\s|$)/g)[0]
 
 if (!baseImageTag) {
   console.error('expected base Docker image tag like "cypress/browsers:node12.6.0-chrome77"')
@@ -84,7 +79,7 @@ FROM cypress/browsers:node13.6.0-chrome80-ff72
 const generateBaseVersion = baseImageTag.substring(baseImageTag.indexOf("node") + 4, baseImageTag.indexOf("-"))
 
 const generateBrowserVersion = (version) => {
-  return version ? version : `🚫`
+  return version !== "undefined" ? version : `🚫`
 }
 
 const generateNewChangeVersion = `[${baseImageTag}](./${baseImageTag.substring(

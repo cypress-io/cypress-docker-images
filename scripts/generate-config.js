@@ -7,7 +7,7 @@ const imageType = process.argv[2]
 const versionTag = process.argv[3]
 
 if (!imageType) {
-  console.error("expected an image type like includuded")
+  console.error("expected an image type like included")
   process.exit(1)
 }
 
@@ -604,22 +604,21 @@ const writeConfigFile = (image) => {
   const workflow = formWorkflow(image)
   const text = preamble.trim() + os.EOL + workflow
   fs.writeFileSync("circle.yml", text, "utf8")
-  console.log("generated circle.yml")
+  console.log("Generated circle.yml")
 }
 
 const writeBuildSpecConfigFile = (image) => {
   const workflow = formAwsBuildWorkflow(image)
   const text = awsCodeBuildPreamble.trim() + os.EOL + workflow + os.EOL + awsCodeBuildPostamble.trim()
   fs.writeFileSync("buildspec.yml", text, "utf8")
-  console.log("generated buildspec.yml")
+  console.log("Generated buildspec.yml \n")
 }
 
 const outputFolder = path.join(imageType, versionTag)
-console.log("** outputFolder **", outputFolder)
+console.log("** outputFolder : %s", outputFolder)
 
 const image = splitImageFolderName(outputFolder)
-console.log("** image **")
-console.log(image)
+console.log("** image : %s \n", image)
 
 writeConfigFile(image)
 writeBuildSpecConfigFile(image)

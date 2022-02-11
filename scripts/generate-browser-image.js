@@ -39,10 +39,10 @@ let isExistingFolder = false
 
 if (shelljs.test("-d", outputFolder)) {
   isExistingFolder = true
-  console.log("Removing existing folder %s", outputFolder)
+  console.log("Removing existing folder: %s", outputFolder)
   shelljs.rm("-rf", outputFolder)
 }
-console.log("Creating %s \n", outputFolder)
+console.log("Creating: %s \n", outputFolder)
 shelljs.mkdir(outputFolder)
 
 const Dockerfile = `

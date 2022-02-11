@@ -22,11 +22,14 @@ if (!baseImageTag.startsWith("cypress/browsers:")) {
 }
 
 const outputFolder = path.join("included", versionTag)
+let isExistingFolder = false
+
 if (shelljs.test("-d", outputFolder)) {
-  console.log('removing existing folder "%s"', outputFolder)
+  isExistingFolder = true
+  console.log("Removing existing folder: %s", outputFolder)
   shelljs.rm("-rf", outputFolder)
 }
-console.log('creating "%s"', outputFolder)
+console.log("Creating: %s \n", outputFolder)
 shelljs.mkdir(outputFolder)
 
 const Dockerfile = `
@@ -152,8 +155,11 @@ Please add the newly generated folder ${outputFolder} to Git. Build the Docker c
 // GENERATE INCLUDED CONFIG
 require("child_process").fork(__dirname + "/generate-config.js", ["included", versionTag])
 
-// GENERATE INCLUDED README WITH UPDATE CHANGELOG
-require("child_process").fork(__dirname + "/generate-included-readme.js", [versionTag, baseImageTag])
+// Do not update README and CHANGELOG for browsers folder if folder already existed
+if (!isExistingFolder) {
+  // GENERATE INCLUDED README WITH UPDATE CHANGELOG
+  require("child_process").fork(__dirname + "/generate-included-readme.js", [versionTag, baseImageTag])
+}
 
 // ASK USER IF THEY WANT TO COMMIT CHANGES
 require("child_process").fork(__dirname + "/generate-commit.js", ["included", versionTag])

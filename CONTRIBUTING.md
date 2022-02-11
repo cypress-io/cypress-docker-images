@@ -30,23 +30,25 @@ The new image will be built and tested on CI and pushed to Docker Hub once the P
 
 To create a new image with the specific browser versions needed to run your cypress tests.
 
-1. run `yarn add:browser <base image tag> --chrome=<chrome version> --firefox=<firefox version> --edge=<edge version>`. For example `yarn add:browser 16.5.0 --chrome=94.0.4606.71 --firefox=93.0`.
+1. Run `yarn add:browser <base image tag> --chrome=<chrome version> --firefox=<firefox version> --edge=<edge version>`. For example `yarn add:browser 16.5.0 --chrome=94.0.4606.71 --firefox=93.0`.
 
 This will create a new folder `browser/node<node version>-chrome<chrome version>-ff<firefox version>-edge<edge version>` See [generate-browser-image.js](scripts/generate-browser-image.js) file for details.
 
-2. open a pull request.
+2. Open a pull request.
+
+**Important ⚠️** In order to properly generate a browser image, you must specify a version of Chrome, or a version of Firefox, or a version of Edge.
 
 ### Add new included image
 
 To create a new image with Cypress pre-installed globally
 
-1. run `yarn add:included -- <Cypress version> <base image tag>`. For example `yarn add:included -- 9.4.1 cypress/browsers:node16.13.2-chrome97-ff96`.
+1. Run `yarn add:included -- <Cypress version> <base image tag>`. For example `yarn add:included -- 9.4.1 cypress/browsers:node16.13.2-chrome97-ff96`.
 
-**important ⚠️** please use `cypress/browsers` Docker image with the Node version that **matches** the Node version bundled inside Cypress you are about to install there.
+**Important ⚠️** please use `cypress/browsers` Docker image with the Node version that **matches** the Node version bundled inside Cypress you are about to install there.
 
 This will create a new folder `included/<Cypress version>` See [generate-included-image.js](scripts/generate-included-image.js) file for details.
 
-2. open a pull request.
+2. Open a pull request.
 
 ## Tagging the latest image
 

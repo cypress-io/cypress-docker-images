@@ -1,4 +1,4 @@
-const semver = require('semver')
+const semver = require("semver")
 
 const isStrictSemver = (s) => {
   const parsed = semver.valid(s)
@@ -9,4 +9,8 @@ const isStrictSemver = (s) => {
   return cleaned === s
 }
 
-module.exports = { isStrictSemver }
+const isAValidImageScope = (s) => {
+  return s === "base" || s === "browsers" || s === "included"
+}
+
+module.exports = { isStrictSemver, isAValidImageScope }

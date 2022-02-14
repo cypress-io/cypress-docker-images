@@ -146,13 +146,10 @@ console.log(`
 Please add the newly generated folder ${outputFolder} to Git. Build the Docker container locally to make sure it is correct`)
 
 // GENERATE INCLUDED CONFIG
-require("child_process").fork(__dirname + "/generate-config.js", ["included", versionTag])
+require("child_process").fork(__dirname + "/generate-config.js", ["included", folderName])
 
-// Do not update README and CHANGELOG for browsers folder if folder already existed
-if (!isExistingFolder) {
-  // GENERATE INCLUDED README WITH UPDATE CHANGELOG
-  require("child_process").fork(__dirname + "/generate-included-readme.js", [versionTag, baseImageTag])
-}
+// GENERATE INCLUDED README WITH UPDATE CHANGELOG
+require("child_process").fork(__dirname + "/generate-included-readme.js", [folderName, baseImageTag])
 
 // ASK USER IF THEY WANT TO COMMIT CHANGES
-require("child_process").fork(__dirname + "/generate-commit.js", ["included", versionTag])
+require("child_process").fork(__dirname + "/generate-commit.js", ["included", folderName])

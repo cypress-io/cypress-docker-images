@@ -15,16 +15,13 @@ if (!versionTag || !isStrictSemver(versionTag)) {
 
 let outputFolder = path.join("base", versionTag)
 
-//if same <versionTag> folder already exists, replace it
+//if same <versionTag> folder already exists, add new folder named <versionTag>-<baseImageTag>
 if (shelljs.test("-d", outputFolder)) {
-  console.log('found existing folder "%s"', outputFolder)
-  outputFolder = `${outputFolder}-slim`
-  console.log('creating new folder "%s"', outputFolder)
-  shelljs.mkdir(outputFolder)
-} else {
-  console.log('creating "%s"', outputFolder)
-  shelljs.mkdir(outputFolder)
+  console.log('existing folder "%s" found', outputFolder)
+  outputFolder = path.join("included", `${versionTag}-slim`)
 }
+console.log('creating "%s"', outputFolder)
+shelljs.mkdir(outputFolder)
 
 const folderName = outputFolder.split("/")[1]
 

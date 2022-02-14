@@ -65,35 +65,40 @@ USER root
 RUN node --version
 
 # Chrome dependencies
-RUN apt-get update
-RUN apt-get install -y fonts-liberation libappindicator3-1 xdg-utils
+RUN apt-get update && \
+  apt-get install -y \
+  fonts-liberation \
+  libappindicator3-1 \
+  xdg-utils \
+  wget \
+  # clean up
+  && rm -rf /var/lib/apt/lists/* \
+  && apt-get clean
 
 # install Chrome browser
 RUN wget -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${chromeVersion}-1_amd64.deb" && \
   dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \
   apt-get install -f -y && \
-  rm -f /usr/src/google-chrome-stable_current_amd64.deb
-RUN google-chrome --version
+  rm -f /usr/src/google-chrome-stable_current_amd64.deb \
+  && google-chrome --version
 
 # "fake" dbus address to prevent errors
 # https://github.com/SeleniumHQ/docker-selenium/issues/87
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 # Add zip utility - it comes in very handy
-RUN apt-get update && apt-get install -y zip
-
-# add codecs needed for video playback in firefox
-# https://github.com/cypress-io/cypress-docker-images/issues/150
-RUN apt-get install mplayer -y
-
+RUN apt-get update \
+  && apt-get install -y \
+  bzip2 \
+  # add codecs needed for video playback in firefox
+  # https://github.com/cypress-io/cypress-docker-images/issues/150
+  mplayer
 
 # install Firefox browser
-RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-${firefoxVersion}.tar.bz2 \
+RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$${firefoxVersion}/linux-x86_64/en-US/firefox-${firefoxVersion}.tar.bz2 \
   && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
   && rm /tmp/firefox.tar.bz2 \
   && ln -fs /opt/firefox/firefox /usr/bin/firefox
-
-
 
 # versions of local tools
 RUN echo  " node version:    $(node -v) \\n" \\

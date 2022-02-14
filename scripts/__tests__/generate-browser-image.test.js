@@ -1,8 +1,14 @@
-const fs = require("fs")
-const path = require("path")
-const { exec } = require("child_process")
+import path from "path"
+import { exec } from "child_process"
+
+jest.mock("fs")
+jest.mock("shelljs")
 
 describe("browser image generator", () => {
+  afterAll((done) => {
+    done()
+  })
+
   it("fails if not passed a base node version", async () => {
     const browserImageGenerator = path.join(__dirname, "../generate-browser-image.js")
 

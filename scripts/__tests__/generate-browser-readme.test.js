@@ -1,6 +1,8 @@
-const fs = require("fs")
-const path = require("path")
-const { exec } = require("child_process")
+import path from "path"
+import { exec } from "child_process"
+
+jest.mock("fs")
+jest.mock("shelljs")
 
 describe("browser readme generator", () => {
   it("fails if not passed a base browser image version like 'cypress/browsers:node12.6.0-chrome77'", async () => {

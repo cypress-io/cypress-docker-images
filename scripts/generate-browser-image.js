@@ -1,6 +1,7 @@
 const path = require("path")
 const fs = require("fs")
 const shelljs = require("shelljs")
+const { isStrictSemver } = require("../utils")
 
 const nodeVersion = process.argv[2]
 const chromeVersion = process.argv
@@ -13,7 +14,7 @@ const edgeVersion = process.argv
   .find((arg) => arg.includes("--edge"))
   ?.substring(process.argv.find((arg) => arg.includes("--edge")).indexOf("=") + 1)
 
-if (!nodeVersion) {
+if (!nodeVersion || !isStrictSemver(nodeVersion)) {
   console.error("expected a base image version like 16.5.0")
   process.exit(1)
 }

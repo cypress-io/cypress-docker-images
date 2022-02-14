@@ -1,6 +1,8 @@
-const fs = require("fs")
-const path = require("path")
-const { exec } = require("child_process")
+import path from "path"
+import { exec } from "child_process"
+
+jest.mock("fs")
+jest.mock("shelljs")
 
 describe("base readme generator", () => {
   it("fails if not passed a semantic version", async () => {

@@ -144,10 +144,10 @@ console.log(`
 Please add the newly generated folder ${outputFolder} to Git. Build the Docker container locally to make sure it is correct`)
 
 // Generate Base Config
-require("child_process").fork(__dirname + "/generate-config.js", ["base", versionTag])
+require("child_process").fork(__dirname + "/generate-config.js", ["base", folderName])
 
 // GENERATE BASE README WITH UPDATED CHANGELOG
-require("child_process").fork(__dirname + "/generate-base-readme.js", [versionTag])
+require("child_process").fork(__dirname + "/generate-base-readme.js", [versionTag, folderName])
 
 // ASK USER IF THEY WANT TO COMMIT CHANGES
-require("child_process").fork(__dirname + "/generate-commit.js", ["base", versionTag])
+require("child_process").fork(__dirname + "/generate-commit.js", ["base", folderName])

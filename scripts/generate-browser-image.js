@@ -1,6 +1,7 @@
 const path = require("path")
 const fs = require("fs")
 const shelljs = require("shelljs")
+const { isStrictSemver } = require("../utils")
 
 const nodeVersion = process.argv[2]
 const chromeVersion = process.argv
@@ -13,7 +14,7 @@ const edgeVersion = process.argv
   .find((arg) => arg.includes("--edge"))
   ?.substring(process.argv.find((arg) => arg.includes("--edge")).indexOf("=") + 1)
 
-if (!nodeVersion) {
+if (!nodeVersion || !isStrictSemver(nodeVersion)) {
   console.error("expected a base image version like 16.5.0")
   process.exit(1)
 }
@@ -87,7 +88,7 @@ RUN apt-get install mplayer -y
 
 
 # install Firefox browser
-RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-${firefoxVersion}.tar.bz2 \
+RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$${firefoxVersion}/linux-x86_64/en-US/firefox-${firefoxVersion}.tar.bz2 \
   && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
   && rm /tmp/firefox.tar.bz2 \
   && ln -fs /opt/firefox/firefox /usr/bin/firefox

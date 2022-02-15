@@ -71,7 +71,9 @@ $ docker push cypress/base:latest
 
 ## Bonus: smaller images
 
-Pull request [#83](https://github.com/cypress-io/cypress-docker-images/pull/83) shows how to create smaller Docker images. Follow that PR's advice when creating new images.
+By default, the base image is `buster-slim`. This dramatically decreases the size of all images. Other optimizations have been made to the Dockerfiles per Docker's recommendations.
+
+In order to allow for older images to be smaller, you can run the scripts above using existing node versions, Cypress versions, and browser versions. The scripts will recognize that a folder already exists, and append `-slim` to the folder. You can then update the folder name in your workflow, and use the images like you already were.
 
 To see the final size of an image, you can use command [`docker images`](https://docs.docker.com/engine/reference/commandline/images/)
 
@@ -79,8 +81,6 @@ To see the final size of an image, you can use command [`docker images`](https:/
 $ docker images --format "{{.Tag}} {{.Size}}" cypress/base:11.13.0
 11.13.0 969MB
 ```
-
-I would put this information into the image folder README file.
 
 ## Bonus 2: tool versions
 

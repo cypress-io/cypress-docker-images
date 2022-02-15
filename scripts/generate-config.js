@@ -53,7 +53,7 @@ const preamble = `
 version: 2.1
 
 orbs:
-    node: circleci/node@5.0.0
+    node: circleci/node@1.1
 
 commands:
     halt-on-branch:
@@ -126,7 +126,6 @@ commands:
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
-                      WORKDIR /app
                       RUN npm init --yes
                       RUN npm install --save-dev cypress cypress-expect
                       RUN ./node_modules/.bin/cypress verify
@@ -146,7 +145,6 @@ commands:
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
                       ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
-                      WORKDIR /app
                       RUN npm init --yes
                       RUN npm install --save-dev cypress cypress-expect
                       RUN ./node_modules/.bin/cypress verify
@@ -430,7 +428,8 @@ jobs:
             - run: npm run check:markdown
 
     build-base-image:
-        machine: true
+        machine:
+            image: ubuntu-2004:202111-02
         parameters:
             dockerName:
                 type: string
@@ -462,7 +461,8 @@ jobs:
                   imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
     build-browser-image:
-        machine: true
+        machine:
+            image: ubuntu-2004:202111-02
         parameters:
             dockerName:
                 type: string
@@ -502,7 +502,8 @@ jobs:
                   imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
     build-included-image:
-        machine: true
+        machine:
+            image: ubuntu-2004:202111-02
         parameters:
             dockerName:
                 type: string

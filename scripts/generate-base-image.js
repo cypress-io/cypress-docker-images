@@ -18,7 +18,7 @@ let outputFolder = path.join("base", versionTag)
 //if same <versionTag> folder already exists, add new folder named <versionTag>-<baseImageTag>
 if (shelljs.test("-d", outputFolder)) {
   console.log('existing folder "%s" found', outputFolder)
-  outputFolder = path.join("included", `${versionTag}-slim`)
+  outputFolder = path.join("base", `${versionTag}-slim`)
 }
 console.log('creating "%s"', outputFolder)
 shelljs.mkdir(outputFolder)

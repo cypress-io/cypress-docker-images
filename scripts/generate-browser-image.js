@@ -22,6 +22,7 @@ const generateNodeVersionFolderName = `node${nodeVersion}`
 const generateChromeVersionFolderName = chromeVersion
   ? `-chrome${chromeVersion.substring(0, chromeVersion.indexOf("."))}`
   : ""
+
 const generateFirefoxVersionFolderName = firefoxVersion
   ? `-ff${firefoxVersion.substring(0, firefoxVersion.indexOf("."))}`
   : ""
@@ -29,12 +30,11 @@ const generateEdgeVersionFolderName = edgeVersion ? `-edge${edgeVersion.substrin
 const imageVersion = `${generateNodeVersionFolderName}${generateChromeVersionFolderName}${generateFirefoxVersionFolderName}${generateEdgeVersionFolderName}`
 
 let outputFolder = path.join("browsers", imageVersion)
-let isExistingFolder = false
 
-//if same <versionTag> folder already exists, add new folder named <versionTag>-<baseImageTag>
+//if same <imageVersion> folder already exists, add new folder named <imageVersion>-<baseImageTag>
 if (shelljs.test("-d", outputFolder)) {
   console.log('existing folder "%s" found', outputFolder)
-  outputFolder = path.join("included", `${versionTag}-slim`)
+  outputFolder = path.join("browsers", `${imageVersion}-slim`)
 }
 console.log('creating "%s"', outputFolder)
 shelljs.mkdir(outputFolder)
@@ -53,47 +53,46 @@ const Dockerfile = `
 #   docker build -t cypress/browsers:${folderName} .
 #
 #
-FROM cypress/base${nodeVersion}
+FROM cypress/base:${nodeVersion}
 
 USER root
 
 RUN node --version
 
 # Chrome dependencies
-RUN apt-get update && \
-  apt-get install -y \
-  fonts-liberation \
-  libappindicator3-1 \
-  xdg-utils \
-  wget \
+RUN apt-get update && \\
+  apt-get install -y \\
+  fonts-liberation \\
+  libappindicator3-1 \\
+  xdg-utils \\
+  wget \\
   # clean up
-  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /var/lib/apt/lists/* \\
   && apt-get clean
 
 # install Chrome browser
-RUN wget -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${chromeVersion}-1_amd64.deb" && \
-  dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \
-  apt-get install -f -y && \
-  rm -f /usr/src/google-chrome-stable_current_amd64.deb \
-  && google-chrome --version
+RUN wget -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${chromeVersion}-1_amd64.deb" && \\
+  dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \\
+  apt-get install -f -y && \\
+  rm -f /usr/src/google-chrome-stable_current_amd64.deb \\
 
 # "fake" dbus address to prevent errors
 # https://github.com/SeleniumHQ/docker-selenium/issues/87
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 # Add zip utility - it comes in very handy
-RUN apt-get update \
-  && apt-get install -y \
-  bzip2 \
+RUN apt-get update && \\
+  apt-get install -y \\
+  bzip2 \\
   # add codecs needed for video playback in firefox
   # https://github.com/cypress-io/cypress-docker-images/issues/150
   mplayer
 
 # install Firefox browser
-RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$${firefoxVersion}/linux-x86_64/en-US/firefox-${firefoxVersion}.tar.bz2 \
-  && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
-  && rm /tmp/firefox.tar.bz2 \
-  && ln -fs /opt/firefox/firefox /usr/bin/firefox
+RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/${firefoxVersion}/linux-x86_64/en-US/firefox-${firefoxVersion}.tar.bz2 && \\
+  tar -C /opt -xjf /tmp/firefox.tar.bz2 && \\
+  rm /tmp/firefox.tar.bz2 && \\
+  ln -fs /opt/firefox/firefox /usr/bin/firefox
 
 # versions of local tools
 RUN echo  " node version:    $(node -v) \\n" \\
@@ -108,11 +107,11 @@ RUN echo  " node version:    $(node -v) \\n" \\
 
 # a few environment variables to make NPM installs easier
 # good colors for most applications
-ENV TERM xterm
+ENV TERM xterm \\
 # avoid million NPM install messages
-ENV npm_config_loglevel warn
+  npm_config_loglevel warn \\
 # allow installing when the main user is root
-ENV npm_config_unsafe_perm true
+  npm_config_unsafe_perm true
 `
 
 const dockerFilename = path.join(outputFolder, "Dockerfile")

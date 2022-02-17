@@ -20,9 +20,10 @@ Each tag is in a sub folder, named after Node version or OS it is built on.
 
 Image \`cypress/base:12\` is tagged [\`latest\`](https://hub.docker.com/r/cypress/base/tags/)
 
-> **Note** All Base Images install the latest versions of NPM & Yarn`
+> **Note** All Base Images install the latest versions of NPM & Yarn.
+`
 
-const ReadMeDockerInstructions = `
+const ReadMeInstructions = `
 ## ⚠️ Node.js Support
 
 Cypress 4.0+ no longer supports Node.js versions below 8.0.0. See our [Migration Guide](https://on.cypress.io/migration-guide#Node-js-8-support).
@@ -65,11 +66,11 @@ fs.readFile(changeLogPath, (err, data) => {
     console.error(err)
   }
 
-  const updatedChangeLog = `${data.toString()} \n${generateNewChangeVersion}`
+  const updatedChangeLog = `${data.toString()}${generateNewChangeVersion}`
   fs.writeFileSync(changeLogPath, updatedChangeLog.trim() + "\n", "utf8")
   console.log("Saved CHANGELOG.md at %s", changeLogPath)
 
-  const readme = `${ReadMeDockerPulls} \n ${updatedChangeLog} \n ${ReadMeDockerInstructions}`
+  const readme = `${ReadMeDockerPulls} \n ${updatedChangeLog} \n ${ReadMeInstructions}`
   fs.writeFileSync(readmePath, readme.trim() + "\n", "utf8")
   console.log("Saved README.md at %s", readmePath)
 })

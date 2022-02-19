@@ -67,3 +67,4 @@
 | cypress/base:ubuntu18-node12.14.1 | 12.14.1 | Ubuntu 18.04.3   | [ubuntu18-node12.14.1](ubuntu18-node12.14.1) | 6.13.6      | 1.21.1       |
 | cypress/base:ubuntu19-node12.14.1 | 12.14.1 | Ubuntu 19.0.4    | [ubuntu19-node12.14.1](ubuntu19-node12.14.1) | 6.13.6      | 1.21.1       |
 | cypress/base:manjaro-node14.12.0  | 14.12.0 | Manjaro          | [manjaro-14.12.0](manjaro-14.12.0)           | 6.14.8      | 1.22.10      | 
+| cypress/base:14.19.0 | 14.19.0 | Debian | [/14.19.0](14.19.0) | `🚫` | `🚫` | `🚫` |

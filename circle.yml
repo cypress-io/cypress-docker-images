@@ -77,6 +77,7 @@ commands:
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
+                      WORKDIR /app
                       RUN npm init --yes
                       RUN npm install --save-dev cypress cypress-expect
                       RUN ./node_modules/.bin/cypress verify
@@ -95,6 +96,7 @@ commands:
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
+                      WORKDIR /app
                       ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
                       RUN npm init --yes
                       RUN npm install --save-dev cypress cypress-expect
@@ -225,6 +227,7 @@ commands:
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
+                      WORKDIR /app
                       ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
                       RUN npm init --yes
                       RUN npm install --save-dev cypress
@@ -497,5 +500,5 @@ workflows:
     build-base-images:
         jobs:
             - build-base-image:
-                name: "base 14.19.0"
-                dockerTag: "14.19.0"
+                name: "base 16.14.0"
+                dockerTag: "16.14.0"

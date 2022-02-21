@@ -6,7 +6,7 @@ env:
 batch:
     fast-fail: false
     build-list:
-        - identifier: base14190
+        - identifier: base16140
           env:
             image: aws/codebuild/standard:5.0
             type: LINUX_CONTAINER
@@ -15,7 +15,7 @@ batch:
             variables:
                 IMAGE_REPO_NAME: "cypress/base"
                 IMAGE_DIR: "base"
-                IMAGE_TAG: "14.19.0"
+                IMAGE_TAG: "16.14.0"
 
 phases:
     pre_build:

@@ -58,6 +58,7 @@
 | cypress/base:16.4.0               | 16.4.0  | Debian 10.9      | [/16.4.0](16.4.0)                            | 7.10.0      | 1.22.10      | [1](#note1) |
 | cypress/base:16.5.0               | 16.5.0  | Debian 10.9      | [/16.5.0](16.5.0)                            | 7.10.0      | 1.22.10      | [1](#note1) |
 | cypress/base:16.13.0              | 16.13.0 | Debian 10.9      | [/16.13.0](16.13.0)                          | 7.10.0      | 1.22.10      | [1](#note1) |
+| cypress/base:16.14.0              | 16.14.0 | Debian 10.11     | [/16.14.0](16.14.0)                          | 8.3.1       | 1.22.17      | [1](#note1) |
 | cypress/base:17.3.0               | 17.3.0  | Debian 10.9      | [/17.3.0](17.3.0)                            | 8.3.0       | 1.22.17      | [1](#note1) |
 | cypress/base:centos7              | 6       | CentOS           | [/centos7](centos7)                          | 3.10.10     | 🚫           |
 | cypress/base:centos7-12.4.0       | 12.4.0  | CentOS           | [/centos7](centos7)                          | 6.9.0       | 1.16.0       |

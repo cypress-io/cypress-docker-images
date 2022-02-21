@@ -533,7 +533,7 @@ jobs:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
             # enable docker experimental features
-            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+            sudo bash -c 'echo "{\"experimental\": true}" > /etc/docker/daemon.json'
             sudo service docker restart
             docker build --squash -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: base/<< parameters.dockerTag >>
@@ -576,7 +576,7 @@ jobs:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
             # enable docker experimental features
-            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+            sudo bash -c 'echo "{\"experimental\": true}" > /etc/docker/daemon.json'
             sudo service docker restart
             docker build --squash -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: browsers/<< parameters.dockerTag >>
@@ -607,7 +607,7 @@ jobs:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
             # enable docker experimental features
-            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+            sudo bash -c 'echo "{\"experimental\": true}" > /etc/docker/daemon.json'
             sudo service docker restart
             docker build --squash -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: included/<< parameters.dockerTag >>

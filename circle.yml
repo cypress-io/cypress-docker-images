@@ -75,6 +75,7 @@ commands:
                   command: |
                       docker build -t cypress/test -\<<EOF
                       FROM << parameters.imageName >>
+                      WORKDIR /app
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
                       RUN npm init --yes
@@ -93,6 +94,7 @@ commands:
                   command: |
                       docker build -t cypress/test-kitchensink -\<<EOF
                       FROM << parameters.imageName >>
+                      WORKDIR /app
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
                       ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1

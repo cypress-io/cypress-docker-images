@@ -530,13 +530,11 @@ jobs:
       - halt-if-docker-image-exists:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
-          name: enable docker experimental features << parameters.dockerName >>:<< parameters.dockerTag >>
-          coommand: |
-            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
-            sudo service docker restart
-      - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
+            # enable docker experimental features
+            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+            sudo service docker restart
             docker build --squash -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: base/<< parameters.dockerTag >>
 
@@ -575,13 +573,11 @@ jobs:
       - halt-if-docker-image-exists:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
-          name: enable docker experimental features << parameters.dockerName >>:<< parameters.dockerTag >>
-          coommand: |
-            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
-            sudo service docker restart
-      - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
+            # enable docker experimental features
+            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+            sudo service docker restart
             docker build --squash -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: browsers/<< parameters.dockerTag >>
       - test-browser-image:
@@ -608,13 +604,11 @@ jobs:
       - halt-if-docker-image-exists:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
-          name: enable docker experimental features << parameters.dockerName >>:<< parameters.dockerTag >>
-          coommand: |
-            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
-            sudo service docker restart
-      - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
+            # enable docker experimental features
+            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+            sudo service docker restart
             docker build --squash -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: included/<< parameters.dockerTag >>
 

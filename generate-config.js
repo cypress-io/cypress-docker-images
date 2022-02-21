@@ -530,7 +530,7 @@ jobs:
       - halt-if-docker-image-exists:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
-          name: enable docker experimental features
+          name: enable docker experimental features << parameters.dockerName >>:<< parameters.dockerTag >>
           coommand: |
             sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
             sudo service docker restart
@@ -575,7 +575,7 @@ jobs:
       - halt-if-docker-image-exists:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
-          name: enable docker experimental features
+          name: enable docker experimental features << parameters.dockerName >>:<< parameters.dockerTag >>
           coommand: |
             sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
             sudo service docker restart
@@ -608,7 +608,7 @@ jobs:
       - halt-if-docker-image-exists:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
-          name: enable docker experimental features
+          name: enable docker experimental features << parameters.dockerName >>:<< parameters.dockerTag >>
           coommand: |
             sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
             sudo service docker restart

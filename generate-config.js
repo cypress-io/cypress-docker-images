@@ -530,9 +530,14 @@ jobs:
       - halt-if-docker-image-exists:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
+          name: enable docker experimental features
+          coommand: |
+            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+            sudo service docker restart
+      - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
-            docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
+            docker build --squash -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: base/<< parameters.dockerTag >>
 
       - test-base-image:
@@ -570,9 +575,14 @@ jobs:
       - halt-if-docker-image-exists:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
+          name: enable docker experimental features
+          coommand: |
+            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+            sudo service docker restart
+      - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
-            docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
+            docker build --squash -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: browsers/<< parameters.dockerTag >>
       - test-browser-image:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
@@ -598,9 +608,14 @@ jobs:
       - halt-if-docker-image-exists:
           imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
       - run:
+          name: enable docker experimental features
+          coommand: |
+            sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+            sudo service docker restart
+      - run:
           name: building Docker image << parameters.dockerName >>:<< parameters.dockerTag >>
           command: |
-            docker build -t << parameters.dockerName >>:<< parameters.dockerTag >> .
+            docker build --squash -t << parameters.dockerName >>:<< parameters.dockerTag >> .
           working_directory: included/<< parameters.dockerTag >>
 
       - test-included-image-versions:

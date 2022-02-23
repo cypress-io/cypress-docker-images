@@ -8,7 +8,9 @@ Each tag is in a sub folder, named after Node version or OS it is built on.
 
 Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/base/tags/)
 
-| Name + Tag                        | Node    | Operating System | Link                                         | NPM version | Yarn version | Notes       |
+> **Note** All Base Images install the latest versions of NPM & Yarn.
+ 
+ | Name + Tag                        | Node    | Operating System | Link                                         | NPM version | Yarn version | Notes       |
 | --------------------------------- | ------- | ---------------- | -------------------------------------------- | ----------- | ------------ | ----------- |
 | cypress/base:6                    | 6       | Debian           | [/6](6)                                      | 3.10.10     | 1.6.0        |
 | cypress/base:8                    | 8       | Debian           | [/8](8)                                      | 6.4.1       | 1.9.4        |
@@ -68,7 +70,7 @@ Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/ba
 | cypress/base:16.4.0               | 16.4.0  | Debian 10.9      | [/16.4.0](16.4.0)                            | 7.10.0      | 1.22.10      | [1](#note1) |
 | cypress/base:16.5.0               | 16.5.0  | Debian 10.9      | [/16.5.0](16.5.0)                            | 7.10.0      | 1.22.10      | [1](#note1) |
 | cypress/base:16.13.0              | 16.13.0 | Debian 10.9      | [/16.13.0](16.13.0)                          | 7.10.0      | 1.22.10      | [1](#note1) |
-| cypress/base:16.13.2              | 16.13.2 | Debian 10.9      | [/16.13.2](16.13.2)                          | 8.1.2       | 1.22.17      | [1](#note1) |
+| cypress/base:16.14.0              | 16.14.0 | Debian 10.11     | [/16.14.0](16.14.0)                          | 8.3.1       | 1.22.17      | 
 | cypress/base:17.3.0               | 17.3.0  | Debian 10.9      | [/17.3.0](17.3.0)                            | 8.3.0       | 1.22.17      | [1](#note1) |
 | cypress/base:centos7              | 6       | CentOS           | [/centos7](centos7)                          | 3.10.10     | 🚫           |
 | cypress/base:centos7-12.4.0       | 12.4.0  | CentOS           | [/centos7](centos7)                          | 6.9.0       | 1.16.0       |
@@ -77,9 +79,9 @@ Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/ba
 | cypress/base:ubuntu16-12.13.1     | 12.13.1 | Ubuntu           | [/ubuntu16-12.13.1](ubuntu16-12.13.1)        | 6.12.1      | 🚫           |
 | cypress/base:ubuntu18-node12.14.1 | 12.14.1 | Ubuntu 18.04.3   | [ubuntu18-node12.14.1](ubuntu18-node12.14.1) | 6.13.6      | 1.21.1       |
 | cypress/base:ubuntu19-node12.14.1 | 12.14.1 | Ubuntu 19.0.4    | [ubuntu19-node12.14.1](ubuntu19-node12.14.1) | 6.13.6      | 1.21.1       |
-| cypress/base:manjaro-node14.12.0  | 14.12.0 | Manjaro          | [manjaro-14.12.0](manjaro-14.12.0)           | 6.14.8      | 1.22.10      |
-
-> **Note** All Base Images install the latest versions of NPM & Yarn
+| cypress/base:manjaro-node14.12.0  | 14.12.0 | Manjaro          | [manjaro-14.12.0](manjaro-14.12.0)           | 6.14.8      | 1.22.10      | 
+| cypress/base:14.19.0              | 14.19.0 | Debian           | [/14.19.0](14.19.0)                          | 6.14.16     | 1.22.17      |
+ 
 ## ⚠️ Node.js Support
 
 Cypress 4.0+ no longer supports Node.js versions below 8.0.0. See our [Migration Guide](https://on.cypress.io/migration-guide#Node-js-8-support).

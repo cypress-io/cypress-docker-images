@@ -63,24 +63,29 @@ RUN node --version
 RUN apt-get update && \\
   apt-get install -y \\
   fonts-liberation \\
-  libappindicator3-1 \\
   xdg-utils \\
   wget \\
   # clean up
   && rm -rf /var/lib/apt/lists/* \\
   && apt-get clean
 
+# install libappindicator3-1 - not included with Debian 11
+RUN wget --no-verbose /usr/src/libappindicator3-1_0.4.92-7_amd64.deb "http://ftp.us.debian.org/debian/pool/main/liba/libappindicator/libappindicator3-1_0.4.92-7_amd64.deb" && \\
+  dpkg -i /usr/src/libappindicator3-1_0.4.92-7_amd64.deb ; \\
+  apt-get install -f -y && \\
+  rm -f /usr/src/libappindicator3-1_0.4.92-7_amd64.deb
+
 # install Chrome browser
 RUN wget --no-verbose -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${chromeVersion}-1_amd64.deb" && \\
   dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \\
   apt-get install -f -y && \\
-  rm -f /usr/src/google-chrome-stable_current_amd64.deb \\
+  rm -f /usr/src/google-chrome-stable_current_amd64.deb
 
 # "fake" dbus address to prevent errors
 # https://github.com/SeleniumHQ/docker-selenium/issues/87
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
-# Add zip utility - it comes in very handy
+# firefox dependencies
 RUN apt-get update && \\
   apt-get install -y \\
   bzip2 \\

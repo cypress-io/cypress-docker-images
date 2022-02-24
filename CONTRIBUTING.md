@@ -71,7 +71,7 @@ $ docker push cypress/base:latest
 
 ## Bonus: smaller images
 
-By default, the base image is `buster-slim`. This dramatically decreases the size of all images. Other optimizations have been made to the Dockerfiles per Docker's recommendations.
+By default, the base image is `bullseye-slim`. This dramatically decreases the size of all images. Other optimizations have been made to the Dockerfiles per Docker's recommendations.
 
 In order to allow for older images to be smaller, you can run the scripts above using existing node versions, Cypress versions, and browser versions. The scripts will recognize that a folder already exists, and append `-slim` to the folder. You can then update the folder name in your workflow, and use the images like you already were.
 

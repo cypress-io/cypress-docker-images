@@ -6,7 +6,7 @@ const { isStrictSemver } = require("../utils")
 
 const versionTag = process.argv[2]
 
-const baseNodeImage = "buster-slim"
+const baseNodeImage = "bullseye-slim"
 
 if (!versionTag || !isStrictSemver(versionTag)) {
   console.error('expected version tag argument like "13.6.0"')

@@ -50,6 +50,12 @@ This will create a new folder `included/<Cypress version>` See [generate-include
 
 2. Open a pull request.
 
+#### Handling included images with different node versions
+
+If there is already a `cypress/included` image with a specific version, but you need a different Node version or browser version, just create a new included image per the instructions above and a folder with the name `<Cypress version>-<base image tag> will be created.`
+
+**Important ⚠️** This only applies if there is an existing `cypress/included` image with the same version.
+
 ## Tagging the latest image
 
 We build individual base images that match Node versions: `10.18.1`, `12.12.0`, `12.18.2`, etc. We also tag some of the images with major version: `base:10`, `base:12`. We also tag one image `base:latest`. In general, you should use the explicit version like `base:12.18.0` because it guarantees that the Docker image will never be suddenly updated.
@@ -71,9 +77,11 @@ $ docker push cypress/base:latest
 
 ## Bonus: smaller images
 
-By default, the base image is `bullseye-slim`. This dramatically decreases the size of all images. Other optimizations have been made to the Dockerfiles per Docker's recommendations.
+By default, the current base image is `bullseye-slim`. This dramatically decreases the size of all images. Other optimizations have been made to the Dockerfiles per Docker's recommendations.
 
 In order to allow for older images to be smaller, you can run the scripts above using existing node versions, Cypress versions, and browser versions. The scripts will recognize that a folder already exists, and append `-slim` to the folder. You can then update the folder name in your workflow, and use the images like you already were.
+
+Node versions less than or equal to Node 14 will use the `buster-slim` base image if they are recreated. Older images may still rely on `buster`.
 
 To see the final size of an image, you can use command [`docker images`](https://docs.docker.com/engine/reference/commandline/images/)
 

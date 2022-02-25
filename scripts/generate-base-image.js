@@ -6,12 +6,17 @@ const { isStrictSemver } = require("../utils")
 
 const versionTag = process.argv[2]
 
-const baseNodeImage = "bullseye-slim"
-
 if (!versionTag || !isStrictSemver(versionTag)) {
   console.error('expected version tag argument like "13.6.0"')
   process.exit(1)
 }
+
+// Used for <= Node 14
+const busterNodeImage = "buster-slim"
+// Only used for >= Node 16 images
+const bullseyeNodeImage = "bullseye-slim"
+const usesBusterImage = parseInt(versionTag.split(".")[0]) <= 14 ? true : false
+console.log("🚀 ~ file: generate-base-image.js ~ line 19 ~ usesBusterImage", usesBusterImage)
 
 let outputFolder = path.join("base", versionTag)
 
@@ -33,7 +38,7 @@ const Dockerfile = `
 # build it with command
 #   docker build -t cypress/base:${folderName} .
 #
-FROM node:${versionTag}-${baseNodeImage}
+FROM node:${versionTag}-${usesBusterImage ? busterNodeImage : bullseyeNodeImage}
 
 RUN apt-get update && \\
   apt-get install --no-install-recommends -y \\

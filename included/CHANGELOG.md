@@ -73,3 +73,4 @@ Name + Tag | Base image
 [cypress/included:9.1.1](9.1.1) | `cypress/browsers:node16.5.0-chrome94-ff93`
 [cypress/included:9.2.0](9.2.0) | `cypress/browsers:node16.5.0-chrome94-ff93`    
 [cypress/included:9.5.0](9.5.0) | `cypress/browsers:node16.5.0-chrome97-ff96`
+[cypress/included:9.5.1](9.5.1) | `cypress/browsers:node16.5.0-chrome97-ff96`

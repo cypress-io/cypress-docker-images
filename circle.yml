@@ -64,9 +64,9 @@ commands:
             RUN ./node_modules/.bin/cypress verify
             RUN npx @bahmutov/cly init
             # run Cypress by itself
-            RUN ./node_modules/.bin/cypress run
+            RUN ./node_modules/.bin/cypress run --config video=false
             # run Cypress using module API and confirm number of passing tests
-            RUN ./node_modules/.bin/cypress-expect run --passing 1
+            RUN ./node_modules/.bin/cypress-expect run --passing 1 --config video=false
             EOF
 
       - run:
@@ -84,7 +84,7 @@ commands:
             RUN ./node_modules/.bin/cypress verify
             RUN echo '{}' > cypress.json
             # run Cypress and confirm minimum number of passing tets
-            RUN ./node_modules/.bin/cypress-expect run --min-passing 100
+            RUN ./node_modules/.bin/cypress-expect run --min-passing 100 --config video=false
             EOF
 
   test-browser-image:

@@ -357,9 +357,8 @@ jobs:
       tag: "12"
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: yarn install --frozen-lockfile
+      - node/install-packages:
+          override-ci-command: yarn install --frozen-lockfile
       - run: npm run check:markdown
 
   build-base-image:

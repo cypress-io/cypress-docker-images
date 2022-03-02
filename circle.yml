@@ -497,8 +497,8 @@ workflows:
     lint:
         jobs:
             - lint-markdown
-    build-included-images:
+    build-base-images:
         jobs:
-            - build-included-image:
-                name: "included 9.5.1"
-                dockerTag: "9.5.1"
+            - build-base-image:
+                name: "base 16.14.0-slim"
+                dockerTag: "16.14.0-slim"

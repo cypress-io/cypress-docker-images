@@ -6,16 +6,16 @@ env:
 batch:
     fast-fail: false
     build-list:
-        - identifier: base16140Slim
+        - identifier: included951
           env:
             image: aws/codebuild/standard:5.0
             type: LINUX_CONTAINER
             privileged-mode: true
             compute-type: BUILD_GENERAL1_MEDIUM
             variables:
-                IMAGE_REPO_NAME: "cypress/base"
-                IMAGE_DIR: "base"
-                IMAGE_TAG: "16.14.0-slim"
+                IMAGE_REPO_NAME: "cypress/included"
+                IMAGE_DIR: "included"
+                IMAGE_TAG: "9.5.1"
 
 phases:
     pre_build:

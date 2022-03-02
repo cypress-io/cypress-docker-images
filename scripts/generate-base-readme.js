@@ -3,6 +3,7 @@ const path = require("path")
 const { isStrictSemver } = require("../utils")
 
 const versionTag = process.argv[2]
+const folderName = process.argv[3]
 
 if (!versionTag || !isStrictSemver(versionTag)) {
   console.error('expected version tag argument like "16.5.0"')
@@ -56,7 +57,7 @@ nvm ls-remote | grep LTS
 
 **1:** this image includes fonts with Chinese characters`
 
-const generateNewChangeVersion = `| cypress/base:${versionTag} | ${versionTag} | Debian | [/${versionTag}](${versionTag}) | \`🚫\` | \`🚫\` | \`🚫\` |`
+const generateNewChangeVersion = `| cypress/base:${folderName} | ${versionTag} | Debian | [/${versionTag}](${versionTag}) | \`🚫\` | \`🚫\` | \`🚫\` |`
 
 const changeLogPath = path.resolve("base", "CHANGELOG.md")
 const readmePath = path.resolve("base", "README.md")

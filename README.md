@@ -6,9 +6,9 @@ We build three main images, click on the image name to see the available tags an
 
 | Image                        | Default                     | Description                                                                       | Monthly pulls                                                                                                                         |
 | ---------------------------- | --------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| [cypress/base](base)         | `cypress/base:12`           | All operating system dependencies, no Cypress, and no browsers.                   | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/base.svg?maxAge=604800)](https://hub.docker.com/r/cypress/base/)         |
-| [cypress/browsers](browsers) | `cypress/browsers:chrome67` | All operating system dependencies and some browsers.                              | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/browsers.svg?maxAge=604800)](https://hub.docker.com/r/cypress/browsers/) |
-| [cypress/included](included) | `cypress/included:3.2.0`    | All operating system dependencies, Cypress, and some browsers installed globally. | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/included.svg?maxAge=604800)](https://hub.docker.com/r/cypress/included/) |
+| [cypress/base](base)         | `cypress/base:16.13.0`      | All operating system dependencies, no Cypress, and no browsers.                   | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/base.svg?maxAge=604800)](https://hub.docker.com/r/cypress/base/)         |
+| [cypress/browsers](browsers) | `cypress/browsers:chrome69` | All operating system dependencies and some browsers.                              | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/browsers.svg?maxAge=604800)](https://hub.docker.com/r/cypress/browsers/) |
+| [cypress/included](included) | `cypress/included:9.4.1`    | All operating system dependencies, Cypress, and some browsers installed globally. | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/included.svg?maxAge=604800)](https://hub.docker.com/r/cypress/included/) |
 
 Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need.
 

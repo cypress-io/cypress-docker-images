@@ -4,7 +4,7 @@
 version: 2.1
 
 orbs:
-    node: circleci/node@1.1
+    node: circleci/node@5.0.0
 
 commands:
     halt-on-branch:
@@ -49,26 +49,7 @@ commands:
             imageName:
                 type: string
                 description: Cypress base docker image to test
-            checkNodeVersion:
-                type: boolean
-                description: Check if the FROM image name is strict Node version
-                default: true
         steps:
-            - when:
-                  condition: << parameters.checkNodeVersion >>
-                  steps:
-                      - run:
-                            name: confirm image has Node << parameters.nodeVersion >>
-                            # do not run Docker in the interactive mode - adds control characters!
-                            command: |
-                                version=$(docker run << parameters.imageName >> node --version)
-                                if [ "$version" == "<< parameters.nodeVersion >>" ]; then
-                                  echo "Base image has the expected version of Node << parameters.nodeVersion >>";
-                                else
-                                  echo "Problem: base image has unexpected Node version"
-                                  echo "Expected << parameters.nodeVersion >> and got $version"
-                                  exit 1
-                                fi
             - run:
                   name: test image << parameters.imageName >>
                   no_output_timeout: '3m'
@@ -373,12 +354,11 @@ jobs:
     lint-markdown:
         executor:
             name: node/default
-            tag: '12'
+            tag: '12.22'
         steps:
             - checkout
-            - node/with-cache:
-                  steps:
-                      - run: yarn install --frozen-lockfile
+            - node/install-packages:
+                override-ci-command: yarn install --frozen-lockfile
             - run: npm run check:markdown
 
     build-base-image:
@@ -392,10 +372,6 @@ jobs:
             dockerTag:
                 type: string
                 description: Image tag to build like "12.14.0"
-            checkNodeVersion:
-                type: boolean
-                description: Check if the FROM image name is strict Node version
-                default: true
         steps:
             - checkout
             - halt-if-docker-image-exists:
@@ -409,7 +385,6 @@ jobs:
             - test-base-image:
                   nodeVersion: v<< parameters.dockerTag >>
                   imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
-                  checkNodeVersion: << parameters.checkNodeVersion >>
             - halt-on-branch
             - docker-push:
                   imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
@@ -497,8 +472,8 @@ workflows:
     lint:
         jobs:
             - lint-markdown
-    build-included-images:
+    build-base-images:
         jobs:
-            - build-included-image:
-                name: "included 9.5.1"
-                dockerTag: "9.5.1"
+            - build-base-image:
+                name: "base 16.14.0-slim"
+                dockerTag: "16.14.0-slim"

@@ -16,6 +16,10 @@ RUN node --version
 RUN apt-get update && \
   apt-get install -y \
   fonts-liberation \
+  libcurl3 \
+  libcurl4 \
+  libcurl3-gnutls \
+  libcurl3-nss \
   xdg-utils \
   wget \
   # clean up

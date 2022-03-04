@@ -29,7 +29,7 @@ RUN wget --no-verbose /usr/src/libappindicator3-1_0.4.92-7_amd64.deb "http://ftp
   rm -f /usr/src/libappindicator3-1_0.4.92-7_amd64.deb
 
 # install Chrome browser
-RUN wget --no-verbose -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_99.0.4844-1_amd64.deb" && \
+RUN wget --no-verbose -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_99.0.4844.51-1_amd64.deb" && \
   dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \
   apt-get install -f -y && \
   rm -f /usr/src/google-chrome-stable_current_amd64.deb
@@ -66,7 +66,7 @@ RUN echo  " node version:    $(node -v) \n" \
 # a few environment variables to make NPM installs easier
 # good colors for most applications
 ENV TERM xterm \
-# avoid million NPM install messages
+  # avoid million NPM install messages
   npm_config_loglevel warn \
-# allow installing when the main user is root
+  # allow installing when the main user is root
   npm_config_unsafe_perm true

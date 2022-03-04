@@ -28,6 +28,7 @@
 [cypress/browsers:node12.14.1-chrome85-ff81](./node12.14.1-chrome85-ff81) | `cypress/base:12.14.1` | `85.0.4183.121` | `81.0`
 [cypress/browsers:node14.10.1-edge88](./node14.10.1-edge88) | `cypress/base:14.10.1` | 🚫 | 🚫 | `88.0.673.0 dev`
 [cypress/browsers:node14.15.0-chrome86-ff82](./node14.15.0-chrome86-ff82) | `cypress/base:14.15.0` | `86.0.4240.193` | `82.0.3`
+[cypress/browsers:node14.15.0-chrome96-ff94](./node14.15.0-chrome96-ff94) | `cypress/base:14.15.0` | `96.0.4664.45` | `94.0.2`
 [cypress/browsers:node14.17.0-chrome88-ff89](./node14.17.0-chrome88-ff89) | `cypress/base:14.17.0` | `88.0.4324.96` | `89.0.2`
 [cypress/browsers:node14.16.0-chrome89-ff77](./node14.16.0-chrome89-ff77) | `cypress/base:14.16.0` | `89.0.4389.72` | `77.0`
 [cypress/browsers:node14.16.0-chrome89-ff86](./node14.16.0-chrome89-ff86) | `cypress/base:14.16.0` | `89.0.4389.72` | `86.0.1`

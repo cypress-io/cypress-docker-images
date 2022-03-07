@@ -6,16 +6,16 @@ env:
 batch:
     fast-fail: false
     build-list:
-        - identifier: browsernode16140SlimChrome99Ff97
+        - identifier: included951Node16140SlimChrome99Ff97
           env:
             image: aws/codebuild/standard:5.0
             type: LINUX_CONTAINER
             privileged-mode: true
             compute-type: BUILD_GENERAL1_MEDIUM
             variables:
-                IMAGE_REPO_NAME: "cypress/browser"
-                IMAGE_DIR: "browser"
-                IMAGE_TAG: "node16.14.0-slim-chrome99-ff97"
+                IMAGE_REPO_NAME: "cypress/included"
+                IMAGE_DIR: "included"
+                IMAGE_TAG: "9.5.1-node16.14.0-slim-chrome99-ff97"
 
 phases:
     pre_build:

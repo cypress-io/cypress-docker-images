@@ -472,10 +472,8 @@ workflows:
     lint:
         jobs:
             - lint-markdown
-    build-browser-images:
+    build-included-images:
         jobs:
-            - build-browser-image:
-                name: "browser node16.14.0-slim-chrome99-ff97"
-                dockerTag: "node16.14.0-slim-chrome99-ff97"
-                chromeVersion: "Google Chrome 99"
-                firefoxVersion: "Mozilla Firefox 97"
+            - build-included-image:
+                name: "included 9.5.1-node16.14.0-slim-chrome99-ff97"
+                dockerTag: "9.5.1-node16.14.0-slim-chrome99-ff97"

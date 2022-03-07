@@ -77,14 +77,15 @@
 [cypress/included:9.0.0](9.0.0) | `cypress/browsers:node16.5.0-chrome94-ff93`
 [cypress/included:9.1.0](9.1.0) | `cypress/browsers:node16.5.0-chrome94-ff93`
 [cypress/included:9.1.1](9.1.1) | `cypress/browsers:node16.5.0-chrome94-ff93`
-[cypress/included:9.2.0](9.2.0) | `cypress/browsers:node16.5.0-chrome94-ff93` 
 [cypress/included:9.2.0](9.2.0) | `cypress/browsers:node16.5.0-chrome94-ff93`
 [cypress/included:9.2.1](9.2.1) | `cypress/browsers:node16.5.0-chrome94-ff93`
 [cypress/included:9.3.0](9.3.0) | `cypress/browsers:node16.5.0-chrome94-ff93`
 [cypress/included:9.3.1](9.3.1) | `cypress/browsers:node16.5.0-chrome94-ff93`
-[cypress/included:9.4.1](9.4.1) | `cypress/browsers:node16.5.0-chrome94-ff93`   
+[cypress/included:9.4.1](9.4.1) | `cypress/browsers:node16.5.0-chrome94-ff93`
 [cypress/included:9.5.0](9.5.0) | `cypress/browsers:node16.5.0-chrome97-ff96`
-[cypress/included:9.5.1](9.5.1) | `cypress/browsers:node16.5.0-chrome97-ff96` 
+[cypress/included:9.5.1](9.5.1) | `cypress/browsers:node16.5.0-chrome97-ff96`
+ 
+[cypress/included:9.5.1-node16.14.0-slim-chrome99-ff97](9.5.1-node16.14.0-slim-chrome99-ff97) | `cypress/browsers:node16.14.0-slim-chrome99-ff97` 
  
 This image should be enough to run Cypress tests headlessly or in the interactive mode with a single Docker command like this:
 

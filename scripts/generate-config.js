@@ -566,6 +566,7 @@ const formWorkflow = (image) => {
 
 const formAwsBuildWorkflow = (image) => {
   const identifier = camelCase(`${image.name}${image.tag}`)
+  const imageFolder = image.name === "browser" ? "browsers" : image.name
   const job = `        - identifier: ${identifier}
           env:
             image: aws/codebuild/standard:5.0
@@ -573,8 +574,8 @@ const formAwsBuildWorkflow = (image) => {
             privileged-mode: true
             compute-type: BUILD_GENERAL1_MEDIUM
             variables:
-                IMAGE_REPO_NAME: "cypress/${image.name}"
-                IMAGE_DIR: "${image.name}"
+                IMAGE_REPO_NAME: "cypress/${imageFolder}"
+                IMAGE_DIR: "${imageFolder}"
                 IMAGE_TAG: "${image.tag}"\n`
   return job
 }

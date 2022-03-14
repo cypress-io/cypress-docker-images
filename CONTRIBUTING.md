@@ -44,7 +44,7 @@ To create a new image with Cypress pre-installed globally
 
 1. Run `yarn add:included -- <Cypress version> <base image tag>`. For example `yarn add:included -- 9.4.1 cypress/browsers:node16.13.2-chrome97-ff96`.
 
-**Important ⚠️** please use `cypress/browsers` Docker image with the Node version that **matches** the Node version bundled inside Cypress you are about to install there.
+**Important ⚠️** please use `cypress/browsers` Docker image with the latest Node version matching the major version of Node included with Cypress
 
 This will create a new folder `included/<Cypress version>` See [generate-included-image.js](scripts/generate-included-image.js) file for details.
 

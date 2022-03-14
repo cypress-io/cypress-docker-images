@@ -6,7 +6,7 @@ env:
 batch:
     fast-fail: false
     build-list:
-        - identifier: included951Node16140SlimChrome99Ff97
+        - identifier: included952
           env:
             image: aws/codebuild/standard:5.0
             type: LINUX_CONTAINER
@@ -15,7 +15,7 @@ batch:
             variables:
                 IMAGE_REPO_NAME: "cypress/included"
                 IMAGE_DIR: "included"
-                IMAGE_TAG: "9.5.1-node16.14.0-slim-chrome99-ff97"
+                IMAGE_TAG: "9.5.2"
 
 phases:
     pre_build:

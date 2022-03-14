@@ -475,5 +475,5 @@ workflows:
     build-included-images:
         jobs:
             - build-included-image:
-                name: "included 9.5.1-node16.14.0-slim-chrome99-ff97"
-                dockerTag: "9.5.1-node16.14.0-slim-chrome99-ff97"
+                name: "included 9.5.2"
+                dockerTag: "9.5.2"

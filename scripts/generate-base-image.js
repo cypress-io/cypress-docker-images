@@ -77,9 +77,9 @@ RUN apt-get update && \\
 # good colors for most applications
 ENV TERM=xterm \\
 # avoid million NPM install messages
-  npm_config_loglevel=warn \\
+ENV npm_config_loglevel=warn \\
 # allow installing when the main user is root
-  npm_config_unsafe_perm=true
+ENV npm_config_unsafe_perm=true
 
 RUN npm --version \\
   && npm install -g yarn@latest --force \\

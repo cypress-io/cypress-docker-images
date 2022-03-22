@@ -68,6 +68,7 @@ RUN apt-get update && \\
   libcurl3-nss \\
   xdg-utils \\
   wget \\
+  curl \\
   # clean up
   && rm -rf /var/lib/apt/lists/* \\
   && apt-get clean
@@ -117,9 +118,9 @@ RUN echo  " node version:    $(node -v) \\n" \\
 # good colors for most applications
 ENV TERM xterm \\
 # avoid million NPM install messages
-  npm_config_loglevel warn \\
+ENV npm_config_loglevel warn \\
 # allow installing when the main user is root
-  npm_config_unsafe_perm true
+ENV npm_config_unsafe_perm true
 `
 
 const dockerFilename = path.join(outputFolder, "Dockerfile")

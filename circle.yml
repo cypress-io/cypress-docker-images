@@ -475,5 +475,5 @@ workflows:
     build-base-images:
         jobs:
             - build-base-image:
-                name: "base 17.8.0"
-                dockerTag: "17.8.0"
+                name: "base 16.9.1"
+                dockerTag: "16.9.1"

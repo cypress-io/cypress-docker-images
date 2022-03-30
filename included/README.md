@@ -87,7 +87,9 @@
  
 [cypress/included:9.5.1-node16.14.0-slim-chrome99-ff97](9.5.1-node16.14.0-slim-chrome99-ff97) | `cypress/browsers:node16.14.0-slim-chrome99-ff97`
  
-[cypress/included:9.5.2](9.5.2) | `cypress/browsers:node16.14.0-slim-chrome99-ff97` 
+[cypress/included:9.5.2](9.5.2) | `cypress/browsers:node16.14.0-slim-chrome99-ff97`
+ 
+[cypress/included:9.5.3](9.5.3) | `cypress/browsers:node16.14.0-slim-chrome99-ff97` 
  
 This image should be enough to run Cypress tests headlessly or in the interactive mode with a single Docker command like this:
 

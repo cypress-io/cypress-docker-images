@@ -475,5 +475,5 @@ workflows:
     build-included-images:
         jobs:
             - build-included-image:
-                name: "included 9.5.2"
-                dockerTag: "9.5.2"
+                name: "included 9.5.3"
+                dockerTag: "9.5.3"

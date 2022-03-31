@@ -544,21 +544,21 @@ const formWorkflow = (image) => {
       yml =
         yml +
         `
-                chromeVersion: "Google Chrome ${image.tag.substr(image.tag.indexOf("-chrome") + 7, 2)}"`
+                chromeVersion: "Google Chrome ${image.tag.match(/-chrome\d*/)[0].substring(7)}"`
     }
 
     if (image.tag.includes("-ff")) {
       yml =
         yml +
         `
-                firefoxVersion: "Mozilla Firefox ${image.tag.substr(image.tag.indexOf("-ff") + 3, 2)}"`
+                firefoxVersion: "Mozilla Firefox ${image.tag.match(/-ff\d*/)[0].substring(3)}"`
     }
 
     if (image.tag.includes("-edge")) {
       yml =
         yml +
         `
-                edgeVersion: "Microsoft Edge ${image.tag.substr(image.tag.indexOf("-edge") + 5, 2)}"`
+                edgeVersion: "Microsoft Edge ${image.tag.match(/-edge\d*/)[0].substring(5)}"`
     }
   }
   return yml

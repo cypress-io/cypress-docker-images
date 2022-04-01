@@ -33,3 +33,5 @@ Name + Tag | Base image | Chrome | Firefox | Edge
  
  
 [cypress/browsers:node16.13.2-chrome100-ff98](./node16.13.2-chrome100-ff98) | `cypress/base:16.13.2` | `100.0.4896.60` | `98.0.2` | `🚫`
+ 
+[cypress/browsers:node16.14.2-edge99](./node16.14.2-edge99) | `cypress/base:16.14.2` | `🚫` | `🚫` | `99.0.1150.55`

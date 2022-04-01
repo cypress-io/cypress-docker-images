@@ -82,7 +82,8 @@ Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/ba
 | cypress/base:manjaro-node14.12.0  | 14.12.0 | Manjaro          | [manjaro-14.12.0](manjaro-14.12.0)           | 6.14.8      | 1.22.10      | 
 | cypress/base:14.19.0              | 14.19.0 | Debian           | [/14.19.0](14.19.0)                          | 6.14.16     | 1.22.17      |
 | cypress/base:16.14.0-slim | 16.14.0 | Debian | [/16.14.0](16.14.0) | `🚫` | `🚫` | `🚫` |
-| cypress/base:17.8.0 | 17.8.0 | Debian | [/17.8.0](17.8.0) | `🚫` | `🚫` | `🚫` | 
+| cypress/base:17.8.0 | 17.8.0 | Debian | [/17.8.0](17.8.0) | `🚫` | `🚫` | `🚫` |
+| cypress/base:16.14.2 | 16.14.2 | Debian | [/16.14.2](16.14.2) | `🚫` | `🚫` | `🚫` | 
  
 ## ⚠️ Node.js Support
 

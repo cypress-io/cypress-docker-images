@@ -475,7 +475,8 @@ workflows:
     build-browser-images:
         jobs:
             - build-browser-image:
-                name: "browser node16.13.2-chrome100-ff98"
-                dockerTag: "node16.13.2-chrome100-ff98"
-                chromeVersion: "Google Chrome 100"
-                firefoxVersion: "Mozilla Firefox 98"
+                name: "browser node17.8.0-chrome99-ff97-edge99"
+                dockerTag: "node17.8.0-chrome99-ff97-edge99"
+                chromeVersion: "Google Chrome 99"
+                firefoxVersion: "Mozilla Firefox 97"
+                edgeVersion: "Microsoft Edge 99"

@@ -6,7 +6,7 @@ env:
 batch:
     fast-fail: false
     build-list:
-        - identifier: browsernode16132Chrome100Ff98
+        - identifier: browsernode16140Edge99
           env:
             image: aws/codebuild/standard:5.0
             type: LINUX_CONTAINER
@@ -15,7 +15,7 @@ batch:
             variables:
                 IMAGE_REPO_NAME: "cypress/browsers"
                 IMAGE_DIR: "browsers"
-                IMAGE_TAG: "node16.13.2-chrome100-ff98"
+                IMAGE_TAG: "node16.14.0-edge99"
 
 phases:
     pre_build:

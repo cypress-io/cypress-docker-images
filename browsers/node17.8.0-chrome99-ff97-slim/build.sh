@@ -3,6 +3,6 @@
 #   yarn add:browser -- 17.8.0 --chrome=99.0.4844.84 --firefox=97.0.1
 set e+x
 
-LOCAL_NAME=cypress/browsers:node17.8.0-chrome99-ff97
+LOCAL_NAME=cypress/browsers:node17.8.0-chrome99-ff97-slim
 echo "Building $LOCAL_NAME"
 docker build -t $LOCAL_NAME .

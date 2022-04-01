@@ -6,7 +6,7 @@ env:
 batch:
     fast-fail: false
     build-list:
-        - identifier: browsernode1780Chrome99Ff97
+        - identifier: browsernode1780Chrome99Ff97Slim
           env:
             image: aws/codebuild/standard:5.0
             type: LINUX_CONTAINER
@@ -15,7 +15,7 @@ batch:
             variables:
                 IMAGE_REPO_NAME: "cypress/browsers"
                 IMAGE_DIR: "browsers"
-                IMAGE_TAG: "node17.8.0-chrome99-ff97"
+                IMAGE_TAG: "node17.8.0-chrome99-ff97-slim"
 
 phases:
     pre_build:

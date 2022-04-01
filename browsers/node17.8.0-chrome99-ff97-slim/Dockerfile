@@ -3,7 +3,7 @@
 #   yarn add:browser -- 17.8.0 --chrome=99.0.4844.84 --firefox=97.0.1
 #
 # build this image with command
-#   docker build -t cypress/browsers:node17.8.0-chrome99-ff97 .
+#   docker build -t cypress/browsers:node17.8.0-chrome99-ff97-slim .
 #
 #
 FROM cypress/base:17.8.0

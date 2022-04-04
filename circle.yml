@@ -474,6 +474,8 @@ workflows:
             - lint-markdown
     build-base-images:
         jobs:
-            - build-base-image:
-                name: "base 16.14.2"
-                dockerTag: "16.14.2"
+            - build-browser-image:
+                name: "browser node17.8.0-chrome99-ff97-slim"
+                dockerTag: "node17.8.0-chrome99-ff97-slim"
+                chromeVersion: "Google Chrome 99"
+                firefoxVersion: "Mozilla Firefox 97"

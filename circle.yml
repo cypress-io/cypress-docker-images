@@ -472,8 +472,9 @@ workflows:
     lint:
         jobs:
             - lint-markdown
-    build-base-images:
+    build-browser-images:
         jobs:
-            - build-base-image:
-                name: "base 16.14.2"
-                dockerTag: "16.14.2"
+            - build-browser-image:
+                name: "browser node16.14.2-edge99"
+                dockerTag: "node16.14.2-edge99"
+                edgeVersion: "Microsoft Edge 99"

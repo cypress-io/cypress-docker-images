@@ -472,7 +472,7 @@ workflows:
     lint:
         jobs:
             - lint-markdown
-    build-browser-images:
+    build-base-images:
         jobs:
             - build-browser-image:
                 name: "browser node17.8.0-chrome99-ff97-slim"

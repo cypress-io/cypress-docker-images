@@ -38,6 +38,8 @@ This will create a new folder `browser/node<node version>-chrome<chrome version>
 
 **Important ⚠️** In order to properly generate a browser image, you must specify a version of Chrome, or a version of Firefox, or a version of Edge.
 
+**note:** The Edge browser will always default to the latest stable release. There is currently no way to specify the downloaded version.
+
 ### Add new included image
 
 To create a new image with Cypress pre-installed globally

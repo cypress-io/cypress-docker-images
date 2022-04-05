@@ -96,6 +96,13 @@ fs.readFile(changeLogPath, (err, data) => {
     console.error(err)
   }
 
+  const imageExists = data.includes(generateNewChangeVersion)
+
+  if (imageExists) {
+    console.log(`Image already exists in README and CHANGELOG.`)
+    process.exit(1)
+  }
+
   const updatedChangeLog = `${data.toString()} \n${generateNewChangeVersion}`
   fs.writeFileSync(changeLogPath, updatedChangeLog.trim() + "\n", "utf8")
   console.log("Saved CHANGELOG.md at %s", changeLogPath)

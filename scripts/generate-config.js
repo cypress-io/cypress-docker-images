@@ -153,7 +153,7 @@ commands:
             edgeVersion:
                 type: string
                 default: ''
-                description: Edge version to expect in the base image, starts with "Microsoft Edge XX"
+                description: Edge version to expect in the base image, starts with "Microsoft Edge"
         steps:
             - when:
                   condition: << parameters.chromeVersion >>
@@ -196,12 +196,12 @@ commands:
                             name: confirm the image has Edge << parameters.edgeVersion >>
                             command: |
                                 version=$(docker run << parameters.imageName >> edge --version)
-                                if [[ "$version" =~ ^"<< parameters.edgeVersion >>" ]]; then
-                                  echo "Image has the expected version of Edge << parameters.edgeVersion >>"
+                                if [[ "$version" ]]; then
+                                  echo "Image has the a version of Edge << parameters.edgeVersion >>"
                                   echo "found $version"
                                 else
-                                  echo "Problem: image has unexpected Edge version"
-                                  echo "Expected << parameters.edgeVersion >> and got $version"
+                                  echo "Problem: image has no Edge version"
+                                  echo "Expected to have $version"
                                   exit 1
                                 fi
 
@@ -460,7 +460,7 @@ jobs:
             edgeVersion:
                 type: string
                 default: ''
-                description: Edge version to expect in the base image, starts with "Microsoft Edge XX"
+                description: Edge version to expect in the base image, starts with "Microsoft Edge"
         steps:
             - checkout
             - halt-if-docker-image-exists:
@@ -558,7 +558,7 @@ const formWorkflow = (image) => {
       yml =
         yml +
         `
-                edgeVersion: "Microsoft Edge ${image.tag.match(/-edge\d*/)[0].substring(5)}"`
+                edgeVersion: "Microsoft Edge"`
     }
   }
   return yml

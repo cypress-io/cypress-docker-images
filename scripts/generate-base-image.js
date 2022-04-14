@@ -51,7 +51,7 @@ RUN apt-get update && \\
   libxss1 \\
   libasound2 \\
   libxtst6 \\
-  ps \\
+  procps \\
   xauth \\
   xvfb \\
   # install text editors

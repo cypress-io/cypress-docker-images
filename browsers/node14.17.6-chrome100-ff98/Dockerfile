@@ -69,8 +69,8 @@ RUN echo  " node version:    $(node -v) \n" \
 
 # a few environment variables to make NPM installs easier
 # good colors for most applications
-ENV TERM xterm \
+ENV TERM xterm
 # avoid million NPM install messages
-ENV npm_config_loglevel warn \
+ENV npm_config_loglevel warn
 # allow installing when the main user is root
 ENV npm_config_unsafe_perm true

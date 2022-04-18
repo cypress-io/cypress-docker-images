@@ -39,7 +39,3 @@ Name + Tag | Base image | Chrome | Firefox | Edge
 [cypress/browsers:node16.14.0-edge](./node16.14.0-edge) | `cypress/base:16.14.0` | `🚫` | `🚫` | `--edge` 
  
 [cypress/browsers:node16.14.2-slim-chrome100-ff99-edge](./node16.14.2-slim-chrome100-ff99-edge) | `cypress/base:16.14.2` | `100.0.4896.88` | `99.0.1` | `--edge`
- 
-[cypress/browsers:node16.14.2-slim-chrome100-ff99](./node16.14.2-slim-chrome100-ff99) | `cypress/base:16.14.2` | `100.0.4896.88` | `99.0.1` | `🚫`
- 
-[cypress/browsers:node16.14.2-slim-chrome100-ff99-edge-slim](./node16.14.2-slim-chrome100-ff99-edge-slim) | `cypress/base:16.14.2` | `100.0.4896.88` | `99.0.1` | `--edge`

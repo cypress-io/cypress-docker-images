@@ -3,7 +3,7 @@
 #   yarn add:browser -- 16.14.2-slim --chrome=100.0.4896.88 --firefox=99.0.1 --edge
 #
 # build this image with command
-#   docker build -t cypress/browsers:node16.14.2-slim-chrome100-ff99-edge .
+#   docker build -t cypress/browsers:node16.14.2-slim-chrome100-ff99-edge-slim .
 #
 #
 FROM cypress/base:16.14.2-slim

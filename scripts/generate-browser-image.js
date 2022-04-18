@@ -41,6 +41,19 @@ shelljs.mkdir(outputFolder)
 
 const folderName = outputFolder.split("/")[1]
 
+const firefoxDependencies = `
+  # firefox dependencies
+  bzip2 \\
+  # add codecs needed for video playback in firefox
+  # https://github.com/cypress-io/cypress-docker-images/issues/150
+  mplayer`
+
+const edgeDependencies = `
+  # edge dependencies
+  microsoft-edge-dev \\
+  gnupg \\
+  dirmngr`
+
 const chromeDownload = `
 # install Chrome browser
 RUN wget --no-verbose -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${chromeVersion}-1_amd64.deb" && \\
@@ -49,14 +62,6 @@ RUN wget --no-verbose -O /usr/src/google-chrome-stable_current_amd64.deb "http:/
   rm -f /usr/src/google-chrome-stable_current_amd64.deb`
 
 const firefoxDownload = `
-# firefox dependencies
-RUN apt-get update && \\
-  apt-get install -y \\
-  bzip2 \\
-  # add codecs needed for video playback in firefox
-  # https://github.com/cypress-io/cypress-docker-images/issues/150
-  mplayer
-
 # install Firefox browser
 RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/${firefoxVersion}/linux-x86_64/en-US/firefox-${firefoxVersion}.tar.bz2 && \\
   tar -C /opt -xjf /tmp/firefox.tar.bz2 && \\
@@ -72,9 +77,6 @@ RUN install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
 RUN rm microsoft.gpg
 
-## Install Edge
-RUN apt-get update
-RUN apt-get install -y microsoft-edge-dev
 # Add a link to the browser that allows Cypress to find it
 RUN ln -s /usr/bin/microsoft-edge /usr/bin/edge`
 
@@ -106,6 +108,8 @@ RUN apt-get update && \\
   xdg-utils \\
   wget \\
   curl \\
+  ${firefoxVersion ? `${firefoxDependencies.trim()} \\` : `\\`}
+  ${edgeVersion ? `${edgeDependencies.trim()} \\` : `\\`}
   # clean up
   && rm -rf /var/lib/apt/lists/* \\
   && apt-get clean
@@ -116,15 +120,15 @@ RUN wget --no-verbose /usr/src/libappindicator3-1_0.4.92-7_amd64.deb "http://ftp
   apt-get install -f -y && \\
   rm -f /usr/src/libappindicator3-1_0.4.92-7_amd64.deb
 
-${chromeVersion ? chromeDownload : ""}
+${chromeVersion ? chromeDownload.trim() : ""}
 
 # "fake" dbus address to prevent errors
 # https://github.com/SeleniumHQ/docker-selenium/issues/87
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
-${firefoxVersion ? firefoxDownload : ""}
+${firefoxVersion ? firefoxDownload.trim() : ""}
 
-${edgeVersion ? edgeDownload : ""}
+${edgeVersion ? edgeDownload.trim() : ""}
 
 # versions of local tools
 RUN echo  " node version:    $(node -v) \\n" \\

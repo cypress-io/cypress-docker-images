@@ -1,38 +1,38 @@
 version: 0.2
 env:
-    variables:
-        PUBLIC_ECR_ALIAS: "cypress-io"
+  variables:
+    PUBLIC_ECR_ALIAS: "cypress-io"
 
 batch:
-    fast-fail: false
-    build-list:
-        - identifier: browsernode16140Chrome99Ff97
-          env:
-            image: aws/codebuild/standard:5.0
-            type: LINUX_CONTAINER
-            privileged-mode: true
-            compute-type: BUILD_GENERAL1_MEDIUM
-            variables:
-                IMAGE_REPO_NAME: "cypress/browsers"
-                IMAGE_DIR: "browsers"
-                IMAGE_TAG: "node16.14.0-chrome99-ff97"
+  fast-fail: false
+  build-list:
+    - identifier: base16142Slim
+      env:
+        image: aws/codebuild/standard:5.0
+        type: LINUX_CONTAINER
+        privileged-mode: true
+        compute-type: BUILD_GENERAL1_MEDIUM
+        variables:
+          IMAGE_REPO_NAME: "cypress/base"
+          IMAGE_DIR: "base"
+          IMAGE_TAG: "16.14.2-slim"
 
 phases:
-    pre_build:
-        commands:
-            - aws --version
-            - echo Check if $IMAGE_TAG is in ECR...
-            - ./find-ecr-image.sh $IMAGE_REPO_NAME $IMAGE_TAG -p
-            - echo Logging in to Amazon ECR...
-            - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-            - aws ecr-public get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin public.ecr.aws/$PUBLIC_ECR_ALIAS
-    build:
-        commands:
-            - echo Building the Docker image...          
-            - cd $IMAGE_DIR/$IMAGE_TAG
-            - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
-            - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
-    post_build:
-        commands:
-            - echo Pushing the Docker image...
-            - docker push public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
+  pre_build:
+    commands:
+      - aws --version
+      - echo Check if $IMAGE_TAG is in ECR...
+      - ./find-ecr-image.sh $IMAGE_REPO_NAME $IMAGE_TAG -p
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - aws ecr-public get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin public.ecr.aws/$PUBLIC_ECR_ALIAS
+  build:
+    commands:
+      - echo Building the Docker image...
+      - cd $IMAGE_DIR/$IMAGE_TAG
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG

@@ -16,6 +16,7 @@ RUN node --version
 RUN apt-get update && \
   apt-get install -y \
   fonts-liberation \
+  git \
   libcurl4 \
   libcurl3-gnutls \
   libcurl3-nss \

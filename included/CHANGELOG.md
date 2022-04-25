@@ -86,3 +86,5 @@ Name + Tag | Base image
 [cypress/included:9.5.3](9.5.3) | `cypress/browsers:node16.14.0-slim-chrome99-ff97`
  
 [cypress/included:9.5.4](9.5.4) | `cypress/browsers:node16.14.0-slim-chrome99-ff97`
+ 
+[cypress/included:9.6.0](9.6.0) | `cypress/browsers:node16.14.2-slim-chrome100-ff99-edge`

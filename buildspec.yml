@@ -6,7 +6,7 @@ env:
 batch:
     fast-fail: false
     build-list:
-        - identifier: included960
+        - identifier: included961
           env:
             image: aws/codebuild/standard:5.0
             type: LINUX_CONTAINER
@@ -15,7 +15,7 @@ batch:
             variables:
                 IMAGE_REPO_NAME: "cypress/included"
                 IMAGE_DIR: "included"
-                IMAGE_TAG: "9.6.0"
+                IMAGE_TAG: "9.6.1"
 
 phases:
     pre_build:

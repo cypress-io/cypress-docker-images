@@ -37,10 +37,11 @@
 [cypress/browsers:node14.17.6-chrome100-ff98](./node14.17.6-chrome100-ff98) | `cypress/base:14.17.6` | `100.0.4896.60` | `98.0.2` | `🚫`
 [cypress/browsers:node16.13.2-chrome100-ff98](./node16.13.2-chrome100-ff98) | `cypress/base:16.13.2` | `100.0.4896.60` | `98.0.2` | `🚫`
 [cypress/browsers:node17.8.0-chrome99-ff97-slim](./node17.8.0-chrome99-ff97-slim) | `cypress/base:17.8.0` | `99.0.4844.84` | `97.0.1` | `🚫`
-[cypress/browsers:node16.14.0-edge](./node16.14.0-edge) | `cypress/base:16.14.0` | `🚫` | `🚫` | `--edge`
-[cypress/browsers:node16.14.0-chrome99-ff97](./node16.14.0-chrome99-ff97) | `cypress/base:16.14.0` | `99.0.4844.51` | `97.0.1` | `🚫`
-[cypress/browsers:node16.14.2-slim-chrome100-ff99-edge](./node16.14.2-slim-chrome100-ff99-edge) | `cypress/base:16.14.2` | `100.0.4896.88` | `99.0.1` | `--edge`
-
+[cypress/browsers:node16.14.0-edge](./node16.14.0-edge) | `cypress/base:16.14.0` | `🚫` | `🚫` | `--edge` 
+[cypress/browsers:node16.14.0-chrome99-ff97](./node16.14.0-chrome99-ff97) | `cypress/base:16.14.0-slim` | `99.0.4844.51` | `97.0.1` | `🚫` 
+[cypress/browsers:node16.14.2-slim-chrome100-ff99-edge](./node16.14.2-slim-chrome100-ff99-edge) | `cypress/base:16.14.2` | `100.0.4896.88` | `99.0.1` | `--edge` 
+[cypress/browsers:node14.17.6-slim-chrome100-ff99-edge](./node14.17.6-slim-chrome100-ff99-edge) | `cypress/base:14.17.6` | `100.0.4896.88` | `99.0.1` | `--edge` 
+ 
 To find the available Chrome versions, check [https://chromium.cypress.io/](https://chromium.cypress.io/).
 
 ## Naming scheme

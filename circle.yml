@@ -472,11 +472,8 @@ workflows:
     lint:
         jobs:
             - lint-markdown
-    build-browser-images:
+    build-included-images:
         jobs:
-            - build-browser-image:
-                name: "browser node14.19.0-chrome100-ff99-edge"
-                dockerTag: "node14.19.0-chrome100-ff99-edge"
-                chromeVersion: "Google Chrome 100"
-                firefoxVersion: "Mozilla Firefox 99"
-                edgeVersion: "Microsoft Edge"
+            - build-included-image:
+                name: "included 9.7.0"
+                dockerTag: "9.7.0"

@@ -275,7 +275,6 @@ commands:
                         # https://github.com/cypress-io/cypress-docker-images/issues/411
                         # exit 1
                       fi
-
     test-included-image:
         description: Testing Docker image with Cypress pre-installed
         parameters:
@@ -291,17 +290,13 @@ commands:
                   no_output_timeout: '3m'
                   command: |
                       node --version
-                      mkdir test
-                      cd test
-                      echo "Initializing test project"
-                      npx @bahmutov/cly init --cypress-version << parameters.cypressVersion >>
+                      cd test-project
 
                       echo "Testing using Electron browser"
                       docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >>
 
                       echo "Testing using Chrome browser"
                       docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >> --browser chrome
-                  working_directory: /tmp
 
     test-included-image-using-kitchensink:
         description: Testing Cypress pre-installed using Kitchensink
@@ -455,13 +450,13 @@ jobs:
                   cypressVersion: << parameters.dockerTag >>
                   imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
-            # - test-included-image:
-            #       cypressVersion: << parameters.dockerTag >>
-            #       imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
-
-            - test-included-image-using-kitchensink:
+            - test-included-image:
                   cypressVersion: << parameters.dockerTag >>
                   imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+
+            # - test-included-image-using-kitchensink:
+            #       cypressVersion: << parameters.dockerTag >>
+            #       imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
             - halt-on-branch
             - docker-push:

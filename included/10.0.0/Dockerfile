@@ -26,7 +26,7 @@ RUN echo "whoami: $(whoami)" \
   # uid=0(root) gid=0(root) groups=0(root)
   # which means the current user is root
   && id \
-  && npm install -g "cypress@10.0.0" \
+  && npm install -g "https://cdn.cypress.io/beta/npm/10.0.0/linux-x64/develop-0a6391f7f45f4238680cd7009682b37ec3de7c1a/cypress.tgz" \
   && cypress verify \
   # Cypress cache and installed version
   # should be in the root user's home folder

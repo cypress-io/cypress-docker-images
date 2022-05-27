@@ -322,7 +322,7 @@ commands:
                       cd test-kitchensink
 
                       npm init -y
-                      echo '{}' > cypress.json
+                      echo '{}' > cypress.config.js
 
                       echo "Testing using Electron browser"
                       docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_INTERNAL_FORCE_SCAFFOLD=1 cypress/included:<< parameters.cypressVersion >>
@@ -455,9 +455,9 @@ jobs:
                   cypressVersion: << parameters.dockerTag >>
                   imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
-            - test-included-image:
-                  cypressVersion: << parameters.dockerTag >>
-                  imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
+            # - test-included-image:
+            #       cypressVersion: << parameters.dockerTag >>
+            #       imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
             - test-included-image-using-kitchensink:
                   cypressVersion: << parameters.dockerTag >>

@@ -53,7 +53,9 @@ ENV CI=1 \\
   _MITSHM=0 \\
   # point Cypress at the /root/cache no matter what user account is used
   # see https://on.cypress.io/caching
-  CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
+  CYPRESS_CACHE_FOLDER=/root/.cache/Cypress \\
+  # Allow projects to reference globally installed cypress
+  NODE_PATH=/usr/local/lib/node_modules
 
 # should be root user
 RUN echo "whoami: $(whoami)" \\

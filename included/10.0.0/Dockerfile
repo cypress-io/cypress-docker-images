@@ -17,11 +17,15 @@ ENV CI=1 \
   _MITSHM=0 \
   # point Cypress at the /root/cache no matter what user account is used
   # see https://on.cypress.io/caching
-  CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
+  CYPRESS_CACHE_FOLDER=/root/.cache/Cypress \
+  # Allow projects to reference globally installed cypress
+   NODE_PATH=/usr/local/lib/node_modules
 
 # should be root user
 RUN echo "whoami: $(whoami)" \
   && npm config -g set user $(whoami) \
+  # Allow projects to reference globally installed cypress
+  && export NODE_PATH=/usr/local/lib/node_modules \
   # command "id" should print:
   # uid=0(root) gid=0(root) groups=0(root)
   # which means the current user is root

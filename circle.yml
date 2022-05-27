@@ -298,35 +298,6 @@ commands:
                       echo "Testing using Chrome browser"
                       docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >> --browser chrome
 
-    test-included-image-using-kitchensink:
-        description: Testing Cypress pre-installed using Kitchensink
-        parameters:
-            cypressVersion:
-                type: string
-                description: Cypress version to test, like "4.0.0"
-            imageName:
-                type: string
-                description: Cypress included docker image to test
-        steps:
-            - run:
-                  name: Testing Kitchensink
-                  no_output_timeout: '3m'
-                  command: |
-                      node --version
-                      mkdir test-kitchensink
-                      cd test-kitchensink
-
-                      npm init -y
-                      echo '{}' > cypress.config.js
-
-                      echo "Testing using Electron browser"
-                      docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_INTERNAL_FORCE_SCAFFOLD=1 cypress/included:<< parameters.cypressVersion >>
-
-                      echo "Testing using Chrome browser"
-                      docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_INTERNAL_FORCE_SCAFFOLD=1 cypress/included:<< parameters.cypressVersion >> --browser chrome
-
-                  working_directory: /tmp
-
     docker-push:
         description: Log in and push a given image to Docker hub
         parameters:
@@ -453,10 +424,6 @@ jobs:
             - test-included-image:
                   cypressVersion: << parameters.dockerTag >>
                   imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
-
-            # - test-included-image-using-kitchensink:
-            #       cypressVersion: << parameters.dockerTag >>
-            #       imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
             - halt-on-branch
             - docker-push:

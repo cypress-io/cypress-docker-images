@@ -36,7 +36,7 @@ const awsCodeBuildPostamble = `phases:
             - aws ecr-public get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin public.ecr.aws/$PUBLIC_ECR_ALIAS
     build:
         commands:
-            - echo Building the Docker image...          
+            - echo Building the Docker image...
             - cd $IMAGE_DIR/$IMAGE_TAG
             - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
             - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$PUBLIC_ECR_ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
@@ -340,45 +340,13 @@ commands:
                   no_output_timeout: '3m'
                   command: |
                       node --version
-                      mkdir test
-                      cd test
-                      echo "Initializing test project"
-                      npx @bahmutov/cly init --cypress-version << parameters.cypressVersion >>
+                      cd test-project
 
                       echo "Testing using Electron browser"
                       docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >>
 
                       echo "Testing using Chrome browser"
                       docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >> --browser chrome
-                  working_directory: /tmp
-
-    test-included-image-using-kitchensink:
-        description: Testing Cypress pre-installed using Kitchensink
-        parameters:
-            cypressVersion:
-                type: string
-                description: Cypress version to test, like "4.0.0"
-            imageName:
-                type: string
-                description: Cypress included docker image to test
-        steps:
-            - run:
-                  name: Testing Kitchensink
-                  no_output_timeout: '3m'
-                  command: |
-                      node --version
-                      mkdir test-kitchensink
-                      cd test-kitchensink
-
-                      npm init -y
-                      echo '{}' > cypress.json
-
-                      echo "Testing using Electron browser"
-                      docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_INTERNAL_FORCE_SCAFFOLD=1 cypress/included:<< parameters.cypressVersion >>
-
-                      echo "Testing using Chrome browser"
-                      docker run -it -v $PWD:/e2e -w /e2e -e CYPRESS_INTERNAL_FORCE_SCAFFOLD=1 cypress/included:<< parameters.cypressVersion >> --browser chrome
-
                   working_directory: /tmp
 
     docker-push:
@@ -505,10 +473,6 @@ jobs:
                   imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 
             - test-included-image:
-                  cypressVersion: << parameters.dockerTag >>
-                  imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
-
-            - test-included-image-using-kitchensink:
                   cypressVersion: << parameters.dockerTag >>
                   imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
 

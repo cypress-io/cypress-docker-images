@@ -275,6 +275,7 @@ commands:
                         # https://github.com/cypress-io/cypress-docker-images/issues/411
                         # exit 1
                       fi
+
     test-included-image:
         description: Testing Docker image with Cypress pre-installed
         parameters:
@@ -437,5 +438,5 @@ workflows:
     build-included-images:
         jobs:
             - build-included-image:
-                name: "included 10.0.0"
-                dockerTag: "10.0.0"
+                name: "included 10.0.1"
+                dockerTag: "10.0.1"

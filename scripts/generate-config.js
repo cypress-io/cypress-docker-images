@@ -347,7 +347,6 @@ commands:
 
                       echo "Testing using Chrome browser"
                       docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >> --browser chrome
-                  working_directory: /tmp
 
     docker-push:
         description: Log in and push a given image to Docker hub

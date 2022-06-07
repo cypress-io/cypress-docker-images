@@ -435,8 +435,8 @@ workflows:
     lint:
         jobs:
             - lint-markdown
-    build-included-images:
+    build-base-images:
         jobs:
-            - build-included-image:
-                name: "included 10.0.3"
-                dockerTag: "10.0.3"
+            - build-base-image:
+                name: "base 14.18.2"
+                dockerTag: "14.18.2"

@@ -16,7 +16,6 @@ const busterNodeImage = "buster-slim"
 // Only used for >= Node 16 images
 const bullseyeNodeImage = "bullseye-slim"
 const usesBusterImage = parseInt(versionTag.split(".")[0]) <= 14 ? true : false
-console.log("🚀 ~ file: generate-base-image.js ~ line 19 ~ usesBusterImage", usesBusterImage)
 
 let outputFolder = path.join("base", versionTag)
 

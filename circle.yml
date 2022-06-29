@@ -54,7 +54,7 @@ commands:
                   name: test image << parameters.imageName >>
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test -\\<<EOF
+                      docker build -t flotwig/test -\\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -73,7 +73,7 @@ commands:
                   name: test image << parameters.imageName >> using Kitchensink
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test-kitchensink -\\<<EOF
+                      docker build -t flotwig/test-kitchensink -\\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -160,7 +160,7 @@ commands:
                   name: test image << parameters.imageName >>
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test -\\<<EOF
+                      docker build -t flotwig/test -\\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -174,7 +174,7 @@ commands:
             - run:
                   name: Test built-in Electron browser
                   no_output_timeout: '1m'
-                  command: docker run cypress/test ./node_modules/.bin/cypress run
+                  command: docker run flotwig/test ./node_modules/.bin/cypress run
 
             - when:
                   condition: << parameters.chromeVersion >>
@@ -182,7 +182,7 @@ commands:
                       - run:
                             name: Test << parameters.chromeVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test ./node_modules/.bin/cypress run --browser chrome
+                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser chrome
 
             - when:
                   condition: << parameters.firefoxVersion >>
@@ -190,7 +190,7 @@ commands:
                       - run:
                             name: Test << parameters.firefoxVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test ./node_modules/.bin/cypress run --browser firefox
+                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser firefox
 
             - when:
                   condition: << parameters.edgeVersion >>
@@ -198,13 +198,13 @@ commands:
                       - run:
                             name: Test << parameters.edgeVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test ./node_modules/.bin/cypress run --browser edge
+                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser edge
 
             - run:
                   name: scaffold image << parameters.imageName >> using Kitchensink
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test-kitchensink -\\<<EOF
+                      docker build -t flotwig/test-kitchensink -\\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -222,7 +222,7 @@ commands:
                       - run:
                             name: Test << parameters.chromeVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser chrome
+                            command: docker run flotwig/test-kitchensink ./node_modules/.bin/cypress run --browser chrome
 
             - when:
                   condition: << parameters.firefoxVersion >>
@@ -230,7 +230,7 @@ commands:
                       - run:
                             name: Test << parameters.firefoxVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser firefox
+                            command: docker run flotwig/test-kitchensink ./node_modules/.bin/cypress run --browser firefox
 
             - when:
                   condition: << parameters.edgeVersion >>
@@ -238,7 +238,7 @@ commands:
                       - run:
                             name: Test << parameters.edgeVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser edge
+                            command: docker run flotwig/test-kitchensink ./node_modules/.bin/cypress run --browser edge
 
     test-included-image-versions:
         description: Testing pre-installed versions
@@ -252,17 +252,17 @@ commands:
         steps:
             - run:
                   name: 'Print versions'
-                  command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version
+                  command: docker run -it --entrypoint cypress flotwig/included:<< parameters.cypressVersion >> version
 
             - run:
                   name: 'Print info'
-                  command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> info
+                  command: docker run -it --entrypoint cypress flotwig/included:<< parameters.cypressVersion >> info
 
             - run:
                   name: 'Check Node version'
                   command: |
-                      export NODE_VERSION=$(docker run --entrypoint node cypress/included:<< parameters.cypressVersion >> --version)
-                      export CYPRESS_NODE_VERSION=$(docker run --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version --component node)
+                      export NODE_VERSION=$(docker run --entrypoint node flotwig/included:<< parameters.cypressVersion >> --version)
+                      export CYPRESS_NODE_VERSION=$(docker run --entrypoint cypress flotwig/included:<< parameters.cypressVersion >> version --component node)
                       echo "Included Node $NODE_VERSION"
                       echo "Cypress includes Node $CYPRESS_NODE_VERSION"
                       # "node --version" returns something like "v12.1.2"
@@ -294,10 +294,10 @@ commands:
                       cd test-project
 
                       echo "Testing using Electron browser"
-                      docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >>
+                      docker run -it -v $PWD:/e2e -w /e2e flotwig/included:<< parameters.cypressVersion >>
 
                       echo "Testing using Chrome browser"
-                      docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >> --browser chrome
+                      docker run -it -v $PWD:/e2e -w /e2e flotwig/included:<< parameters.cypressVersion >> --browser chrome
 
 jobs:
     lint-markdown:
@@ -323,15 +323,15 @@ jobs:
         steps:
             - checkout
             - halt-if-docker-image-exists:
-                  imageName: cypress/base:<< parameters.dockerTag >>
+                  imageName: flotwig/base:<< parameters.dockerTag >>
             - run:
-                  name: building Docker image cypress/base:<< parameters.dockerTag >>
+                  name: building Docker image flotwig/base:<< parameters.dockerTag >>
                   command: |
-                      docker build -t cypress/base:<< parameters.dockerTag >> .
+                      docker build -t flotwig/base:<< parameters.dockerTag >> .
                   working_directory: base/<< parameters.dockerTag >>
             - test-base-image:
                   nodeVersion: v<< parameters.dockerTag >>
-                  imageName: cypress/base:<< parameters.dockerTag >>
+                  imageName: flotwig/base:<< parameters.dockerTag >>
             - halt-on-branch
 
     build-browser-image:
@@ -359,14 +359,14 @@ jobs:
         steps:
             - checkout
             - halt-if-docker-image-exists:
-                  imageName: cypress/browsers:<< parameters.dockerTag >>
+                  imageName: flotwig/browsers:<< parameters.dockerTag >>
             - run:
-                  name: building Docker image cypress/browsers:<< parameters.dockerTag >>
+                  name: building Docker image flotwig/browsers:<< parameters.dockerTag >>
                   command: |
-                      docker build -t cypress/browsers:<< parameters.dockerTag >> .
+                      docker build -t flotwig/browsers:<< parameters.dockerTag >> .
                   working_directory: browsers/<< parameters.dockerTag >>
             - test-browser-image:
-                  imageName: cypress/browsers:<< parameters.dockerTag >>
+                  imageName: flotwig/browsers:<< parameters.dockerTag >>
                   chromeVersion: << parameters.chromeVersion >>
                   firefoxVersion: << parameters.firefoxVersion >>
                   edgeVersion: << parameters.edgeVersion >>
@@ -385,20 +385,20 @@ jobs:
         steps:
             - checkout
             - halt-if-docker-image-exists:
-                  imageName: cypress/included:<< parameters.dockerTag >>
+                  imageName: flotwig/included:<< parameters.dockerTag >>
             - run:
-                  name: building Docker image cypress/included:<< parameters.dockerTag >>
+                  name: building Docker image flotwig/included:<< parameters.dockerTag >>
                   command: |
-                      docker build -t cypress/included:<< parameters.dockerTag >> .
+                      docker build -t flotwig/included:<< parameters.dockerTag >> .
                   working_directory: included/<< parameters.dockerTag >>
 
             - test-included-image-versions:
                   cypressVersion: << parameters.dockerTag >>
-                  imageName: cypress/included:<< parameters.dockerTag >>
+                  imageName: flotwig/included:<< parameters.dockerTag >>
 
             - test-included-image:
                   cypressVersion: << parameters.dockerTag >>
-                  imageName: cypress/included:<< parameters.dockerTag >>
+                  imageName: flotwig/included:<< parameters.dockerTag >>
             - halt-on-branch
 
     push-images:
@@ -447,7 +447,7 @@ workflows:
                 resourceClass: medium
             - push-images:
                 name: "push included 10.2.0 images"
-                dockerName: 'cypress/included'
+                dockerName: 'flotwig/included'
                 dockerTag: '10.2.0'
                 workingDirectory: 'included/10.2.0'
                 requires:

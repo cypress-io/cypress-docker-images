@@ -414,7 +414,7 @@ jobs:
                 working_directory: << parameters.workingDirectory >>
                 command: |
                     ## install QEMU, pulled from https://github.com/docker/setup-qemu-action/blob/4620c11b701e878e3f2b7aa142927d0646857fd9/src/main.ts
-                    ## avoids https://github.com/docker/buildx/issues/499 
+                    ## avoids https://github.com/docker/buildx/issues/499
                     BINFMT_IMAGE=tonistiigi/binfmt:latest@sha256:15afade9aec0fee5358dbaab218db2dfff88884894539dc468996420ce7db732
                     docker pull $BINFMT_IMAGE
                     docker image inspect $BINFMT_IMAGE

@@ -51,8 +51,9 @@ commands:
                 description: Cypress base docker image to test
         steps:
             - run:
-                  name: test image << parameters.imageName >>
+                  name: test image << parameters.imageName >> against Kitchensink
                   no_output_timeout: '3m'
+                  working_directory: '~/project'
                   command: |
                       docker build -t flotwig/test -\<<EOF
                       FROM << parameters.imageName >>
@@ -67,24 +68,6 @@ commands:
                       RUN ./node_modules/.bin/cypress run
                       # run Cypress using module API and confirm number of passing tests
                       RUN ./node_modules/.bin/cypress-expect run --passing 1
-                      EOF
-
-            - run:
-                  name: test image << parameters.imageName >> using Kitchensink
-                  no_output_timeout: '3m'
-                  command: |
-                      docker build -t flotwig/test-kitchensink -\<<EOF
-                      FROM << parameters.imageName >>
-                      RUN echo "current user: $(whoami)"
-                      ENV CI=1
-                      WORKDIR /app
-                      ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
-                      RUN npm init --yes
-                      RUN npm install --save-dev cypress cypress-expect
-                      RUN ./node_modules/.bin/cypress verify
-                      RUN echo '{}' > cypress.json
-                      # run Cypress and confirm minimum number of passing tets
-                      RUN ./node_modules/.bin/cypress-expect run --min-passing 100
                       EOF
 
     test-browser-image:
@@ -157,52 +140,9 @@ commands:
                                 fi
 
             - run:
-                  name: test image << parameters.imageName >>
-                  no_output_timeout: '3m'
-                  command: |
-                      docker build -t flotwig/test -\<<EOF
-                      FROM << parameters.imageName >>
-                      RUN echo "current user: $(whoami)"
-                      ENV CI=1
-                      WORKDIR /app
-                      RUN npm init --yes
-                      RUN npm install --save-dev cypress
-                      RUN ./node_modules/.bin/cypress verify
-                      COPY ./test-project ./app
-                      EOF
-
-            - run:
-                  name: Test built-in Electron browser
-                  no_output_timeout: '1m'
-                  command: docker run flotwig/test ./node_modules/.bin/cypress run
-
-            - when:
-                  condition: << parameters.chromeVersion >>
-                  steps:
-                      - run:
-                            name: Test << parameters.chromeVersion >>
-                            no_output_timeout: '1m'
-                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser chrome
-
-            - when:
-                  condition: << parameters.firefoxVersion >>
-                  steps:
-                      - run:
-                            name: Test << parameters.firefoxVersion >>
-                            no_output_timeout: '1m'
-                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser firefox
-
-            - when:
-                  condition: << parameters.edgeVersion >>
-                  steps:
-                      - run:
-                            name: Test << parameters.edgeVersion >>
-                            no_output_timeout: '1m'
-                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser edge
-
-            - run:
                   name: scaffold image << parameters.imageName >> using Kitchensink
                   no_output_timeout: '3m'
+                  working_directory: '~/project'
                   command: |
                       docker build -t flotwig/test-kitchensink -\<<EOF
                       FROM << parameters.imageName >>

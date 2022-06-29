@@ -134,19 +134,11 @@ commands:
                                 fi
 
             - run:
-                  name: test image << parameters.imageName >> with Kitchensink
+                  name: test image << parameters.imageName >> w Kitchensink
                   no_output_timeout: '3m'
-                  working_directory: ~/project
                   command: |
-                      docker build -t flotwig/test -\<<EOF
-                      FROM << parameters.imageName >>
-                      RUN echo "current user: $(whoami)"
-                      ENV CI=1
-                      COPY ./test-project /app
-                      WORKDIR /app
-                      RUN npm install --save-dev cypress
-                      RUN ./node_modules/.bin/cypress verify
-                      EOF
+                      sed -i.bak "s|InsertBaseImageHere|<< parameters.imageName >>|g" ./test/Dockerfile.test-project
+                      docker build -t flotwig/test -f ./test/Dockerfile.test-project .
 
             - run:
                   name: Test built-in Electron browser

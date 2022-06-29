@@ -62,7 +62,7 @@ commands:
                       RUN npm init --yes
                       RUN npm install --save-dev cypress cypress-expect
                       RUN ./node_modules/.bin/cypress verify
-                      RUN npx @bahmutov/cly init
+                      COPY ./test-project /app
                       # run Cypress by itself
                       RUN ./node_modules/.bin/cypress run
                       # run Cypress using module API and confirm number of passing tests
@@ -168,7 +168,7 @@ commands:
                       RUN npm init --yes
                       RUN npm install --save-dev cypress
                       RUN ./node_modules/.bin/cypress verify
-                      RUN npx @bahmutov/cly init
+                      COPY ./test-project ./app
                       EOF
 
             - run:

@@ -67,7 +67,7 @@ RUN rm microsoft.gpg
 
 ## Install Edge
 RUN apt-get update
-RUN apt-get install -y microsoft-edge-dev
+RUN apt-get install -y microsoft-edge-stables
 
 # Add a link to the browser that allows Cypress to find it
 RUN ln -s /usr/bin/microsoft-edge /usr/bin/edge

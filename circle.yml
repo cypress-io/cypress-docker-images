@@ -410,10 +410,17 @@ jobs:
                 imageName: << parameters.dockerName >>:<< parameters.dockerTag >>
             - halt-on-branch
             - run:
-                ## see https://docs.docker.com/desktop/multi-arch/
                 name: blindly build + push multi-arch image
                 working_directory: << parameters.workingDirectory >>
                 command: |
+                    ## install QEMU, pulled from https://github.com/docker/setup-qemu-action/blob/4620c11b701e878e3f2b7aa142927d0646857fd9/src/main.ts
+                    ## avoids https://github.com/docker/buildx/issues/499 
+                    BINFMT_IMAGE=tonistiigi/binfmt:latest@sha256:15afade9aec0fee5358dbaab218db2dfff88884894539dc468996420ce7db732
+                    docker pull $BINFMT_IMAGE
+                    docker image inspect $BINFMT_IMAGE
+                    docker run --rm --privileged $BINFMT_IMAGE --install linux/amd64,linux/arm64
+
+                    ## see https://docs.docker.com/desktop/multi-arch/
                     echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
                     docker buildx create --name builder --use
                     docker buildx inspect --bootstrap

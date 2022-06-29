@@ -134,9 +134,52 @@ commands:
                                 fi
 
             - run:
+                  name: test image << parameters.imageName >>
+                  no_output_timeout: '3m'
+                  command: |
+                      docker build -t flotwig/test -\<<EOF
+                      FROM << parameters.imageName >>
+                      RUN echo "current user: $(whoami)"
+                      ENV CI=1
+                      WORKDIR /app
+                      RUN npm init --yes
+                      RUN npm install --save-dev cypress
+                      RUN ./node_modules/.bin/cypress verify
+                      COPY ./test-project /app
+                      EOF
+
+            - run:
+                  name: Test built-in Electron browser
+                  no_output_timeout: '1m'
+                  command: docker run flotwig/test ./node_modules/.bin/cypress run
+
+            - when:
+                  condition: << parameters.chromeVersion >>
+                  steps:
+                      - run:
+                            name: Test << parameters.chromeVersion >>
+                            no_output_timeout: '1m'
+                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser chrome
+
+            - when:
+                  condition: << parameters.firefoxVersion >>
+                  steps:
+                      - run:
+                            name: Test << parameters.firefoxVersion >>
+                            no_output_timeout: '1m'
+                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser firefox
+
+            - when:
+                  condition: << parameters.edgeVersion >>
+                  steps:
+                      - run:
+                            name: Test << parameters.edgeVersion >>
+                            no_output_timeout: '1m'
+                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser edge
+
+            - run:
                   name: scaffold image << parameters.imageName >> using Kitchensink
                   no_output_timeout: '3m'
-                  working_directory: '~/project'
                   command: |
                       docker build -t flotwig/test-kitchensink -\<<EOF
                       FROM << parameters.imageName >>
@@ -386,12 +429,12 @@ workflows:
             - build-base-image:
                 name: "build+test base 16.14.2 arm64"
                 dockerTag: "16.14.2"
-                resourceClass: arm.medium
+                resourceClass: arm.large
                 platformArg: linux/arm64
             - build-base-image:
                 name: "build+test base 16.14.2 x64"
                 dockerTag: "16.14.2"
-                resourceClass: medium
+                resourceClass: large
                 platformArg: linux/amd64
             - push-images:
                 name: "push base 16.14.2 images"

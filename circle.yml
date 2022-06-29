@@ -53,23 +53,15 @@ commands:
             - run:
                   name: test image << parameters.imageName >> against Kitchensink
                   no_output_timeout: '3m'
-                  working_directory: '~/project'
+                  working_directory: '~/project/test-project'
                   command: |
-                      pwd
-                      docker build -t flotwig/test -\<<EOF
-                      FROM << parameters.imageName >>
-                      RUN echo "current user: $(whoami)"
-                      ENV CI=1
-                      WORKDIR /app
-                      RUN npm init --yes
-                      RUN npm install --save-dev cypress cypress-expect
-                      RUN ./node_modules/.bin/cypress verify
-                      COPY ./test-project /app
-                      # run Cypress by itself
-                      RUN ./node_modules/.bin/cypress run
-                      # run Cypress using module API and confirm number of passing tests
-                      RUN ./node_modules/.bin/cypress-expect run --passing 1
-                      EOF
+                      node --version
+
+                      echo "Testing using Electron browser"
+                      docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >>
+
+                      echo "Testing using Chrome browser"
+                      docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> --browser chrome
 
     test-browser-image:
         description: Build a test image from browser image and test it

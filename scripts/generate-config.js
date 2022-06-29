@@ -64,7 +64,8 @@ const formWorkflow = (image) => {
     yml += os.EOL + `            - build-${getImageType(image)}-image:
                 name: "build+test ${getImageType(image)} ${image.tag} ${arch}"
                 dockerTag: "${image.tag}"
-                resourceClass: ${arch === 'arm64' ? 'arm.medium' : 'medium'}`
+                resourceClass: ${arch === 'arm64' ? 'arm.medium' : 'medium'}
+                platformArg: ${arch === 'arm64' ? 'linux/arm64' : 'linux/amd64'}`
 
     // add browser versions
     if (getImageType(image) === "browser") {

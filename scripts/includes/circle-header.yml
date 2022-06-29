@@ -435,21 +435,3 @@ workflows:
     lint:
         jobs:
             - lint-markdown
-    build-included-images:
-        jobs:
-            - build-included-image:
-                name: "build+test included 10.2.0 arm64"
-                dockerTag: "10.2.0"
-                resourceClass: arm.medium
-            - build-included-image:
-                name: "build+test included 10.2.0 x64"
-                dockerTag: "10.2.0"
-                resourceClass: medium
-            - push-images:
-                name: "push included 10.2.0 images"
-                dockerName: 'cypress/included'
-                dockerTag: '10.2.0'
-                workingDirectory: 'included/10.2.0'
-                requires:
-                    - "build+test included 10.2.0 x64"
-                    - "build+test included 10.2.0 arm64"

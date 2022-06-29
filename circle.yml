@@ -320,6 +320,7 @@ jobs:
             resourceClass:
                 type: string
                 description: Resource class to use for this job
+        resource_class: << parameters.resourceClass >>
         steps:
             - checkout
             - halt-if-docker-image-exists:
@@ -356,6 +357,7 @@ jobs:
                 type: string
                 default: ''
                 description: Edge version to expect in the base image, starts with "Microsoft Edge"
+        resource_class: << parameters.resourceClass >>
         steps:
             - checkout
             - halt-if-docker-image-exists:
@@ -382,6 +384,7 @@ jobs:
             resourceClass:
                 type: string
                 description: Resource class to use for this job
+        resource_class: << parameters.resourceClass >>
         steps:
             - checkout
             - halt-if-docker-image-exists:

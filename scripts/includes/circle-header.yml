@@ -54,7 +54,7 @@ commands:
                   name: test image << parameters.imageName >>
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test -\\<<EOF
+                      docker build -t cypress/test -\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -73,7 +73,7 @@ commands:
                   name: test image << parameters.imageName >> using Kitchensink
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test-kitchensink -\\<<EOF
+                      docker build -t cypress/test-kitchensink -\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -160,7 +160,7 @@ commands:
                   name: test image << parameters.imageName >>
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test -\\<<EOF
+                      docker build -t cypress/test -\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1
@@ -204,7 +204,7 @@ commands:
                   name: scaffold image << parameters.imageName >> using Kitchensink
                   no_output_timeout: '3m'
                   command: |
-                      docker build -t cypress/test-kitchensink -\\<<EOF
+                      docker build -t cypress/test-kitchensink -\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"
                       ENV CI=1

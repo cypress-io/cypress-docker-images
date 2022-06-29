@@ -28,34 +28,33 @@ RUN echo "whoami: $(whoami)" \
   # uid=0(root) gid=0(root) groups=0(root)
   # which means the current user is root
   && id \
-  # && npm install -g cypress@10.2.0 \
-#  && cypress verify \
+  && npm install -g "cypress@10.2.0" \
+  && cypress verify \
   # Cypress cache and installed version
   # should be in the root user's home folder
-#  && cypress cache path \
-#  && cypress cache list \
-#  && cypress info \
-#  && cypress version \
-#  # give every user read access to the "/root" folder where the binary is cached
-#  # we really only need to worry about the top folder, fortunately
-#  && ls -la /root \
-#  && chmod 755 /root \
+  && cypress cache path \
+  && cypress cache list \
+  && cypress info \
+  && cypress version \
+  # give every user read access to the "/root" folder where the binary is cached
+  # we really only need to worry about the top folder, fortunately
+  && ls -la /root \
+  && chmod 755 /root \
   # always grab the latest Yarn
   # otherwise the base image might have old versions
   # NPM does not need to be installed as it is already included with Node.
-#  && npm i -g yarn@latest \
+  && npm i -g yarn@latest \
   # Show where Node loads required modules from
-#  && node -p 'module.paths' \
+  && node -p 'module.paths' \
   # should print Cypress version
   # plus Electron and bundled Node versions
-#  && cypress version \
+  && cypress version \
   && echo  " node version:    $(node -v) \n" \
-#    "npm version:     $(npm -v) \n" \
-#    "yarn version:    $(yarn -v) \n" \
-#    "debian version:  $(cat /etc/debian_version) \n" \
-#    "user:            $(whoami) \n" \
-#    "chrome:          $(google-chrome --version || true) \n" \
-#    "firefox:         $(firefox --version || true) \n"
+    "npm version:     $(npm -v) \n" \
+    "yarn version:    $(yarn -v) \n" \
+    "debian version:  $(cat /etc/debian_version) \n" \
+    "user:            $(whoami) \n" \
+    "chrome:          $(google-chrome --version || true) \n" \
+    "firefox:         $(firefox --version || true) \n"
 
-# ENTRYPOINT ["cypress", "run"]
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["cypress", "run"]

@@ -438,5 +438,5 @@ workflows:
     build-included-images:
         jobs:
             - build-included-image:
-                name: "included 10.2.0"
-                dockerTag: "10.2.0"
+                name: "included 10.3.0"
+                dockerTag: "10.3.0"

@@ -56,13 +56,13 @@ commands:
                   working_directory: '~/project/test-project'
                   command: |
                       node --version
-                      npm i
+                      npm i cypress@latest
 
                       echo "Testing using Electron browser"
-                      docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >>
+                      docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> ./node_modules/.bin/cypress run
 
                       echo "Testing using Chrome browser"
-                      docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> --browser chrome
+                      docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> ./node_modules/.bin/cypress run --browser chrome
 
     test-browser-image:
         description: Build a test image from browser image and test it

@@ -447,6 +447,7 @@ workflows:
                 resourceClass: medium
             - push-images:
                 name: "push included 10.2.0 images"
+                context: test-runner:docker-push
                 dockerName: 'flotwig/included'
                 dockerTag: '10.2.0'
                 workingDirectory: 'included/10.2.0'

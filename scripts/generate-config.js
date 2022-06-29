@@ -96,6 +96,7 @@ const formWorkflow = (image) => {
                 dockerName: 'cypress/${getImageType(image)}'
                 dockerTag: '${image.tag}'
                 workingDirectory: '${getImageType(image)}/${image.tag}'
+                context: test-runner:docker-push
                 requires:
                     - "build+test ${getImageType(image)} ${image.tag} x64"
                     - "build+test ${getImageType(image)} ${image.tag} arm64"`

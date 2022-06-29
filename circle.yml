@@ -55,6 +55,7 @@ commands:
                   no_output_timeout: '3m'
                   working_directory: '~/project'
                   command: |
+                      pwd
                       docker build -t flotwig/test -\<<EOF
                       FROM << parameters.imageName >>
                       RUN echo "current user: $(whoami)"

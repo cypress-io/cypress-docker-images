@@ -6,7 +6,7 @@
 #   docker build -t cypress/browsers:node16.14.2-slim-chrome100-ff99-edge .
 #
 #
-FROM flotwig/base:16.14.2-slim
+FROM cypress/base:16.14.2-slim
 
 USER root
 

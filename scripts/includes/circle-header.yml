@@ -138,7 +138,7 @@ commands:
                 no_output_timeout: '3m'
                 command: |
                     sed -i.bak "s|InsertBaseImageHere|<< parameters.imageName >>|g" ./test/Dockerfile.test-project
-                    docker build -t flotwig/test -f ./test/Dockerfile.test-project .
+                    docker build -t cypress/test -f ./test/Dockerfile.test-project .
 
             - run:
                   name: Test built-in Electron browser

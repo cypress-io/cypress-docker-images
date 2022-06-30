@@ -130,20 +130,14 @@ commands:
                                 fi
 
             - run:
-                  name: Install deps for image << parameters.imageName >>
-                  no_output_timeout: "3m"
-                  working_directory: "~/project/test-project"
-                  command: |
-                    node --version
-                    npm i cypress@latest
-                    echo "Installing Cypress"
-                    docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install"
-
-            - run:
                   name: Test built-in Electron browser
                   no_output_timeout: '1m'
                   working_directory: "~/project/test-project"
-                  command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run"
+                  command: |
+                        node --version
+                        npm i cypress@latest
+                        echo "Installing Cypress"
+                        docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run"
 
             - when:
                   condition: << parameters.chromeVersion >>
@@ -152,7 +146,11 @@ commands:
                             name: Test << parameters.chromeVersion >>
                             no_output_timeout: '1m'
                             working_directory: "~/project/test-project"
-                            command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run --browser chrome"
+                            command: |
+                                node --version
+                                npm i cypress@latest
+                                echo "Installing Cypress"
+                                docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run --browser chrome"
 
             - when:
                   condition: << parameters.firefoxVersion >>
@@ -161,7 +159,11 @@ commands:
                             name: Test << parameters.firefoxVersion >>
                             no_output_timeout: '1m'
                             working_directory: "~/project/test-project"
-                            command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run --browser firefox"
+                            command: |
+                                node --version
+                                npm i cypress@latest
+                                echo "Installing Cypress"
+                                docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run --browser firefox"
 
             - when:
                   condition: << parameters.edgeVersion >>
@@ -170,7 +172,11 @@ commands:
                             name: Test << parameters.edgeVersion >>
                             no_output_timeout: '1m'
                             working_directory: "~/project/test-project"
-                            command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run --browser edge"
+                            command: |
+                                node --version
+                                npm i cypress@latest
+                                echo "Installing Cypress"
+                                docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run --browser edge"
 
             - run:
                   name: scaffold image << parameters.imageName >> using Kitchensink

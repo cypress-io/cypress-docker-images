@@ -191,7 +191,7 @@ commands:
             - run:
                   name: Test built-in Electron browser
                   no_output_timeout: '1m'
-                  command: docker run cypress/test ./node_modules/.bin/cypress run
+                  command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run"
 
             - when:
                   condition: << parameters.chromeVersion >>
@@ -199,7 +199,7 @@ commands:
                       - run:
                             name: Test << parameters.chromeVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test ./node_modules/.bin/cypress run --browser chrome
+                            command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run --browser chrome"
 
             - when:
                   condition: << parameters.firefoxVersion >>
@@ -207,7 +207,7 @@ commands:
                       - run:
                             name: Test << parameters.firefoxVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test ./node_modules/.bin/cypress run --browser firefox
+                            command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run --browser firefox"
 
             - when:
                   condition: << parameters.edgeVersion >>
@@ -215,7 +215,7 @@ commands:
                       - run:
                             name: Test << parameters.edgeVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test ./node_modules/.bin/cypress run --browser edge
+                            command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run --browser edge"
 
             - run:
                   name: scaffold image << parameters.imageName >> using Kitchensink

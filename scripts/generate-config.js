@@ -108,9 +108,6 @@ commands:
                       npm i cypress@latest
                       echo "Testing using Electron browser"
                       docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run"
-                      echo "Testing using Chrome browser"
-                      docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run --browser chrome"
-
 
     test-browser-image:
         description: Build a test image from browser image and test it

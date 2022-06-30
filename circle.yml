@@ -138,12 +138,12 @@ commands:
                 no_output_timeout: '3m'
                 command: |
                     sed -i.bak "s|InsertBaseImageHere|<< parameters.imageName >>|g" ./test/Dockerfile.test-project
-                    docker build -t cypress/test -f ./test/Dockerfile.test-project .
+                    docker build -t flotwig/test -f ./test/Dockerfile.test-project .
 
             - run:
                   name: Test built-in Electron browser
                   no_output_timeout: '1m'
-                  command: docker run cypress/test ./node_modules/.bin/cypress run
+                  command: docker run flotwig/test ./node_modules/.bin/cypress run
 
             - when:
                   condition: << parameters.chromeVersion >>
@@ -151,7 +151,7 @@ commands:
                       - run:
                             name: Test << parameters.chromeVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test ./node_modules/.bin/cypress run --browser chrome
+                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser chrome
 
             - when:
                   condition: << parameters.firefoxVersion >>
@@ -159,7 +159,7 @@ commands:
                       - run:
                             name: Test << parameters.firefoxVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test ./node_modules/.bin/cypress run --browser firefox
+                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser firefox
 
             - when:
                   condition: << parameters.edgeVersion >>
@@ -167,7 +167,7 @@ commands:
                       - run:
                             name: Test << parameters.edgeVersion >>
                             no_output_timeout: '1m'
-                            command: docker run cypress/test ./node_modules/.bin/cypress run --browser edge
+                            command: docker run flotwig/test ./node_modules/.bin/cypress run --browser edge
 
     test-included-image-versions:
         description: Testing pre-installed versions
@@ -181,17 +181,17 @@ commands:
         steps:
             - run:
                   name: 'Print versions'
-                  command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version
+                  command: docker run -it --entrypoint cypress flotwig/included:<< parameters.cypressVersion >> version
 
             - run:
                   name: 'Print info'
-                  command: docker run -it --entrypoint cypress cypress/included:<< parameters.cypressVersion >> info
+                  command: docker run -it --entrypoint cypress flotwig/included:<< parameters.cypressVersion >> info
 
             - run:
                   name: 'Check Node version'
                   command: |
-                      export NODE_VERSION=$(docker run --entrypoint node cypress/included:<< parameters.cypressVersion >> --version)
-                      export CYPRESS_NODE_VERSION=$(docker run --entrypoint cypress cypress/included:<< parameters.cypressVersion >> version --component node)
+                      export NODE_VERSION=$(docker run --entrypoint node flotwig/included:<< parameters.cypressVersion >> --version)
+                      export CYPRESS_NODE_VERSION=$(docker run --entrypoint cypress flotwig/included:<< parameters.cypressVersion >> version --component node)
                       echo "Included Node $NODE_VERSION"
                       echo "Cypress includes Node $CYPRESS_NODE_VERSION"
                       # "node --version" returns something like "v12.1.2"
@@ -223,7 +223,7 @@ commands:
                       cd test-project
 
                       echo "Testing using Electron browser"
-                      docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >>
+                      docker run -it -v $PWD:/e2e -w /e2e flotwig/included:<< parameters.cypressVersion >>
 
 jobs:
     lint-markdown:
@@ -253,15 +253,15 @@ jobs:
         steps:
             - checkout
             - halt-if-docker-image-exists:
-                  imageName: cypress/base:<< parameters.dockerTag >>
+                  imageName: flotwig/base:<< parameters.dockerTag >>
             - run:
-                  name: building Docker image cypress/base:<< parameters.dockerTag >>
+                  name: building Docker image flotwig/base:<< parameters.dockerTag >>
                   command: |
-                      docker build -t cypress/base:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
+                      docker build -t flotwig/base:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
                   working_directory: base/<< parameters.dockerTag >>
             - test-base-image:
                   nodeVersion: v<< parameters.dockerTag >>
-                  imageName: cypress/base:<< parameters.dockerTag >>
+                  imageName: flotwig/base:<< parameters.dockerTag >>
             - halt-on-branch
 
     build-browser-image:
@@ -293,14 +293,14 @@ jobs:
         steps:
             - checkout
             - halt-if-docker-image-exists:
-                  imageName: cypress/browsers:<< parameters.dockerTag >>
+                  imageName: flotwig/browsers:<< parameters.dockerTag >>
             - run:
-                  name: building Docker image cypress/browsers:<< parameters.dockerTag >>
+                  name: building Docker image flotwig/browsers:<< parameters.dockerTag >>
                   command: |
-                      docker build -t cypress/browsers:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
+                      docker build -t flotwig/browsers:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
                   working_directory: browsers/<< parameters.dockerTag >>
             - test-browser-image:
-                  imageName: cypress/browsers:<< parameters.dockerTag >>
+                  imageName: flotwig/browsers:<< parameters.dockerTag >>
                   chromeVersion: << parameters.chromeVersion >>
                   firefoxVersion: << parameters.firefoxVersion >>
                   edgeVersion: << parameters.edgeVersion >>
@@ -323,20 +323,20 @@ jobs:
         steps:
             - checkout
             - halt-if-docker-image-exists:
-                  imageName: cypress/included:<< parameters.dockerTag >>
+                  imageName: flotwig/included:<< parameters.dockerTag >>
             - run:
-                  name: building Docker image cypress/included:<< parameters.dockerTag >>
+                  name: building Docker image flotwig/included:<< parameters.dockerTag >>
                   command: |
-                      docker build -t cypress/included:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
+                      docker build -t flotwig/included:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
                   working_directory: included/<< parameters.dockerTag >>
 
             - test-included-image-versions:
                   cypressVersion: << parameters.dockerTag >>
-                  imageName: cypress/included:<< parameters.dockerTag >>
+                  imageName: flotwig/included:<< parameters.dockerTag >>
 
             - test-included-image:
                   cypressVersion: << parameters.dockerTag >>
-                  imageName: cypress/included:<< parameters.dockerTag >>
+                  imageName: flotwig/included:<< parameters.dockerTag >>
             - halt-on-branch
 
     push-images:
@@ -419,7 +419,7 @@ workflows:
                 firefoxVersion: "Mozilla Firefox 99"
             - push-images:
                 name: "push browser node16.14.2-slim-chrome103-ff99-slim images"
-                dockerName: 'cypress/browser'
+                dockerName: 'flotwig/browser'
                 dockerTag: 'node16.14.2-slim-chrome103-ff99-slim'
                 workingDirectory: 'browser/node16.14.2-slim-chrome103-ff99-slim'
                 buildxArches: 'linux/arm64,linux/amd64'

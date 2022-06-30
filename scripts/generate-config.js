@@ -186,7 +186,7 @@ commands:
                     node --version
                     npm i cypress@latest
                     echo "Installing Cypress"
-                    docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install
+                    docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install"
 
             - run:
                   name: Test built-in Electron browser

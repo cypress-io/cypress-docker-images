@@ -100,41 +100,17 @@ commands:
                 description: Cypress base docker image to test
         steps:
             - run:
-                  name: test image << parameters.imageName >>
-                  no_output_timeout: '3m'
-                  command: |
-                      docker build -t cypress/test -\\<<EOF
-                      FROM << parameters.imageName >>
-                      RUN echo "current user: $(whoami)"
-                      ENV CI=1
-                      WORKDIR /app
-                      RUN npm init --yes
-                      RUN npm install --save-dev cypress cypress-expect
-                      RUN ./node_modules/.bin/cypress verify
-                      RUN npx @bahmutov/cly init
-                      # run Cypress by itself
-                      RUN ./node_modules/.bin/cypress run
-                      # run Cypress using module API and confirm number of passing tests
-                      RUN ./node_modules/.bin/cypress-expect run --passing 1
-                      EOF
-
-            - run:
                   name: test image << parameters.imageName >> using Kitchensink
                   no_output_timeout: '3m'
+                  working_directory: '~/project/test-project'
                   command: |
-                      docker build -t cypress/test-kitchensink -\\<<EOF
-                      FROM << parameters.imageName >>
-                      RUN echo "current user: $(whoami)"
-                      ENV CI=1
-                      WORKDIR /app
-                      ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
-                      RUN npm init --yes
-                      RUN npm install --save-dev cypress cypress-expect
-                      RUN ./node_modules/.bin/cypress verify
-                      RUN echo '{}' > cypress.json
-                      # run Cypress and confirm minimum number of passing tets
-                      RUN ./node_modules/.bin/cypress-expect run --min-passing 100
-                      EOF
+                      node --version
+                      npm i cypress@latest
+                      echo "Testing using Electron browser"
+                      docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run"
+                      echo "Testing using Chrome browser"
+                      docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run --browser chrome"
+
 
     test-browser-image:
         description: Build a test image from browser image and test it
@@ -206,19 +182,14 @@ commands:
                                 fi
 
             - run:
-                  name: test image << parameters.imageName >>
-                  no_output_timeout: '3m'
+                  name: Install deps for image << parameters.imageName >>
+                  no_output_timeout: "3m"
+                  working_directory: "~/project/test-project"
                   command: |
-                      docker build -t cypress/test -\\<<EOF
-                      FROM << parameters.imageName >>
-                      RUN echo "current user: $(whoami)"
-                      ENV CI=1
-                      WORKDIR /app
-                      RUN npm init --yes
-                      RUN npm install --save-dev cypress
-                      RUN ./node_modules/.bin/cypress verify
-                      RUN npx @bahmutov/cly init
-                      EOF
+                    node --version
+                    npm i cypress@latest
+                    echo "Installing Cypress"
+                    docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install
 
             - run:
                   name: Test built-in Electron browser

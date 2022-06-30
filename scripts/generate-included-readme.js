@@ -185,9 +185,9 @@ mkdir test
 cd test
 npm init --yes
 npm i -D cypress
-npx @bahmutov/cly init
+npx cypress install
 rm -rf package-lock.json package.json node_modules
-docker run -it -v $PWD:/e2e -w /e2e cypress/included:9.4.1
+docker run -it -v $PWD:/e2e -w /e2e cypress/included:10.3.0
 \`\`\`
 
 **Tip:** the above commands are in the file [test.sh](test.sh)

@@ -103,7 +103,7 @@ fs.readFile(changeLogPath, (err, data) => {
     process.exit(1)
   }
 
-  const updatedChangeLog = `${data.toString()} \n${generateNewChangeVersion}`
+  const updatedChangeLog = `${data.toString()}${generateNewChangeVersion}`
   fs.writeFileSync(changeLogPath, updatedChangeLog.trim() + "\n", "utf8")
   console.log("Saved CHANGELOG.md at %s", changeLogPath)
 

@@ -134,19 +134,11 @@ commands:
                                 fi
 
             - run:
-                  name: test image << parameters.imageName >>
-                  no_output_timeout: '3m'
-                  command: |
-                      docker build -t cypress/test -\<<EOF
-                      FROM << parameters.imageName >>
-                      RUN echo "current user: $(whoami)"
-                      ENV CI=1
-                      WORKDIR /app
-                      RUN npm init --yes
-                      RUN npm install --save-dev cypress
-                      RUN ./node_modules/.bin/cypress verify
-                      COPY ./test-project /app
-                      EOF
+                name: test image << parameters.imageName >> w Kitchensink
+                no_output_timeout: '3m'
+                command: |
+                    sed -i.bak "s|InsertBaseImageHere|<< parameters.imageName >>|g" ./test/Dockerfile.test-project
+                    docker build -t flotwig/test -f ./test/Dockerfile.test-project .
 
             - run:
                   name: Test built-in Electron browser
@@ -176,46 +168,6 @@ commands:
                             name: Test << parameters.edgeVersion >>
                             no_output_timeout: '1m'
                             command: docker run cypress/test ./node_modules/.bin/cypress run --browser edge
-
-            - run:
-                  name: scaffold image << parameters.imageName >> using Kitchensink
-                  no_output_timeout: '3m'
-                  command: |
-                      docker build -t cypress/test-kitchensink -\<<EOF
-                      FROM << parameters.imageName >>
-                      RUN echo "current user: $(whoami)"
-                      ENV CI=1
-                      WORKDIR /app
-                      ENV CYPRESS_INTERNAL_FORCE_SCAFFOLD=1
-                      RUN npm init --yes
-                      RUN npm install --save-dev cypress
-                      RUN ./node_modules/.bin/cypress verify
-                      RUN echo '{}' > cypress.json
-                      EOF
-
-            - when:
-                  condition: << parameters.chromeVersion >>
-                  steps:
-                      - run:
-                            name: Test << parameters.chromeVersion >>
-                            no_output_timeout: '1m'
-                            command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser chrome
-
-            - when:
-                  condition: << parameters.firefoxVersion >>
-                  steps:
-                      - run:
-                            name: Test << parameters.firefoxVersion >>
-                            no_output_timeout: '1m'
-                            command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser firefox
-
-            - when:
-                  condition: << parameters.edgeVersion >>
-                  steps:
-                      - run:
-                            name: Test << parameters.edgeVersion >>
-                            no_output_timeout: '1m'
-                            command: docker run cypress/test-kitchensink ./node_modules/.bin/cypress run --browser edge
 
     test-included-image-versions:
         description: Testing pre-installed versions
@@ -404,6 +356,9 @@ jobs:
             workingDirectory:
                 type: string
                 description: Directory with the Dockerfile
+            buildxArches:
+                type: string
+                description: List of architectures to pass to `docker buildx --platform`
         steps:
             - checkout
             - halt-if-docker-image-exists:
@@ -425,7 +380,7 @@ jobs:
                     echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
                     docker buildx create --name builder --use
                     docker buildx inspect --bootstrap
-                    docker buildx build --progress plain --platform linux/amd64,linux/arm64 -t << parameters.dockerName >>:<< parameters.dockerTag >> --push .
+                    docker buildx build --progress plain --platform << parameters.buildxArches >> -t << parameters.dockerName >>:<< parameters.dockerTag >> --push .
 
 workflows:
     version: 2

@@ -56,16 +56,30 @@ const splitImageFolderName = (folderName) => {
 const getImageType = (image) => {
   return image.name.includes("base") ? "base" : image.name.includes("browser") ? "browser" : "included"
 }
+
+const getDockerArchFromNodeArch = (nodeArch) => {
+  if (nodeArch === 'arm64') return 'linux/arm64'
+  if (nodeArch === 'x64') return 'linux/amd64'
+  throw new Error(`unrecognized arch in getDockerArch: ${nodeArch}`)
+}
+
 const formWorkflow = (image) => {
   let yml = `    build-${getImageType(image)}-images:
         jobs:`
 
-  for (const arch of ['arm64', 'x64']) {
+  let arches = ['arm64', 'x64']
+
+  if (image.tag.includes('-edge')) {
+    console.warn('Generating an edge image, not generating a build for `linux/arm64`.')
+    arches = ['x64']
+  }
+
+  for (const arch of arches) {
     yml += os.EOL + `            - build-${getImageType(image)}-image:
                 name: "build+test ${getImageType(image)} ${image.tag} ${arch}"
                 dockerTag: "${image.tag}"
                 resourceClass: ${arch === 'arm64' ? 'arm.large' : 'large'}
-                platformArg: ${arch === 'arm64' ? 'linux/arm64' : 'linux/amd64'}`
+                platformArg: ${getDockerArchFromNodeArch(arch)}`
 
     // add browser versions
     if (getImageType(image) === "browser") {
@@ -97,10 +111,13 @@ const formWorkflow = (image) => {
                 dockerName: 'cypress/${getImageType(image)}'
                 dockerTag: '${image.tag}'
                 workingDirectory: '${getImageType(image)}/${image.tag}'
+                buildxArches: '${arches.map(getDockerArchFromNodeArch).join(',')}'
                 context: test-runner:docker-push
-                requires:
-                    - "build+test ${getImageType(image)} ${image.tag} x64"
-                    - "build+test ${getImageType(image)} ${image.tag} arm64"`
+                requires:`
+
+  for (const arch of arches) {
+    yml += os.EOL + `                    - "build+test ${getImageType(image)} ${image.tag} ${arch}"`
+  }
 
   return yml
 }

@@ -20,6 +20,12 @@ if (!baseImageTag.startsWith("cypress/browsers:")) {
   console.error('but it was "%s"', baseImageTag)
   process.exit(1)
 }
+if (baseImageTag.includes('edge')) {
+  console.error('A browser image with `edge` cannot be used to generate an included image, because `edge` prevents us from building for `linux/arm64`:')
+  console.error('https://techcommunity.microsoft.com/t5/discussions/edge-for-linux-arm64/m-p/1532272')
+  console.error('Use a browser image without `edge` instead.')
+  process.exit(1)
+}
 
 let outputFolder = path.join("included", versionTag)
 

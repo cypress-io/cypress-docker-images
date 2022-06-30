@@ -134,11 +134,11 @@ commands:
                                 fi
 
             - run:
-                  name: test image << parameters.imageName >> w Kitchensink
-                  no_output_timeout: '3m'
-                  command: |
-                      sed -i.bak "s|InsertBaseImageHere|<< parameters.imageName >>|g" ./test/Dockerfile.test-project
-                      docker build -t flotwig/test -f ./test/Dockerfile.test-project .
+                name: test image << parameters.imageName >> w Kitchensink
+                no_output_timeout: '3m'
+                command: |
+                    sed -i.bak "s|InsertBaseImageHere|<< parameters.imageName >>|g" ./test/Dockerfile.test-project
+                    docker build -t flotwig/test -f ./test/Dockerfile.test-project .
 
             - run:
                   name: Test built-in Electron browser
@@ -356,6 +356,9 @@ jobs:
             workingDirectory:
                 type: string
                 description: Directory with the Dockerfile
+            buildxArches:
+                type: string
+                description: List of architectures to pass to `docker buildx --platform`
         steps:
             - checkout
             - halt-if-docker-image-exists:
@@ -377,7 +380,7 @@ jobs:
                     echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
                     docker buildx create --name builder --use
                     docker buildx inspect --bootstrap
-                    docker buildx build --progress plain --platform linux/amd64,linux/arm64 -t << parameters.dockerName >>:<< parameters.dockerTag >> --push .
+                    docker buildx build --progress plain --platform << parameters.buildxArches >> -t << parameters.dockerName >>:<< parameters.dockerTag >> --push .
 
 workflows:
     version: 2
@@ -387,27 +390,26 @@ workflows:
     build-browser-images:
         jobs:
             - build-browser-image:
-                name: "build+test browser node16.14.2-slim-chrome100-ff99-edge arm64"
-                dockerTag: "node16.14.2-slim-chrome100-ff99-edge"
+                name: "build+test browser node16.14.2-slim-chrome103-ff99 arm64"
+                dockerTag: "node16.14.2-slim-chrome103-ff99"
                 resourceClass: arm.large
                 platformArg: linux/arm64
-                chromeVersion: "Google Chrome 100"
+                chromeVersion: "Google Chrome 103"
                 firefoxVersion: "Mozilla Firefox 99"
-                edgeVersion: "Microsoft Edge"
             - build-browser-image:
-                name: "build+test browser node16.14.2-slim-chrome100-ff99-edge x64"
-                dockerTag: "node16.14.2-slim-chrome100-ff99-edge"
+                name: "build+test browser node16.14.2-slim-chrome103-ff99 x64"
+                dockerTag: "node16.14.2-slim-chrome103-ff99"
                 resourceClass: large
                 platformArg: linux/amd64
-                chromeVersion: "Google Chrome 100"
+                chromeVersion: "Google Chrome 103"
                 firefoxVersion: "Mozilla Firefox 99"
-                edgeVersion: "Microsoft Edge"
             - push-images:
-                name: "push browser node16.14.2-slim-chrome100-ff99-edge images"
+                name: "push browser node16.14.2-slim-chrome103-ff99 images"
                 dockerName: 'flotwig/browser'
-                dockerTag: 'node16.14.2-slim-chrome100-ff99-edge'
-                workingDirectory: 'browser/node16.14.2-slim-chrome100-ff99-edge'
+                dockerTag: 'node16.14.2-slim-chrome103-ff99'
+                workingDirectory: 'browser/node16.14.2-slim-chrome103-ff99'
+                buildxArches: 'linux/arm64,linux/amd64'
                 context: test-runner:docker-push
                 requires:
-                    - "build+test browser node16.14.2-slim-chrome100-ff99-edge x64"
-                    - "build+test browser node16.14.2-slim-chrome100-ff99-edge arm64"
+                    - "build+test browser node16.14.2-slim-chrome103-ff99 arm64"
+                    - "build+test browser node16.14.2-slim-chrome103-ff99 x64"

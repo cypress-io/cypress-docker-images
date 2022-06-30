@@ -20,12 +20,6 @@ if (!baseImageTag.startsWith("cypress/browsers:")) {
   console.error('but it was "%s"', baseImageTag)
   process.exit(1)
 }
-if (baseImageTag.includes('edge')) {
-  console.error('A browser image with `edge` cannot be used to generate an included image, because `edge` prevents us from building for `linux/arm64`:')
-  console.error('https://techcommunity.microsoft.com/t5/discussions/edge-for-linux-arm64/m-p/1532272')
-  console.error('Use a browser image without `edge` instead.')
-  process.exit(1)
-}
 
 let outputFolder = path.join("included", versionTag)
 
@@ -122,6 +116,9 @@ Read [Run Cypress with a single Docker command][blog post url]
 $ docker run -it -v $PWD:/e2e -w /e2e cypress/included:${folderName}
 # runs Cypress tests from the current folder
 \`\`\`
+
+
+**Note:** Currently, the linux/arm64 build of this image does not contain any browsers except Electron. See https://github.com/cypress-io/cypress-docker-images/issues/695 for more information.
 
 [blog post url]: https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command/
 `

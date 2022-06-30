@@ -30,19 +30,14 @@ const getImageType = (image) => {
 const getDockerArchFromNodeArch = (nodeArch) => {
   if (nodeArch === 'arm64') return 'linux/arm64'
   if (nodeArch === 'x64') return 'linux/amd64'
-  throw new Error(`unrecognized arch in getDockerArch: ${nodeArch}`)
+  throw new Error(`unrecognized arch in getDockerArchFromNodeArch: ${nodeArch}`)
 }
 
 const formWorkflow = (image) => {
   let yml = `    build-${getImageType(image)}-images:
         jobs:`
 
-  let arches = ['arm64', 'x64']
-
-  if (image.tag.includes('-edge')) {
-    console.warn('Generating an edge image, not generating a build for `linux/arm64`.')
-    arches = ['x64']
-  }
+  const arches = ['arm64', 'x64']
 
   for (const arch of arches) {
     yml += os.EOL + `            - build-${getImageType(image)}-image:

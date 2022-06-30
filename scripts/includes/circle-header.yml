@@ -363,7 +363,7 @@ jobs:
             - halt-on-branch
             - run:
                 ## see https://docs.docker.com/desktop/multi-arch/
-                name: blindly build + push multi-arch image
+                name: build + push multi-arch image to docker hub
                 working_directory: << parameters.workingDirectory >>
                 command: |
                     ## install QEMU, pulled from https://github.com/docker/setup-qemu-action/blob/4620c11b701e878e3f2b7aa142927d0646857fd9/src/main.ts
@@ -379,7 +379,10 @@ jobs:
                     docker buildx inspect --bootstrap
                     DOCKER_TAG=<< parameters.dockerName >>:<< parameters.dockerTag >>
                     docker buildx build --progress plain --platform << parameters.buildxArches >> -t $DOCKER_TAG --push .
-
+            - run:
+                name: build + push multi-arch image to amazon ecr
+                working_directory: << parameters.workingDirectory >>
+                command: |
                     ## now, let's re-build those same images for Amazon ECR
                     ## see https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html
                     aws ecr-public get-login-password --region $AWS_ECR_REGION | docker login --username AWS --password-stdin $AWS_ECR_PREFIX

@@ -225,9 +225,6 @@ commands:
                       echo "Testing using Electron browser"
                       docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >>
 
-                      echo "Testing using Chrome browser"
-                      docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >> --browser chrome
-
 jobs:
     lint-markdown:
         executor:

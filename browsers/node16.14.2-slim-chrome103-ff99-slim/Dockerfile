@@ -12,7 +12,7 @@ USER root
 
 RUN node --version
 
-COPY ../../scripts/for-images/global-profile.sh /tmp/global-profile.sh
+COPY ./global-profile.sh /tmp/global-profile.sh
 RUN cat /tmp/global-profile.sh >> /etc/profile && rm /tmp/global-profile.sh
 
 # Install dependencies

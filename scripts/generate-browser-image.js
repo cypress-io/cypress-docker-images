@@ -99,7 +99,7 @@ USER root
 
 RUN node --version
 
-COPY ../../scripts/for-images/global-profile.sh /tmp/global-profile.sh
+COPY ./global-profile.sh /tmp/global-profile.sh
 RUN cat /tmp/global-profile.sh >> /etc/profile && rm /tmp/global-profile.sh
 
 # Install dependencies
@@ -158,6 +158,9 @@ ENV npm_config_unsafe_perm=true
 const dockerFilename = path.join(outputFolder, "Dockerfile")
 fs.writeFileSync(dockerFilename, Dockerfile.trim() + "\n", "utf8")
 console.log("Saved %s", dockerFilename)
+
+const globalProfileFilename = path.join(outputFolder, 'global-profile.sh')
+fs.copyFileSync(path.join(__dirname, 'for-images', 'global-profile.sh'), globalProfileFilename)
 
 const README = `
 <!--

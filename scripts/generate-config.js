@@ -191,6 +191,7 @@ commands:
             - run:
                   name: Test built-in Electron browser
                   no_output_timeout: '1m'
+                  working_directory: "~/project/test-project"
                   command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run"
 
             - when:
@@ -199,6 +200,7 @@ commands:
                       - run:
                             name: Test << parameters.chromeVersion >>
                             no_output_timeout: '1m'
+                            working_directory: "~/project/test-project"
                             command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run --browser chrome"
 
             - when:
@@ -207,6 +209,7 @@ commands:
                       - run:
                             name: Test << parameters.firefoxVersion >>
                             no_output_timeout: '1m'
+                            working_directory: "~/project/test-project"
                             command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run --browser firefox"
 
             - when:
@@ -215,6 +218,7 @@ commands:
                       - run:
                             name: Test << parameters.edgeVersion >>
                             no_output_timeout: '1m'
+                            working_directory: "~/project/test-project"
                             command: docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress run --browser edge"
 
             - run:

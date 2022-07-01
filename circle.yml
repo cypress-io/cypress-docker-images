@@ -165,7 +165,6 @@ commands:
             - when:
                   condition: << parameters.chromeVersion >>
                   steps:
-                      - halt-if-arm
                       - run:
                             name: Test << parameters.chromeVersion >>
                             no_output_timeout: '1m'
@@ -179,7 +178,6 @@ commands:
             - when:
                   condition: << parameters.firefoxVersion >>
                   steps:
-                      - halt-if-arm
                       - run:
                             name: Test << parameters.firefoxVersion >>
                             no_output_timeout: '1m'
@@ -193,7 +191,6 @@ commands:
             - when:
                   condition: << parameters.edgeVersion >>
                   steps:
-                      - halt-if-arm
                       - run:
                             name: Test << parameters.edgeVersion >>
                             no_output_timeout: '1m'

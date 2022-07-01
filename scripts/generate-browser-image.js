@@ -177,6 +177,7 @@ A complete image with all operating system depedencies for Cypress, and Chrome $
 **Note:** this image uses the \`root\` user. You might want to switch to nonroot user like \`node\` when running this container for security
 `
 
+const platformsFallback = '${PLATFORMS:-linux/amd64,linux/arm64}'
 const readmeFilename = path.join(outputFolder, "README.md")
 fs.writeFileSync(readmeFilename, README.trim() + "\n", "utf8")
 console.log("Saved %s", readmeFilename)
@@ -190,10 +191,26 @@ const buildScript = `
   .map((arg) => arg)
   .join(" ")}
 set e+x
+PLATFORMS=${platformsFallback}
 
 LOCAL_NAME=cypress/browsers:${folderName}
+
+docker context create multiarch 2> /dev/null || true
+
+if [ "$(uname)" = "Linux" ]; then
+  docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+fi
+
+docker buildx use buildx-multiarch ||
+  docker buildx create --driver docker-container --use multiarch --name buildx-multiarch
+
+
+if [ -n "$PLATFORMS" ]; then
+  PLATFORM_ARGS="--platform $PLATFORMS"
+fi
+
 echo "Building $LOCAL_NAME"
-docker build -t $LOCAL_NAME .
+docker buildx build $PLATFORM_ARGS -t $LOCAL_NAME . --push
 `
 
 const buildFilename = path.join(outputFolder, "build.sh")

@@ -46,7 +46,7 @@ RUN npm --version
 RUN npm install npm@latest
 RUN echo "current bin path $(npm bin)"
 # npm fails to install over it globally
-# so we will install the latest npm locally and thenk link in place of global npm
+# so we will install the latest npm locally and then link in place of global npm
 RUN which npm
 RUN rm /usr/local/bin/npm
 RUN ln -s /node_modules/.bin/npm /usr/local/bin/npm

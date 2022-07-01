@@ -453,7 +453,7 @@ workflows:
                 name: "push browser node16.14.2-slim-chrome103-ff99-slim images"
                 dockerName: 'flotwig/browser'
                 dockerTag: 'node16.14.2-slim-chrome103-ff99-slim'
-                workingDirectory: 'browser/node16.14.2-slim-chrome103-ff99-slim'
+                workingDirectory: '~/project/browser/node16.14.2-slim-chrome103-ff99-slim'
                 buildxArches: 'linux/arm64,linux/amd64'
                 context: test-runner:docker-push
                 requires:

@@ -60,7 +60,7 @@ If there is already a `cypress/included` image with a specific version, but you 
 
 ## Tagging the latest image
 
-We build individual base images that match Node versions: `10.18.1`, `12.12.0`, `12.18.2`, etc. We also tag some of the images with major version: `base:10`, `base:12`. We also tag one image `base:latest`. In general, you should use the explicit version like `base:12.18.0` because it guarantees that the Docker image will never be suddenly updated.
+We build individual base images that match Node versions: `10.18.1`, `12.12.0`, `12.18.2`, etc. We also tag some of the images with major version: `base:10`, `base:12`. We also tag one image `base:latest`. In general, consumers should use the explicit version like `base:12.18.0` because it guarantees that the Docker image will never be suddenly updated.
 
 To tag new image, like `base:12.18.2` need to do the following from a local machine
 

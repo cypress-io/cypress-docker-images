@@ -116,6 +116,10 @@ commands:
                       - run:
                             name: confirm the image has Firefox << parameters.firefoxVersion >>
                             command: |
+                                if [[ "$(node -p process.arch)" == 'arm64' ]]; then
+                                    echo "Currently cannot have Firefox on arm platform, skipping"
+                                    exit 0
+                                fi
                                 version=$(docker run << parameters.imageName >> firefox --version)
                                 if [[ "$version" =~ ^"<< parameters.firefoxVersion >>" ]]; then
                                   echo "Image has the expected version of Firefox << parameters.firefoxVersion >>"
@@ -132,6 +136,10 @@ commands:
                       - run:
                             name: confirm the image has Edge << parameters.edgeVersion >>
                             command: |
+                                if [[ "$(node -p process.arch)" == 'arm64' ]]; then
+                                    echo "Currently cannot have Edge on arm platform, skipping"
+                                    exit 0
+                                fi
                                 version=$(docker run << parameters.imageName >> edge --version)
                                 if [[ "$version" ]]; then
                                   echo "Image has the a version of Edge << parameters.edgeVersion >>"

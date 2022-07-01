@@ -97,8 +97,8 @@ commands:
                             # and use Bash regex string comparison
                             command: |
                                 if [[ "$(node -p process.arch)" == 'arm64' ]]; then
-                                  echo "Currently cannot have Chrome on arm platform, skipping"
-                                  exit 0
+                                    echo "Currently cannot have Chrome on arm platform, skipping"
+                                    exit 0
                                 fi
                                 version=$(docker run << parameters.imageName >> google-chrome --version)
                                 if [[ "$version" =~ ^"<< parameters.chromeVersion >>" ]]; then
@@ -116,6 +116,10 @@ commands:
                       - run:
                             name: confirm the image has Firefox << parameters.firefoxVersion >>
                             command: |
+                                if [[ "$(node -p process.arch)" == 'arm64' ]]; then
+                                    echo "Currently cannot have Firefox on arm platform, skipping"
+                                    exit 0
+                                fi
                                 version=$(docker run << parameters.imageName >> firefox --version)
                                 if [[ "$version" =~ ^"<< parameters.firefoxVersion >>" ]]; then
                                   echo "Image has the expected version of Firefox << parameters.firefoxVersion >>"
@@ -132,6 +136,10 @@ commands:
                       - run:
                             name: confirm the image has Edge << parameters.edgeVersion >>
                             command: |
+                                if [[ "$(node -p process.arch)" == 'arm64' ]]; then
+                                    echo "Currently cannot have Edge on arm platform, skipping"
+                                    exit 0
+                                fi
                                 version=$(docker run << parameters.imageName >> edge --version)
                                 if [[ "$version" ]]; then
                                   echo "Image has the a version of Edge << parameters.edgeVersion >>"
@@ -157,6 +165,7 @@ commands:
             - when:
                   condition: << parameters.chromeVersion >>
                   steps:
+                      - halt-if-arm
                       - run:
                             name: Test << parameters.chromeVersion >>
                             no_output_timeout: '1m'
@@ -170,6 +179,7 @@ commands:
             - when:
                   condition: << parameters.firefoxVersion >>
                   steps:
+                      - halt-if-arm
                       - run:
                             name: Test << parameters.firefoxVersion >>
                             no_output_timeout: '1m'
@@ -183,6 +193,7 @@ commands:
             - when:
                   condition: << parameters.edgeVersion >>
                   steps:
+                      - halt-if-arm
                       - run:
                             name: Test << parameters.edgeVersion >>
                             no_output_timeout: '1m'

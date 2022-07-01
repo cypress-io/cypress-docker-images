@@ -252,7 +252,7 @@ mkdir test
 cd test
 npm init --yes
 npm i -D cypress
-npx @bahmutov/cly init
+cp ./test-project ./e2e
 rm -rf package-lock.json package.json node_modules
 docker run -it -v $PWD:/e2e -w /e2e cypress/included:9.4.1
 ```

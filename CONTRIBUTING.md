@@ -65,16 +65,11 @@ We build individual base images that match Node versions: `10.18.1`, `12.12.0`, 
 To tag a new image, like `base:12.18.2`, you need to do the following from a local machine:
 
 ```text
-# pull the image to tag
-$ docker pull cypress/base:12.18.2
+# install manifest-tool -- https://github.com/estesp/manifest-tool#installation
 # tag that image with major version
-$ docker tag cypress/base:12.18.2 cypress/base:12
+$ ./retag-image cypress/base:12.18.2 cypress/base:12
 # tag that image with "latest"
-$ docker tag cypress/base:12.18.2 cypress/base:latest
-
-# push the new images (which are the same)
-$ docker push cypress/base:12
-$ docker push cypress/base:latest
+$ ./retag-image cypress/base:12.18.2 cypress/base:latest
 ```
 
 ## Bonus: smaller images

@@ -76,7 +76,6 @@ const formWorkflow = (image) => {
                 dockerName: 'cypress/${getImageType(image)}'
                 dockerTag: '${image.tag}'
                 workingDirectory: '~/project/${getImageType(image)}/${image.tag}'
-                buildxArches: '${arches.map(getDockerArchFromNodeArch).join(',')}'
                 context: test-runner:docker-push
                 requires:`
 

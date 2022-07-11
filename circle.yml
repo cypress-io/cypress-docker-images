@@ -304,7 +304,6 @@ jobs:
             - test-base-image:
                   nodeVersion: v<< parameters.dockerTag >>
                   imageName: cypress/base:<< parameters.dockerTag >>
-            - halt-on-branch
 
     build-browser-image:
         machine:
@@ -346,7 +345,6 @@ jobs:
                   chromeVersion: << parameters.chromeVersion >>
                   firefoxVersion: << parameters.firefoxVersion >>
                   edgeVersion: << parameters.edgeVersion >>
-            - halt-on-branch
 
     build-included-image:
         machine:
@@ -379,7 +377,6 @@ jobs:
             - test-included-image:
                   cypressVersion: << parameters.dockerTag >>
                   imageName: cypress/included:<< parameters.dockerTag >>
-            - halt-on-branch
 
     push-images:
         ## the multi-arch images have been built and tested by previous jobs, so we're safe to blindly build+push

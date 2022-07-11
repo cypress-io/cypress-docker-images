@@ -1,4 +1,4 @@
-if [ $(uname -p) = "arm" ]; then
+if [[ "$(uname -a)" = *"arm"* || "$(uname -a)" = *"aarch64"* ]]; then
     printf "\e[31m" # red
     echo "Warning: You are using the beta Arm build of a cypress/browsers or cypress/included image."
     echo

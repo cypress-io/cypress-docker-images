@@ -268,6 +268,16 @@ jobs:
                 override-ci-command: yarn install --frozen-lockfile
             - run: npm run check:markdown
 
+    test:
+        executor:
+            name: node/default
+            tag: '12.22'
+        steps:
+            - checkout
+            - node/install-packages:
+                override-ci-command: yarn install --frozen-lockfile
+            - run: yarn test
+
     build-base-image:
         machine:
             image: ubuntu-2004:202111-02
@@ -433,3 +443,4 @@ workflows:
     lint:
         jobs:
             - lint-markdown
+            - test

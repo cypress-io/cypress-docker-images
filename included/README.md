@@ -98,6 +98,7 @@ Name + Tag | Base image
 [cypress/included:10.1.0](10.1.0) | `cypress/browsers:node16.14.2-slim-chrome100-ff99-edge`
 [cypress/included:10.2.0](10.2.0) | `cypress/browsers:node16.14.2-slim-chrome100-ff99-edge`
 [cypress/included:10.3.0](10.3.0) | `cypress/browsers:node16.14.2-slim-chrome100-ff99-edge`
+[cypress/included:10.3.0-node16.14.0-edge](10.3.0-node16.14.0-edge) | `cypress/browsers:node16.14.0-edge`
 
 This image should be enough to run Cypress tests headlessly or in the interactive mode with a single Docker command like this:
 
@@ -252,7 +253,7 @@ mkdir test
 cd test
 npm init --yes
 npm i -D cypress
-cp ./test-project ./e2e
+npx @bahmutov/cly init
 rm -rf package-lock.json package.json node_modules
 docker run -it -v $PWD:/e2e -w /e2e cypress/included:9.4.1
 ```

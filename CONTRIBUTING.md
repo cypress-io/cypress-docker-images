@@ -40,7 +40,7 @@ This will create a new folder `browser/node<node version>-chrome<chrome version>
 
 **note:** The Edge browser will always default to the latest stable release. There is currently no way to specify the downloaded version. For this reason, when generating an image with Edge support users should only pass `--edge`.
 
-**note:** Microsoft Edge is currently not compatible with `arm64`, so browsers images generated for Edge will not be built for the `linux/arm64` architecture. Feature request: https://techcommunity.microsoft.com/t5/discussions/edge-for-linux-arm64/m-p/1532272
+**note:** No major browsers are currently compatible with `arm64`, so browsers images will be missing those browsers on `linux/arm64` architecture. As time passes and these become available, we will introduce them to the `arm64` images as well: https://github.com/cypress-io/cypress-docker-images/issues/695
 
 ### Add new included image
 

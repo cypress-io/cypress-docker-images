@@ -106,3 +106,31 @@ RUN echo  " node version:    $(node -v) \n" \
   "debian version:  $(cat /etc/debian_version) \n" \
   "user:            $(whoami) \n"
 ```
+
+## Multi-Architecture Support
+
+As of Cypress 10.2.0, `arm64` and `x64` are both supported.
+
+In CI, the images are build and tested in real `arm64` and `x64` architectures. Then, via `binfmt` and `docker buildx`, we build x64 and cross-build arm64 from the same machine, and then publish that image to Docker Hub. The `docker buildx` step runs a second time to push to Amazon ECR:
+
+<!-- diagram generated w/ https://asciiflow.com/ -->
+```text
+┌────────────────────┐     ┌──────────────────┐
+│arm64 build+test job│     │x64 build+test job│
+└──────────┬─────────┘     └────────┬─────────┘
+           │                        │
+┌──────────▼────────────────────────▼─────────┐
+│x64 build+push job                           │
+│  ┌──────────────────────────────────────┐   │
+│  │       build+push to Docker Hub       │   │
+│  └──────────────────┬───────────────────┘   │
+│                     │                       │
+│  ┌──────────────────▼───────────────────┐   │
+│  │         build+push to AWS ECR        │   │
+│  └──────────────────────────────────────┘   │
+└─────────────────────────────────────────────┘
+```
+
+It would be nice to re-publish the Docker Hub images verbatim to ECR instead of building twice, but more work needs to be done in this area - see the `push-images` step in `circle.yml` for details.
+
+A current limitation is that no `arm64` images have browser binaries - see https://github.com/cypress-io/cypress-docker-images/issues/695 for details. [`global-profile.sh`](./scripts/for-images/global-profile.sh) is placed in `/etc/bash.bashrc`, so Arm Docker users will see a warning about this limitation.

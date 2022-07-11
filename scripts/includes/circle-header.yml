@@ -407,6 +407,8 @@ jobs:
                 command: |
                     ## install QEMU, pulled from https://github.com/docker/setup-qemu-action/blob/4620c11b701e878e3f2b7aa142927d0646857fd9/src/main.ts
                     ## avoids https://github.com/docker/buildx/issues/499
+                    ## this allows us to build for arm64 from x86_64 in CI, by installing QEMU utils and binfmt data on our Docker host
+                    ## if this suddenly breaks, try a newer digest version or the docker/binfmt fork
                     BINFMT_IMAGE=tonistiigi/binfmt:latest@sha256:85683def11494bc0055d98dd1081e73cb5e70bbc1ae532be3d12cf054e2b11f1
                     docker pull $BINFMT_IMAGE
                     docker image inspect $BINFMT_IMAGE

@@ -100,7 +100,7 @@ USER root
 RUN node --version
 
 COPY ./global-profile.sh /tmp/global-profile.sh
-RUN cat /tmp/global-profile.sh >> /etc/profile && rm /tmp/global-profile.sh
+RUN cat /tmp/global-profile.sh >> /etc/bash.bashrc && rm /tmp/global-profile.sh
 
 # Install dependencies
 RUN apt-get update && \\

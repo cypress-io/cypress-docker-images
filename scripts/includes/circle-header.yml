@@ -62,7 +62,7 @@ commands:
                       docker run -it -v $PWD:/e2e -w /e2e << parameters.imageName >> sh -c "./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run"
 
                       if [[ "$(node -p process.arch)" == 'arm64' ]]; then
-                        echo "Currently cannot have Chrome on arm platform, skipping"
+                        echo "Chrome does not support arm64 yet, skipping"
                         exit 0
                       fi
 
@@ -97,7 +97,7 @@ commands:
                             # and use Bash regex string comparison
                             command: |
                                 if [[ "$(node -p process.arch)" == 'arm64' ]]; then
-                                    echo "Currently cannot have Chrome on arm platform, skipping"
+                                    echo "Chrome does not support arm64 yet, skipping"
                                     exit 0
                                 fi
                                 version=$(docker run << parameters.imageName >> google-chrome --version)
@@ -117,7 +117,7 @@ commands:
                             name: confirm the image has Firefox << parameters.firefoxVersion >>
                             command: |
                                 if [[ "$(node -p process.arch)" == 'arm64' ]]; then
-                                    echo "Currently cannot have Firefox on arm platform, skipping"
+                                    echo "Firefox does not support arm64 yet, skipping"
                                     exit 0
                                 fi
                                 version=$(docker run << parameters.imageName >> firefox --version)
@@ -137,7 +137,7 @@ commands:
                             name: confirm the image has Edge << parameters.edgeVersion >>
                             command: |
                                 if [[ "$(node -p process.arch)" == 'arm64' ]]; then
-                                    echo "Currently cannot have Edge on arm platform, skipping"
+                                    echo "Edge does not support arm64 yet, skipping"
                                     exit 0
                                 fi
                                 version=$(docker run << parameters.imageName >> edge --version)
@@ -170,7 +170,7 @@ commands:
                             no_output_timeout: '1m'
                             command: |
                               if [[ "$(node -p process.arch)" == 'arm64' ]]; then
-                                echo "Currently cannot have Chrome on arm platform, skipping"
+                                echo "Chrome does not support arm64 yet, skipping"
                                 exit 0
                               fi
                               docker run cypress/test ./node_modules/.bin/cypress run --browser chrome
@@ -183,7 +183,7 @@ commands:
                             no_output_timeout: '1m'
                             command: |
                               if [[ "$(node -p process.arch)" == 'arm64' ]]; then
-                                echo "Currently cannot have Firefox on arm platform, skipping"
+                                echo "Firefox does not support arm64 yet, skipping"
                                 exit 0
                               fi
                               docker run cypress/test ./node_modules/.bin/cypress run --browser firefox
@@ -196,7 +196,7 @@ commands:
                             no_output_timeout: '1m'
                             command: |
                               if [[ "$(node -p process.arch)" == 'arm64' ]]; then
-                                echo "Currently cannot have Edge on arm platform, skipping"
+                                echo "Edge does not support arm64 yet, skipping"
                                 exit 0
                               fi
                               docker run cypress/test ./node_modules/.bin/cypress run --browser edge

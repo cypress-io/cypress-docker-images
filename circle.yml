@@ -82,7 +82,7 @@ commands:
                       RUN npm init --yes
                       RUN npm install --save-dev cypress cypress-expect
                       RUN ./node_modules/.bin/cypress verify
-                      RUN echo 'module.exports = { e2e: {} }' > cypress.config.js
+                      RUN echo 'module.exports = { e2e: { supportFile: false } }' > cypress.config.js
                       # run Cypress and confirm minimum number of passing tets
                       RUN ./node_modules/.bin/cypress-expect run --min-passing 100
                       EOF
@@ -213,7 +213,7 @@ commands:
                       RUN npm init --yes
                       RUN npm install --save-dev cypress
                       RUN ./node_modules/.bin/cypress verify
-                      RUN echo 'module.exports = { e2e: {} }' > cypress.config.js
+                      RUN echo 'module.exports = { e2e: { supportFile: false } }' > cypress.config.js
                       EOF
 
             - when:

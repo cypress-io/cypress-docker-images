@@ -435,8 +435,11 @@ workflows:
     lint:
         jobs:
             - lint-markdown
-    build-included-images:
+    build-browser-images:
         jobs:
-            - build-included-image:
-                name: "included 10.3.0"
-                dockerTag: "10.3.0"
+            - build-browser-image:
+                name: "browser node16.14.2-slim-chrome103-ff102-edge-slim"
+                dockerTag: "node16.14.2-slim-chrome103-ff102-edge-slim"
+                chromeVersion: "Google Chrome 103"
+                firefoxVersion: "Mozilla Firefox 102"
+                edgeVersion: "Microsoft Edge"

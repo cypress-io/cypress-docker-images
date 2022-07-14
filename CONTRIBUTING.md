@@ -40,6 +40,8 @@ This will create a new folder `browser/node<node version>-chrome<chrome version>
 
 **note:** The Edge browser will always default to the latest stable release. There is currently no way to specify the downloaded version. For this reason, when generating an image with Edge support users should only pass `--edge`.
 
+**note:** No major browsers are currently compatible with `arm64`, so browsers images will be missing those browsers on `linux/arm64` architecture. As time passes and these become available, we will introduce them to the `arm64` images as well: https://github.com/cypress-io/cypress-docker-images/issues/695.
+
 ### Add new included image
 
 To create a new image with Cypress pre-installed globally
@@ -104,3 +106,31 @@ RUN echo  " node version:    $(node -v) \n" \
   "debian version:  $(cat /etc/debian_version) \n" \
   "user:            $(whoami) \n"
 ```
+
+## Multi-Architecture Support
+
+As of Cypress 10.2.0, `arm64` and `x64` are both supported.
+
+In CI, the images are built and tested in real `arm64` and `x64` architectures. Then, via `binfmt` and `docker buildx`, we build x64 and cross-build arm64 from the same machine, and then publish that image to Docker Hub. The `docker buildx` step runs a second time to push to Amazon ECR:
+
+<!-- diagram generated w/ https://asciiflow.com/ -->
+```text
+┌────────────────────┐     ┌──────────────────┐
+│arm64 build+test job│     │x64 build+test job│
+└──────────┬─────────┘     └────────┬─────────┘
+           │                        │
+┌──────────▼────────────────────────▼─────────┐
+│x64 build+push job                           │
+│  ┌──────────────────────────────────────┐   │
+│  │       build+push to Docker Hub       │   │
+│  └──────────────────┬───────────────────┘   │
+│                     │                       │
+│  ┌──────────────────▼───────────────────┐   │
+│  │         build+push to AWS ECR        │   │
+│  └──────────────────────────────────────┘   │
+└─────────────────────────────────────────────┘
+```
+
+It would be nice to re-publish the Docker Hub images verbatim to ECR instead of building twice, but more work needs to be done in this area - see the `push-images` step in `circle.yml` for details.
+
+A current limitation is that no `arm64` images have browser binaries - see https://github.com/cypress-io/cypress-docker-images/issues/695 for details. [`global-profile.sh`](./scripts/for-images/global-profile.sh) is placed in `/etc/bash.bashrc`, so Arm Docker users will see a warning about this limitation.

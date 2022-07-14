@@ -103,6 +103,7 @@ It is a good idea to print versions of the installed tools and username at the e
 RUN echo  " node version:    $(node -v) \n" \
   "npm version:     $(npm -v) \n" \
   "yarn version:    $(yarn -v) \n" \
+  "typescript version:  $(tsc -v) \n" \
   "debian version:  $(cat /etc/debian_version) \n" \
   "user:            $(whoami) \n"
 ```
@@ -114,6 +115,7 @@ As of Cypress 10.2.0, `arm64` and `x64` are both supported.
 In CI, the images are built and tested in real `arm64` and `x64` architectures. Then, via `binfmt` and `docker buildx`, we build x64 and cross-build arm64 from the same machine, and then publish that image to Docker Hub. The `docker buildx` step runs a second time to push to Amazon ECR:
 
 <!-- diagram generated w/ https://asciiflow.com/ -->
+
 ```text
 ┌────────────────────┐     ┌──────────────────┐
 │arm64 build+test job│     │x64 build+test job│

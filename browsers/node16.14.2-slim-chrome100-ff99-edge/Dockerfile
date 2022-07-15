@@ -12,6 +12,9 @@ USER root
 
 RUN node --version
 
+COPY ./global-profile.sh /tmp/global-profile.sh
+RUN cat /tmp/global-profile.sh >> /etc/bash.bashrc && rm /tmp/global-profile.sh
+
 # Install dependencies
 RUN apt-get update && \
   apt-get install -y \
@@ -42,35 +45,33 @@ RUN wget --no-verbose /usr/src/libappindicator3-1_0.4.92-7_amd64.deb "http://ftp
   rm -f /usr/src/libappindicator3-1_0.4.92-7_amd64.deb
 
 # install Chrome browser
-RUN wget --no-verbose -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_100.0.4896.88-1_amd64.deb" && \
+RUN node -p "process.arch === 'arm64' ? 'Not downloading Chrome since we are on arm64: https://crbug.com/677140' : process.exit(1)" || \
+  (wget --no-verbose -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_100.0.4896.88-1_amd64.deb" && \
   dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \
   apt-get install -f -y && \
-  rm -f /usr/src/google-chrome-stable_current_amd64.deb
+  rm -f /usr/src/google-chrome-stable_current_amd64.deb)
 
 # "fake" dbus address to prevent errors
 # https://github.com/SeleniumHQ/docker-selenium/issues/87
 ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 # install Firefox browser
-RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/99.0.1/linux-x86_64/en-US/firefox-99.0.1.tar.bz2 && \
+RUN node -p "process.arch === 'arm64' ? 'Not downloading Firefox since we are on arm64: https://bugzilla.mozilla.org/show_bug.cgi?id=1678342' : process.exit(1)" || \
+  (wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/99.0.1/linux-x86_64/en-US/firefox-99.0.1.tar.bz2 && \
   tar -C /opt -xjf /tmp/firefox.tar.bz2 && \
   rm /tmp/firefox.tar.bz2 && \
-  ln -fs /opt/firefox/firefox /usr/bin/firefox
+  ln -fs /opt/firefox/firefox /usr/bin/firefox)
 
-RUN echo "Downloading Latest Edge version..."
-
-## Setup Edge
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-RUN install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
-RUN rm microsoft.gpg
-
-## Install Edge
-RUN apt-get update
-RUN apt-get install -y microsoft-edge-dev
-
-# Add a link to the browser that allows Cypress to find it
-RUN ln -s /usr/bin/microsoft-edge /usr/bin/edge
+RUN node -p "process.arch === 'arm64' ? 'Not downloading Edge since we are on arm64: https://techcommunity.microsoft.com/t5/discussions/edge-for-linux-arm64/m-p/1532272' : process.exit(1)" || \
+  (curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg \
+  install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/ && \
+  sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list' && \
+  rm microsoft.gpg && \
+  ## Install Edge
+  apt-get update && \
+  apt-get install -y microsoft-edge-dev && \
+  ## Add a link to the browser that allows Cypress to find it && \
+  ln -s /usr/bin/microsoft-edge /usr/bin/edge)
 
 # versions of local tools
 RUN echo  " node version:    $(node -v) \n" \

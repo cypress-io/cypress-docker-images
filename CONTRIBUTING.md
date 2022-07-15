@@ -144,7 +144,7 @@ Using the `docker` CLI, you can build the `linux/arm64` image of an image, glue 
 
 These steps assume you have Docker Hub and ECR credentials.
 
-When following these steps, you may get into a state where you have cached copies of images causing wrong behavior. If this happens, delete the offending images, or `docker system prune -all` to be safe.
+When following these steps, you may get into a state where you have cached copies of images causing wrong behavior. If this happens, delete the offending images, or `docker system prune --all` to be safe.
 
 1. Ensure that the entire `FROM` chain of this image has a `linux/arm64` version, and follow this guide for those `FROM` images if necessary. For example, generating an `arm64` `cypress/browsers:node1.2.3-chrome100` would require an `arm64` `cypress/base:1.2.3` image.
 2. Re-run the `yarn add:<type>:image` command to update the Dockerfile folder with any changes in the build scripts. The correct command is at the top of every `build.sh` file in a comment. Verify that this has replaced the existing image and not caused any unexpected changes, like generating in the wrong directory.

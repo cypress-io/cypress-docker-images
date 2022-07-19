@@ -12,7 +12,7 @@
     "add:base": "node ./scripts/generate-base-image",
     "add:browser": "node ./scripts/generate-browser-image",
     "add:included": "node ./scripts/generate-included-image",
-    "check:markdown": "find . -type f -name '*.md' ! -path './node_modules/*' ! -path './examples/*' | xargs -L1 npx markdown-link-check --quiet",
+    "check:markdown": "find . -type f -name '*.md' ! -path './node_modules/*' ! -path './examples/*' | xargs -L1 npx markdown-link-check -c markdownLinkConfig.json --quiet",
     "format": "prettier --write .",
     "test": "jest",
     "test:watch": "yarn test -- --watch"

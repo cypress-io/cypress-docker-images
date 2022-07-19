@@ -440,30 +440,24 @@ workflows:
         jobs:
             - lint-markdown
             - test
-    build-browser-images:
+    build-base-images:
         jobs:
-            - build-browser-image:
-                name: "build+test browser node16.14.2-slim-chrome103-ff102-edge arm64"
-                dockerTag: "node16.14.2-slim-chrome103-ff102-edge"
+            - build-base-image:
+                name: "build+test base 16.14.2-slim arm64"
+                dockerTag: "16.14.2-slim"
                 resourceClass: arm.large
                 platformArg: linux/arm64
-                chromeVersion: "Google Chrome 103"
-                firefoxVersion: "Mozilla Firefox 102"
-                edgeVersion: "Microsoft Edge"
-            - build-browser-image:
-                name: "build+test browser node16.14.2-slim-chrome103-ff102-edge x64"
-                dockerTag: "node16.14.2-slim-chrome103-ff102-edge"
+            - build-base-image:
+                name: "build+test base 16.14.2-slim x64"
+                dockerTag: "16.14.2-slim"
                 resourceClass: large
                 platformArg: linux/amd64
-                chromeVersion: "Google Chrome 103"
-                firefoxVersion: "Mozilla Firefox 102"
-                edgeVersion: "Microsoft Edge"
             - push-images:
-                name: "push browser node16.14.2-slim-chrome103-ff102-edge images"
-                dockerName: 'cypress/browser'
-                dockerTag: 'node16.14.2-slim-chrome103-ff102-edge'
-                workingDirectory: '~/project/browser/node16.14.2-slim-chrome103-ff102-edge'
+                name: "push base 16.14.2-slim images"
+                dockerName: 'cypress/base'
+                dockerTag: '16.14.2-slim'
+                workingDirectory: '~/project/base/16.14.2-slim'
                 context: test-runner:docker-push
                 requires:
-                    - "build+test browser node16.14.2-slim-chrome103-ff102-edge arm64"
-                    - "build+test browser node16.14.2-slim-chrome103-ff102-edge x64"
+                    - "build+test base 16.14.2-slim arm64"
+                    - "build+test base 16.14.2-slim x64"

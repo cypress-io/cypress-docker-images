@@ -370,7 +370,7 @@ jobs:
             - run:
                   name: building Docker image cypress/included:<< parameters.dockerTag >>
                   command: |
-                      docker build --build-arg CI_XBUILD=1 -t cypress/included:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
+                      docker build -t cypress/included:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
                   working_directory: included/<< parameters.dockerTag >>
 
             - test-included-image-versions:
@@ -832,7 +832,7 @@ jobs:
             - run:
                   name: building Docker image cypress/included:<< parameters.dockerTag >>
                   command: |
-                      docker build --build-arg CI_XBUILD=1 -t cypress/included:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
+                      docker build -t cypress/included:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
                   working_directory: included/<< parameters.dockerTag >>
 
             - test-included-image-versions:
@@ -1298,7 +1298,7 @@ jobs:
             - run:
                   name: building Docker image cypress/included:<< parameters.dockerTag >>
                   command: |
-                      docker build --build-arg CI_XBUILD=1 -t cypress/included:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
+                      docker build -t cypress/included:<< parameters.dockerTag >> --platform << parameters.platformArg >> .
                   working_directory: included/<< parameters.dockerTag >>
 
             - test-included-image-versions:

@@ -440,24 +440,24 @@ workflows:
         jobs:
             - lint-markdown
             - test
-    build-included-images:
+    build-base-images:
         jobs:
-            - build-included-image:
-                name: "build+test included 10.3.1 arm64"
-                dockerTag: "10.3.1"
+            - build-base-image:
+                name: "build+test base 18.6.0 arm64"
+                dockerTag: "18.6.0"
                 resourceClass: arm.large
                 platformArg: linux/arm64
-            - build-included-image:
-                name: "build+test included 10.3.1 x64"
-                dockerTag: "10.3.1"
+            - build-base-image:
+                name: "build+test base 18.6.0 x64"
+                dockerTag: "18.6.0"
                 resourceClass: large
                 platformArg: linux/amd64
             - push-images:
-                name: "push included 10.3.1 images"
-                dockerName: 'cypress/included'
-                dockerTag: '10.3.1'
-                workingDirectory: '~/project/included/10.3.1'
+                name: "push base 18.6.0 images"
+                dockerName: 'cypress/base'
+                dockerTag: '18.6.0'
+                workingDirectory: '~/project/base/18.6.0'
                 context: test-runner:docker-push
                 requires:
-                    - "build+test included 10.3.1 arm64"
-                    - "build+test included 10.3.1 x64"
+                    - "build+test base 18.6.0 arm64"
+                    - "build+test base 18.6.0 x64"

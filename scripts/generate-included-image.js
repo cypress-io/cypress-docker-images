@@ -57,6 +57,10 @@ ENV CI=1 \\
   # Allow projects to reference globally installed cypress
   NODE_PATH=/usr/local/lib/node_modules
 
+# CI_XBUILD is set when we are building a multi-arch build from x64 in CI.
+# This is necessary so that local \`./build.sh\` usage still verifies \`cypress\` on \`arm64\`.
+ARG CI_XBUILD
+
 # should be root user
 RUN echo "whoami: $(whoami)" \\
   && npm config -g set user $(whoami) \\
@@ -65,13 +69,14 @@ RUN echo "whoami: $(whoami)" \\
   # which means the current user is root
   && id \\
   && npm install -g "cypress@${versionTag}" \\
-  && cypress verify \\
-  # Cypress cache and installed version
-  # should be in the root user's home folder
-  && cypress cache path \\
-  && cypress cache list \\
-  && cypress info \\
-  && cypress version \\
+  && (node -p "process.env.CI_XBUILD && process.arch === 'arm64' ? 'Skipping cypress verify on arm64 due to SIGSEGV.' : process.exit(1)" \\
+    || (cypress verify \\
+    # Cypress cache and installed version
+    # should be in the root user's home folder
+    && cypress cache path \\
+    && cypress cache list \\
+    && cypress info \\
+    && cypress version)) \\
   # give every user read access to the "/root" folder where the binary is cached
   # we really only need to worry about the top folder, fortunately
   && ls -la /root \\

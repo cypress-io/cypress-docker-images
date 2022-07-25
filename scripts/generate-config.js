@@ -23,7 +23,7 @@ const splitImageFolderName = (folderName) => {
 }
 
 const getImageType = (image) => {
-  return image.name.includes('base') ? 'base' : image.name.includes('browser') ? 'browser' : 'included'
+  return image.name.includes('base') ? 'base' : image.name.includes('browser') ? 'browsers' : 'included'
 }
 
 const getDockerArchFromNodeArch = (nodeArch) => {
@@ -48,7 +48,7 @@ const formWorkflow = (image) => {
                 platformArg: ${getDockerArchFromNodeArch(arch)}`
 
     // add browser versions
-    if (getImageType(image) === 'browser') {
+    if (getImageType(image) === 'browsers') {
       if (image.tag.includes('-chrome')) {
         yml =
           yml +
@@ -76,9 +76,9 @@ const formWorkflow = (image) => {
     os.EOL +
     `            - push-images:
                 name: "push ${getImageType(image)} ${image.tag} images"
-                dockerName: 'cypress/browsers'
+                dockerName: 'cypress/${getImageType(image)}'
                 dockerTag: '${image.tag}'
-                workingDirectory: '~/project/browsers/${image.tag}'
+                workingDirectory: '~/project/${getImageType(image)}/${image.tag}'
                 context: test-runner:docker-push
                 requires:`
 

@@ -23,7 +23,7 @@ const splitImageFolderName = (folderName) => {
 }
 
 const getImageType = (image) => {
-  return image.name.includes('base') ? 'base' : image.name.includes('browser') ? 'browsers' : 'included'
+  return image.name.includes('base') ? 'base' : image.name.includes('browser') ? 'browser' : 'included'
 }
 
 const getDockerArchFromNodeArch = (nodeArch) => {
@@ -76,9 +76,11 @@ const formWorkflow = (image) => {
     os.EOL +
     `            - push-images:
                 name: "push ${getImageType(image)} ${image.tag} images"
-                dockerName: 'cypress/${getImageType(image)}'
+                dockerName: 'cypress/${getImageType(image) === 'browser' ? 'browsers' : getImageType(image)}'
                 dockerTag: '${image.tag}'
-                workingDirectory: '~/project/${getImageType(image)}/${image.tag}'
+                workingDirectory: '~/project/${getImageType(image) === 'browser' ? 'browsers' : getImageType(image)}/${
+      image.tag
+    }'
                 context: test-runner:docker-push
                 requires:`
 

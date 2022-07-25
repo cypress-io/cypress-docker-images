@@ -48,7 +48,7 @@ const formWorkflow = (image) => {
                 platformArg: ${getDockerArchFromNodeArch(arch)}`
 
     // add browser versions
-    if (getImageType(image) === 'browsers') {
+    if (getImageType(image) === 'browser') {
       if (image.tag.includes('-chrome')) {
         yml =
           yml +

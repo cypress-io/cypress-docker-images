@@ -12,7 +12,7 @@
     "add:base": "node ./scripts/generate-base-image",
     "add:browser": "node ./scripts/generate-browser-image",
     "add:included": "node ./scripts/generate-included-image",
-    "check:markdown": "find . -type f -name '*.md' ! -path './node_modules/*' ! -path './examples/*' | xargs -L1 npx markdown-link-check --quiet",
+    "check:markdown": "find . -type f -name '*.md' ! -path './node_modules/*' ! -path './examples/*' | xargs -L1 npx markdown-link-check -c markdownLinkConfig.json --quiet",
     "format": "prettier --write .",
     "test": "jest",
     "test:watch": "yarn test -- --watch"
@@ -39,7 +39,7 @@
     "jest": "^27.5.1",
     "json-schema": "~0.4.0",
     "lodash": "4.17.21",
-    "markdown-link-check": "3.8.0",
+    "markdown-link-check": "3.10.2",
     "path-parse": "1.0.7",
     "prettier": "2.5.1",
     "semver": "7.1.3",

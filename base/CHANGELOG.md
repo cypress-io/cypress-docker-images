@@ -50,7 +50,10 @@
 | cypress/base:14.16.0              | 14.16.0 | Debian 10.8      | [/14.16.0](14.16.0)                          | 7.6.0       | 1.22.10      | [1](#note1) |
 | cypress/base:14.17.0              | 14.17.0 | Debian 10.9      | [/14.17.0](14.17.0)                          | 6.14.13     | 1.22.10      | [1](#note1) |
 | cypress/base:14.17.3              | 14.17.3 | Debian 10.10     | [/14.17.3](14.17.3)                          | 6.14.13     | 1.22.10      | [1](#note1) |
+| cypress/base:14.17.6              | 14.17.6 | Debian           | [/14.17.6](14.17.6)                          | 🚫           | 🚫            | 🚫           |
+| cypress/base:14.17.6-slim         | 14.17.6 | Debian           | [/14.17.6](14.17.6)                          | 🚫           | 🚫            | 🚫           |
 | cypress/base:14.18.1              | 14.18.1 | Debian 10.10     | [/14.18.1](14.18.1)                          | 6.14.15     | 1.22.15      | [1](#note1) |
+| cypress/base:14.19.0              | 14.19.0 | Debian           | [/14.19.0](14.19.0)                          | 6.14.16     | 1.22.17      |
 | cypress/base:16.0.0               | 16.0.0  | Debian 10.9      | [/16.0.0](16.0.0)                            | 7.10.0      | 1.22.10      | [1](#note1) |
 | cypress/base:16.1.0               | 16.1.0  | Debian 10.9      | [/16.1.0](16.1.0)                            | 7.10.0      | 1.22.10      | [1](#note1) |
 | cypress/base:16.2.0               | 16.2.0  | Debian 10.9      | [/16.2.0](16.2.0)                            | 7.10.0      | 1.22.10      | [1](#note1) |
@@ -59,22 +62,19 @@
 | cypress/base:16.5.0               | 16.5.0  | Debian 10.9      | [/16.5.0](16.5.0)                            | 7.10.0      | 1.22.10      | [1](#note1) |
 | cypress/base:16.13.0              | 16.13.0 | Debian 10.9      | [/16.13.0](16.13.0)                          | 7.10.0      | 1.22.10      | [1](#note1) |
 | cypress/base:16.14.0              | 16.14.0 | Debian 10.11     | [/16.14.0](16.14.0)                          | 8.3.1       | 1.22.17      | [1](#note1) |
+| cypress/base:16.14.0-slim         | 16.14.0 | Debian           | [/16.14.0](16.14.0)                          | 🚫           | 🚫            | 🚫           |
+| cypress/base:16.14.2              | 16.14.2 | Debian           | [/16.14.2](16.14.2)                          | 🚫           | 🚫            | 🚫           |
+| cypress/base:16.14.2-slim         | 16.14.2 | Debian           | [/16.14.2](16.14.2)                          | 🚫           | 🚫            | 🚫           |
 | cypress/base:17.3.0               | 17.3.0  | Debian 10.9      | [/17.3.0](17.3.0)                            | 8.3.0       | 1.22.17      | [1](#note1) |
-| cypress/base:centos7              | 6       | CentOS           | [/centos7](centos7)                          | 3.10.10     | 🚫           |
-| cypress/base:centos7-12.4.0       | 12.4.0  | CentOS           | [/centos7](centos7)                          | 6.9.0       | 1.16.0       |
-| cypress/base:ubuntu16             | 6       | Ubuntu           | [/ubuntu16](ubuntu16)                        | 3.10.10     | 🚫           |
-| cypress/base:ubuntu16-8           | 8.16.2  | Ubuntu           | [/ubuntu16-8](ubuntu16-8)                    | 6.4.1       | 🚫           |
-| cypress/base:ubuntu16-12.13.1     | 12.13.1 | Ubuntu           | [/ubuntu16-12.13.1](ubuntu16-12.13.1)        | 6.12.1      | 🚫           |
-| cypress/base:ubuntu18-node12.14.1 | 12.14.1 | Ubuntu 18.04.3   | [ubuntu18-node12.14.1](ubuntu18-node12.14.1) | 6.13.6      | 1.21.1       |
-| cypress/base:ubuntu19-node12.14.1 | 12.14.1 | Ubuntu 19.0.4    | [ubuntu19-node12.14.1](ubuntu19-node12.14.1) | 6.13.6      | 1.21.1       |
-| cypress/base:manjaro-node14.12.0  | 14.12.0 | Manjaro          | [manjaro-14.12.0](manjaro-14.12.0)           | 6.14.8      | 1.22.10      | 
-| cypress/base:14.19.0              | 14.19.0 | Debian           | [/14.19.0](14.19.0)                          | 6.14.16     | 1.22.17      |
-| cypress/base:16.14.0-slim | 16.14.0 | Debian | [/16.14.0](16.14.0) | `🚫` | `🚫` | `🚫` |
-| cypress/base:17.8.0 | 17.8.0 | Debian | [/17.8.0](17.8.0) | `🚫` | `🚫` | `🚫` |
-| cypress/base:14.17.6 | 14.17.6 | Debian | [/14.17.6](14.17.6) | `🚫` | `🚫` | `🚫` |
-| cypress/base:16.14.2 | 16.14.2 | Debian | [/16.14.2](16.14.2) | `🚫` | `🚫` | `🚫` |
-| cypress/base:16.14.2-slim | 16.14.2 | Debian | [/16.14.2](16.14.2) | `🚫` | `🚫` | `🚫` |
-| cypress/base:14.17.6-slim | 14.17.6 | Debian | [/14.17.6](14.17.6) | `🚫` | `🚫` | `🚫` |
+| cypress/base:17.8.0               | 17.8.0  | Debian           | [/17.8.0](17.8.0)                            | 🚫           | 🚫            | 🚫           |
+| cypress/base:centos7              | 6       | CentOS           | [/centos7](centos7)                          | 3.10.10     | 🚫            | 🚫           |
+| cypress/base:centos7-12.4.0       | 12.4.0  | CentOS           | [/centos7](centos7)                          | 6.9.0       | 1.16.0       | 🚫           |
+| cypress/base:manjaro-node14.12.0  | 14.12.0 | Manjaro          | [manjaro-14.12.0](manjaro-14.12.0)           | 6.14.8      | 1.22.10      | 🚫           |
+| cypress/base:ubuntu16             | 6       | Ubuntu           | [/ubuntu16](ubuntu16)                        | 3.10.10     | 🚫            | 🚫           |
+| cypress/base:ubuntu16-8           | 8.16.2  | Ubuntu           | [/ubuntu16-8](ubuntu16-8)                    | 6.4.1       | 🚫            | 🚫           |
+| cypress/base:ubuntu16-12.13.1     | 12.13.1 | Ubuntu           | [/ubuntu16-12.13.1](ubuntu16-12.13.1)        | 6.12.1      | 🚫            | 🚫           |
+| cypress/base:ubuntu18-node12.14.1 | 12.14.1 | Ubuntu 18.04.3   | [ubuntu18-node12.14.1](ubuntu18-node12.14.1) | 6.13.6      | 1.21.1       | 🚫           |
+| cypress/base:ubuntu19-node12.14.1 | 12.14.1 | Ubuntu 19.0.4    | [ubuntu19-node12.14.1](ubuntu19-node12.14.1) | 6.13.6      | 1.21.1       | 🚫           |
 
 ## Notes
 

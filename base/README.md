@@ -79,6 +79,7 @@ Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/ba
 | cypress/base:16.14.2-slim         | 16.14.2 | Debian           | [/16.14.2](16.14.2)                          | 🚫           | 🚫            | 🚫           |
 | cypress/base:17.3.0               | 17.3.0  | Debian 10.9      | [/17.3.0](17.3.0)                            | 8.3.0       | 1.22.17      | [1](#note1) |
 | cypress/base:17.8.0               | 17.8.0  | Debian           | [/17.8.0](17.8.0)                            | 🚫           | 🚫            | 🚫           |
+| cypress/base:18.6.0               | 18.6.0  | Debian 11        | [/18.6.0](18.6.0)                            | 8.13.2      | 1.22.19      | [1](#note1) |
 | cypress/base:centos7              | 6       | CentOS           | [/centos7](centos7)                          | 3.10.10     | 🚫            |
 | cypress/base:centos7-12.4.0       | 12.4.0  | CentOS           | [/centos7](centos7)                          | 6.9.0       | 1.16.0       |
 | cypress/base:ubuntu16             | 6       | Ubuntu           | [/ubuntu16](ubuntu16)                        | 3.10.10     | 🚫            |

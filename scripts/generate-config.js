@@ -25,6 +25,7 @@ const splitImageFolderName = (folderName) => {
 const getImageType = (image) => {
   return image.name.includes('base') ? 'base' : image.name.includes('browser') ? 'browser' : 'included'
 }
+const sanitizedImageType = getImageType(image)
 
 const getDockerArchFromNodeArch = (nodeArch) => {
   if (nodeArch === 'arm64') return 'linux/arm64'
@@ -33,7 +34,7 @@ const getDockerArchFromNodeArch = (nodeArch) => {
 }
 
 const formWorkflow = (image) => {
-  let yml = `    build-${getImageType(image)}-images:
+  let yml = `    build-${sanitizedImageType}-images:
         jobs:`
 
   const arches = ['arm64', 'x64']
@@ -41,14 +42,14 @@ const formWorkflow = (image) => {
   for (const arch of arches) {
     yml +=
       os.EOL +
-      `            - build-${getImageType(image)}-image:
-                name: "build+test ${getImageType(image)} ${image.tag} ${arch}"
+      `            - build-${sanitizedImageType}-image:
+                name: "build+test ${sanitizedImageType} ${image.tag} ${arch}"
                 dockerTag: "${image.tag}"
                 resourceClass: ${arch === 'arm64' ? 'arm.large' : 'large'}
                 platformArg: ${getDockerArchFromNodeArch(arch)}`
 
     // add browser versions
-    if (getImageType(image) === 'browser') {
+    if (sanitizedImageType === 'browser') {
       if (image.tag.includes('-chrome')) {
         yml =
           yml +
@@ -75,17 +76,17 @@ const formWorkflow = (image) => {
   yml +=
     os.EOL +
     `            - push-images:
-                name: "push ${getImageType(image)} ${image.tag} images"
-                dockerName: 'cypress/${getImageType(image) === 'browser' ? 'browsers' : getImageType(image)}'
+                name: "push ${sanitizedImageType} ${image.tag} images"
+                dockerName: 'cypress/${sanitizedImageType === 'browser' ? 'browsers' : sanitizedImageType}'
                 dockerTag: '${image.tag}'
-                workingDirectory: '~/project/${getImageType(image) === 'browser' ? 'browsers' : getImageType(image)}/${
+                workingDirectory: '~/project/${sanitizedImageType === 'browser' ? 'browsers' : sanitizedImageType}/${
       image.tag
     }'
                 context: test-runner:docker-push
                 requires:`
 
   for (const arch of arches) {
-    yml += os.EOL + `                    - "build+test ${getImageType(image)} ${image.tag} ${arch}"`
+    yml += os.EOL + `                    - "build+test ${sanitizedImageType} ${image.tag} ${arch}"`
   }
 
   return yml

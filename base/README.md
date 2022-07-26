@@ -86,7 +86,13 @@ Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/ba
 | cypress/base:14.17.6 | 14.17.6 | Debian | [/14.17.6](14.17.6) | `🚫` | `🚫` | `🚫` |
 | cypress/base:16.14.2 | 16.14.2 | Debian | [/16.14.2](16.14.2) | `🚫` | `🚫` | `🚫` |
 | cypress/base:16.14.2-slim | 16.14.2 | Debian | [/16.14.2](16.14.2) | `🚫` | `🚫` | `🚫` |
-| cypress/base:14.17.6-slim | 14.17.6 | Debian | [/14.17.6](14.17.6) | `🚫` | `🚫` | `🚫` | 
+| cypress/base:14.17.6-slim | 14.17.6 | Debian | [/14.17.6](14.17.6) | `🚫` | `🚫` | `🚫` |
+
+## Notes
+
+<div id="note1">
+
+**1:** this image includes fonts with Chinese characters| cypress/base:18.6.0 | 18.6.0 | Debian | [/18.6.0](18.6.0) | `🚫` | `🚫` | `🚫` | 
  
 ## ⚠️ Node.js Support
 

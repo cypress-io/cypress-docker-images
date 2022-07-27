@@ -68,6 +68,7 @@ RUN echo "whoami: $(whoami)" \\
   # uid=0(root) gid=0(root) groups=0(root)
   # which means the current user is root
   && id \\
+  && npm install -g typescript \\
   && npm install -g "cypress@${versionTag}" \\
   && (node -p "process.env.CI_XBUILD && process.arch === 'arm64' ? 'Skipping cypress verify on arm64 due to SIGSEGV.' : process.exit(1)" \\
     || (cypress verify \\
@@ -93,6 +94,7 @@ RUN echo "whoami: $(whoami)" \\
   && echo  " node version:    $(node -v) \\n" \\
     "npm version:     $(npm -v) \\n" \\
     "yarn version:    $(yarn -v) \\n" \\
+    "typescript version:  $(tsc -v) \\n" \\
     "debian version:  $(cat /etc/debian_version) \\n" \\
     "user:            $(whoami) \\n" \\
     "chrome:          $(google-chrome --version || true) \\n" \\

@@ -419,7 +419,7 @@ jobs:
 
                     ## now, let's re-build those same images for Amazon ECR
                     ## see https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html
-                    aws ecr-public get-login-password --region $AWS_ECR_REGION | docker login --username AWS --password $(aws ecr-public get-login-pw) $AWS_ECR_PREFIX
+                    docker login --username AWS --password "$(aws ecr-public get-login-password --region $AWS_ECR_REGION)" $AWS_ECR_PREFIX
                     ## it is inefficient to re-build here - look below for a TODO on how this could be made faster
                     docker buildx build --build-arg CI_XBUILD=1 --progress plain --platform linux/arm64,linux/amd64 -t $AWS_ECR_PREFIX/$DOCKER_TAG --push .
 

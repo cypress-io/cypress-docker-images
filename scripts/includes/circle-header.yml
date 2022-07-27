@@ -411,7 +411,7 @@ jobs:
                     docker run --rm --privileged $BINFMT_IMAGE --install linux/amd64,linux/arm64
 
                     ## see https://docs.docker.com/desktop/multi-arch/
-                    echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password $(aws ecr-public get-login-pw)
+                    docker login -u "$DOCKERHUB_USERNAME" --password "$DOCKERHUB_PASS"
                     docker buildx create --name builder --use
                     docker buildx inspect --bootstrap
                     DOCKER_TAG=<< parameters.dockerName >>:<< parameters.dockerTag >>

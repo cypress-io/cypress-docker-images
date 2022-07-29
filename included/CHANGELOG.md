@@ -92,4 +92,5 @@ Name + Tag | Base image
 [cypress/included:10.1.0](10.1.0) | `cypress/browsers:node16.14.2-slim-chrome100-ff99-edge`
 [cypress/included:10.2.0](10.2.0) | `cypress/browsers:node16.14.2-slim-chrome100-ff99-edge`
 [cypress/included:10.3.0](10.3.0) | `cypress/browsers:node16.14.2-slim-chrome100-ff99-edge`
-[cypress/included:10.3.1](10.3.1) | `cypress/browsers:node14.19.0-chrome100-ff99-edge`
+[cypress/included:10.3.1](10.3.1) | `cypress/browsers:node16.14.2-slim-chrome100-ff99-edge`
+[cypress/included:10.3.1-typescript](10.3.1-typescript) | `cypress/browsers:node16.14.2-slim-chrome100-ff99-edge`

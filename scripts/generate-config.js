@@ -22,10 +22,11 @@ const splitImageFolderName = (folderName) => {
   return { name, tag }
 }
 
-const getImageType = (image) => {
-  return image.name.includes('base') ? 'base' : image.name.includes('browser') ? 'browser' : 'included'
+const getImageType = (imageType) => {
+  return imageType.includes('base') ? 'base' : imageType.includes('browser') ? 'browser' : 'included'
 }
-const sanitizedImageType = getImageType(image)
+
+const sanitizedImageType = getImageType(imageType)
 
 const getDockerArchFromNodeArch = (nodeArch) => {
   if (nodeArch === 'arm64') return 'linux/arm64'

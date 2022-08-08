@@ -86,7 +86,8 @@ Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/ba
 | cypress/base:14.17.6 | 14.17.6 | Debian | [/14.17.6](14.17.6) | `🚫` | `🚫` | `🚫` |
 | cypress/base:16.14.2 | 16.14.2 | Debian | [/16.14.2](16.14.2) | `🚫` | `🚫` | `🚫` |
 | cypress/base:16.14.2-slim | 16.14.2 | Debian | [/16.14.2](16.14.2) | `🚫` | `🚫` | `🚫` |
-| cypress/base:14.17.6-slim | 14.17.6 | Debian | [/14.17.6](14.17.6) | `🚫` | `🚫` | `🚫` | 
+| cypress/base:14.17.6-slim | 14.17.6 | Debian | [/14.17.6](14.17.6) | `🚫` | `🚫` | `🚫` |
+| cypress/base:16.16.0 | 16.16.0 | Debian 11 | [/16.16.0](16.16.0) | 8.11.0 | 1.22.19 | [1](#note1) |
  
 ## ⚠️ Node.js Support
 

@@ -255,7 +255,7 @@ commands:
                       cd test-project
 
                       echo "Testing using Electron browser"
-                      docker run -it -v $PWD:/e2e -w /e2e cypress/included:<< parameters.cypressVersion >>
+                      docker run -it -v $PWD:/test-project -w /test-project cypress/included:<< parameters.cypressVersion >>
 
 jobs:
     lint-markdown:

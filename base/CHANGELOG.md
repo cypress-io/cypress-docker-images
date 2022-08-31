@@ -80,4 +80,5 @@
 
 <div id="note1">
 
-**1:** this image includes fonts with Chinese characters
+**1:** this image includes fonts with Chinese characters| cypress/base:16.17.0 | 16.17.0 | Debian | [/16.17.0](16.17.0) | `🚫` | `🚫` | `🚫` |
+| cypress/base:18.6.0 | 18.6.0 | Debian | [/18.6.0](18.6.0) | `🚫` | `🚫` | `🚫` |

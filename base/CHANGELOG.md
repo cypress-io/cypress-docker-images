@@ -75,9 +75,10 @@
 | cypress/base:16.14.2 | 16.14.2 | Debian | [/16.14.2](16.14.2) | `🚫` | `🚫` | `🚫` |
 | cypress/base:16.14.2-slim | 16.14.2 | Debian | [/16.14.2](16.14.2) | `🚫` | `🚫` | `🚫` |
 | cypress/base:14.17.6-slim | 14.17.6 | Debian | [/14.17.6](14.17.6) | `🚫` | `🚫` | `🚫` |
+| cypress/base:16.17.0 | 16.17.0 | Debian | [/16.17.0](16.17.0) | `🚫` | `🚫` | `🚫` |
 
 ## Notes
 
 <div id="note1">
 
-**1:** this image includes fonts with Chinese characters| cypress/base:16.17.0 | 16.17.0 | Debian | [/16.17.0](16.17.0) | `🚫` | `🚫` | `🚫` |
+**1:** this image includes fonts with Chinese characters

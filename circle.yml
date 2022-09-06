@@ -428,24 +428,28 @@ workflows:
         jobs:
             - lint-markdown
             - test
-    build-base-images:
+    build-browser-images:
         jobs:
-            - build-base-image:
-                name: "build+test base 18.6.0 arm64"
-                dockerTag: "18.6.0"
+            - build-browser-image:
+                name: "build+test browser node18.6.0-chrome105-ff104 arm64"
+                dockerTag: "node18.6.0-chrome105-ff104"
                 resourceClass: arm.large
                 platformArg: linux/arm64
-            - build-base-image:
-                name: "build+test base 18.6.0 x64"
-                dockerTag: "18.6.0"
+                chromeVersion: "Google Chrome 105"
+                firefoxVersion: "Mozilla Firefox 104"
+            - build-browser-image:
+                name: "build+test browser node18.6.0-chrome105-ff104 x64"
+                dockerTag: "node18.6.0-chrome105-ff104"
                 resourceClass: large
                 platformArg: linux/amd64
+                chromeVersion: "Google Chrome 105"
+                firefoxVersion: "Mozilla Firefox 104"
             - push-images:
-                name: "push base 18.6.0 images"
-                dockerName: 'cypress/base'
-                dockerTag: '18.6.0'
-                workingDirectory: '~/project/base/18.6.0'
+                name: "push browser node18.6.0-chrome105-ff104 images"
+                dockerName: 'cypress/browsers'
+                dockerTag: 'node18.6.0-chrome105-ff104'
+                workingDirectory: '~/project/browsers/node18.6.0-chrome105-ff104'
                 context: test-runner:docker-push
                 requires:
-                    - "build+test base 18.6.0 arm64"
-                    - "build+test base 18.6.0 x64"
+                    - "build+test browser node18.6.0-chrome105-ff104 arm64"
+                    - "build+test browser node18.6.0-chrome105-ff104 x64"

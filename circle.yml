@@ -431,25 +431,23 @@ workflows:
     build-browser-images:
         jobs:
             - build-browser-image:
-                name: "build+test browser node18.6.0-chrome105-ff104 arm64"
-                dockerTag: "node18.6.0-chrome105-ff104"
+                name: "build+test browser node16.17.0-chrome104 arm64"
+                dockerTag: "node16.17.0-chrome104"
                 resourceClass: arm.large
                 platformArg: linux/arm64
-                chromeVersion: "Google Chrome 105"
-                firefoxVersion: "Mozilla Firefox 104"
+                chromeVersion: "Google Chrome 104"
             - build-browser-image:
-                name: "build+test browser node18.6.0-chrome105-ff104 x64"
-                dockerTag: "node18.6.0-chrome105-ff104"
+                name: "build+test browser node16.17.0-chrome104 x64"
+                dockerTag: "node16.17.0-chrome104"
                 resourceClass: large
                 platformArg: linux/amd64
-                chromeVersion: "Google Chrome 105"
-                firefoxVersion: "Mozilla Firefox 104"
+                chromeVersion: "Google Chrome 104"
             - push-images:
-                name: "push browser node18.6.0-chrome105-ff104 images"
+                name: "push browser node16.17.0-chrome104 images"
                 dockerName: 'cypress/browsers'
-                dockerTag: 'node18.6.0-chrome105-ff104'
-                workingDirectory: '~/project/browsers/node18.6.0-chrome105-ff104'
+                dockerTag: 'node16.17.0-chrome104'
+                workingDirectory: '~/project/browsers/node16.17.0-chrome104'
                 context: test-runner:docker-push
                 requires:
-                    - "build+test browser node18.6.0-chrome105-ff104 arm64"
-                    - "build+test browser node18.6.0-chrome105-ff104 x64"
+                    - "build+test browser node16.17.0-chrome104 arm64"
+                    - "build+test browser node16.17.0-chrome104 x64"

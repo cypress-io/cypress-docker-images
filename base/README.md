@@ -9,8 +9,8 @@ Each tag is in a sub folder, named after Node version or OS it is built on.
 Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/base/tags/)
 
 > **Note** All Base Images install the latest versions of NPM & Yarn.
- 
- | Name + Tag                        | Node    | Operating System | Link                                         | NPM version | Yarn version | Notes       |
+
+| Name + Tag                        | Node    | Operating System | Link                                         | NPM version | Yarn version | Notes       |
 | --------------------------------- | ------- | ---------------- | -------------------------------------------- | ----------- | ------------ | ----------- |
 | cypress/base:6                    | 6       | Debian           | [/6](6)                                      | 3.10.10     | 1.6.0        |
 | cypress/base:8                    | 8       | Debian           | [/8](8)                                      | 6.4.1       | 1.9.4        |
@@ -88,14 +88,9 @@ Image `cypress/base:12` is tagged [`latest`](https://hub.docker.com/r/cypress/ba
 | cypress/base:16.14.2-slim | 16.14.2 | Debian | [/16.14.2](16.14.2) | `🚫` | `🚫` | `🚫` |
 | cypress/base:14.17.6-slim | 14.17.6 | Debian | [/14.17.6](14.17.6) | `🚫` | `🚫` | `🚫` |
 | cypress/base:16.17.0 | 16.17.0 | Debian | [/16.17.0](16.17.0) | `🚫` | `🚫` | `🚫` |
-| cypress/base:18.6.0 | 18.6.0 | Debian | [/18.6.0](18.6.0) | `🚫` | `🚫` | `🚫` | 
+| cypress/base:18.6.0 | 18.6.0 | Debian | [/18.6.0](18.6.0) | `🚫` | `🚫` | `🚫` |
+| cypress/base:16.16.0 | 16.16.0 | Debian | [/16.16.0](16.16.0) | `🚫` | `🚫` | `🚫` |
 
-## Notes
-
-<div id="note1">
-
-**1:** this image includes fonts with Chinese characters
- 
 ## ⚠️ Node.js Support
 
 Cypress 4.0+ no longer supports Node.js versions below 8.0.0. See our [Migration Guide](https://on.cypress.io/migration-guide#Node-js-8-support).

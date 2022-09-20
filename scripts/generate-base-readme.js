@@ -81,7 +81,7 @@ fs.readFile(changeLogPath, (err, data) => {
   fs.writeFileSync(changeLogPath, updatedChangeLog.trim() + "\n", "utf8")
   console.log("Saved CHANGELOG.md at %s", changeLogPath)
 
-  const readme = `${ReadMeDockerPulls} \n ${updatedChangeLogImages} \n ${ReadMeInstructions}${Notes}`
+  const readme = `${ReadMeDockerPulls}\n${updatedChangeLogImages}\n${ReadMeInstructions}${Notes}`
   fs.writeFileSync(readmePath, readme.trim() + "\n", "utf8")
   console.log("Saved README.md at %s", readmePath)
 })

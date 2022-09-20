@@ -49,7 +49,9 @@ nvm ls-remote | grep LTS
   v12.14.1   (LTS: Erbium)
   v12.15.0   (LTS: Erbium)
   v12.16.0   (Latest LTS: Erbium)
-\`\`\`
+\`\`\``
+
+const Notes = `
 
 ## Notes
 
@@ -74,11 +76,12 @@ fs.readFile(changeLogPath, (err, data) => {
     process.exit(1)
   }
 
-  const updatedChangeLog = `${data.toString()}${generateNewChangeVersion}`
+  const updatedChangeLogImages = `${data.toString().replace(Notes, '')}${generateNewChangeVersion}`
+  const updatedChangeLog = `${updatedChangeLogImages}${Notes}`
   fs.writeFileSync(changeLogPath, updatedChangeLog.trim() + "\n", "utf8")
   console.log("Saved CHANGELOG.md at %s", changeLogPath)
 
-  const readme = `${ReadMeDockerPulls} \n ${updatedChangeLog} \n ${ReadMeInstructions}`
+  const readme = `${ReadMeDockerPulls} \n ${updatedChangeLogImages} \n ${ReadMeInstructions}${Notes}`
   fs.writeFileSync(readmePath, readme.trim() + "\n", "utf8")
   console.log("Saved README.md at %s", readmePath)
 })

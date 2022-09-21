@@ -199,7 +199,7 @@ set e+x
 
 LOCAL_NAME=cypress/browsers:${folderName}
 echo "Building $LOCAL_NAME"
-docker build -t $LOCAL_NAME .
+docker build --shm-size 512M -t $LOCAL_NAME .
 `
 
 const buildFilename = path.join(outputFolder, "build.sh")

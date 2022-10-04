@@ -40,6 +40,7 @@ Name + Tag | Base image | Chrome | Firefox | Edge
 [cypress/browsers:node18.6.0-chrome105-ff104](./node18.6.0-chrome105-ff104) | `cypress/base:18.6.0` | `105.0.5195.102` | `104.0.1` | `🚫`
 [cypress/browsers:node16.16.0-chrome105-ff104-edge](./node16.16.0-chrome105-ff104-edge) | `cypress/base:16.16.0` | `105.0.5195.125` | `104.0.2` | `--edge`
 [cypress/browsers:node16.16.0-chrome105-ff99-edge](./node16.16.0-chrome105-ff99-edge) | `cypress/base:16.16.0` | `105.0.5195.125` | `99.0.1` | `--edge`
+[cypress/browsers:node16.17.0-chrome106](./node16.17.0-chrome106) | `cypress/base:16.17.0` | `106.0.5249.61` | `🚫` | `🚫`
 [cypress/browsers:node16.16.0-chrome106-ff99-edge](./node16.16.0-chrome106-ff99-edge) | `cypress/base:16.16.0` | `106.0.5249.61` | `99.0.1` | `--edge`
 [cypress/browsers:node16.17.1-chrome105-ff104-edge](./node16.17.1-chrome105-ff104-edge) | `cypress/base:16.17.1` | `105.0.5195.125` | `104.0.2` | `--edge`
 [cypress/browsers:node16.17.1-chrome106-ff105-edge](./node16.17.1-chrome106-ff105-edge) | `cypress/base:16.17.1` | `106.0.5249.91` | `105.0.1` | `--edge`

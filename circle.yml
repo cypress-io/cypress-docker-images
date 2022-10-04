@@ -428,7 +428,7 @@ workflows:
         jobs:
             - lint-markdown
             - test
-    build-browser-images:
+    build-base-images:
         jobs:
             - build-browser-image:
                 name: "build+test browser node16.17.1-chrome105-ff104-edge arm64"

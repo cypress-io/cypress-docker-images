@@ -431,21 +431,22 @@ workflows:
     build-base-images:
         jobs:
             - build-base-image:
-                name: "build+test base 18.12.0 arm64"
-                dockerTag: "18.12.0"
+                name: "build+test base 18.11.0 arm64"
+                dockerTag: "18.11.0"
                 resourceClass: arm.large
                 platformArg: linux/arm64
             - build-base-image:
-                name: "build+test base 18.12.0 x64"
-                dockerTag: "18.12.0"
+                name: "build+test base 18.11.0 x64"
+                dockerTag: "18.11.0"
                 resourceClass: large
                 platformArg: linux/amd64
             - push-images:
-                name: "push base 18.12.0 images"
+                name: "push base 18.11.0 images"
                 dockerName: 'cypress/base'
-                dockerTag: '18.12.0'
-                workingDirectory: '~/project/base/18.12.0'
+                dockerTag: '18.11.0'
+                workingDirectory: '~/project/base/18.11.0'
                 context: test-runner:docker-push
                 requires:
-                    - "build+test base 18.12.0 arm64"
-                    - "build+test base 18.12.0 x64"
+                    - "build+test base 18.11.0 arm64"
+                    - "build+test base 18.11.0 x64"
+

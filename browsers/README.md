@@ -43,6 +43,17 @@
 [cypress/browsers:node14.17.6-slim-chrome100-ff99-edge](./node14.17.6-slim-chrome100-ff99-edge) | `cypress/base:14.17.6` | `100.0.4896.88` | `99.0.1` | `--edge`
 [cypress/browsers:node14.19.0-chrome100-ff99-edge](./node14.19.0-chrome100-ff99-edge) | `cypress/base:14.19.0` | `100.0.4896.88` | `99.0.1` | `--edge`
 [cypress/browsers:node14.19.0-chrome103-ff102](./node14.19.0-chrome103-ff102) | `cypress/base:14.19.0` | `103.0.5060.134` | `102.0.1` | `🚫` 
+[cypress/browsers:node16.14.2-slim-chrome103-ff102](./node16.14.2-slim-chrome103-ff102) | `cypress/base:16.14.2` | `103.0.5060.53` | `102.0.1` | `🚫`
+[cypress/browsers:node18.6.0-chrome105-ff104](./node18.6.0-chrome105-ff104) | `cypress/base:18.6.0` | `105.0.5195.102` | `104.0.1` | `🚫`
+[cypress/browsers:node16.16.0-chrome105-ff104-edge](./node16.16.0-chrome105-ff104-edge) | `cypress/base:16.16.0` | `105.0.5195.125` | `104.0.2` | `--edge`
+[cypress/browsers:node16.16.0-chrome105-ff99-edge](./node16.16.0-chrome105-ff99-edge) | `cypress/base:16.16.0` | `105.0.5195.125` | `99.0.1` | `--edge`
+[cypress/browsers:node16.17.0-chrome106](./node16.17.0-chrome106) | `cypress/base:16.17.0` | `106.0.5249.61` | `🚫` | `🚫`
+[cypress/browsers:node16.16.0-chrome106-ff99-edge](./node16.16.0-chrome106-ff99-edge) | `cypress/base:16.16.0` | `106.0.5249.61` | `99.0.1` | `--edge`
+[cypress/browsers:node16.17.1-chrome105-ff104-edge](./node16.17.1-chrome105-ff104-edge) | `cypress/base:16.17.1` | `105.0.5195.125` | `104.0.2` | `--edge`
+[cypress/browsers:node16.17.1-chrome106-ff105-edge](./node16.17.1-chrome106-ff105-edge) | `cypress/base:16.17.1` | `106.0.5249.91` | `105.0.1` | `--edge`
+[cypress/browsers:node16.18.0-chrome107-ff106-edge](./node16.18.0-chrome107-ff106-edge) | `cypress/base:16.18.0` | `107.0.5304.68` | `106.0.1` | `--edge` 
+[cypress/browsers:node18.12.0-chrome106-ff106](./node18.12.0-chrome106-ff106) | `cypress/base:18.12.0` | `106.0.5249.165` | `106.0.2` | `🚫`
+[cypress/browsers:node18.12.0-chrome106-ff106](./node18.12.0-chrome106-ff106) | `cypress/base:18.12.0` | `106.0.5249.91` | `106.0.2` | `🚫` 
  
 To find the available Chrome versions, check [https://chromium.cypress.io/](https://chromium.cypress.io/).
 

@@ -6,4 +6,9 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
   },
+  component: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
+  },
 });

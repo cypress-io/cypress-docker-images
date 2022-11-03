@@ -7,6 +7,8 @@
 #
 FROM cypress/browsers:node16.16.0-chrome105-ff104-edge
 
+RUN apt update && apt install make
+
 # avoid too many progress messages
 # https://github.com/cypress-io/cypress/issues/1243
 ENV CI=1 \

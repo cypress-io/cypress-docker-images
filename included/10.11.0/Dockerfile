@@ -5,7 +5,7 @@
 # build this image with command
 #   docker build -t cypress/included:10.11.0 .
 #
-FROM cypress/browsers:node16.16.0-chrome105-ff104-edge
+FROM cypress/browsers:node18.12.0-chrome106-ff106
 
 RUN apt update && apt install make
 

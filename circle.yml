@@ -428,7 +428,7 @@ workflows:
         jobs:
             - lint-markdown
             - test
-    build-included-images:
+    build-base-images:
         jobs:
             - build-included-image:
                 name: "build+test included 11.1.0 arm64"

@@ -104,3 +104,4 @@ Name + Tag | Base image
 [cypress/included:10.11.0](10.11.0) | `cypress/browsers:node16.16.0-chrome105-ff104-edge`
 [cypress/included:11.0.0](11.0.0) | `cypress/browsers:node16.16.0-chrome105-ff104-edge`
 [cypress/included:11.0.1](11.0.1) | `cypress/browsers:node16.16.0-chrome105-ff104-edge`
+[cypress/included:11.1.0](11.1.0) | `cypress/browsers:node16.16.0-chrome105-ff104-edge`

@@ -431,25 +431,25 @@ workflows:
     build-browser-images:
         jobs:
             - build-browser-image:
-                name: "build+test browser node18.12.0-chrome103-ff107 arm64"
-                dockerTag: "node18.12.0-chrome103-ff107"
+                name: "build+test browser node16.16.0-chrome107-ff107 arm64"
+                dockerTag: "node16.16.0-chrome107-ff107"
                 resourceClass: arm.large
                 platformArg: linux/arm64
-                chromeVersion: "Google Chrome 103"
+                chromeVersion: "Google Chrome 107"
                 firefoxVersion: "Mozilla Firefox 107"
             - build-browser-image:
-                name: "build+test browser node18.12.0-chrome103-ff107 x64"
-                dockerTag: "node18.12.0-chrome103-ff107"
+                name: "build+test browser node16.16.0-chrome107-ff107 x64"
+                dockerTag: "node16.16.0-chrome107-ff107"
                 resourceClass: large
                 platformArg: linux/amd64
-                chromeVersion: "Google Chrome 103"
+                chromeVersion: "Google Chrome 107"
                 firefoxVersion: "Mozilla Firefox 107"
             - push-images:
-                name: "push browser node18.12.0-chrome103-ff107 images"
+                name: "push browser node16.16.0-chrome107-ff107 images"
                 dockerName: 'cypress/browsers'
-                dockerTag: 'node18.12.0-chrome103-ff107'
-                workingDirectory: '~/project/browsers/node18.12.0-chrome103-ff107'
+                dockerTag: 'node16.16.0-chrome107-ff107'
+                workingDirectory: '~/project/browsers/node16.16.0-chrome107-ff107'
                 context: test-runner:docker-push
                 requires:
-                    - "build+test browser node18.12.0-chrome103-ff107 arm64"
-                    - "build+test browser node18.12.0-chrome103-ff107 x64"
+                    - "build+test browser node16.16.0-chrome107-ff107 arm64"
+                    - "build+test browser node16.16.0-chrome107-ff107 x64"

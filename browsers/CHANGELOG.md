@@ -51,3 +51,4 @@ Name + Tag | Base image | Chrome | Firefox | Edge
 [cypress/browsers:node18.12.0-chrome103-ff107](./node18.12.0-chrome103-ff107) | `cypress/base:18.12.0` | `103.0.5060.134` | `107.0` | `🚫`
 [cypress/browsers:node16.16.0-chrome107-ff107](./node16.16.0-chrome107-ff107) | `cypress/base:16.16.0` | `107.0.5304.121` | `107.0` | `🚫`
 [cypress/browsers:node16.16.0-chrome107-ff107-edge](./node16.16.0-chrome107-ff107-edge) | `cypress/base:16.16.0` | `107.0.5304.121` | `107.0` | `--edge`
+[cypress/browsers:node18.12.0-chrome107](./node18.12.0-chrome107) | `cypress/base:18.12.0` | `107.0.5304.121` | `🚫` | `🚫`

@@ -108,3 +108,4 @@ Name + Tag | Base image
 [cypress/included:11.2.0](11.2.0) | `cypress/browsers:node16.16.0-chrome105-ff104-edge`
 [cypress/included:12.0.0](12.0.0) | `cypress/browsers:node16.16.0-chrome107-ff107-edge`
 [cypress/included:12.0.1](12.0.1) | `cypress/browsers:node16.16.0-chrome107-ff107-edge`
+[cypress/included:12.0.2](12.0.2) | `cypress/browsers:node16.16.0-chrome107-ff107-edge`

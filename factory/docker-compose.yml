@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  base:
+    build:
+      target: base
+      context: .
+      args:
+        NODE_VERSION: '16.18.1'
+        CHROME_VERSION: 'latest'
+        FIREFOX_VERSION: 'latest'
+        EDGE: 'true'
+        CYPRESS_VERSION: '12.0.1'
+    command: node -v
+  chrome:
+    build:
+      target: chrome
+      context: .
+      args:
+        NODE_VERSION: '16.18.1'
+        CHROME_VERSION: 'latest'
+        FIREFOX_VERSION: 'latest'
+        EDGE: 'true'
+        CYPRESS_VERSION: '12.0.1'
+    command: node -v
+  final:
+    build:
+      target: final
+      context: .
+      args:
+        NODE_VERSION: '16.18.1'
+        CHROME_VERSION: 'latest'
+        FIREFOX_VERSION: 'latest'
+        EDGE: 'true'
+        CYPRESS_VERSION: '12.0.1'
+    command: node -v

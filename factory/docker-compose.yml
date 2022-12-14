@@ -7,10 +7,6 @@ services:
       context: .
       args:
         NODE_VERSION: '16.18.1'
-        CHROME_VERSION: 'latest'
-        FIREFOX_VERSION: 'latest'
-        EDGE: 'true'
-        CYPRESS_VERSION: '12.0.1'
     command: node -v
   chrome:
     build:
@@ -18,10 +14,7 @@ services:
       context: .
       args:
         NODE_VERSION: '16.18.1'
-        CHROME_VERSION: 'latest'
-        FIREFOX_VERSION: 'latest'
-        EDGE: 'true'
-        CYPRESS_VERSION: '12.0.1'
+        CHROME_VERSION: '107.0.5304.121-1'
     command: node -v
   final:
     build:
@@ -29,8 +22,24 @@ services:
       context: .
       args:
         NODE_VERSION: '16.18.1'
-        CHROME_VERSION: 'latest'
-        FIREFOX_VERSION: 'latest'
+        CHROME_VERSION: '107.0.5304.121-1'
+        FIREFOX_VERSION: '107.0'
         EDGE: 'true'
         CYPRESS_VERSION: '12.0.1'
+    command: node -v
+  firefox:
+    build:
+      target: firefox
+      context: .
+      args:
+        NODE_VERSION: '16.18.1'
+        FIREFOX_VERSION: '107.0'
+    command: node -v
+  edge:
+    build:
+      target: edge
+      context: .
+      args:
+        NODE_VERSION: '16.18.1'
+        FIREFOX_VERSION: '107.0'
     command: node -v

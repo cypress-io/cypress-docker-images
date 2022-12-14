@@ -24,7 +24,7 @@ services:
         NODE_VERSION: '16.18.1'
         CHROME_VERSION: '107.0.5304.121-1'
         FIREFOX_VERSION: '107.0'
-        EDGE: 'true'
+        EDGE_VERSION: '110.0.1556.0-1'
         CYPRESS_VERSION: '12.0.1'
     command: node -v
   firefox:
@@ -41,5 +41,5 @@ services:
       context: .
       args:
         NODE_VERSION: '16.18.1'
-        FIREFOX_VERSION: '107.0'
+        EDGE_VERSION: '110.0.1556.0-1'
     command: node -v

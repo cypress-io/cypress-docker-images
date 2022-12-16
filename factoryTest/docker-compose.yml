@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  included:
+    build:
+      target: test
+      context: .
+      args:
+        NODE_VERSION: '16.18.0'
+        CHROME_VERSION: '107.0.5304.121-1'
+        FIREFOX_VERSION: '107.0'
+        EDGE_VERSION: '110.0.1556.0-1'
+        CYPRESS_VERSION: '12.0.1'
+        YARN_VERSION: '1.22.19'
+    command: node -v

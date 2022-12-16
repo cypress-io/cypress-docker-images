@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+  factory:
+    build:
+      target: factory
+      context: .
+      args:
+        BASE_IMAGE: debian:bullseye-slim
+    command: node -v
+  included:
+    build:
+      target: test
+      context: .
+      args:
+        # NODE_VERSION is set as a default in the docker container
+        CHROME_VERSION: &chrome-version '107.0.5304.121-1'
+        CYPRESS_VERSION: &cypress-version '12.0.1'
+        EDGE_VERSION: &edge-version '110.0.1556.0-1'
+        FIREFOX_VERSION: &firefox-version '107.0'
+        YARN_VERSION: &yarn-version '1.22.19'
+    command: node -v
+  base:
+    build:
+      target: test
+      context: .
+      args:
+        YARN_VERSION: *yarn-version
+    command: node -v
+  browsers:
+    build:
+      target: test
+      context: .
+      args:
+        YARN_VERSION: *yarn-version
+        CHROME_VERSION: *chrome-version
+        FIREFOX_VERSION: *firefox-version
+        EDGE_VERSION: *edge-version
+    command: node -v
+  node:
+    build:
+      target: test
+      context: .
+      args:
+        NODE_VERSION: 18.12.1
+    command: node -v
+  cypress:
+    build:
+      target: test
+      context: .
+      args:
+        CYPRESS_VERSION: *cypress-version
+    command: node -v
+  chrome:
+    build:
+      target: test
+      context: .
+      args:
+        CHROME_VERSION: *chrome-version
+    command: node -v
+  edge:
+    build:
+      target: test
+      context: .
+      args:
+        EDGE_VERSION: *edge-version
+    command: node -v
+  firefox:
+    build:
+      target: test
+      context: .
+      args:
+        FIREFOX_VERSION: *firefox-version
+    command: node -v

@@ -15,6 +15,7 @@ ARCH= && dpkgArch="$(dpkg --print-architecture)" \
       *) echo "unsupported architecture"; exit 1 ;; \
     esac \
     && set -ex \
+    && savedAptMark="$(apt-mark showmanual)" \
     && apt-get update && apt-get install -y ca-certificates curl wget gnupg dirmngr xz-utils libatomic1 --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && for key in \
@@ -38,6 +39,7 @@ ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     && tar -xJf "node-v$1-linux-$ARCH.tar.xz" -C /usr/local --strip-components=1 --no-same-owner \
     && rm "node-v$1-linux-$ARCH.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
     && apt-mark auto '.*' > /dev/null \
+    && { [ -z "$savedAptMark" ] || apt-mark manual $savedAptMark > /dev/null; } \
     && find /usr/local -type f -executable -exec ldd '{}' ';' \
       | awk '/=>/ { print $(NF-1) }' \
       | sort -u \

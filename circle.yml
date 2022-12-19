@@ -428,24 +428,26 @@ workflows:
         jobs:
             - lint-markdown
             - test
-    build-base-images:
+    build-browser-images:
         jobs:
-            - build-base-image:
-                name: "build+test base 14.18.1-slim arm64"
-                dockerTag: "14.18.1-slim"
+            - build-browser-image:
+                name: "build+test browser node14.18.1-chrome108 arm64"
+                dockerTag: "node14.18.1-chrome108"
                 resourceClass: arm.large
                 platformArg: linux/arm64
-            - build-base-image:
-                name: "build+test base 14.18.1-slim x64"
-                dockerTag: "14.18.1-slim"
+                chromeVersion: "Google Chrome 108"
+            - build-browser-image:
+                name: "build+test browser node14.18.1-chrome108 x64"
+                dockerTag: "node14.18.1-chrome108"
                 resourceClass: large
                 platformArg: linux/amd64
+                chromeVersion: "Google Chrome 108"
             - push-images:
-                name: "push base 14.18.1-slim images"
-                dockerName: 'cypress/base'
-                dockerTag: '14.18.1-slim'
-                workingDirectory: '~/project/base/14.18.1-slim'
+                name: "push browser node14.18.1-chrome108 images"
+                dockerName: 'cypress/browsers'
+                dockerTag: 'node14.18.1-chrome108'
+                workingDirectory: '~/project/browsers/node14.18.1-chrome108'
                 context: test-runner:docker-push
                 requires:
-                    - "build+test base 14.18.1-slim arm64"
-                    - "build+test base 14.18.1-slim x64"
+                    - "build+test browser node14.18.1-chrome108 arm64"
+                    - "build+test browser node14.18.1-chrome108 x64"

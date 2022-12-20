@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  args-defined:
+    build:
+      dockerfile: argsDefined.Dockerfile
+      context: .
+    command: npm run test
+  # Installs node only
+  test:
+    build:
+      context: .
+    command: npm run test
+  # Installs Node and Chrome
+  test-chrome:
+    build:
+      args:
+        CHROME_VERSION: '107.0.5304.121-1'
+      context: .
+    command: npm run test -- -b chrome
+    # Installs Node and Chrome 1.08
+  test-chrome-latest:
+    build:
+      args:
+        CHROME_VERSION: '108.0.5359.124-1'
+      context: .
+    command: npm run test -- -b chrome
+  # Installs Node and Firefox
+  test-firefox:
+    build:
+      args:
+        FIREFOX_VERSION: '107.0'
+      context: .
+    command: npm run test -- -b firefox
+  # Installs Node and Edge
+  test-edge:
+    build:
+      args:
+        EDGE_VERSION: '110.0.1556.0-1'
+      context: .
+    command: npm run test -- -b edge
+    # Uses factory_included
+  included:
+    build:
+      dockerfile: noNPMInstall.Dockerfile
+      context: .
+    command: cypress run -b chrome

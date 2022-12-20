@@ -15,6 +15,7 @@ if (process.arch === 'arm64') {
 
 console.log('CHROME_VERSION', chromeVersion)
 
+// TODO: switch to spawn to stream stdout
 // Insert logic here if needed to run a different install script based on chrome version.
 exec(`${__dirname}/default.sh ${chromeVersion}`, (error, stdout, stderr) => {
   if (error) {

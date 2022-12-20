@@ -14,11 +14,17 @@ services:
       context: .
       args:
         # NODE_VERSION is set as a default in the docker container
+        # Node Version: https://nodejs.org/en/download/releases/
         CHROME_VERSION: &chrome-version '107.0.5304.121-1'
+        # Chrome versions: https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable
         CYPRESS_VERSION: &cypress-version '12.1.0'
+        # Cypress versions: https://www.npmjs.com/package/cypress
         EDGE_VERSION: &edge-version '110.0.1556.0-1'
+        # Edge versions: https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/
         FIREFOX_VERSION: &firefox-version '107.0'
+        # Firefox versions: https://download-installer.cdn.mozilla.net/pub/firefox/releases/
         YARN_VERSION: &yarn-version '1.22.19'
+        #Yarn versions: https://www.npmjs.com/package/yarn
     command: node -v
   base:
     build:
@@ -33,28 +39,28 @@ services:
       context: .
       args:
         CHROME_VERSION: *chrome-version
-    command: node -v
+    command: google-chrome --version
   edge:
     build:
       target: test
       context: .
       args:
         EDGE_VERSION: *edge-version
-    command: node -v
+    command: edge --version
   firefox:
     build:
       target: test
       context: .
       args:
         FIREFOX_VERSION: *firefox-version
-    command: node -v
+    command: firefox --version
   cypress:
     build:
       target: test
       context: .
       args:
         CYPRESS_VERSION: *cypress-version
-    command: node -v
+    command: cypress verify
   cypress-chrome:
     build:
       target: test

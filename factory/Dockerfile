@@ -24,6 +24,7 @@ ENV DBUS_SESSION_BUS_ADDRESS=/dev/null \
   # point Cypress at the /root/cache no matter what user account is used
   # see https://on.cypress.io/caching
   CYPRESS_CACHE_FOLDER=/root/.cache/Cypress \
+  # TODO: only do this when installing Cypress
   # Allow projects to reference globally installed cypress
   NODE_PATH=/usr/local/lib/node_modules
 
@@ -36,6 +37,14 @@ RUN ls -la /root \
   && apt-get install --no-install-recommends -y \
     # Needed for Cypress
     xvfb \
+    libglib2.0-0 \
+    libnss3 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libgtk-3-0 \
+    libgbm1 \
+    libasound2 \
     # Needed for dashboard integration
     git \
     # TODO: dynamically add/remove wget??? chome and edge depend on it in prod but firefox only needs it for install, cypress doesn't need it at all.

@@ -1,6 +1,6 @@
 # Cypress/Factory
 
-Cypress/Factory is a docker container that can be used with args to generate a docker container specifying a specific version of:
+Cypress/Factory is a docker container that can be used with args to generate a docker container with a specific version of:
 
 * node
 * yarn
@@ -9,9 +9,22 @@ Cypress/Factory is a docker container that can be used with args to generate a d
 * edge
 * cypress
 
+## Benefits
+
+* Freedom to choose which versions to test against.
+* No need to wait on a release to test the latest version of a browser
+* Smaller docker sizes especially when not including unused browsers
+* Easily test multiple browser versions
+
 ## Usage
 
-### Specify args in dockerfile
+The cypress docker factory works by relying on the ONBUILD docker command to run commands at build time of the the consuming container. Args can be specified in a number of ways, some of which are demonstrated below.
+
+### In the dockerfile
+
+Args can be defined directly in the dockerfile.
+
+dockerfile
 
 ```dockerfile
 # Args are defined in the dockerfile before the FROM command.
@@ -27,15 +40,18 @@ WORKDIR /opt/app
 RUN npm install --save-dev cypress
 ```
 
+build commands
+
 ```bash
 docker build . -t test
+docker run -it test npm run test -b chrome
 ```
 
-### Specify args at build time
+### At build time
 
-```bash
-docker build . --build-arg CHROME_VERSION='107.0.5304.121-1' --build-arg EDGE_VERSION='110.0.1556.0-1' --build-arg FIREFOX_VERSION='107.0' -t test
-```
+Args can be passed to the docker build command.
+
+dockerfile
 
 ```dockerfile
 FROM cypress/factory
@@ -45,7 +61,19 @@ WORKDIR /opt/app
 RUN npm install --save-dev cypress
 ```
 
-### Specify args in docker-compose
+build commands
+
+```bash
+docker build . --build-arg CHROME_VERSION='107.0.5304.121-1' --build-arg EDGE_VERSION='110.0.1556.0-1' --build-arg FIREFOX_VERSION='107.0' -t test
+
+docker run test npm run test -b chrome
+```
+
+### In docker-compose.yml
+
+Finally, args can be specified in the docker-compose.yml file.
+
+docker-compose.yml
 
 ```yml
 version: '3'
@@ -61,6 +89,8 @@ services:
     command: npm run test
 ```
 
+dockerfile
+
 ```dockerfile
 FROM cypress/factory
 
@@ -69,11 +99,17 @@ WORKDIR /opt/app
 RUN npm install --save-dev cypress
 ```
 
+docker commands
+
 ```bash
 docker-compose build test
+
+docker-compose run test
 ```
 
 ## API
+
+The following args can be set to define what versions the cypress factory docker includes in it's final build.
 
 ### NODE_VERSION
 

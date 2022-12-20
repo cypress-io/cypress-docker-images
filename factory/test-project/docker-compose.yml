@@ -40,8 +40,16 @@ services:
       context: .
     command: npm run test -- -b edge
     # Uses factory_included
+  no-npm-install:
+    build:
+      args:
+        CYPRESS_VERSION: 10.11.0
+        CHROME_VERSION: '108.0.5359.124-1'
+      dockerfile: noNPMInstall.Dockerfile
+      context: .
+    command: cypress run -b chrome
   included:
     build:
-      dockerfile: noNPMInstall.Dockerfile
+      dockerfile: included.Dockerfile
       context: .
     command: cypress run -b chrome

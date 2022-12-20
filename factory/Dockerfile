@@ -89,7 +89,7 @@ ONBUILD ARG CYPRESS_VERSION
 
 ONBUILD RUN node /opt/installScripts/cypress/install-version.js ${CYPRESS_VERSION}
 
-# Global Cleanup, individual cleanup should be per install step
+# Global Cleanup
 # TODO: should we run this based on an arg flag?
 ONBUILD RUN apt-get purge -y --auto-remove \
     bzip2 \
@@ -99,7 +99,13 @@ ONBUILD RUN apt-get purge -y --auto-remove \
   && rm -rf /usr/share/doc \
   && rm -rf /usr/share/man \
   && rm -rf /var/lib/apt/lists/* \
+  # Remove cypress install scripts
   && rm -rf /opt/installScripts
 
 # Multi-stage test image. Used to test and create the pre-built docker images.
 FROM factory as test
+
+# Multi-stage included image. We set the entry point only for the included image.
+FROM factory as included
+
+ENTRYPOINT ["cypress", "run"]

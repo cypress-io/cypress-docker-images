@@ -39,15 +39,16 @@ services:
         EDGE_VERSION: '110.0.1556.0-1'
       context: .
     command: npm run test -- -b edge
-    # Uses factory_included
+  # Doesn't npm install the local cypress version, builds with cypress 10, tests will fail.
   no-npm-install:
     build:
       args:
-        CYPRESS_VERSION: 10.11.0
+        CYPRESS_VERSION: '10.11.0'
         CHROME_VERSION: '108.0.5359.124-1'
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run -b chrome
+  # Uses factory_included
   included:
     build:
       dockerfile: included.Dockerfile

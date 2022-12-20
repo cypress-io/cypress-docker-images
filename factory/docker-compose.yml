@@ -10,11 +10,11 @@ services:
     command: node -v
   included:
     build:
-      target: test
+      target: included
       context: .
       args:
         # NODE_VERSION is set as a default in the docker container
-        # Node Version: https://nodejs.org/en/download/releases/
+        # Node Versions: https://nodejs.org/en/download/releases/
         CHROME_VERSION: &chrome-version '107.0.5304.121-1'
         # Chrome versions: https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable
         CYPRESS_VERSION: &cypress-version '12.1.0'
@@ -24,7 +24,7 @@ services:
         FIREFOX_VERSION: &firefox-version '107.0'
         # Firefox versions: https://download-installer.cdn.mozilla.net/pub/firefox/releases/
         YARN_VERSION: &yarn-version '1.22.19'
-        #Yarn versions: https://www.npmjs.com/package/yarn
+        # Yarn versions: https://www.npmjs.com/package/yarn
     command: node -v
   base:
     build:

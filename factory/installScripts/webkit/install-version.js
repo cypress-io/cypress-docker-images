@@ -1,17 +1,23 @@
 #!/usr/bin/node
 const { spawn } = require('child_process');
 
-const cypressVersion = process.argv.slice(2)[0]
+const webkitVersion = process.argv.slice(2)[0]
 
-if (!cypressVersion) {
-  console.log('No Cypress version provided, skipping Cypress install')
+if (!webkitVersion) {
+  console.log('No Webkit version provided, skipping Webkit install')
   return
 }
 
-console.log('Installing Cypress version ', cypressVersion)
+// TODO: verify this
+if (process.arch === 'arm64') {
+  console.log('Not downloading Webkit since we are on arm64')
+  return;
+}
 
-// Insert logic here if needed to run a different install script based on cypress version.
-const install = spawn(`${__dirname}/default.sh`, [cypressVersion])
+console.log('Installing Webkit version: ', webkitVersion)
+
+// Insert logic here if needed to run a different install script based on webkit version.
+const install = spawn(`${__dirname}/default.sh`, [webkitVersion])
 
 install.stdout.on('data', function (data) {
   console.log(data.toString())

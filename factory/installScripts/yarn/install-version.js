@@ -1,5 +1,5 @@
 #!/usr/bin/node
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 
 const yarnVersion = process.argv.slice(2)[0]
 
@@ -8,17 +8,25 @@ if (!yarnVersion) {
   return
 }
 
-console.log('YARN_VERSION', yarnVersion)
+console.log('Installing Yarn version: ', yarnVersion)
 
 // Insert logic here if needed to run a different install script based on version.
-if ( yarnVersion ) {
-  exec(`${__dirname}/default.sh ${yarnVersion}`, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
-      process.exit(1);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-    console.error(`stderr: ${stderr}`);
-  })
-}
+const install = spawn(`${__dirname}/default.sh`, [yarnVersion])
+
+install.stdout.on('data', function (data) {
+  console.log(data.toString())
+});
+
+install.stderr.on('data', function (data) {
+  console.log('stderr: ' + data.toString())
+});
+
+install.on('error', function (error) {
+  console.log('child process errored with ' + error.toString())
+  process.exit(1)
+});
+
+install.on('exit', function (code) {
+  console.log('child process exited with code ' + code.toString())
+  process.exit(code)
+});

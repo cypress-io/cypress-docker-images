@@ -48,6 +48,14 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run -b chrome
+  # no-npm-install-webkit:
+  #   build:
+  #     args:
+  #       CYPRESS_VERSION: '12.2.0'
+  #       WEBKIT_VERSION: '1.29.0'
+  #     dockerfile: noNPMInstall.Dockerfile
+  #     context: .
+  #   command: cypress run -b webkit
   # Uses factory_included
   included:
     build:

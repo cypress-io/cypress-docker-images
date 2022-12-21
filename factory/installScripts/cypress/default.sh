@@ -1,5 +1,5 @@
 #! /bin/bash
 
-# TODO: install typescript? Do we need to?
-npm install -g "cypress@${1}"
-# TODO: Verify cypress? Do we need to?
+# TODO: should typescript be versioned? Should it have it's own ARG for the factory?
+# Typescript is installed to allow testing of .ts spec files.
+npm install -g "cypress@${1}" typescript

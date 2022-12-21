@@ -26,7 +26,7 @@ services:
         # Node Versions: https://nodejs.org/en/download/releases/
         CHROME_VERSION: &chrome-version '107.0.5304.121-1'
         # Chrome versions: https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable
-        CYPRESS_VERSION: &cypress-version '12.1.0'
+        CYPRESS_VERSION: &cypress-version '12.2.0'
         # Cypress versions: https://www.npmjs.com/package/cypress
         EDGE_VERSION: &edge-version '110.0.1556.0-1'
         # Edge versions: https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/
@@ -34,6 +34,8 @@ services:
         # Firefox versions: https://download-installer.cdn.mozilla.net/pub/firefox/releases/
         YARN_VERSION: &yarn-version '1.22.19'
         # Yarn versions: https://www.npmjs.com/package/yarn
+        # WEBKIT_VERSION: &webkit-version '1.29.0'
+        # Yarn versions: https://www.npmjs.com/package/playwright-webkit
     command: node -v
   base:
     image: "cypress/base"
@@ -67,6 +69,14 @@ services:
       args:
         FIREFOX_VERSION: *firefox-version
     command: firefox --version
+  # webkit:
+  #   image: "cypress/webkit"
+  #   build:
+  #     target: default_image
+  #     context: .
+  #     args:
+  #       WEBKIT_VERSION: *webkit-version
+    command: webkit --version
   cypress:
     image: "cypress/cypress"
     build:

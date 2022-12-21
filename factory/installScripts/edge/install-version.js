@@ -1,5 +1,5 @@
 #!/usr/bin/node
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 
 const edgeVersion = process.argv.slice(2)[0]
 
@@ -13,16 +13,25 @@ if (process.arch === 'arm64') {
   return;
 }
 
-console.log('EDGE_VERSION', edgeVersion)
+console.log('Installing Edge version: ', edgeVersion)
 
 // Insert logic here if needed to run a different install script based on edge version.
-exec(`${__dirname}/default.sh ${edgeVersion}`, (error, stdout, stderr) => {
-  if (error) {
-    console.error(`exec error: ${error}`);
-    process.exit(1);
-  }
+const install = spawn(`${__dirname}/default.sh`, [edgeVersion])
 
-  console.log(`stdout: ${stdout}`);
-  console.error(`stderr: ${stderr}`);
-})
+install.stdout.on('data', function (data) {
+  console.log(data.toString())
+});
 
+install.stderr.on('data', function (data) {
+  console.log('stderr: ' + data.toString())
+});
+
+install.on('error', function (error) {
+  console.log('child process errored with ' + error.toString())
+  process.exit(1)
+});
+
+install.on('exit', function (code) {
+  console.log('child process exited with code ' + code.toString())
+  process.exit(code)
+});

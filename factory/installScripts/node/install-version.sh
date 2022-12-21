@@ -1,6 +1,6 @@
 #! /bin/bash
 
-echo "NODE_VERSION: $1"
+echo "Installing Node version: $1"
 
 if [[ -z $1 ]]
 then

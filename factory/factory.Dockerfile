@@ -23,10 +23,7 @@ ENV DBUS_SESSION_BUS_ADDRESS=/dev/null \
   _MITSHM=0 \
   # point Cypress at the /root/cache no matter what user account is used
   # see https://on.cypress.io/caching
-  CYPRESS_CACHE_FOLDER=/root/.cache/Cypress \
-  # TODO: only do this when installing Cypress
-  # Allow projects to reference globally installed cypress
-  NODE_PATH=/usr/local/lib/node_modules
+  CYPRESS_CACHE_FOLDER=/root/.cache/Cypress
 
 # give every user read access to the "/root" folder where the binary is cached
 # we really only need to worry about the top folder, fortunately
@@ -47,7 +44,7 @@ RUN ls -la /root \
     libasound2 \
     # Needed for dashboard integration
     git \
-    # TODO: dynamically add/remove wget??? chome and edge depend on it in prod but firefox only needs it for install, cypress doesn't need it at all.
+    # Chrome and Edge require wget even after installation. We could do more work to dynamically remove it, but I doubt it's worth it.
     wget \
     # build only dependancies
     bzip2 \
@@ -89,8 +86,17 @@ ONBUILD ARG FIREFOX_VERSION
 
 ONBUILD RUN node /opt/installScripts/firefox/install-version.js ${FIREFOX_VERSION}
 
+# TODO: Globally installed webkit currently isn't found, fix than then enable this.
+# Install Webkit: optional
+# ONBUILD ARG WEBKIT_VERSION
+
+# ONBUILD RUN node /opt/installScripts/webkit/install-version.js ${WEBKIT_VERSION}
+
 # Install Cypress: optional
 ONBUILD ARG CYPRESS_VERSION
+
+# Allow projects to reference globally installed cypress
+ONBUILD ENV NODE_PATH=${CYPRESS_VERSION:+/usr/local/lib/node_modules}
 
 ONBUILD RUN node /opt/installScripts/cypress/install-version.js ${CYPRESS_VERSION}
 

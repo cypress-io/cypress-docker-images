@@ -2,7 +2,7 @@
 
 # Microsoft offers a debian package, here we're adding the package list and then installing the specific version we want to install.
 apt-get update \
-  && apt-get install -y \
+  && apt-get install --no-install-recommends -y \
     ca-certificates \
   && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg \
   && install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d \

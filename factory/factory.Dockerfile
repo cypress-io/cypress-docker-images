@@ -63,34 +63,34 @@ ENV DEFAULT_NODE_VERSION=${DEFAULT_NODE_VERSION}
 ONBUILD ARG NODE_VERSION=${DEFAULT_NODE_VERSION}
 
 # Node is isntalled via a bash script because node isn't installed yet!
-ONBUILD RUN bash /opt/installScripts/node/install-version.sh ${NODE_VERSION}
+ONBUILD RUN bash /opt/installScripts/node/install-node-version.sh ${NODE_VERSION}
 
 # Install Yarn: Optional
 ONBUILD ARG YARN_VERSION
 
 # Installed using a node script to handle conditionals since we all know javascript
-ONBUILD RUN node /opt/installScripts/yarn/install-version.js ${YARN_VERSION}
+ONBUILD RUN node /opt/installScripts/yarn/install-yarn-version.js ${YARN_VERSION}
 
 # Install Chrome: optional
 ONBUILD ARG CHROME_VERSION
 
-ONBUILD RUN node /opt/installScripts/chrome/install-version.js ${CHROME_VERSION}
+ONBUILD RUN node /opt/installScripts/chrome/install-chrome-version.js ${CHROME_VERSION}
 
 # Install Edge: optional
 ONBUILD ARG EDGE_VERSION
 
-ONBUILD RUN node /opt/installScripts/edge/install-version.js ${EDGE_VERSION}
+ONBUILD RUN node /opt/installScripts/edge/install-edge-version.js ${EDGE_VERSION}
 
 # Install Firefox: optional
 ONBUILD ARG FIREFOX_VERSION
 
-ONBUILD RUN node /opt/installScripts/firefox/install-version.js ${FIREFOX_VERSION}
+ONBUILD RUN node /opt/installScripts/firefox/install-firefox-version.js ${FIREFOX_VERSION}
 
 # TODO: Globally installed webkit currently isn't found, fix than then enable this.
 # Install Webkit: optional
 # ONBUILD ARG WEBKIT_VERSION
 
-# ONBUILD RUN node /opt/installScripts/webkit/install-version.js ${WEBKIT_VERSION}
+# ONBUILD RUN node /opt/installScripts/webkit/install-webkit-version.js ${WEBKIT_VERSION}
 
 # Install Cypress: optional
 ONBUILD ARG CYPRESS_VERSION
@@ -98,7 +98,7 @@ ONBUILD ARG CYPRESS_VERSION
 # Allow projects to reference globally installed cypress
 ONBUILD ENV NODE_PATH=${CYPRESS_VERSION:+/usr/local/lib/node_modules}
 
-ONBUILD RUN node /opt/installScripts/cypress/install-version.js ${CYPRESS_VERSION}
+ONBUILD RUN node /opt/installScripts/cypress/install-cypress-version.js ${CYPRESS_VERSION}
 
 # Global Cleanup
 # TODO: should we run this based on an arg flag?

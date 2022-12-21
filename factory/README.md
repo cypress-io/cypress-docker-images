@@ -12,9 +12,9 @@ cypress/factory is a docker container that can be used with args to generate a d
 ## Benefits
 
 * Freedom to choose which versions to test against.
-* No need to wait on a release to test the latest version of a browser
-* Smaller docker sizes especially when not including unused browsers
-* Easily test multiple browser versions
+* No need to wait on an official release to test the latest version of a browser.
+* Smaller docker sizes especially when not including unused browsers.
+* Easily test multiple browser versions.
 
 ## Usage
 
@@ -111,9 +111,11 @@ docker-compose run test
 
 The following args can be set to define what versions the cypress factory docker includes in it's final build.
 
+If no args are defined, only the default version of node will be installed. This can still be a useful container though since we will also install any required cypress apt dependencies.
+
 ### NODE_VERSION
 
-The version of Node to install in the docker container. If not specified, the default version of Node is installed. Node is required.
+The version of Node to install in the docker container. If not specified, the default version of Node (defined [here](./docker-compose.yml)) is installed. Node is required.
 
 Example: `NODE_VERSION='16.18.1'`
 
@@ -161,4 +163,8 @@ Example: `EDGE_VERSION='110.0.1556.0-1'`
 
 ## Version Testing
 
-TODO: Disclaimer that we make now promises that every version works with every other version.
+Due to the large amount of possible version combinations, we're not able to exhaustively test each combination of versions, nor do we block versions that are in compatible. For example, Cypress 12 removed support for node versions less than 16.16.0. You are still able to generate a container with node 16.0.0 and Cypress 12, but Cypress will fail to run.
+
+If you run across a combination that should reasonably work, but doesn't, log an issue and we will take a look at supporting it.
+
+Additionally this docker container and containers generated from it are intended for test use only, and are not intended for use hosting services in a production environment.

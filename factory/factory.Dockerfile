@@ -57,10 +57,10 @@ COPY ./installScripts /opt/installScripts
 ARG DEFAULT_NODE_VERSION
 
 # Set the default node version to an env to allow us to access it in the onbuild step.
-ENV DEFAULT_NODE_VERSION=${DEFAULT_NODE_VERSION}
+ENV CYPRESS_DEFAULT_NODE_VERSION=${DEFAULT_NODE_VERSION}
 
 # Install Node: Node MUST be installed, so the default lives here
-ONBUILD ARG NODE_VERSION=${DEFAULT_NODE_VERSION}
+ONBUILD ARG NODE_VERSION=${CYPRESS_DEFAULT_NODE_VERSION}
 
 # Node is isntalled via a bash script because node isn't installed yet!
 ONBUILD RUN bash /opt/installScripts/node/install-node-version.sh ${NODE_VERSION}

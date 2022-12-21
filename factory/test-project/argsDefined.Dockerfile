@@ -3,7 +3,7 @@ ARG CHROME_VERSION='107.0.5304.121-1'
 ARG EDGE_VERSION='110.0.1556.0-1'
 ARG FIREFOX_VERSION='107.0'
 
-FROM factory_factory
+FROM cypress/factory
 RUN echo "current user: $(whoami)"
 ENV CI=1
 COPY . /opt/app

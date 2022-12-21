@@ -1,6 +1,6 @@
-# Cypress/Factory
+# cypress/factory
 
-Cypress/Factory is a docker container that can be used with args to generate a docker container with a specific version of:
+cypress/factory is a docker container that can be used with args to generate a docker container with a specific version of:
 
 * node
 * yarn
@@ -158,3 +158,7 @@ The version of Edge to install (via npm). If not specified, Edge is not installe
 Example: `EDGE_VERSION='110.0.1556.0-1'`
 
 [Edge versions](https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/)
+
+## Version Testing
+
+TODO: Disclaimer that we make now promises that every version works with every other version.

@@ -1,4 +1,4 @@
-FROM factory_included
+FROM cypress/included
 RUN echo "current user: $(whoami)"
 ENV CI=1
 COPY . /opt/app

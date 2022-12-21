@@ -1,16 +1,25 @@
-version: '3'
+version: '3.8'
 
 services:
   factory:
+    image: "cypress/factory"
     build:
+      dockerfile: factory.Dockerfile
       target: factory
       context: .
       args:
         BASE_IMAGE: debian:bullseye-slim
+        DEFAULT_NODE_VERSION: &default-node-version '16.18.1'
+      # tags:
+      #  - cypress/factory:latest
+      #  - cypress/factory:1
+      #  - cypress/factory:1.1
+      #  - cypress/factory:1.0.0
     command: node -v
   included:
+    image: "cypress/included"
     build:
-      target: included
+      target: included_image
       context: .
       args:
         # NODE_VERSION is set as a default in the docker container
@@ -27,67 +36,76 @@ services:
         # Yarn versions: https://www.npmjs.com/package/yarn
     command: node -v
   base:
+    image: "cypress/base"
     build:
-      target: test
+      target: default_image
       context: .
       args:
         YARN_VERSION: *yarn-version
     command: node -v
   chrome:
+    image: "cypress/chrome"
     build:
-      target: test
+      target: default_image
       context: .
       args:
         CHROME_VERSION: *chrome-version
     command: google-chrome --version
   edge:
+    image: "cypress/edge"
     build:
-      target: test
+      target: default_image
       context: .
       args:
         EDGE_VERSION: *edge-version
     command: edge --version
   firefox:
+    image: "cypress/firefox"
     build:
-      target: test
+      target: default_image
       context: .
       args:
         FIREFOX_VERSION: *firefox-version
     command: firefox --version
   cypress:
+    image: "cypress/cypress"
     build:
-      target: test
+      target: default_image
       context: .
       args:
         CYPRESS_VERSION: *cypress-version
     command: cypress verify
   cypress-chrome:
+    image: "cypress/cypress-chrome"
     build:
-      target: test
+      target: default_image
       context: .
       args:
         CYPRESS_VERSION: *cypress-version
         CHROME_VERSION: *chrome-version
     command: node -v
   cypress-edge:
+    image: "cypress/cypress-edge"
     build:
-      target: test
+      target: default_image
       context: .
       args:
         CYPRESS_VERSION: *cypress-version
         EDGE_VERSION: *edge-version
     command: node -v
   cypress-firefox:
+    image: "cypress/cypress-firefox"
     build:
-      target: test
+      target: default_image
       context: .
       args:
         CYPRESS_VERSION: *cypress-version
         FIREFOX_VERSION: *firefox-version
     command: node -v
   browsers:
+    image: "cypress/browsers"
     build:
-      target: test
+      target: default_image
       context: .
       args:
         YARN_VERSION: *yarn-version
@@ -97,8 +115,8 @@ services:
     command: node -v
   node-override:
     build:
-      target: test
+      target: default_image
       context: .
       args:
-        NODE_VERSION: 18.12.1
+        NODE_VERSION: 16.17.0
     command: node -v

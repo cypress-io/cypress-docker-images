@@ -87,6 +87,13 @@ In order to allow for older images to be smaller, you can run the scripts above 
 
 Node versions less than or equal to Node 14 will use the `buster-slim` base image if they are recreated. Older images may still rely on `buster`.
 
+To see the final size of an image, you can use command [`docker images`](https://docs.docker.com/engine/reference/commandline/images/)
+
+```bash
+$ docker images --format "{{.Tag}} {{.Size}}" cypress/base:11.13.0
+11.13.0 969MB
+```
+
 ### Clean up `apt-get` artifacts
 
 Calling `apt-get` creates artifacts that are not necessary to the image, and these artifacts bloat the image size and all images that inherit from it.

@@ -3,8 +3,8 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/browsers.svg?maxAge=604800)](https://hub.docker.com/r/cypress/browsers/)
 
 > Docker image with all operating system dependencies and some pre-installed browsers, **but NOT Cypress itself**. See [cypress/included](../included) images if you need Cypress pre-installed in the image.
-
-Name + Tag | Base image | Chrome | Firefox | Edge
+ 
+ Name + Tag | Base image | Chrome | Firefox | Edge
 --- | --- | --- | --- | ---
 [cypress/browsers:node8.9.3-npm6.10.1-chrome75](./node8.9.3-npm6.10.1-chrome75) | `cypress/base:8.9.3-npm-6.10.1` | `75.0.3770.100` | 🚫
 [cypress/browsers:node10.16.0-chrome77-ff71](./node10.16.0-chrome77-ff71) | `cypress/browsers:node10.16.0-chrome77` | `77.0.3865.90` | `71.0`
@@ -32,8 +32,34 @@ Name + Tag | Base image | Chrome | Firefox | Edge
 [cypress/browsers:node14.16.0-chrome89-ff77](./node14.16.0-chrome89-ff77) | `cypress/base:14.16.0` | `89.0.4389.72` | `77.0`
 [cypress/browsers:node14.16.0-chrome89-ff86](./node14.16.0-chrome89-ff86) | `cypress/base:14.16.0` | `89.0.4389.72` | `86.0.1`
 [cypress/browsers:node14.17.0-chrome91-ff89](./node14.17.0-chrome91-ff89) | `cypress/base:14.17.0` | `91.0.4472.114` | `89.0.2`
-
-To find the available Chrome versions, check [https://chromium.cypress.io/](https://chromium.cypress.io/)
+[cypress/browsers:node16.5.0-chrome94-ff93](./node16.5.0-chrome94-ff93) | `cypress/base:16.5.0` | `94.0.4606.71` | `93.0` 
+[cypress/browsers:node16.14.0-slim-chrome99-ff97](./node16.14.0-slim-chrome99-ff97) | `cypress/base:16.14.0` | `99.0.4844.51` | `97.0.1` | `🚫`
+[cypress/browsers:node14.17.6-chrome100-ff98](./node14.17.6-chrome100-ff98) | `cypress/base:14.17.6` | `100.0.4896.60` | `98.0.2` | `🚫`
+[cypress/browsers:node16.13.2-chrome100-ff98](./node16.13.2-chrome100-ff98) | `cypress/base:16.13.2` | `100.0.4896.60` | `98.0.2` | `🚫`
+[cypress/browsers:node17.8.0-chrome99-ff97-slim](./node17.8.0-chrome99-ff97-slim) | `cypress/base:17.8.0` | `99.0.4844.84` | `97.0.1` | `🚫`
+[cypress/browsers:node16.14.0-edge](./node16.14.0-edge) | `cypress/base:16.14.0` | `🚫` | `🚫` | `--edge` 
+[cypress/browsers:node16.14.0-chrome99-ff97](./node16.14.0-chrome99-ff97) | `cypress/base:16.14.0-slim` | `99.0.4844.51` | `97.0.1` | `🚫` 
+[cypress/browsers:node16.14.2-slim-chrome100-ff99-edge](./node16.14.2-slim-chrome100-ff99-edge) | `cypress/base:16.14.2` | `100.0.4896.88` | `99.0.1` | `--edge` 
+[cypress/browsers:node14.17.6-slim-chrome100-ff99-edge](./node14.17.6-slim-chrome100-ff99-edge) | `cypress/base:14.17.6` | `100.0.4896.88` | `99.0.1` | `--edge`
+[cypress/browsers:node14.19.0-chrome100-ff99-edge](./node14.19.0-chrome100-ff99-edge) | `cypress/base:14.19.0` | `100.0.4896.88` | `99.0.1` | `--edge`
+[cypress/browsers:node16.14.2-slim-chrome103-ff102](./node16.14.2-slim-chrome103-ff102) | `cypress/base:16.14.2` | `103.0.5060.53` | `102.0.1` | `🚫`
+[cypress/browsers:node18.6.0-chrome105-ff104](./node18.6.0-chrome105-ff104) | `cypress/base:18.6.0` | `105.0.5195.102` | `104.0.1` | `🚫`
+[cypress/browsers:node16.16.0-chrome105-ff104-edge](./node16.16.0-chrome105-ff104-edge) | `cypress/base:16.16.0` | `105.0.5195.125` | `104.0.2` | `--edge`
+[cypress/browsers:node16.16.0-chrome105-ff99-edge](./node16.16.0-chrome105-ff99-edge) | `cypress/base:16.16.0` | `105.0.5195.125` | `99.0.1` | `--edge`
+[cypress/browsers:node16.17.0-chrome106](./node16.17.0-chrome106) | `cypress/base:16.17.0` | `106.0.5249.61` | `🚫` | `🚫`
+[cypress/browsers:node16.16.0-chrome106-ff99-edge](./node16.16.0-chrome106-ff99-edge) | `cypress/base:16.16.0` | `106.0.5249.61` | `99.0.1` | `--edge`
+[cypress/browsers:node16.17.1-chrome105-ff104-edge](./node16.17.1-chrome105-ff104-edge) | `cypress/base:16.17.1` | `105.0.5195.125` | `104.0.2` | `--edge`
+[cypress/browsers:node16.17.1-chrome106-ff105-edge](./node16.17.1-chrome106-ff105-edge) | `cypress/base:16.17.1` | `106.0.5249.91` | `105.0.1` | `--edge`
+[cypress/browsers:node16.18.0-chrome107-ff106-edge](./node16.18.0-chrome107-ff106-edge) | `cypress/base:16.18.0` | `107.0.5304.68` | `106.0.1` | `--edge`
+[cypress/browsers:node18.12.0-chrome106-ff106](./node18.12.0-chrome106-ff106) | `cypress/base:18.12.0` | `106.0.5249.165` | `106.0.2` | `🚫`
+[cypress/browsers:node18.12.0-chrome106-ff106](./node18.12.0-chrome106-ff106) | `cypress/base:18.12.0` | `106.0.5249.91` | `106.0.2` | `🚫`
+[cypress/browsers:node16.18.0-chrome90-ff88](./node16.18.0-chrome90-ff88) | `cypress/base:16.18.0` | `90.0.4430.212` | `88.0.1` | `🚫`
+[cypress/browsers:node18.12.0-chrome103-ff107](./node18.12.0-chrome103-ff107) | `cypress/base:18.12.0` | `103.0.5060.134` | `107.0` | `🚫`
+[cypress/browsers:node16.16.0-chrome107-ff107](./node16.16.0-chrome107-ff107) | `cypress/base:16.16.0` | `107.0.5304.121` | `107.0` | `🚫`
+[cypress/browsers:node16.16.0-chrome107-ff107-edge](./node16.16.0-chrome107-ff107-edge) | `cypress/base:16.16.0` | `107.0.5304.121` | `107.0` | `--edge` 
+[cypress/browsers:node18.12.0-chrome107](./node18.12.0-chrome107) | `cypress/base:18.12.0` | `107.0.5304.121` | `🚫` | `🚫` 
+ 
+To find the available Chrome versions, check [https://chromium.cypress.io/](https://chromium.cypress.io/).
 
 ## Naming scheme
 

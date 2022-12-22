@@ -116,8 +116,9 @@ RUN apt-get update && \\
   ${firefoxVersion ? `${firefoxDependencies.trim()} \\` : `\\`}
   ${edgeVersion ? `${edgeDependencies.trim()} \\` : `\\`}
   # clean up
-  && rm -rf /var/lib/apt/lists/* \\
-  && apt-get clean
+  && rm -rf /usr/share/doc \\
+  && rm -rf /usr/share/man \\
+  && rm -rf /var/lib/apt/lists/*
 
 # install libappindicator3-1 - not included with Debian 11
 RUN wget --no-verbose /usr/src/libappindicator3-1_0.4.92-7_amd64.deb "http://ftp.us.debian.org/debian/pool/main/liba/libappindicator/libappindicator3-1_0.4.92-7_amd64.deb" && \\

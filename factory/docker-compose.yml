@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   factory:
-    image: "cypress/factory"
+    image: cypress/factory
     build:
       dockerfile: factory.Dockerfile
       target: factory
@@ -10,14 +10,12 @@ services:
       args:
         BASE_IMAGE: debian:bullseye-slim
         DEFAULT_NODE_VERSION: &default-node-version '16.18.1'
-      # tags:
-      #  - cypress/factory:latest
-      #  - cypress/factory:1
-      #  - cypress/factory:1.1
-      #  - cypress/factory:1.0.0
+      tags:
+       - cypress/factory:latest
+       - cypress/factory:1.0.0
     command: node -v
   included:
-    image: "cypress/included"
+    image: cypress/included
     build:
       target: included_image
       context: .
@@ -36,14 +34,20 @@ services:
         # Yarn versions: https://www.npmjs.com/package/yarn
         # WEBKIT_VERSION: &webkit-version '1.29.0'
         # Yarn versions: https://www.npmjs.com/package/playwright-webkit
+      tags:
+       - cypress/included:latest
+       - cypress/included:12.2.0
     command: node -v
   base:
-    image: "cypress/base"
+    image: cypress/base
     build:
       target: default_image
       context: .
       args:
         YARN_VERSION: *yarn-version
+      tags:
+       - cypress/base:latest
+       - cypress/base:16.18.1
     command: node -v
   chrome:
     image: "cypress/chrome"
@@ -52,25 +56,34 @@ services:
       context: .
       args:
         CHROME_VERSION: *chrome-version
+      tags:
+       - cypress/chrome:latest
+       - cyrpess/chrome:107.0.5304.121-1
     command: google-chrome --version
   edge:
-    image: "cypress/edge"
+    image: cypress/edge
     build:
       target: default_image
       context: .
       args:
         EDGE_VERSION: *edge-version
+      tags:
+       - cypress/edge:latest
+       - cyrpess/edge:100.0.1185.29-1
     command: edge --version
   firefox:
-    image: "cypress/firefox"
+    image: cypress/firefox
     build:
       target: default_image
       context: .
       args:
         FIREFOX_VERSION: *firefox-version
+      tags:
+       - cypress/firefox:latest
+       - cyrpess/firefox:107.0
     command: firefox --version
   # webkit:
-  #   image: "cypress/webkit"
+  #   image: cypress/webkit
   #   build:
   #     target: default_image
   #     context: .
@@ -78,42 +91,54 @@ services:
   #       WEBKIT_VERSION: *webkit-version
     command: webkit --version
   cypress:
-    image: "cypress/cypress"
+    image: cypress/cypress
     build:
       target: default_image
       context: .
       args:
         CYPRESS_VERSION: *cypress-version
+      tags:
+       - cypress/cypress:latest
+       - cyrpess/cypress:12.2.0
     command: cypress verify
   cypress-chrome:
-    image: "cypress/cypress-chrome"
+    image: cypress/cypress-chrome
     build:
       target: default_image
       context: .
       args:
         CYPRESS_VERSION: *cypress-version
         CHROME_VERSION: *chrome-version
+      tags:
+       - cypress/cypress-chrome:latest
+       - cyrpess/cypress-chrome:cypress-12.2.0-chrome-107.0.5304.121-1
     command: node -v
   cypress-edge:
-    image: "cypress/cypress-edge"
+    image: cypress/cypress-edge
     build:
       target: default_image
       context: .
       args:
         CYPRESS_VERSION: *cypress-version
         EDGE_VERSION: *edge-version
+      tags:
+       - cypress/cypress-edge:latest
+       - cyrpess/cypress-edge:cypress-12.2.0-edge-100.0.1185.29-1
     command: node -v
   cypress-firefox:
-    image: "cypress/cypress-firefox"
+    image: cypress/cypress-firefox
     build:
       target: default_image
       context: .
       args:
         CYPRESS_VERSION: *cypress-version
         FIREFOX_VERSION: *firefox-version
+      tags:
+       - cypress/cypress-firefox:latest
+       - cyrpess/cypress-firefox:cypress-12.2.0-firefox-107.0
     command: node -v
   browsers:
-    image: "cypress/browsers"
+    image: cypress/browsers
     build:
       target: default_image
       context: .
@@ -122,8 +147,11 @@ services:
         CHROME_VERSION: *chrome-version
         FIREFOX_VERSION: *firefox-version
         EDGE_VERSION: *edge-version
+      tags:
+       - cypress/browsers:latest
+       - cyrpess/browsers:node-16.18.1-chrome-107.0.5304.121-1-ff-107.0-edge-100.0.1185.29-1
     command: node -v
-  node-override:
+  test-node-override:
     build:
       target: default_image
       context: .

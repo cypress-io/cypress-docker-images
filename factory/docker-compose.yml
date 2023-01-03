@@ -8,11 +8,11 @@ services:
       target: factory
       context: .
       args:
-        BASE_IMAGE: debian:bullseye-slim
-        DEFAULT_NODE_VERSION: &default-node-version '16.18.1'
+        BASE_IMAGE: ${BASE_IMAGE}
+        DEFAULT_NODE_VERSION: ${NODE_VERSION}
       tags:
        - cypress/factory:latest
-       - cypress/factory:1.0.0
+       - cypress/factory:${FACTORY_VERSION}
     command: node -v
   included:
     image: cypress/included
@@ -20,23 +20,15 @@ services:
       target: included_image
       context: .
       args:
-        # NODE_VERSION is set as a default in the docker container
-        # Node Versions: https://nodejs.org/en/download/releases/
-        CHROME_VERSION: &chrome-version '107.0.5304.121-1'
-        # Chrome versions: https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable
-        CYPRESS_VERSION: &cypress-version '12.2.0'
-        # Cypress versions: https://www.npmjs.com/package/cypress
-        EDGE_VERSION: &edge-version '100.0.1185.29-1'
-        # Edge versions: https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/
-        FIREFOX_VERSION: &firefox-version '107.0'
-        # Firefox versions: https://download-installer.cdn.mozilla.net/pub/firefox/releases/
-        YARN_VERSION: &yarn-version '1.22.19'
-        # Yarn versions: https://www.npmjs.com/package/yarn
-        # WEBKIT_VERSION: &webkit-version '1.29.0'
-        # Yarn versions: https://www.npmjs.com/package/playwright-webkit
+        CHROME_VERSION: ${CHROME_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        YARN_VERSION: ${YARN_VERSION}
+        # WEBKIT_VERSION: ${WEBKIT_VERSION}
       tags:
        - cypress/included:latest
-       - cypress/included:12.2.0
+       - cypress/included:${CYPRESS_VERSION} #Using the cypress version here doesn't feel right.
     command: node -v
   base:
     image: cypress/base
@@ -44,10 +36,10 @@ services:
       target: default_image
       context: .
       args:
-        YARN_VERSION: *yarn-version
+        YARN_VERSION: ${YARN_VERSION}
       tags:
        - cypress/base:latest
-       - cypress/base:16.18.1
+       - cypress/base:${NODE_VERSION}
     command: node -v
   chrome:
     image: "cypress/chrome"
@@ -55,10 +47,10 @@ services:
       target: default_image
       context: .
       args:
-        CHROME_VERSION: *chrome-version
+        CHROME_VERSION: ${CHROME_VERSION}
       tags:
        - cypress/chrome:latest
-       - cyrpess/chrome:107.0.5304.121-1
+       - cyrpess/chrome:${CHROME_VERSION}
     command: google-chrome --version
   edge:
     image: cypress/edge
@@ -66,10 +58,10 @@ services:
       target: default_image
       context: .
       args:
-        EDGE_VERSION: *edge-version
+        EDGE_VERSION: ${EDGE_VERSION}
       tags:
        - cypress/edge:latest
-       - cyrpess/edge:100.0.1185.29-1
+       - cyrpess/edge:${EDGE_VERSION}
     command: edge --version
   firefox:
     image: cypress/firefox
@@ -77,10 +69,10 @@ services:
       target: default_image
       context: .
       args:
-        FIREFOX_VERSION: *firefox-version
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
       tags:
        - cypress/firefox:latest
-       - cyrpess/firefox:107.0
+       - cyrpess/firefox:${FIREFOX_VERSION}
     command: firefox --version
   # webkit:
   #   image: cypress/webkit
@@ -88,18 +80,21 @@ services:
   #     target: default_image
   #     context: .
   #     args:
-  #       WEBKIT_VERSION: *webkit-version
-    command: webkit --version
+  #       WEBKIT_VERSION: ${WEBKIT_VERSION}
+  #     tags:
+  #     - cypress/webkit:latest
+  #     - cyrpess/webkit:${WEBKIT_VERSION}
+  #   command: webkit --version
   cypress:
     image: cypress/cypress
     build:
       target: default_image
       context: .
       args:
-        CYPRESS_VERSION: *cypress-version
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
       tags:
        - cypress/cypress:latest
-       - cyrpess/cypress:12.2.0
+       - cyrpess/cypress:${CYPRESS_VERSION}
     command: cypress verify
   cypress-chrome:
     image: cypress/cypress-chrome
@@ -107,11 +102,11 @@ services:
       target: default_image
       context: .
       args:
-        CYPRESS_VERSION: *cypress-version
-        CHROME_VERSION: *chrome-version
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
       tags:
        - cypress/cypress-chrome:latest
-       - cyrpess/cypress-chrome:cypress-12.2.0-chrome-107.0.5304.121-1
+       - cyrpess/cypress-chrome:cypress-${CYPRESS_VERSION}-chrome-${CHROME_VERSION}
     command: node -v
   cypress-edge:
     image: cypress/cypress-edge
@@ -119,11 +114,11 @@ services:
       target: default_image
       context: .
       args:
-        CYPRESS_VERSION: *cypress-version
-        EDGE_VERSION: *edge-version
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
       tags:
        - cypress/cypress-edge:latest
-       - cyrpess/cypress-edge:cypress-12.2.0-edge-100.0.1185.29-1
+       - cyrpess/cypress-edge:cypress-${CYPRESS_VERSION}-edge-${EDGE_VERSION}
     command: node -v
   cypress-firefox:
     image: cypress/cypress-firefox
@@ -131,11 +126,11 @@ services:
       target: default_image
       context: .
       args:
-        CYPRESS_VERSION: *cypress-version
-        FIREFOX_VERSION: *firefox-version
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
       tags:
        - cypress/cypress-firefox:latest
-       - cyrpess/cypress-firefox:cypress-12.2.0-firefox-107.0
+       - cyrpess/cypress-firefox:cypress-${CYPRESS_VERSION}-firefox-${FIREFOX_VERSION}
     command: node -v
   browsers:
     image: cypress/browsers
@@ -143,13 +138,13 @@ services:
       target: default_image
       context: .
       args:
-        YARN_VERSION: *yarn-version
-        CHROME_VERSION: *chrome-version
-        FIREFOX_VERSION: *firefox-version
-        EDGE_VERSION: *edge-version
+        YARN_VERSION: ${YARN_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
       tags:
        - cypress/browsers:latest
-       - cyrpess/browsers:node-16.18.1-chrome-107.0.5304.121-1-ff-107.0-edge-100.0.1185.29-1
+       - cyrpess/browsers:node-${NODE_VERSION}-chrome-${CHROME_VERSION}-ff-${FIREFOX_VERSION}-edge-${EDGE_VERSION}
     command: node -v
   test-node-override:
     build:

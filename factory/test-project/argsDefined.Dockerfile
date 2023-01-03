@@ -1,6 +1,6 @@
 # Args are defined in the dockerfile before the FROM command.
 ARG CHROME_VERSION='107.0.5304.121-1'
-ARG EDGE_VERSION='110.0.1556.0-1'
+ARG EDGE_VERSION='100.0.1185.29-1'
 ARG FIREFOX_VERSION='107.0'
 
 FROM cypress/factory

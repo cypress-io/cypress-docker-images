@@ -36,7 +36,7 @@ services:
   test-edge:
     build:
       args:
-        EDGE_VERSION: '110.0.1556.0-1'
+        EDGE_VERSION: '100.0.1185.29-1'
       context: .
     command: npm run test -- -b edge
   # Doesn't npm install the local cypress version, builds with cypress 10, tests will fail.

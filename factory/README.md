@@ -30,7 +30,7 @@ dockerfile
 # Args are defined in the dockerfile before the FROM command.
 # Using these args will cause an image to be created with node, chrome, firefox and edge.
 ARG CHROME_VERSION='107.0.5304.121-1'
-ARG EDGE_VERSION='110.0.1556.0-1'
+ARG EDGE_VERSION='100.0.1185.29-1'
 ARG FIREFOX_VERSION='107.0'
 
 FROM cypress/factory
@@ -64,7 +64,7 @@ RUN npm install --save-dev cypress
 build commands
 
 ```bash
-docker build . --build-arg CHROME_VERSION='107.0.5304.121-1' --build-arg EDGE_VERSION='110.0.1556.0-1' --build-arg FIREFOX_VERSION='107.0' -t test
+docker build . --build-arg CHROME_VERSION='107.0.5304.121-1' --build-arg EDGE_VERSION='100.0.1185.29-1' --build-arg FIREFOX_VERSION='107.0' -t test
 
 docker run test npm run test -b chrome
 ```
@@ -82,7 +82,7 @@ services:
   test:
     args:
       CHROME_VERSION: '107.0.5304.121-1'
-      EDGE_VERSION: '110.0.1556.0-1'
+      EDGE_VERSION: '100.0.1185.29-1'
       FIREFOX_VERSION: '107.0'
     build:
       context: .
@@ -157,7 +157,7 @@ Example: `FIREFOX_VERSION='107.0'`
 
 The version of Edge to install (via npm). If not specified, Edge is not installed.
 
-Example: `EDGE_VERSION='110.0.1556.0-1'`
+Example: `EDGE_VERSION='100.0.1185.29-1'`
 
 [Edge versions](https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/)
 

@@ -8,7 +8,7 @@ if (!webkitVersion) {
   return
 }
 
-// TODO: verify this
+// TODO: Verify that we don't have an arm64 version of webkit
 if (process.arch === 'arm64') {
   console.log('Not downloading Webkit since we are on arm64')
   return;

@@ -32,7 +32,7 @@ RUN ls -la /root \
   && chmod 755 /root \
   && apt-get update \
   && apt-get install --no-install-recommends -y \
-    # Needed for Cypress
+    # Always install: Needed to run Cypress
     xvfb \
     libglib2.0-0 \
     libnss3 \
@@ -42,11 +42,11 @@ RUN ls -la /root \
     libgtk-3-0 \
     libgbm1 \
     libasound2 \
-    # Needed for dashboard integration
+    # Always install: Needed for dashboard integration
     git \
     # Chrome and Edge require wget even after installation. We could do more work to dynamically remove it, but I doubt it's worth it.
     wget \
-    # build only dependancies
+    # build only dependancies: removed in onbuild step
     bzip2 \
     curl \
     gnupg \
@@ -86,7 +86,7 @@ ONBUILD ARG FIREFOX_VERSION
 
 ONBUILD RUN node /opt/installScripts/firefox/install-firefox-version.js ${FIREFOX_VERSION}
 
-# TODO: Globally installed webkit currently isn't found, fix than then enable this.
+# TODO: Globally installed webkit currently isn't found, see issue https://github.com/cypress-io/cypress/issues/25344
 # Install Webkit: optional
 # ONBUILD ARG WEBKIT_VERSION
 

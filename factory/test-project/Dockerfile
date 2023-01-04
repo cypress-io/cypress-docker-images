@@ -1,4 +1,6 @@
-FROM cypress/factory
+ARG BASE_FACTORY_IMAGE
+
+FROM ${BASE_FACTORY_IMAGE}
 RUN echo "current user: $(whoami)"
 ENV CI=1
 COPY . /opt/app

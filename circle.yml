@@ -296,7 +296,7 @@ jobs:
                       docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64,linux/amd64 factory
                       docker buildx ls
                       docker buildx bake -f ./docker-compose.yml --progress plain --load factory
-                      docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64 --set factory.build.tags=cypress/factory:arm64--load factory
+                      docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64 --set factory.tags=cypress/factory:arm64--load factory
                       docker images
 
 

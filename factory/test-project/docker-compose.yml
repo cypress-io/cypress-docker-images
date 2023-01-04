@@ -6,7 +6,7 @@ services:
       dockerfile: argsDefined.Dockerfile
       context: .
       args:
-        - BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
     command: npm run test
   # Installs node only
   test:
@@ -64,5 +64,5 @@ services:
       dockerfile: included.Dockerfile
       context: .
       args:
-        - BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
     command: cypress run -b chrome

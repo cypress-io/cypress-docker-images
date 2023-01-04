@@ -28,6 +28,7 @@ commands:
                         set -a
                         . ./factory/.env
                         set +a
+                        env
     halt-if-docker-image-exists:
         description: Halt current CircleCI job if Docker image exists already
         parameters:

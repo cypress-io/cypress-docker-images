@@ -284,15 +284,19 @@ jobs:
             image: ubuntu-2204:2022.10.2
         steps:
             - checkout
+            - expand-env-file
             # - halt-if-docker-image-exists:
             #       imageName: cypress/base:<< parameters.dockerTag >>
-            - expand-env-file
             - run:
                   name: building Docker image cypress/factory:${FACTORY_VERSION}
                   command: |
                       env
-                      cat $BASH_ENV
-                      docker-compose build factory
+                      docker run --privileged --rm tonistiigi/binfmt --install linux/amd64,linux/arm64
+                      docker buildx create --name builder --use
+                      docker buildx bake -f ./docker-compose.yml --progress plain --platform linux/arm64,linux/amd64 factory
+                      docker images
+
+
                   working_directory: factory
             # - test-base-image:
             #       nodeVersion: v<< parameters.dockerTag >>

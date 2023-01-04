@@ -299,7 +299,7 @@ jobs:
                       docker images
 
                   working_directory: factory
-            - test:
+            - run:
                   name: test-docker-factory
                   command: |
                       cd test-project

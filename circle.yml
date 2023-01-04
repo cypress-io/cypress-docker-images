@@ -26,9 +26,7 @@ commands:
                    name: sets envs from the env file
                    command: |
                         echo '$BASH_ENV'
-                        touch '$BASH_ENV'
                         echo 'set -a && . ./factory/.env && set +a' >> '$BASH_ENV'
-                        cat "$BASH_ENV"
     halt-if-docker-image-exists:
         description: Halt current CircleCI job if Docker image exists already
         parameters:
@@ -290,6 +288,7 @@ jobs:
             - run:
                   name: building Docker image cypress/factory:${FACTORY_VERSION}
                   command: |
+                      cat "$BASH_ENV"
                       env
                       docker-compose build factory
                   working_directory: factory

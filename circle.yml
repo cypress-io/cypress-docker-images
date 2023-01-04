@@ -280,7 +280,7 @@ jobs:
 
     build-factory-image:
         machine:
-            image: cimg/base
+            image: ubuntu-2204:2022.10.2
         steps:
             - checkout
             # - halt-if-docker-image-exists:

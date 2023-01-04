@@ -280,7 +280,7 @@ jobs:
 
     build-factory-image:
         machine:
-            image: ubuntu-2004:202111-02
+            image: cimg/base
         steps:
             - checkout
             # - halt-if-docker-image-exists:

@@ -303,7 +303,7 @@ jobs:
                   name: test-docker-factory
                   command: |
                       cd test-project
-                      docker-compose run included
+                      docker-compose run no-npm-install
                   working_directory: factory
             # - test-base-image:
             #       nodeVersion: v<< parameters.dockerTag >>

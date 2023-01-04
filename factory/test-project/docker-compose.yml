@@ -43,10 +43,12 @@ services:
     command: npm run test -- -b edge
   # Doesn't npm install the local cypress version, builds with cypress 10, tests will fail.
   no-npm-install:
+    env_file: ../.env
     build:
       args:
-        CYPRESS_VERSION: '10.11.0'
-        CHROME_VERSION: '108.0.5359.124-1'
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run -b chrome

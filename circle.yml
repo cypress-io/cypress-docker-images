@@ -293,7 +293,6 @@ jobs:
                       docker run --privileged --rm tonistiigi/binfmt --install linux/amd64,linux/arm64
                       docker buildx create --name builder --use
                       docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64,linux/amd64 factory
-                    #   docker buildx imagetools inspect cypress/factory:${FACTORY_VERSION}
                       docker buildx bake -f ./docker-compose.yml --progress plain --load factory
                       docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64 --set factory.tags=cypress/factory-arm64:${FACTORY_VERSION} --load factory
                       docker images

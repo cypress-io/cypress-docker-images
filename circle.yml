@@ -289,6 +289,7 @@ jobs:
             - run:
                   name: building Docker image cypress/factory:${FACTORY_VERSION}
                   command: |
+                      env
                       docker-compose build factory
                   working_directory: factory
             # - test-base-image:

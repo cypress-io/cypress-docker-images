@@ -25,8 +25,9 @@ commands:
             - run:
                    name: sets envs from the env file
                    command: |
-                        env
+                        echo '$BASH_ENV'
                         echo 'set -a && . ./factory/.env && set +a' >> '$BASH_ENV'
+                        cat "$BASH_ENV"
     halt-if-docker-image-exists:
         description: Halt current CircleCI job if Docker image exists already
         parameters:

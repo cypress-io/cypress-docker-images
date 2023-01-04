@@ -52,6 +52,16 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run -b chrome
+  no-npm-install-arm64:
+    env_file: ../.env
+    build:
+      args:
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory-arm64:${FACTORY_VERSION}
+      dockerfile: noNPMInstall.Dockerfile
+      context: .
+    command: cypress run -b chrome
   # no-npm-install-webkit:
   #   build:
   #     args:

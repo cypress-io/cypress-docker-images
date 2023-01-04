@@ -304,6 +304,7 @@ jobs:
                   command: |
                       cd test-project
                       docker-compose run no-npm-install
+                      docker-compose run no-npm-install-arm64
                   working_directory: factory
             # - test-base-image:
             #       nodeVersion: v<< parameters.dockerTag >>

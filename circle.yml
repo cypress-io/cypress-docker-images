@@ -506,7 +506,7 @@ workflows:
                 resourceClass: arm.medium
                 matrix:
                     parameters:
-                        targets: [
+                        target: [
                             test-electron,
                             test-cypress-electron,
                             test-all-included-electron-only
@@ -515,7 +515,7 @@ workflows:
                 resourceClass: medium
                 matrix:
                     parameters:
-                        targets: [
+                        target: [
                             test-electron,
                             test-chrome,
                             test-firefox,

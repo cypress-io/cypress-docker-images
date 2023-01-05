@@ -8,7 +8,7 @@ services:
       args:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
     command: npm run test
-  # Installs node only
+  ## factory
   test-electron:
     build:
       context: .
@@ -105,11 +105,64 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run
-  # Uses factory_included
-  included:
+## base
+  test-base:
+    build:
+      context: .
+      args:
+        BASE_FACTORY_IMAGE: cypress/base:${NODE_VERSION}
+    command: npm run test
+## browsers
+  test-browsers-electron:
+    build:
+      context: .
+      args:
+        BASE_FACTORY_IMAGE: cypress/browsers:node-${NODE_VERSION}-chrome-${CHROME_VERSION}-ff-${FIREFOX_VERSION}-edge-${EDGE_VERSION}
+    command: npm run test
+  test-browsers-chrome:
+    build:
+      context: .
+      args:
+        BASE_FACTORY_IMAGE: cypress/browsers:node-${NODE_VERSION}-chrome-${CHROME_VERSION}-ff-${FIREFOX_VERSION}-edge-${EDGE_VERSION}
+    command: npm run test -- -b chrome
+  test-browsers-firefox:
+    build:
+      context: .
+      args:
+        BASE_FACTORY_IMAGE: cypress/browsers:node-${NODE_VERSION}-chrome-${CHROME_VERSION}-ff-${FIREFOX_VERSION}-edge-${EDGE_VERSION}
+    command: npm run test -- -b firefox
+  test-browsers-edge:
+    build:
+      context: .
+      args:
+        BASE_FACTORY_IMAGE: cypress/browsers:node-${NODE_VERSION}-chrome-${CHROME_VERSION}-ff-${FIREFOX_VERSION}-edge-${EDGE_VERSION}
+    command: npm run test -- -b edge
+## Included
+  test-included:
     build:
       dockerfile: included.Dockerfile
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+        BASE_FACTORY_IMAGE: cypress/included:${CYPRESS_VERSION}
+    command: cypress run
+  test-included-chrome:
+    build:
+      dockerfile: included.Dockerfile
+      context: .
+      args:
+        BASE_FACTORY_IMAGE: cypress/included:${CYPRESS_VERSION}
     command: cypress run -b chrome
+  test-included-firefox:
+    build:
+      dockerfile: included.Dockerfile
+      context: .
+      args:
+        BASE_FACTORY_IMAGE: cypress/included:${CYPRESS_VERSION}
+    command: cypress run -b firefox
+  test-included-edge:
+    build:
+      dockerfile: included.Dockerfile
+      context: .
+      args:
+        BASE_FACTORY_IMAGE: cypress/included:${CYPRESS_VERSION}
+    command: cypress run -b edge

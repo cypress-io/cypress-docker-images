@@ -279,6 +279,26 @@ jobs:
                 override-ci-command: yarn install --frozen-lockfile
             - run: yarn test
 
+    test-factory-image-arm64:
+        machine:
+            image: ubuntu-2204:2022.10.2
+        parameters:
+        resource_class: arm.large
+        steps:
+            - checkout
+            - run:
+                  name: building Docker image cypress/factory
+                  command: |
+                      docker-compose build --progress plain factory
+                  working_directory: factory
+            - run:
+                  name: test
+                  no_output_timeout: 30m
+                  command: |
+                    docker-compose build --progress plain no-npm-install
+                    docker-compose run no-npm-install
+                  working_directory: factory/test-project
+
     build-factory-image:
         machine:
             image: ubuntu-2204:2022.10.2
@@ -304,13 +324,14 @@ jobs:
             #       command: |
             #           docker-compose run no-npm-install
             #       working_directory: factory/test-project
-            - run:
-                  name: test-docker-factory-arm64
-                  no_output_timeout: 30m
-                  command: |
-                      docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64 --load no-npm-install-arm64
-                      docker-compose run no-npm-install-arm64
-                  working_directory: factory/test-project
+            # - run:
+            #       name: test-docker-factory-arm64
+            #       no_output_timeout: 30m
+            #       command: |
+            #           docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64 --set factory.tags=localhost:5000/no-npm-install-arm64 --load no-npm-install-arm64
+            #           docker run localhost:5000/no-npm-install-arm64
+            #           docker-compose run no-npm-install-arm64
+            #       working_directory: factory/test-project
             # - test-base-image:
             #       nodeVersion: v<< parameters.dockerTag >>
             #       imageName: cypress/base:<< parameters.dockerTag >>
@@ -474,7 +495,8 @@ workflows:
     #         - test
     build-images:
         jobs:
-            - build-factory-image
+            # - build-factory-image
+            - test-factory-image-arm64
     # build-included-images:
     #     jobs:
 

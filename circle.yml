@@ -279,11 +279,17 @@ jobs:
                 override-ci-command: yarn install --frozen-lockfile
             - run: yarn test
 
-    test-factory-image-arm64:
+    test-factory-image:
         machine:
             image: ubuntu-2204:2022.10.2
         parameters:
-        resource_class: arm.large
+            resourceClass:
+                type: string
+                description: Resource class to use for this job
+            target:
+                type: string
+                description:
+        resource_class: << parameters.resourceClass >>
         steps:
             - checkout
             - expand-env-file
@@ -296,8 +302,7 @@ jobs:
                   name: test
                   no_output_timeout: 30m
                   command: |
-                    docker-compose build --progress plain no-npm-install
-                    docker-compose run no-npm-install cypress run
+                    docker-compose run --progress plain << parameters.target >>
                   working_directory: factory/test-project
 
     build-factory-image:
@@ -494,10 +499,35 @@ workflows:
     #     jobs:
     #         - lint-markdown
     #         - test
-    build-images:
+    test-factory-image:
         jobs:
             # - build-factory-image
-            - test-factory-image-arm64
+            - test-factory
+              name: "Test factory image for arm64"
+              matrix:
+                parameters:
+                    targets: [
+                        test-electron,
+                        test-cypress-electron,
+                        test-all-included-electron-only
+                    ]
+                    resourceClass: arm.medium
+            - test-factory
+              name: "Test factory image for amd64"
+              matrix:
+                parameters:
+                    targets: [
+                        test-electron,
+                        test-chrome,
+                        test-firefox,
+                        test-edge,
+                        test-cypress-included-electron,
+                        test-cypress-included-chrome,
+                        test-cypress-included-firefox,
+                        test-cypress-included-edge,
+                        test-all-included,
+                    ]
+                    resourceClass: arm.medium
     # build-included-images:
     #     jobs:
 

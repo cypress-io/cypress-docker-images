@@ -503,31 +503,29 @@ workflows:
         jobs:
             # - build-factory-image
             - test-factory-image:
-              name: "Test factory image for arm64"
-              matrix:
-                parameters:
-                    targets: [
-                        test-electron,
-                        test-cypress-electron,
-                        test-all-included-electron-only
-                    ]
-                    resourceClass: arm.medium
+                matrix:
+                    parameters:
+                        targets: [
+                            test-electron,
+                            test-cypress-electron,
+                            test-all-included-electron-only
+                        ]
+                        resourceClass: arm.medium
             - test-factory-image:
-              name: "Test factory image for amd64"
-              matrix:
-                parameters:
-                    targets: [
-                        test-electron,
-                        test-chrome,
-                        test-firefox,
-                        test-edge,
-                        test-cypress-included-electron,
-                        test-cypress-included-chrome,
-                        test-cypress-included-firefox,
-                        test-cypress-included-edge,
-                        test-all-included
-                    ]
-                    resourceClass: medium
+                matrix:
+                    parameters:
+                        targets: [
+                            test-electron,
+                            test-chrome,
+                            test-firefox,
+                            test-edge,
+                            test-cypress-included-electron,
+                            test-cypress-included-chrome,
+                            test-cypress-included-firefox,
+                            test-cypress-included-edge,
+                            test-all-included
+                        ]
+                        resourceClass: medium
     # build-included-images:
     #     jobs:
 

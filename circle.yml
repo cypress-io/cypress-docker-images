@@ -503,6 +503,7 @@ workflows:
         jobs:
             # - build-factory-image
             - test-factory-image:
+                resourceClass: arm.medium
                 matrix:
                     parameters:
                         targets: [
@@ -510,8 +511,8 @@ workflows:
                             test-cypress-electron,
                             test-all-included-electron-only
                         ]
-                        resourceClass: arm.medium
             - test-factory-image:
+                resourceClass: medium
                 matrix:
                     parameters:
                         targets: [
@@ -525,7 +526,6 @@ workflows:
                             test-cypress-included-edge,
                             test-all-included
                         ]
-                        resourceClass: medium
     # build-included-images:
     #     jobs:
 

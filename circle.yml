@@ -610,8 +610,8 @@ workflows:
     test:
         jobs:
             - test-factory-image:
-                alias: factory-arm
                 matrix:
+                    alias: factory-arm
                     parameters:
                         target: [
                             test-factory-electron,
@@ -620,8 +620,8 @@ workflows:
                         ]
                         resourceClass: [arm.medium]
             - test-factory-image:
-                alias: factory
                 matrix:
+                    alias: factory
                     parameters:
                         target: [
                             test-factory-electron,
@@ -636,24 +636,24 @@ workflows:
                         ]
                         resourceClass: [medium]
             - test-base-image:
-                alias: base
                 matrix:
+                    alias: base
                     parameters:
                         target: [
                             test-base
                         ]
                         resourceClass: [medium]
             - test-base-image:
-                alias: base-arm
                 matrix:
+                    alias: base-arm
                     parameters:
                         target: [
                             test-base
                         ]
                         resourceClass: [arm.medium]
             - test-browser-image:
-                alias: browser
                 matrix:
+                    alias: browser
                     parameters:
                         target: [
                             test-browsers-electron,
@@ -663,16 +663,16 @@ workflows:
                         ]
                         resourceClass: [medium]
             - test-browser-image:
-                alias: browser-arm
                 matrix:
+                    alias: browser-arm
                     parameters:
                         target: [
                             test-browsers-electron
                         ]
                         resourceClass: [arm.medium]
             - test-included-image:
-                alias: included
                 matrix:
+                    alias: included
                     parameters:
                         target: [
                             test-included-electron,
@@ -682,8 +682,8 @@ workflows:
                         ]
                         resourceClass: [medium]
             - test-included-image:
-                alias: included-arm
                 matrix:
+                    alias: included-arm
                     parameters:
                         target: [
                             test-included-electron

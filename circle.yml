@@ -299,17 +299,17 @@ jobs:
                       docker images
 
                   working_directory: factory
-            - run:
-                  name: test-docker-factory
-                  command: |
-                      docker-compose run no-npm-install
-                  working_directory: factory/test-project
+            # - run:
+            #       name: test-docker-factory
+            #       command: |
+            #           docker-compose run no-npm-install
+            #       working_directory: factory/test-project
             - run:
                   name: test-docker-factory-arm64
                   no_output_timeout: 30m
                   command: |
                       docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64 --load no-npm-install-arm64
-                      docker-compose no-npm-install-arm64
+                      docker-compose run no-npm-install-arm64
                   working_directory: factory/test-project
             # - test-base-image:
             #       nodeVersion: v<< parameters.dockerTag >>

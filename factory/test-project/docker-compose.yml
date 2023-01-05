@@ -9,40 +9,47 @@ services:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
     command: npm run test
   # Installs node only
-  test:
+  test-electron:
     build:
       context: .
+      args:
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
     command: npm run test
   # Installs Node and Chrome
   test-chrome:
     build:
       args:
-        CHROME_VERSION: '107.0.5304.121-1'
-      context: .
-    command: npm run test -- -b chrome
-    # Installs Node and Chrome 1.08
-  test-chrome-latest:
-    build:
-      args:
-        CHROME_VERSION: '108.0.5359.124-1'
+        CHROME_VERSION: ${CHROME_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b chrome
   # Installs Node and Firefox
   test-firefox:
     build:
       args:
-        FIREFOX_VERSION: '107.0'
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b firefox
   # Installs Node and Edge
   test-edge:
     build:
       args:
-        EDGE_VERSION: '100.0.1185.29-1'
+        EDGE_VERSION: ${EDGE_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b edge
   # Doesn't npm install the local cypress version, builds with cypress 10, tests will fail.
-  no-npm-install:
+  test-cypress-included-electron:
+    env_file: ../.env
+    build:
+      args:
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: noNPMInstall.Dockerfile
+      context: .
+    command: cypress run
+  test-cypress-included-chrome:
     env_file: ../.env
     build:
       args:
@@ -52,24 +59,52 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run -b chrome
-  no-npm-install-arm64:
+  test-cypress-included-firefox:
     env_file: ../.env
     build:
       args:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
-        CHROME_VERSION: ${CHROME_VERSION}
-        BASE_FACTORY_IMAGE: localhost:5000/factory-arm64:${FACTORY_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       dockerfile: noNPMInstall.Dockerfile
       context: .
-    command: cypress run -b chrome
-  # no-npm-install-webkit:
-  #   build:
-  #     args:
-  #       CYPRESS_VERSION: '12.2.0'
-  #       WEBKIT_VERSION: '1.29.0'
-  #     dockerfile: noNPMInstall.Dockerfile
-  #     context: .
-  #   command: cypress run -b webkit
+    command: cypress run -b firefox
+  test-cypress-included-edge:
+    env_file: ../.env
+    build:
+      args:
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: noNPMInstall.Dockerfile
+      context: .
+    command: cypress run -b edge
+  test-all-included:
+    env_file: ../.env
+    build:
+      args:
+        YARN_VERSION: ${YARN_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: noNPMInstall.Dockerfile
+      context: .
+    command: cypress run && cypress run -b chrome && cypress run -b edge && cypress run -b firefox
+  test-all-included-electron-only:
+    env_file: ../.env
+    build:
+      args:
+        YARN_VERSION: ${YARN_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
+        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: noNPMInstall.Dockerfile
+      context: .
+    command: cypress run
   # Uses factory_included
   included:
     build:

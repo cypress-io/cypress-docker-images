@@ -288,7 +288,7 @@ jobs:
                 description: Resource class to use for this job
             target:
                 type: string
-                description:
+                description: The docker-compose target to run
         resource_class: << parameters.resourceClass >>
         steps:
             - checkout

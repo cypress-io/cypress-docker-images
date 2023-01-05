@@ -525,9 +525,9 @@ workflows:
                         test-cypress-included-chrome,
                         test-cypress-included-firefox,
                         test-cypress-included-edge,
-                        test-all-included,
+                        test-all-included
                     ]
-                    resourceClass: arm.medium
+                    resourceClass: medium
     # build-included-images:
     #     jobs:
 

@@ -297,7 +297,7 @@ jobs:
                   no_output_timeout: 30m
                   command: |
                     docker-compose build --progress plain no-npm-install
-                    docker-compose run no-npm-install
+                    docker-compose run no-npm-install cypress run
                   working_directory: factory/test-project
 
     build-factory-image:

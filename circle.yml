@@ -612,28 +612,21 @@ workflows:
                             test-factory-all-included
                         ]
                         resourceClass: [medium]
-    test-base-image:
-        jobs:
             - test-base-image:
-                resourceClass: medium
                 matrix:
                     parameters:
                         target: [
                             test-base
                         ]
-    test-base-image-arm64:
-        jobs:
+                        resourceClass: [medium]
             - test-base-image:
-                resourceClass: arm.medium
                 matrix:
                     parameters:
                         target: [
                             test-base
                         ]
-    test-browser-image:
-        jobs:
+                        resourceClass: [arm.medium]
             - test-browser-image:
-                resourceClass: medium
                 matrix:
                     parameters:
                         target: [
@@ -642,19 +635,15 @@ workflows:
                             test-browsers-firefox,
                             test-browsers-edge
                         ]
-    test-browser-image-arm64:
-        jobs:
+                        resourceClass: [medium]
             - test-browser-image:
-                resourceClass: arm.medium
                 matrix:
                     parameters:
                         target: [
                             test-browsers-electron
                         ]
-    test-included-image:
-        jobs:
+                        resourceClass: [arm.medium]
             - test-factory-image:
-                resourceClass: medium
                 matrix:
                     parameters:
                         target: [
@@ -663,15 +652,14 @@ workflows:
                             test-included-firefox,
                             test-included-edge
                         ]
-    test-included-image-arm64:
-        jobs:
+                        resourceClass: [medium]
             - test-included-image:
-                resourceClass: arm.medium
                 matrix:
                     parameters:
                         target: [
                             test-included-electron
                         ]
+                        resourceClass: [arm.medium]
     # build-included-images:
     #     jobs:
 

@@ -589,35 +589,32 @@ workflows:
     test-factory-image:
         jobs:
             - test-factory-image:
-                name: arm64
                 resourceClass: arm.medium
                 matrix:
                     parameters:
                         target: [
-                            test-electron,
-                            test-cypress-included-electron,
-                            test-all-included-electron-only
+                            test-factory-electron,
+                            test-factory-cypress-included-electron,
+                            test-factory-all-included-electron-only
                         ]
             - test-factory-image:
-                name: amd64
                 resourceClass: medium
                 matrix:
                     parameters:
                         target: [
-                            test-electron,
-                            test-chrome,
-                            test-firefox,
-                            test-edge,
-                            test-cypress-included-electron,
-                            test-cypress-included-chrome,
-                            test-cypress-included-firefox,
-                            test-cypress-included-edge,
-                            test-all-included
+                            test-factory-electron,
+                            test-factory-chrome,
+                            test-factory-firefox,
+                            test-factory-edge,
+                            test-factory-cypress-included-electron,
+                            test-factory-cypress-included-chrome,
+                            test-factory-cypress-included-firefox,
+                            test-factory-cypress-included-edge,
+                            test-factory-all-included
                         ]
     test-base-image:
         jobs:
             - test-base-image:
-                name: arm64
                 resourceClass: arm.medium
                 matrix:
                     parameters:
@@ -625,7 +622,6 @@ workflows:
                             test-base
                         ]
             - test-base-image:
-                name: amd64
                 resourceClass: medium
                 matrix:
                     parameters:
@@ -635,7 +631,6 @@ workflows:
     test-browser-image:
         jobs:
             - test-browser-image:
-                name: arm64
                 resourceClass: arm.medium
                 matrix:
                     parameters:
@@ -643,7 +638,6 @@ workflows:
                             test-browsers-electron
                         ]
             - test-browser-image:
-                name: amd64
                 resourceClass: medium
                 matrix:
                     parameters:
@@ -656,7 +650,6 @@ workflows:
     test-included-image:
         jobs:
             - test-included-image:
-                name: arm64
                 resourceClass: arm.medium
                 matrix:
                     parameters:
@@ -664,7 +657,6 @@ workflows:
                             test-included-electron
                         ]
             - test-factory-image:
-                name: amd64
                 resourceClass: medium
                 matrix:
                     parameters:

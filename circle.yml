@@ -586,10 +586,18 @@ workflows:
     #     jobs:
     #         - lint-markdown
     #         - test
-    test-factory-image:
+    test:
         jobs:
             - test-factory-image:
-                resourceClass: medium
+                matrix:
+                    parameters:
+                        target: [
+                            test-factory-electron,
+                            test-factory-cypress-included-electron,
+                            test-factory-all-included-electron-only
+                        ]
+                        resourceClass: arm.medium
+            - test-factory-image:
                 matrix:
                     parameters:
                         target: [
@@ -603,17 +611,7 @@ workflows:
                             test-factory-cypress-included-edge,
                             test-factory-all-included
                         ]
-    test-factory-image-arm64:
-        jobs:
-            - test-factory-image:
-                resourceClass: arm.medium
-                matrix:
-                    parameters:
-                        target: [
-                            test-factory-electron,
-                            test-factory-cypress-included-electron,
-                            test-factory-all-included-electron-only
-                        ]
+                        resourceClass: medium
     test-base-image:
         jobs:
             - test-base-image:

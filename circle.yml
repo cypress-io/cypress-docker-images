@@ -308,6 +308,8 @@ jobs:
                   command: |
                       docker run -d -p 5000:5000 --restart=always --name registry registry:2
                       docker push localhost:5000/factory-arm64:${FACTORY_VERSION}
+                      docker image remove localhost:5000/factory-arm64:${FACTORY_VERSION}
+                      docker pull localhost:5000/factory-arm64:${FACTORY_VERSION}
 
                       docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64 --load no-npm-install-arm64
                       docker-compose no-npm-install-arm64

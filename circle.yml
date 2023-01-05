@@ -502,7 +502,7 @@ workflows:
     test-factory-image:
         jobs:
             # - build-factory-image
-            - test-factory
+            - test-factory-image
               name: "Test factory image for arm64"
               matrix:
                 parameters:
@@ -512,7 +512,7 @@ workflows:
                         test-all-included-electron-only
                     ]
                     resourceClass: arm.medium
-            - test-factory
+            - test-factory-image
               name: "Test factory image for amd64"
               matrix:
                 parameters:

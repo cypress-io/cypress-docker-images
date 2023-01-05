@@ -610,6 +610,7 @@ workflows:
     test:
         jobs:
             - test-factory-image:
+                alias: factory-arm
                 matrix:
                     parameters:
                         target: [
@@ -619,6 +620,7 @@ workflows:
                         ]
                         resourceClass: [arm.medium]
             - test-factory-image:
+                alias: factory
                 matrix:
                     parameters:
                         target: [
@@ -634,6 +636,7 @@ workflows:
                         ]
                         resourceClass: [medium]
             - test-base-image:
+                alias: base
                 matrix:
                     parameters:
                         target: [
@@ -641,6 +644,7 @@ workflows:
                         ]
                         resourceClass: [medium]
             - test-base-image:
+                alias: base-arm
                 matrix:
                     parameters:
                         target: [
@@ -648,6 +652,7 @@ workflows:
                         ]
                         resourceClass: [arm.medium]
             - test-browser-image:
+                alias: browser
                 matrix:
                     parameters:
                         target: [
@@ -658,6 +663,7 @@ workflows:
                         ]
                         resourceClass: [medium]
             - test-browser-image:
+                alias: browser-arm
                 matrix:
                     parameters:
                         target: [
@@ -665,6 +671,7 @@ workflows:
                         ]
                         resourceClass: [arm.medium]
             - test-included-image:
+                alias: included
                 matrix:
                     parameters:
                         target: [
@@ -675,6 +682,7 @@ workflows:
                         ]
                         resourceClass: [medium]
             - test-included-image:
+                alias: included-arm
                 matrix:
                     parameters:
                         target: [
@@ -687,10 +695,14 @@ workflows:
                 #         only:  # only branches matching the below regex filters will run
                 #             - master
                 requires:
-                    - test-factory-image
-                    - test-base-image
-                    - test-included-image
-                    - test-browser-image
+                    - factory
+                    - factory-arm
+                    - base
+                    - base-arm
+                    - included
+                    - included-arm
+                    - browser
+                    - browser-arm
     # build-included-images:
     #     jobs:
 

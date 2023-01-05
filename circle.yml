@@ -302,7 +302,8 @@ jobs:
                   name: test
                   no_output_timeout: 30m
                   command: |
-                    docker-compose run --progress plain << parameters.target >>
+                    docker-compose build --progress plain << parameters.target >>
+                    docker-compose run << parameters.target >>
                   working_directory: factory/test-project
 
     build-factory-image:

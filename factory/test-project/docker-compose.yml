@@ -91,7 +91,7 @@ services:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       dockerfile: noNPMInstall.Dockerfile
       context: .
-    command: cypress run && cypress run -b chrome && cypress run -b edge && cypress run -b firefox
+    command: sh -c "cypress run && cypress run -b chrome && cypress run -b edge && cypress run -b firefox"
   test-factory-all-included-electron-only:
     env_file: ../.env
     build:

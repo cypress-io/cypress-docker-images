@@ -286,6 +286,7 @@ jobs:
         resource_class: arm.large
         steps:
             - checkout
+            - expand-env-file
             - run:
                   name: building Docker image cypress/factory
                   command: |

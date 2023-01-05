@@ -71,8 +71,9 @@ RUN apt-get update && \\
   ttf-wqy-microhei \\
   xfonts-wqy \\
   # clean up
-  && rm -rf /var/lib/apt/lists/* \\
-  && apt-get clean
+  && rm -rf /usr/share/doc \\
+  && rm -rf /usr/share/man \\
+  && rm -rf /var/lib/apt/lists/*
 
 # a few environment variables to make NPM installs easier
 # good colors for most applications

@@ -644,7 +644,7 @@ workflows:
                             test-browsers-firefox,
                             test-browsers-edge
                         ]
-test-browser-image-arm64:
+    test-browser-image-arm64:
         jobs:
             - test-browser-image:
                 resourceClass: arm.medium

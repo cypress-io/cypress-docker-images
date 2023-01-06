@@ -234,17 +234,6 @@ jobs:
     check-factory-versions:
         machine:
             image: ubuntu-2204:2022.10.2
-        parameters:
-            target:
-                type: string
-                description: The docker-compose target to build
-            resourceClass:
-                type: string
-                description: Resource class to use for this job
-            test-target:
-                type: string
-                description: The docker-compose target to run the test
-        resource_class: << parameters.resourceClass >>
         steps:
             - checkout
             - expand-env-file

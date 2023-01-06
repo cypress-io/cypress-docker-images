@@ -1,6 +1,6 @@
 # cypress/factory
 
-cypress/factory is a docker container that can be used with args to generate a docker container with a specific version of:
+cypress/factory is a docker container that can be used with `args` to generate a docker container with specific versions of:
 
 * node
 * yarn
@@ -15,10 +15,12 @@ cypress/factory is a docker container that can be used with args to generate a d
 * No need to wait on an official release to test the latest version of a browser.
 * Smaller docker sizes especially when not including unused browsers.
 * Easily test multiple browser versions.
+* Reduced maintenance and pull requests for the cypress-docker repo.
+* Ability to offer more variations of docker containers at low cost.
 
 ## Usage
 
-The cypress docker factory works by relying on the ONBUILD docker command to run commands at build time of the the consuming container. Args can be specified in a number of ways, some of which are demonstrated below.
+The cypress docker factory works by relying on the `ONBUILD` docker command to run commands at build time of the the consuming container. `Args` can be specified in a number of ways, some of which are demonstrated below. For each of these examples we are building the equivalent of the `cypress/browsers` docker container. In each instance since the example is only testing the chrome version, the examples could just install chrome by itself if the other browsers were not used.
 
 ### In the dockerfile
 

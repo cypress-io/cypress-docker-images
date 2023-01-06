@@ -37,7 +37,7 @@ commands:
                 description: Docker image name to test
         steps:
             - run:
-                  name: Check if image << parameters.imageName >> exists or Docker hub does not respond
+                  name: Check if image for << parameters.target >> exists or Docker hub does not respond
                   # using https://github.com/cypress-io/docker-image-not-found
                   # to check if Docker hub definitely does not have this image
                   command: |

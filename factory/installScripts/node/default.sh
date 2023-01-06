@@ -3,7 +3,7 @@
 groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-# The following is borrowed from
+# The following is borrowed from https://github.com/nodejs/docker-node/blob/main/16/bullseye-slim/Dockerfile
 ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     && case "${dpkgArch##*-}" in \
       amd64) ARCH='x64';; \

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# The following is borrowed from
+# The following is borrowed from https://github.com/nodejs/docker-node/blob/main/16/bullseye-slim/Dockerfile
 set -ex \
   && savedAptMark="$(apt-mark showmanual)" \
   && apt-get update && apt-get install -y ca-certificates curl wget gnupg dirmngr --no-install-recommends \

@@ -555,7 +555,7 @@ jobs:
             # - halt-if-docker-image-exists:
             #       imageName: cypress/base:<< parameters.dockerTag >>
             - run:
-                  name: building Docker image cypress/factory
+                  name: building Docker image for target << parameters.target >>
                   command: |
                       docker run -d -p 5000:5000 --restart=always --name registry registry:2
                       docker run --privileged --rm tonistiigi/binfmt --install linux/amd64,linux/arm64

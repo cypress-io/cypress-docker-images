@@ -552,8 +552,6 @@ jobs:
         steps:
             - checkout
             - expand-env-file
-            # - halt-if-docker-image-exists:
-            #       imageName: cypress/base:<< parameters.dockerTag >>
             - run:
                   name: building Docker image for target << parameters.target >>
                   command: |

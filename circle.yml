@@ -553,21 +553,21 @@ jobs:
             - checkout
             - expand-env-file
             - run:
-                  name: building Docker image for target << parameters.target >>
-                  command: |
-                      docker run -d -p 5000:5000 --restart=always --name registry registry:2
-                      docker run --privileged --rm tonistiigi/binfmt --install linux/amd64,linux/arm64
-                      docker buildx create --name builder --use
-                    #   docker login -u "$DOCKERHUB_USERNAME" --password "$DOCKERHUB_PASS"
-                      REGISTRY_PREFIX=localhost:5000/ docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64,linux/amd64 --push << parameters.target >>
+                name: building Docker image for target << parameters.target >>
+                command: |
+                    docker run -d -p 5000:5000 --restart=always --name registry registry:2
+                    docker run --privileged --rm tonistiigi/binfmt --install linux/amd64,linux/arm64
+                    docker buildx create --name builder --use
+                    # docker login -u "$DOCKERHUB_USERNAME" --password "$DOCKERHUB_PASS"
+                    REGISTRY_PREFIX=localhost:5000/ docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64,linux/amd64 --push << parameters.target >>
 
-                    #   docker login --username AWS --password "$(aws ecr-public get-login-password --region $AWS_ECR_REGION)" $AWS_ECR_PREFIX
-                    #   REGISTRY_PREFIX=$AWS_ECR_PREFIX docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64,linux/amd64 --push << parameters.target >>
+                    # docker login --username AWS --password "$(aws ecr-public get-login-password --region $AWS_ECR_REGION)" $AWS_ECR_PREFIX
+                    # REGISTRY_PREFIX=$AWS_ECR_PREFIX docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64,linux/amd64 --push << parameters.target >>
 
                     docker pull localhost:5000/cypress/<< parameters.target >>
                     docker images
 
-                  working_directory: factory
+                working_directory: factory
 
     push-images:
         ## the multi-arch images have been built and tested by previous jobs, so we're safe to blindly build+push

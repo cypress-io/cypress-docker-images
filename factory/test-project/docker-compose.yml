@@ -15,7 +15,6 @@ services:
       args:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
     command: npm run test
-  # Installs Node and Chrome
   test-factory-chrome:
     build:
       args:
@@ -23,7 +22,6 @@ services:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b chrome
-  # Installs Node and Firefox
   test-factory-firefox:
     build:
       args:
@@ -31,7 +29,6 @@ services:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b firefox
-  # Installs Node and Edge
   test-factory-edge:
     build:
       args:
@@ -39,7 +36,6 @@ services:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b edge
-  # Doesn't npm install the local cypress version, builds with cypress 10, tests will fail.
   test-factory-cypress-included-electron:
     env_file: ../.env
     build:
@@ -79,6 +75,7 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run -b edge
+  # this test takes the longest because we run against all browsers in the same job.
   test-factory-all-included:
     env_file: ../.env
     build:
@@ -105,14 +102,14 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run
-## base
+  ## base
   test-base:
     build:
       context: .
       args:
         BASE_FACTORY_IMAGE: cypress/base:${BASE_IMAGE_TAG}
     command: npm run test
-## browsers
+  ## browsers
   test-browsers-electron:
     build:
       context: .
@@ -137,7 +134,7 @@ services:
       args:
         BASE_FACTORY_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: npm run test -- -b edge
-## Included
+  ## Included
   test-included-electron:
     build:
       dockerfile: included.Dockerfile

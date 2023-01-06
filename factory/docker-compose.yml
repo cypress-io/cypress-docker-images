@@ -31,6 +31,21 @@ services:
        - ${REPO_PREFIX-}cypress/included:latest
        - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG} # Using the cypress version here doesn't feel right.
     command: node -v
+  browsers:
+    image: ${REPO_PREFIX-}cypress/browsers
+    build:
+      target: default_image
+      context: .
+      args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
+        YARN_VERSION: ${YARN_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
+      tags:
+       - ${REPO_PREFIX-}cypress/browsers:latest
+       - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_TAG}
+    command: node -v
   base:
     image: ${REPO_PREFIX-}cypress/base
     build:
@@ -43,6 +58,8 @@ services:
        - ${REPO_PREFIX-}cypress/base:latest
        - ${REPO_PREFIX-}cypress/base:${BASE_IMAGE_TAG}
     command: node -v
+
+  ## Unused images that we could release if we wanted
   chrome:
     image: "${REPO_PREFIX-}cypress/chrome"
     build:
@@ -142,21 +159,7 @@ services:
        - ${REPO_PREFIX-}cypress/cypress-firefox:latest
        - ${REPO_PREFIX-}cypress/cypress-firefox:cypress-${CYPRESS_VERSION}-firefox-${FIREFOX_VERSION}
     command: node -v
-  browsers:
-    image: ${REPO_PREFIX-}cypress/browsers
-    build:
-      target: default_image
-      context: .
-      args:
-        FACTORY_VERSION: ${FACTORY_VERSION}
-        YARN_VERSION: ${YARN_VERSION}
-        CHROME_VERSION: ${CHROME_VERSION}
-        FIREFOX_VERSION: ${FIREFOX_VERSION}
-        EDGE_VERSION: ${EDGE_VERSION}
-      tags:
-       - ${REPO_PREFIX-}cypress/browsers:latest
-       - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_TAG}
-    command: node -v
+  ## Test image
   test-node-override:
     build:
       target: default_image

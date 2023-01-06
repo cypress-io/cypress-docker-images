@@ -717,7 +717,7 @@ workflows:
                     - base-arm
             - push:
                 name: "Push Browser Image"
-                target: browser
+                target: browsers
                 # filters:
                 #     branches:
                 #         only:  # only branches matching the below regex filters will run

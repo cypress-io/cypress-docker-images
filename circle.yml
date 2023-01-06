@@ -231,34 +231,34 @@ commands:
     #                   fi
 
 jobs:
-    test-factory-image:
-        machine:
-            image: ubuntu-2204:2022.10.2
-        parameters:
-            resourceClass:
-                type: string
-                description: Resource class to use for this job
-            target:
-                type: string
-                description: The docker-compose target to run
-        resource_class: << parameters.resourceClass >>
-        steps:
-            - checkout
-            - expand-env-file
-            - run:
-                  name: building Docker image cypress/factory
-                  command: |
-                      docker-compose build --progress plain factory
-                  working_directory: factory
-            - run:
-                  name: test
-                  no_output_timeout: 30m
-                  command: |
-                    docker-compose build --progress plain << parameters.target >>
-                    docker-compose run << parameters.target >>
-                  working_directory: factory/test-project
+    # test-factory-image:
+    #     machine:
+    #         image: ubuntu-2204:2022.10.2
+    #     parameters:
+    #         resourceClass:
+    #             type: string
+    #             description: Resource class to use for this job
+    #         target:
+    #             type: string
+    #             description: The docker-compose target to run
+    #     resource_class: << parameters.resourceClass >>
+    #     steps:
+    #         - checkout
+    #         - expand-env-file
+    #         - run:
+    #               name: building Docker image cypress/factory
+    #               command: |
+    #                   docker-compose build --progress plain factory
+    #               working_directory: factory
+    #         - run:
+    #               name: test
+    #               no_output_timeout: 30m
+    #               command: |
+    #                 docker-compose build --progress plain << parameters.target >>
+    #                 docker-compose run << parameters.target >>
+    #               working_directory: factory/test-project
 
-    test-factory-dependant-image:
+    test-image:
         machine:
             image: ubuntu-2204:2022.10.2
         parameters:
@@ -278,7 +278,7 @@ jobs:
             - run:
                   name: building Docker image cypress/factory
                   command: |
-                      docker-compose build --progress plain factory
+                      if [ << parameters.target >> != factory ]; then docker-compose build --progress plain factory; fi
                       docker-compose build --progress plain << parameters.target >>
                   working_directory: factory
             - run:
@@ -322,7 +322,7 @@ workflows:
     version: 2
     test:
         jobs:
-            - test-factory-image:
+            - test-image:
                 matrix:
                     alias: factory-arm
                     parameters:
@@ -332,12 +332,13 @@ workflows:
                             test-factory-all-included-electron-only
                         ]
                         resourceClass: [arm.medium]
+                        target: [factory]
             # TODO: could add a version check job
-            - test-factory-image:
+            - test-image:
                 matrix:
                     alias: factory
                     parameters:
-                        target: [
+                        test-target: [
                             test-factory-electron,
                             test-factory-chrome,
                             test-factory-firefox,
@@ -349,7 +350,8 @@ workflows:
                             test-factory-all-included
                         ]
                         resourceClass: [medium]
-            - test-factory-dependant-image:
+                        target: [factory]
+            - test-image:
                 matrix:
                     alias: base
                     parameters:
@@ -358,7 +360,7 @@ workflows:
                         ]
                         resourceClass: [medium]
                         target: [base]
-            - test-factory-dependant-image:
+            - test-image:
                 matrix:
                     alias: base-arm
                     parameters:
@@ -367,7 +369,7 @@ workflows:
                         ]
                         resourceClass: [arm.medium]
                         target: [base]
-            - test-factory-dependant-image:
+            - test-image:
                 matrix:
                     alias: browsers
                     parameters:
@@ -380,7 +382,7 @@ workflows:
                         resourceClass: [medium]
                         target: [browsers]
 
-            - test-factory-dependant-image:
+            - test-image:
                 matrix:
                     alias: browsers-arm
                     parameters:
@@ -389,7 +391,7 @@ workflows:
                         ]
                         resourceClass: [arm.medium]
                         target: [browsers]
-            - test-factory-dependant-image:
+            - test-image:
                 matrix:
                     alias: included
                     parameters:
@@ -401,7 +403,7 @@ workflows:
                         ]
                         resourceClass: [medium]
                         target: [included]
-            - test-factory-dependant-image:
+            - test-image:
                 matrix:
                     alias: included-arm
                     parameters:

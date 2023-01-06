@@ -326,7 +326,7 @@ workflows:
                 matrix:
                     alias: factory-arm
                     parameters:
-                        target: [
+                        test-target: [
                             test-factory-electron,
                             test-factory-cypress-included-electron,
                             test-factory-all-included-electron-only

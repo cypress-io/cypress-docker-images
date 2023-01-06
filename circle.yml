@@ -250,45 +250,45 @@ jobs:
             - run:
                   name: check node version
                   command: |
-                    ACTUAL_VERSION = $(docker-compose run test-factory-all-included node -v)
+                    ACTUAL_VERSION=$(docker-compose run test-factory-all-included node -v)
                     if [ v${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
-                      echo "NodeVersion mismatch, v${NODE_VERSION} != ${ACTUAL_VERSION}"
+                      echo "Version mismatch, v${NODE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
                   working_directory: factory/test-project
             - run:
                   name: check yarn version
                   command: |
-                    ACTUAL_VERSION = $(docker-compose run test-factory-all-included yarn -v)
+                    ACTUAL_VERSION=$(docker-compose run test-factory-all-included yarn -v)
                     if [ v${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
-                      echo "NodeVersion mismatch, ${NODE_VERSION} != ${ACTUAL_VERSION}"
+                      echo "Version mismatch, ${NODE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
                   working_directory: factory/test-project
             - run:
                   name: check chrome version
                   command: |
-                    ACTUAL_VERSION = $(docker-compose run test-factory-all-included google-chrome --version)
+                    ACTUAL_VERSION=$(docker-compose run test-factory-all-included google-chrome --version)
                     if [ Google Chrome ${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
-                      echo "NodeVersion mismatch, Google Chrome ${NODE_VERSION} != ${ACTUAL_VERSION}"
+                      echo "Version mismatch, Google Chrome ${NODE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
                   working_directory: factory/test-project
             - run:
                   name: check firefox version
                   command: |
-                    ACTUAL_VERSION = $(docker-compose run test-factory-all-included firefox --version)
+                    ACTUAL_VERSION=$(docker-compose run test-factory-all-included firefox --version)
                     if [ Mozilla Firefox ${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
-                      echo "NodeVersion mismatch, Mozilla Firefox ${NODE_VERSION} != ${ACTUAL_VERSION}"
+                      echo "Version mismatch, Mozilla Firefox ${NODE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
                   working_directory: factory/test-project
             - run:
                   name: check edge version
                   command: |
-                    ACTUAL_VERSION = $(docker-compose run test-factory-all-included edge --version)
+                    ACTUAL_VERSION=$(docker-compose run test-factory-all-included edge --version)
                     if [ Microsoft Edge ${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
-                      echo "NodeVersion mismatch, Microsoft Edge ${NODE_VERSION} != ${ACTUAL_VERSION}"
+                      echo "Version mismatch, Microsoft Edge ${NODE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
                   working_directory: factory/test-project

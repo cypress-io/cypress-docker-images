@@ -614,7 +614,7 @@ jobs:
 #                     #echo "MANIFESTS=$MANIFESTS"
 #                     #docker manifest create $AWS_ECR_PREFIX/$DOCKER_TAG $MANIFESTS
 #                     #docker push $AWS_ECR_PREFIX/$DOCKER_TAG
-# workflows:
+workflows:
     version: 2
     # lint:
     #     jobs:

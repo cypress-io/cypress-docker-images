@@ -48,21 +48,6 @@ commands:
                         echo We should stop in this case
                         circleci-agent step halt
                       fi
-
-    push-if-docker-image-not-found:
-        description:
-        parameters:
-            imageName:
-                type: string
-                description: Docker image name to test
-        steps:
-            -run:
-               command: |
-                    if npx docker-image-not-found --repo << parameters.imageName >>; then
-                        echo Docker hub says image << parameters.imageName >> does not exist
-                    else
-                        echo Docker hub has image << parameters.imageName >> or not responding
-                    fi
     # test-base-image:
     #     description: Build a test image from base image and test it
     #     parameters:

@@ -292,15 +292,15 @@ jobs:
                       exit 1;
                     fi
                   working_directory: factory/test-project
-            # - run:
-            #       name: check cypress version
-            #       command: |
-            #         ACTUAL_VERSION = $(docker-compose run test-factory-all-included cypress -v)
-            #         if [ v${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
-            #           echo "NodeVersion mismatch, v${NODE_VERSION} != ${ACTUAL_VERSION}"
-            #           exit 1;
-            #         fi
-            #       working_directory: factory/test-project
+            - run:
+                  name: check cypress version
+                  command: |
+                    ACTUAL_VERSION = $(docker-compose run test-factory-all-included cypress -v) | sed 1q
+                    if [  Cypress package version: ${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
+                      echo "NodeVersion mismatch, Cypress package version: ${NODE_VERSION} != ${ACTUAL_VERSION}"
+                      exit 1;
+                    fi
+                  working_directory: factory/test-project
     test-image:
         machine:
             image: ubuntu-2204:2022.10.2

@@ -231,33 +231,87 @@ commands:
     #                   fi
 
 jobs:
-    # test-factory-image:
-    #     machine:
-    #         image: ubuntu-2204:2022.10.2
-    #     parameters:
-    #         resourceClass:
-    #             type: string
-    #             description: Resource class to use for this job
-    #         target:
-    #             type: string
-    #             description: The docker-compose target to run
-    #     resource_class: << parameters.resourceClass >>
-    #     steps:
-    #         - checkout
-    #         - expand-env-file
-    #         - run:
-    #               name: building Docker image cypress/factory
-    #               command: |
-    #                   docker-compose build --progress plain factory
-    #               working_directory: factory
-    #         - run:
-    #               name: test
-    #               no_output_timeout: 30m
-    #               command: |
-    #                 docker-compose build --progress plain << parameters.target >>
-    #                 docker-compose run << parameters.target >>
-    #               working_directory: factory/test-project
-
+    check-factory-versions:
+        machine:
+            image: ubuntu-2204:2022.10.2
+        parameters:
+            target:
+                type: string
+                description: The docker-compose target to build
+            resourceClass:
+                type: string
+                description: Resource class to use for this job
+            test-target:
+                type: string
+                description: The docker-compose target to run the test
+        resource_class: << parameters.resourceClass >>
+        steps:
+            - checkout
+            - expand-env-file
+            - run:
+                  name: building docker image
+                  command: |
+                      docker-compose build --progress plain factory
+                  working_directory: factory
+            - run:
+                  name: build test image
+                  command: |
+                    docker-compose build --progress plain test-factory-all-included
+                  working_directory: factory/test-project
+            - run:
+                  name: check node version
+                  command: |
+                    ACTUAL_VERSION = $(docker-compose run test-factory-all-included node -v)
+                    if [ v${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
+                      echo "NodeVersion mismatch, v${NODE_VERSION} != ${ACTUAL_VERSION}"
+                      exit 1;
+                    fi
+                  working_directory: factory/test-project
+            - run:
+                  name: check yarn version
+                  command: |
+                    ACTUAL_VERSION = $(docker-compose run test-factory-all-included yarn -v)
+                    if [ v${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
+                      echo "NodeVersion mismatch, ${NODE_VERSION} != ${ACTUAL_VERSION}"
+                      exit 1;
+                    fi
+                  working_directory: factory/test-project
+            - run:
+                  name: check chrome version
+                  command: |
+                    ACTUAL_VERSION = $(docker-compose run test-factory-all-included google-chrome --version)
+                    if [ Google Chrome ${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
+                      echo "NodeVersion mismatch, Google Chrome ${NODE_VERSION} != ${ACTUAL_VERSION}"
+                      exit 1;
+                    fi
+                  working_directory: factory/test-project
+            - run:
+                  name: check firefox version
+                  command: |
+                    ACTUAL_VERSION = $(docker-compose run test-factory-all-included firefox --version)
+                    if [ Mozilla Firefox ${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
+                      echo "NodeVersion mismatch, Mozilla Firefox ${NODE_VERSION} != ${ACTUAL_VERSION}"
+                      exit 1;
+                    fi
+                  working_directory: factory/test-project
+            - run:
+                  name: check edge version
+                  command: |
+                    ACTUAL_VERSION = $(docker-compose run test-factory-all-included edge --version)
+                    if [ Microsoft Edge ${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
+                      echo "NodeVersion mismatch, Microsoft Edge ${NODE_VERSION} != ${ACTUAL_VERSION}"
+                      exit 1;
+                    fi
+                  working_directory: factory/test-project
+            # - run:
+            #       name: check cypress version
+            #       command: |
+            #         ACTUAL_VERSION = $(docker-compose run test-factory-all-included cypress -v)
+            #         if [ v${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
+            #           echo "NodeVersion mismatch, v${NODE_VERSION} != ${ACTUAL_VERSION}"
+            #           exit 1;
+            #         fi
+            #       working_directory: factory/test-project
     test-image:
         machine:
             image: ubuntu-2204:2022.10.2
@@ -283,7 +337,6 @@ jobs:
                   working_directory: factory
             - run:
                   name: test
-                  no_output_timeout: 30m
                   command: |
                     docker-compose build --progress plain << parameters.test-target >>
                     docker-compose run << parameters.test-target >>
@@ -322,6 +375,7 @@ workflows:
     version: 2
     test:
         jobs:
+            - check-factory-versions
             - test-image:
                 matrix:
                     alias: factory-arm

@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   factory:
-    image: cypress/factory
+    image: ${REPO_PREFIX-}cypress/factory
     build:
       dockerfile: factory.Dockerfile
       target: factory
@@ -11,15 +11,16 @@ services:
         BASE_IMAGE: ${BASE_IMAGE}
         DEFAULT_NODE_VERSION: ${NODE_VERSION}
       tags:
-       - cypress/factory:latest
-       - cypress/factory:${FACTORY_VERSION}
+       - ${REPO_PREFIX-}cypress/factory:latest
+       - ${REPO_PREFIX-}cypress/factory:${FACTORY_VERSION}
     command: node -v
   included:
-    image: cypress/included
+    image: ${REPO_PREFIX-}cypress/included
     build:
       target: included_image
       context: .
       args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
@@ -27,129 +28,140 @@ services:
         YARN_VERSION: ${YARN_VERSION}
         # WEBKIT_VERSION: ${WEBKIT_VERSION}
       tags:
-       - cypress/included:latest
-       - cypress/included:${CYPRESS_VERSION} #Using the cypress version here doesn't feel right.
+       - ${REPO_PREFIX-}cypress/included:latest
+       - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG} # Using the cypress version here doesn't feel right.
     command: node -v
   base:
-    image: cypress/base
+    image: ${REPO_PREFIX-}cypress/base
     build:
       target: default_image
       context: .
       args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
         YARN_VERSION: ${YARN_VERSION}
       tags:
-       - cypress/base:latest
-       - cypress/base:${NODE_VERSION}
+       - ${REPO_PREFIX-}cypress/base:latest
+       - ${REPO_PREFIX-}cypress/base:${BASE_IMAGE_TAG}
     command: node -v
   chrome:
-    image: "cypress/chrome"
+    image: "${REPO_PREFIX-}cypress/chrome"
     build:
       target: default_image
       context: .
       args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
       tags:
-       - cypress/chrome:latest
-       - cypress/chrome:${CHROME_VERSION}
+       - ${REPO_PREFIX-}cypress/chrome:latest
+       - ${REPO_PREFIX-}cypress/chrome:${CHROME_VERSION}
     command: google-chrome --version
   edge:
-    image: cypress/edge
+    image: ${REPO_PREFIX-}cypress/edge
     build:
       target: default_image
       context: .
       args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
       tags:
-       - cypress/edge:latest
-       - cypress/edge:${EDGE_VERSION}
+       - ${REPO_PREFIX-}cypress/edge:latest
+       - ${REPO_PREFIX-}cypress/edge:${EDGE_VERSION}
     command: edge --version
   firefox:
-    image: cypress/firefox
+    image: ${REPO_PREFIX-}cypress/firefox
     build:
       target: default_image
       context: .
       args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
       tags:
-       - cypress/firefox:latest
-       - cypress/firefox:${FIREFOX_VERSION}
+       - ${REPO_PREFIX-}cypress/firefox:latest
+       - ${REPO_PREFIX-}cypress/firefox:${FIREFOX_VERSION}
     command: firefox --version
   # webkit:
-  #   image: cypress/webkit
+  #   image: ${REPO_PREFIX-}cypress/webkit
   #   build:
   #     target: default_image
   #     context: .
   #     args:
+  #       FACTORY_VERSION: ${FACTORY_VERSION}
   #       WEBKIT_VERSION: ${WEBKIT_VERSION}
   #     tags:
-  #     - cypress/webkit:latest
-  #     - cypress/webkit:${WEBKIT_VERSION}
+  #     - ${REPO_PREFIX-}cypress/webkit:latest
+  #     - ${REPO_PREFIX-}cypress/webkit:${WEBKIT_VERSION}
   #   command: webkit --version
   cypress:
-    image: cypress/cypress
+    image: ${REPO_PREFIX-}cypress/cypress
     build:
       target: default_image
       context: .
       args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
       tags:
-       - cypress/cypress:latest
-       - cypress/cypress:${CYPRESS_VERSION}
+       - ${REPO_PREFIX-}cypress/cypress:latest
+       - ${REPO_PREFIX-}cypress/cypress:${CYPRESS_VERSION}
     command: cypress verify
   cypress-chrome:
-    image: cypress/cypress-chrome
+    image: ${REPO_PREFIX-}cypress/cypress-chrome
     build:
       target: default_image
       context: .
       args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
       tags:
-       - cypress/cypress-chrome:latest
-       - cypress/cypress-chrome:cypress-${CYPRESS_VERSION}-chrome-${CHROME_VERSION}
+       - ${REPO_PREFIX-}cypress/cypress-chrome:latest
+       - ${REPO_PREFIX-}cypress/cypress-chrome:cypress-${CYPRESS_VERSION}-chrome-${CHROME_VERSION}
     command: node -v
   cypress-edge:
-    image: cypress/cypress-edge
+    image: ${REPO_PREFIX-}cypress/cypress-edge
     build:
       target: default_image
       context: .
       args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
       tags:
-       - cypress/cypress-edge:latest
-       - cypress/cypress-edge:cypress-${CYPRESS_VERSION}-edge-${EDGE_VERSION}
+       - ${REPO_PREFIX-}cypress/cypress-edge:latest
+       - ${REPO_PREFIX-}cypress/cypress-edge:cypress-${CYPRESS_VERSION}-edge-${EDGE_VERSION}
     command: node -v
   cypress-firefox:
-    image: cypress/cypress-firefox
+    image: ${REPO_PREFIX-}cypress/cypress-firefox
     build:
       target: default_image
       context: .
       args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
       tags:
-       - cypress/cypress-firefox:latest
-       - cypress/cypress-firefox:cypress-${CYPRESS_VERSION}-firefox-${FIREFOX_VERSION}
+       - ${REPO_PREFIX-}cypress/cypress-firefox:latest
+       - ${REPO_PREFIX-}cypress/cypress-firefox:cypress-${CYPRESS_VERSION}-firefox-${FIREFOX_VERSION}
     command: node -v
   browsers:
-    image: cypress/browsers
+    image: ${REPO_PREFIX-}cypress/browsers
     build:
       target: default_image
       context: .
       args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
         YARN_VERSION: ${YARN_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
       tags:
-       - cypress/browsers:latest
-       - cypress/browsers:node-${NODE_VERSION}-chrome-${CHROME_VERSION}-ff-${FIREFOX_VERSION}-edge-${EDGE_VERSION}
+       - ${REPO_PREFIX-}cypress/browsers:latest
+       - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: node -v
   test-node-override:
     build:
       target: default_image
       context: .
       args:
+        FACTORY_VERSION: ${FACTORY_VERSION}
         NODE_VERSION: 16.17.0
     command: node -v

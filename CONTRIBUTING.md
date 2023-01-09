@@ -14,7 +14,7 @@ All contributors are expecting to abide by our [Code of Conduct](https://github.
 
 ### Updating images
 
-To produce new updated images, simply open a PR with the desired version(s) updated in the factory/.env file. Once the PR is merged into master the corresponding images will be pushed to dockerhub.
+To produce new updated images, simply open a PR with the desired version(s) updated in the `factory/.env` file. Once the PR is merged into master the corresponding images will be pushed to dockerhub.
 
 ## Minimize image sizes
 

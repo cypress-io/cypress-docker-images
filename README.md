@@ -2,13 +2,14 @@
 
 These images provide all of the required dependencies for running Cypress in Docker.
 
-We build three main images, click on the image name to see the available tags and versions.
+We build four images, click on the image name to see the available tags and versions.
 
-| Image                        | Default                     | Description                                                                       | Monthly pulls                                                                                                                         |
-| ---------------------------- | --------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| [cypress/base](base)         | `cypress/base:16.13.0`      | All operating system dependencies, no Cypress, and no browsers.                   | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/base.svg?maxAge=604800)](https://hub.docker.com/r/cypress/base/)         |
-| [cypress/browsers](browsers) | `cypress/browsers:chrome69` | All operating system dependencies and some browsers.                              | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/browsers.svg?maxAge=604800)](https://hub.docker.com/r/cypress/browsers/) |
-| [cypress/included](included) | `cypress/included:9.4.1`    | All operating system dependencies, Cypress, and some browsers installed globally. | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/included.svg?maxAge=604800)](https://hub.docker.com/r/cypress/included/) |
+| Image                                                          | Default                     | Description                                                                        | Monthly pulls                                                                                                                         |
+| -------------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| [cypress/factory](https://hub.docker.com/r/cypress/factory/)   | `cypress/factory:1.0.0`    | A template base image, used with ARGS to create a docker image with custom versions| [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/factory.svg?maxAge=604800)](https://hub.docker.com/r/cypress/factory/)   |
+| [cypress/base](https://hub.docker.com/r/cypress/base/)         | `cypress/base:16.13.0`      | All operating system dependencies, no Cypress, and no browsers.                    | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/base.svg?maxAge=604800)](https://hub.docker.com/r/cypress/base/)         |
+| [cypress/browsers](https://hub.docker.com/r/cypress/browsers/) | `cypress/browsers:chrome69` | All operating system dependencies and some browsers.                               | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/browsers.svg?maxAge=604800)](https://hub.docker.com/r/cypress/browsers/) |
+| [cypress/included](https://hub.docker.com/r/cypress/included/) | `cypress/included:9.4.1`    | All operating system dependencies, Cypress, and some browsers installed globally.  | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/included.svg?maxAge=604800)](https://hub.docker.com/r/cypress/included/) |
 
 Of these images, we provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need.
 
@@ -20,9 +21,14 @@ It is recommended to use a specific image tag, and not rely on the `default` tag
 
 All of the images and tags are published to DockerHub under
 
+- [https://hub.docker.com/r/cypress/factory](https://hub.docker.com/r/cypress/factory)
 - [https://hub.docker.com/r/cypress/base](https://hub.docker.com/r/cypress/base)
 - [https://hub.docker.com/r/cypress/browsers](https://hub.docker.com/r/cypress/browsers)
 - [https://hub.docker.com/r/cypress/included](https://hub.docker.com/r/cypress/included)
+
+## Cypress/Factory
+
+Don't see the exact combination of cypress, node and browser versions you need for your test environment? Checkout our [cypress/factory](factory). You can use it to generate a custom image to fit your needs.
 
 ## Examples
 

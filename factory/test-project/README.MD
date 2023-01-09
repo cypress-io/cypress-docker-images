@@ -17,4 +17,6 @@ In the event of a breaking major change this project can be updated by:
 
 ## Tests
 
-Tests are run via the
+Tests are run via the the included docker compose file.
+The tests in the docker compose file rely on factory images, so those must be built first.
+Additionally, to run these tests you must export the environment variables in /factory/.env with `set -a && . ../.env && set +a`

@@ -1,5 +1,7 @@
 version: '3'
 
+## To run these tests you must export the environment variables in /factory/.env with `set -a && . ../.env && set +a`
+
 services:
 
   args-defined:
@@ -7,7 +9,7 @@ services:
       dockerfile: argsDefined.Dockerfile
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
     command: npm run test
 
   ## factory
@@ -15,14 +17,14 @@ services:
     build:
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
     command: npm run test
 
   test-factory-chrome:
     build:
       args:
         CHROME_VERSION: ${CHROME_VERSION}
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b chrome
 
@@ -30,7 +32,7 @@ services:
     build:
       args:
         FIREFOX_VERSION: ${FIREFOX_VERSION}
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b firefox
 
@@ -38,7 +40,7 @@ services:
     build:
       args:
         EDGE_VERSION: ${EDGE_VERSION}
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b edge
 
@@ -46,8 +48,8 @@ services:
     build:
       args:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
-      dockerfile: noNPMInstall.Dockerfile
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
       context: .
     command: cypress run
 
@@ -56,8 +58,8 @@ services:
       args:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
-      dockerfile: noNPMInstall.Dockerfile
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
       context: .
     command: cypress run -b chrome
 
@@ -66,8 +68,8 @@ services:
       args:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
-      dockerfile: noNPMInstall.Dockerfile
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
       context: .
     command: cypress run -b firefox
 
@@ -76,8 +78,8 @@ services:
       args:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
-      dockerfile: noNPMInstall.Dockerfile
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
       context: .
     command: cypress run -b edge
 
@@ -90,8 +92,8 @@ services:
         CHROME_VERSION: ${CHROME_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
-      dockerfile: noNPMInstall.Dockerfile
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
       context: .
     command: sh -c "cypress run && cypress run -b chrome && cypress run -b edge && cypress run -b firefox"
 
@@ -103,8 +105,8 @@ services:
         CHROME_VERSION: ${CHROME_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
-        BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
-      dockerfile: noNPMInstall.Dockerfile
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
       context: .
     command: cypress run
 
@@ -113,7 +115,7 @@ services:
     build:
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/base:${BASE_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/base:${BASE_IMAGE_TAG}
     command: npm run test
 
   ## browsers
@@ -121,28 +123,28 @@ services:
     build:
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: npm run test
 
   test-browsers-chrome:
     build:
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: npm run test -- -b chrome
 
   test-browsers-firefox:
     build:
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: npm run test -- -b firefox
 
   test-browsers-edge:
     build:
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: npm run test -- -b edge
 
   ## Included
@@ -151,7 +153,7 @@ services:
       dockerfile: included.Dockerfile
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
     command: cypress run
 
   test-included-chrome:
@@ -159,7 +161,7 @@ services:
       dockerfile: included.Dockerfile
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
     command: cypress run -b chrome
 
   test-included-firefox:
@@ -167,7 +169,7 @@ services:
       dockerfile: included.Dockerfile
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
     command: cypress run -b firefox
 
   test-included-edge:
@@ -175,5 +177,5 @@ services:
       dockerfile: included.Dockerfile
       context: .
       args:
-        BASE_FACTORY_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
     command: cypress run -b edge

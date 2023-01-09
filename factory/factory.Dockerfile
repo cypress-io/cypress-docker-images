@@ -27,7 +27,7 @@ ENV DBUS_SESSION_BUS_ADDRESS=/dev/null \
 
 # give every user read access to the "/root" folder where the binary is cached
 # we really only need to worry about the top folder, fortunately
-# TODO: there are other folders that need permissions but i don't know what they are yet, See: https://github.com/cypress-io/cypress/issues/23962
+# TODO: there are other folders that need permissions but I don't know what they are yet, See: https://github.com/cypress-io/cypress/issues/23962
 RUN ls -la /root \
   && chmod 755 /root \
   && apt-get update \
@@ -52,8 +52,10 @@ RUN ls -la /root \
     gnupg \
     dirmngr
 
+# Copy install scripts into container, these will be deleted in an on build step later.
 COPY ./installScripts /opt/installScripts
 
+# Set the default node version, node is required.
 ARG DEFAULT_NODE_VERSION
 
 # Set the default node version to an env to allow us to access it in the onbuild step.
@@ -96,12 +98,12 @@ ONBUILD RUN node /opt/installScripts/firefox/install-firefox-version.js ${FIREFO
 ONBUILD ARG CYPRESS_VERSION
 
 # Allow projects to reference globally installed cypress
+# This is only set if the cypress version is passed in (thats what the + syntax stuff does.)
 ONBUILD ENV NODE_PATH=${CYPRESS_VERSION:+/usr/local/lib/node_modules}
 
 ONBUILD RUN node /opt/installScripts/cypress/install-cypress-version.js ${CYPRESS_VERSION}
 
 # Global Cleanup
-# TODO: should we run this based on an arg flag?
 ONBUILD RUN apt-get purge -y --auto-remove \
     bzip2 \
     curl \

@@ -165,7 +165,7 @@ Example: `EDGE_VERSION='100.0.1185.29-1'`
 
 ## Version Testing
 
-Due to the large amount of possible version combinations, we're not able to exhaustively test each combination of versions, nor do we block versions that are in compatible. For example, Cypress 12 removed support for node versions less than 16.16.0. You are still able to generate a container with node 16.0.0 and Cypress 12, but Cypress will fail to run.
+Due to the large amount of possible version combinations, we're not able to exhaustively test each combination of versions, nor do we block versions that are incompatible. For example, Cypress 12 removed support for node versions less than 16.16.0. You are still able to generate a container with node 16.0.0 and Cypress 12, but Cypress will fail to run. This is because the factory supports earlier versions of Cypress and must support earlier versions of node.
 
 If you run across a combination that should reasonably work, but doesn't, log an issue and we will take a look at supporting it.
 

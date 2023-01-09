@@ -14,3 +14,7 @@ In the event of a breaking major change this project can be updated by:
 6. Choose `Scaffold example specs`
 7. Exit Cypress
 8. Remove cypress from package.json
+
+## Tests
+
+Tests are run via the

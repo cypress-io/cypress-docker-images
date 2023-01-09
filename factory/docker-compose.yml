@@ -1,6 +1,9 @@
 version: '3.8'
 
+# REPO_PREFIX is used to deploy to other docker registries than dockerhub.
+
 services:
+
   factory:
     image: ${REPO_PREFIX-}cypress/factory
     build:
@@ -13,6 +16,7 @@ services:
       tags:
        - ${REPO_PREFIX-}cypress/factory:${FACTORY_VERSION}
     command: node -v
+
   included:
     image: ${REPO_PREFIX-}cypress/included
     build:
@@ -29,6 +33,7 @@ services:
       tags:
        - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG}
     command: node -v
+
   browsers:
     image: ${REPO_PREFIX-}cypress/browsers
     build:
@@ -43,6 +48,7 @@ services:
       tags:
        - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: node -v
+
   base:
     image: ${REPO_PREFIX-}cypress/base
     build:
@@ -55,7 +61,7 @@ services:
        - ${REPO_PREFIX-}cypress/base:${BASE_IMAGE_TAG}
     command: node -v
 
-  ## Unused images that we could release if we wanted
+  ## Unused images that we could release in the future if we choose.
   chrome:
     image: "${REPO_PREFIX-}cypress/chrome"
     build:
@@ -67,6 +73,7 @@ services:
       tags:
        - ${REPO_PREFIX-}cypress/chrome:${CHROME_VERSION}
     command: google-chrome --version
+
   edge:
     image: ${REPO_PREFIX-}cypress/edge
     build:
@@ -78,6 +85,7 @@ services:
       tags:
        - ${REPO_PREFIX-}cypress/edge:${EDGE_VERSION}
     command: edge --version
+
   firefox:
     image: ${REPO_PREFIX-}cypress/firefox
     build:
@@ -89,6 +97,7 @@ services:
       tags:
        - ${REPO_PREFIX-}cypress/firefox:${FIREFOX_VERSION}
     command: firefox --version
+
   # webkit:
   #   image: ${REPO_PREFIX-}cypress/webkit
   #   build:
@@ -100,6 +109,7 @@ services:
   #     tags:
   #     - ${REPO_PREFIX-}cypress/webkit:${WEBKIT_VERSION}
   #   command: webkit --version
+
   cypress:
     image: ${REPO_PREFIX-}cypress/cypress
     build:
@@ -111,6 +121,7 @@ services:
       tags:
        - ${REPO_PREFIX-}cypress/cypress:${CYPRESS_VERSION}
     command: cypress verify
+
   cypress-chrome:
     image: ${REPO_PREFIX-}cypress/cypress-chrome
     build:
@@ -123,6 +134,7 @@ services:
       tags:
        - ${REPO_PREFIX-}cypress/cypress-chrome:cypress-${CYPRESS_VERSION}-chrome-${CHROME_VERSION}
     command: node -v
+
   cypress-edge:
     image: ${REPO_PREFIX-}cypress/cypress-edge
     build:
@@ -135,6 +147,7 @@ services:
       tags:
        - ${REPO_PREFIX-}cypress/cypress-edge:cypress-${CYPRESS_VERSION}-edge-${EDGE_VERSION}
     command: node -v
+
   cypress-firefox:
     image: ${REPO_PREFIX-}cypress/cypress-firefox
     build:
@@ -147,6 +160,7 @@ services:
       tags:
        - ${REPO_PREFIX-}cypress/cypress-firefox:cypress-${CYPRESS_VERSION}-firefox-${FIREFOX_VERSION}
     command: node -v
+
   ## Test image
   test-node-override:
     build:

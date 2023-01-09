@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+
   args-defined:
     build:
       dockerfile: argsDefined.Dockerfile
@@ -8,6 +9,7 @@ services:
       args:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
     command: npm run test
+
   ## factory
   test-factory-electron:
     build:
@@ -15,6 +17,7 @@ services:
       args:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
     command: npm run test
+
   test-factory-chrome:
     build:
       args:
@@ -22,6 +25,7 @@ services:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b chrome
+
   test-factory-firefox:
     build:
       args:
@@ -29,6 +33,7 @@ services:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b firefox
+
   test-factory-edge:
     build:
       args:
@@ -36,8 +41,8 @@ services:
         BASE_FACTORY_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
     command: npm run test -- -b edge
+
   test-factory-cypress-included-electron:
-    env_file: ../.env
     build:
       args:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
@@ -45,8 +50,8 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run
+
   test-factory-cypress-included-chrome:
-    env_file: ../.env
     build:
       args:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
@@ -55,8 +60,8 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run -b chrome
+
   test-factory-cypress-included-firefox:
-    env_file: ../.env
     build:
       args:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
@@ -65,8 +70,8 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run -b firefox
+
   test-factory-cypress-included-edge:
-    env_file: ../.env
     build:
       args:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
@@ -75,9 +80,9 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run -b edge
+
   # this test takes the longest because we run against all browsers in the same job.
   test-factory-all-included:
-    env_file: ../.env
     build:
       args:
         YARN_VERSION: ${YARN_VERSION}
@@ -89,8 +94,8 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: sh -c "cypress run && cypress run -b chrome && cypress run -b edge && cypress run -b firefox"
+
   test-factory-all-included-electron-only:
-    env_file: ../.env
     build:
       args:
         YARN_VERSION: ${YARN_VERSION}
@@ -102,6 +107,7 @@ services:
       dockerfile: noNPMInstall.Dockerfile
       context: .
     command: cypress run
+
   ## base
   test-base:
     build:
@@ -109,6 +115,7 @@ services:
       args:
         BASE_FACTORY_IMAGE: cypress/base:${BASE_IMAGE_TAG}
     command: npm run test
+
   ## browsers
   test-browsers-electron:
     build:
@@ -116,24 +123,28 @@ services:
       args:
         BASE_FACTORY_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: npm run test
+
   test-browsers-chrome:
     build:
       context: .
       args:
         BASE_FACTORY_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: npm run test -- -b chrome
+
   test-browsers-firefox:
     build:
       context: .
       args:
         BASE_FACTORY_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: npm run test -- -b firefox
+
   test-browsers-edge:
     build:
       context: .
       args:
         BASE_FACTORY_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: npm run test -- -b edge
+
   ## Included
   test-included-electron:
     build:
@@ -142,6 +153,7 @@ services:
       args:
         BASE_FACTORY_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
     command: cypress run
+
   test-included-chrome:
     build:
       dockerfile: included.Dockerfile
@@ -149,6 +161,7 @@ services:
       args:
         BASE_FACTORY_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
     command: cypress run -b chrome
+
   test-included-firefox:
     build:
       dockerfile: included.Dockerfile
@@ -156,6 +169,7 @@ services:
       args:
         BASE_FACTORY_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
     command: cypress run -b firefox
+
   test-included-edge:
     build:
       dockerfile: included.Dockerfile

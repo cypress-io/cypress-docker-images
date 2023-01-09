@@ -16,6 +16,8 @@ All contributors are expecting to abide by our [Code of Conduct](https://github.
 
 To produce new updated images, simply open a PR with the desired version(s) updated in the `factory/.env` file. Once the PR is merged into master the corresponding images will be pushed to dockerhub.
 
+In general, `factory/.env` master should contain the latest versions we officially support. If you need to release an older version please modify `circle.yml` to push releases from a feature branch instead of setting the version in master to older versions.
+
 ## Minimize image sizes
 
 By default, the current base image is `bullseye-slim`. This dramatically decreases the size of all images. Other optimizations have been made to the Dockerfiles per Docker's recommendations.

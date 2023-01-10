@@ -26,7 +26,7 @@ If no args are defined, only the default version of node will be installed. This
 
 ### NODE_VERSION
 
-The version of Node to install in the docker container. If not specified, the default version of Node (defined [here](./docker-compose.yml)) is installed. Node is required. The exact version must be used, no wildcards or shorthands are supported.
+The version of Node to install in the docker container. If not specified, the default version of Node (defined [here](./.env)) is installed. Node is required. The exact version must be used, no wildcards or shorthands are supported.
 
 Example: `NODE_VERSION='16.18.1'`
 

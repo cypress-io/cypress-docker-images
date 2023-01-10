@@ -18,6 +18,60 @@
 * Reduced maintenance and pull requests for the cypress-docker repo.
 * Ability to offer more variations of docker containers at low cost.
 
+## API
+
+The following args can be set to define what versions the cypress factory docker includes in it's final build.
+
+If no args are defined, only the default version of node will be installed. This can still be a useful container though since we will also install any required cypress apt dependencies.
+
+### NODE_VERSION
+
+The version of Node to install in the docker container. If not specified, the default version of Node (defined [here](./docker-compose.yml)) is installed. Node is required.
+
+Example: `NODE_VERSION='16.18.1'`
+
+[Node Versions](https://nodejs.org/en/download/releases)
+
+### YARN_VERSION
+
+The version of yarn to install (via npm). If not specified, Yarn is not installed.
+
+Example: `YARN_VERSION='1.22.19'`
+
+[Yarn versions](https://www.npmjs.com/package/yarn)
+
+### CYPRESS_VERSION
+
+The version of Cypress to install (via npm). If not specified, Cypress is not installed.
+
+Example: `CYPRESS_VERSION='12.1.0'`
+
+[Cypress versions](https://www.npmjs.com/package/cypress)
+
+### CHROME_VERSION
+
+The version of Chrome to install (via apt-get). If not specified, Chrome is not installed.
+
+Example: `CHROME_VERSION='107.0.5304.121-1'`
+
+[Chrome versions](https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable)
+
+### FIREFOX_VERSION
+
+The version of Firefox to install (via apt-get). If not specified, Firefox is not installed.
+
+Example: `FIREFOX_VERSION='107.0'`
+
+[Firefox versions](https://download-installer.cdn.mozilla.net/pub/firefox/releases/)
+
+### EDGE_VERSION
+
+The version of Edge to install (via apt-get). If not specified, Edge is not installed.
+
+Example: `EDGE_VERSION='100.0.1185.29-1'`
+
+[Edge versions](https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/)
+
 ## Usage
 
 The cypress docker factory works by relying on the [`ONBUILD`](https://docs.docker.com/engine/reference/builder/#onbuild) docker instruction to run commands at the container's build time. Docker `args` can be specified in a number of ways, some of which are demonstrated below. For each of these examples we are building the equivalent of the `cypress/browsers` docker image. In each instance since the example is only testing the chrome version, the examples could just install chrome by itself if the other browsers were not used.
@@ -108,60 +162,6 @@ docker-compose build test
 
 docker-compose run test
 ```
-
-## API
-
-The following args can be set to define what versions the cypress factory docker includes in it's final build.
-
-If no args are defined, only the default version of node will be installed. This can still be a useful container though since we will also install any required cypress apt dependencies.
-
-### NODE_VERSION
-
-The version of Node to install in the docker container. If not specified, the default version of Node (defined [here](./docker-compose.yml)) is installed. Node is required.
-
-Example: `NODE_VERSION='16.18.1'`
-
-[Node Versions](https://nodejs.org/en/download/releases)
-
-### YARN_VERSION
-
-The version of yarn to install (via npm). If not specified, Yarn is not installed.
-
-Example: `YARN_VERSION='1.22.19'`
-
-[Yarn versions](https://www.npmjs.com/package/yarn)
-
-### CYPRESS_VERSION
-
-The version of Cypress to install (via npm). If not specified, Cypress is not installed.
-
-Example: `CYPRESS_VERSION='12.1.0'`
-
-[Cypress versions](https://www.npmjs.com/package/cypress)
-
-### CHROME_VERSION
-
-The version of Chrome to install (via npm). If not specified, Chrome is not installed.
-
-Example: `CHROME_VERSION='107.0.5304.121-1'`
-
-[Chrome versions](https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable)
-
-### FIREFOX_VERSION
-
-The version of Firefox to install (via npm). If not specified, Firefox is not installed.
-
-Example: `FIREFOX_VERSION='107.0'`
-
-[Firefox versions](https://download-installer.cdn.mozilla.net/pub/firefox/releases/)
-
-### EDGE_VERSION
-
-The version of Edge to install (via npm). If not specified, Edge is not installed.
-
-Example: `EDGE_VERSION='100.0.1185.29-1'`
-
-[Edge versions](https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/)
 
 ## Version Testing
 

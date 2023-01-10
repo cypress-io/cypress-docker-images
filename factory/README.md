@@ -163,6 +163,35 @@ docker-compose build test
 docker-compose run test
 ```
 
+### Reducing the size of the docker container
+
+As mentioned above we can reduce the size of the docker image by removing browsers we are using.
+
+Since this example only uses chrome, removing edge and firefox is as simple as not including a version.
+
+Dockerfile
+
+```dockerfile
+# Args are defined in the Dockerfile before the FROM command.
+# Using these args will cause an image to be created with node (default version is 16.18.1), chrome, firefox and edge.
+ARG CHROME_VERSION='107.0.5304.121-1'
+
+FROM cypress/factory
+
+COPY . /opt/app
+WORKDIR /opt/app
+RUN npm install --save-dev cypress
+```
+
+Then, is the same directory as the Dockerfile, run the following commands to build the docker container and run Cypress against the chrome browser.
+
+```bash
+docker build . -t test
+docker run -it test npm run test -b chrome
+```
+
+The docker image including chrome, edge and firefox weighs in a ~1.93 GB, by removing edge and firefox the image can be reduced to ~1.06 GB.
+
 ## Version Testing
 
 Due to the large amount of possible version combinations, we're not able to exhaustively test each combination of versions, nor do we block versions that are incompatible. For example, Cypress 12 removed support for Node.js version 12.0.0. You are still able to generate a container with node 12.0.0 and Cypress 12, but Cypress will fail to run. This is because the factory supports earlier versions of Cypress and must support earlier versions of node.

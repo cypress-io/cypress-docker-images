@@ -24,7 +24,7 @@ The cypress docker factory works by relying on the [`ONBUILD`](https://docs.dock
 
 ### In the Dockerfile
 
-Args can be defined directly in the Dockerfile.
+Args can be defined directly in the Dockerfile to specify variables that are available when the container is built.
 
 Dockerfile
 

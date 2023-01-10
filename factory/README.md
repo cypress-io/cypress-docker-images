@@ -165,7 +165,7 @@ docker-compose run test
 
 ### Reducing the size of the docker container
 
-As mentioned above we can reduce the size of the docker image by removing browsers we are using.
+As mentioned above we can reduce the size of the docker image by removing browsers we aren't using.
 
 Since this example only uses chrome, removing edge and firefox is as simple as not including a version.
 

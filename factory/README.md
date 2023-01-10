@@ -22,15 +22,15 @@
 
 The cypress docker factory works by relying on the [`ONBUILD`](https://docs.docker.com/engine/reference/builder/#onbuild) docker instruction to run commands at the container's build time. Docker `args` can be specified in a number of ways, some of which are demonstrated below. For each of these examples we are building the equivalent of the `cypress/browsers` docker image. In each instance since the example is only testing the chrome version, the examples could just install chrome by itself if the other browsers were not used.
 
-### In the dockerfile
+### In the Dockerfile
 
-Args can be defined directly in the dockerfile.
+Args can be defined directly in the Dockerfile.
 
-dockerfile
+Dockerfile
 
 ```dockerfile
-# Args are defined in the dockerfile before the FROM command.
-# Using these args will cause an image to be created with node, chrome, firefox and edge.
+# Args are defined in the Dockerfile before the FROM command.
+# Using these args will cause an image to be created with node (default version is 16.18.1), chrome, firefox and edge.
 ARG CHROME_VERSION='107.0.5304.121-1'
 ARG EDGE_VERSION='100.0.1185.29-1'
 ARG FIREFOX_VERSION='107.0'
@@ -53,7 +53,7 @@ docker run -it test npm run test -b chrome
 
 Args can be passed to the docker build command.
 
-dockerfile
+Dockerfile
 
 ```dockerfile
 FROM cypress/factory
@@ -91,7 +91,7 @@ services:
     command: npm run test
 ```
 
-dockerfile
+Dockerfile
 
 ```dockerfile
 FROM cypress/factory

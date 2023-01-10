@@ -11,15 +11,7 @@ if (!yarnVersion) {
 console.log('Installing Yarn version: ', yarnVersion)
 
 // Insert logic here if needed to run a different install script based on version.
-const install = spawn(`${__dirname}/default.sh`, [yarnVersion])
-
-install.stdout.on('data', function (data) {
-  console.log(data.toString())
-});
-
-install.stderr.on('data', function (data) {
-  console.log('stderr: ' + data.toString())
-});
+const install = spawn(`${__dirname}/default.sh`, [yarnVersion], {stdio: 'inherit'})
 
 install.on('error', function (error) {
   console.log('child process errored with ' + error.toString())

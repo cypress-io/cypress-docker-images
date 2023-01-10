@@ -11,15 +11,7 @@ if (!cypressVersion) {
 console.log('Installing Cypress version ', cypressVersion)
 
 // Insert logic here if needed to run a different install script based on cypress version.
-const install = spawn(`${__dirname}/default.sh`, [cypressVersion])
-
-install.stdout.on('data', function (data) {
-  console.log(data.toString())
-});
-
-install.stderr.on('data', function (data) {
-  console.log('stderr: ' + data.toString())
-});
+const install = spawn(`${__dirname}/default.sh`, [cypressVersion], {stdio: 'inherit'})
 
 install.on('error', function (error) {
   console.log('child process errored with ' + error.toString())

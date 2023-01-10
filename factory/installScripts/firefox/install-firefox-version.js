@@ -16,15 +16,7 @@ if (process.arch === 'arm64') {
 console.log('Installing Firefox version: ', firefoxVersion)
 
 // Insert logic here if needed to run a different install script based on chrome version.
-const install = spawn(`${__dirname}/default.sh`, [firefoxVersion])
-
-install.stdout.on('data', function (data) {
-  console.log(data.toString())
-});
-
-install.stderr.on('data', function (data) {
-  console.log('stderr: ' + data.toString())
-});
+const install = spawn(`${__dirname}/default.sh`, [firefoxVersion], {stdio: 'inherit'})
 
 install.on('error', function (error) {
   console.log('child process errored with ' + error.toString())

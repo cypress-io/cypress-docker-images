@@ -42,7 +42,7 @@ WORKDIR /opt/app
 RUN npm install --save-dev cypress
 ```
 
-build commands
+Then, is the same directory as the Dockerfile, run the following commands to build the docker container and run Cypress against the chrome browser.
 
 ```bash
 docker build . -t test
@@ -51,7 +51,7 @@ docker run -it test npm run test -b chrome
 
 ### At build time
 
-Args can be passed to the docker build command.
+Args can be passed to the docker build command with the `--build-arg` flag. Note: any value set via the command line will override the ARG value provided in the Dockerfile.
 
 Dockerfile
 
@@ -165,8 +165,8 @@ Example: `EDGE_VERSION='100.0.1185.29-1'`
 
 ## Version Testing
 
-Due to the large amount of possible version combinations, we're not able to exhaustively test each combination of versions, nor do we block versions that are incompatible. For example, Cypress 12 removed support for node versions less than 16.16.0. You are still able to generate a container with node 16.0.0 and Cypress 12, but Cypress will fail to run. This is because the factory supports earlier versions of Cypress and must support earlier versions of node.
+Due to the large amount of possible version combinations, we're not able to exhaustively test each combination of versions, nor do we block versions that are incompatible. For example, Cypress 12 removed support for Node.js version 12.0.0. You are still able to generate a container with node 12.0.0 and Cypress 12, but Cypress will fail to run. This is because the factory supports earlier versions of Cypress and must support earlier versions of node.
 
 If you run across a combination that should reasonably work, but doesn't, log an issue and we will take a look at supporting it.
 
-Additionally this docker container and containers generated from it are intended for test use only, and are not intended for use hosting services in a production environment.
+Additionally this docker image and containers generated from it are intended for test use only, and are not intended for use hosting services in a production environment.

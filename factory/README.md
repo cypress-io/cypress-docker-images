@@ -158,9 +158,9 @@ RUN npm install --save-dev cypress
 docker commands
 
 ```bash
-docker-compose build test
+docker compose build test
 
-docker-compose run test
+docker compose run test
 ```
 
 ### Reducing the size of the docker container

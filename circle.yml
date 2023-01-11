@@ -19,7 +19,7 @@ commands:
         parameters:
             target:
                 type: string
-                description: docker-compose target being tested
+                description: docker compose target being tested
         steps:
             - run:
                   name: Check if image for << parameters.target >> exists or Docker hub does not respond
@@ -50,17 +50,17 @@ jobs:
             - run:
                   name: building docker image
                   command: |
-                      docker-compose build --progress plain factory
+                      docker compose build --progress plain factory
                   working_directory: factory
             - run:
                   name: build test image
                   command: |
-                    docker-compose build --progress plain test-factory-all-included
+                    docker compose build --progress plain test-factory-all-included
                   working_directory: factory/test-project
             - run:
                   name: check node version
                   command: |
-                    ACTUAL_VERSION=$(docker-compose run test-factory-all-included node -v)
+                    ACTUAL_VERSION=$(docker compose run test-factory-all-included node -v)
                     if [ v${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
                       echo "Version mismatch, v${NODE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
@@ -69,7 +69,7 @@ jobs:
             - run:
                   name: check yarn version
                   command: |
-                    ACTUAL_VERSION=$(docker-compose run test-factory-all-included yarn -v)
+                    ACTUAL_VERSION=$(docker compose run test-factory-all-included yarn -v)
                     if [ ${YARN_VERSION} != ${ACTUAL_VERSION} ]; then
                       echo "Version mismatch, ${YARN_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
@@ -78,7 +78,7 @@ jobs:
             - run:
                   name: check chrome version
                   command: |
-                    ACTUAL_VERSION=$(docker-compose run test-factory-all-included google-chrome --version)
+                    ACTUAL_VERSION=$(docker compose run test-factory-all-included google-chrome --version)
                     if [ Google Chrome ${CHROME_VERSION} != ${ACTUAL_VERSION} ]; then
                       echo "Version mismatch, Google Chrome ${CHROME_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
@@ -87,7 +87,7 @@ jobs:
             - run:
                   name: check firefox version
                   command: |
-                    ACTUAL_VERSION=$(docker-compose run test-factory-all-included firefox --version)
+                    ACTUAL_VERSION=$(docker compose run test-factory-all-included firefox --version)
                     if [ Mozilla Firefox ${FIREFOX_VERSION} != ${ACTUAL_VERSION} ]; then
                       echo "Version mismatch, Mozilla Firefox ${FIREFOX_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
@@ -96,7 +96,7 @@ jobs:
             - run:
                   name: check edge version
                   command: |
-                    ACTUAL_VERSION=$(docker-compose run test-factory-all-included edge --version)
+                    ACTUAL_VERSION=$(docker compose run test-factory-all-included edge --version)
                     if [ Microsoft Edge ${EDGE_VERSION} != ${ACTUAL_VERSION} ]; then
                       echo "Version mismatch, Microsoft Edge ${EDGE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
@@ -105,7 +105,7 @@ jobs:
             - run:
                   name: check cypress version
                   command: |
-                    ACTUAL_VERSION=$(docker-compose run test-factory-all-included cypress -v) | sed 1q
+                    ACTUAL_VERSION=$(docker compose run test-factory-all-included cypress -v) | sed 1q
                     if [  Cypress package version: ${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
                       echo "NodeVersion mismatch, Cypress package version: ${NODE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
@@ -117,13 +117,13 @@ jobs:
         parameters:
             target:
                 type: string
-                description: The docker-compose target to build
+                description: The docker compose target to build
             resourceClass:
                 type: string
                 description: Resource class to use for this job
             test-target:
                 type: string
-                description: The docker-compose target to run the test
+                description: The docker compose target to run the test
         resource_class: << parameters.resourceClass >>
         steps:
             - checkout
@@ -131,14 +131,14 @@ jobs:
             - run:
                   name: building docker image
                   command: |
-                      if [ << parameters.target >> != factory ]; then docker-compose build --progress plain factory; fi
-                      docker-compose build --progress plain << parameters.target >>
+                      if [ << parameters.target >> != factory ]; then docker compose build --progress plain factory; fi
+                      docker compose build --progress plain << parameters.target >>
                   working_directory: factory
             - run:
                   name: test
                   command: |
-                    docker-compose build --progress plain << parameters.test-target >>
-                    docker-compose run << parameters.test-target >>
+                    docker compose build --progress plain << parameters.test-target >>
+                    docker compose run << parameters.test-target >>
                   working_directory: factory/test-project
 
     push:
@@ -147,7 +147,7 @@ jobs:
         parameters:
             target:
                 type: string
-                description: Name of the docker-compose target to build and push.
+                description: Name of the docker compose target to build and push.
         steps:
             - checkout
             - expand-env-file

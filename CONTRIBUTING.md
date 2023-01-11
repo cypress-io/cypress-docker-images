@@ -12,6 +12,37 @@ All contributors are expecting to abide by our [Code of Conduct](https://github.
 
 ⚠️ As a rule, unless there are extraordinary circumstances, we do NOT replace the existing Docker images. Replacing the images already used by people is dangerous, since it replaces the versions of tools without warning. We have such failed experience once, and do not want to repeat this mistake. Thus instead of replacing an existing image, in 99% of the cases we publish a new Docker image.
 
+### Building locally
+
+We use docker compose to build the factory locally.
+
+```bash
+cd factory
+docker compose build factory
+```
+
+With the factory image built, you can now build the other included images
+
+```bash
+# This builds the 'included' image specified in the docker-compose file.
+docker compose build included
+
+# This builds all images specified in the docker-compose file.
+docker compose build
+```
+
+Or you can then run tests in the test-project
+
+```bash
+cd test-project
+
+# set the environment variables from factory/.env in your terminal.
+set -a && . ../.env && set +a
+
+# run the test in an image built on top of the factory.
+docker compose run test-factory-all-included
+```
+
 ### Updating images
 
 To produce new updated images, simply open a PR with the desired version(s) updated in the `factory/.env` file. Once the PR is merged into master the corresponding images will be pushed to dockerhub.

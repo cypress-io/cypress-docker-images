@@ -155,6 +155,7 @@ jobs:
                  target: << parameters.target >>
             - run:
                 name: building Docker image for target << parameters.target >>
+                no_output_timeout: 20m # installing cypress on arm can take some time.
                 command: |
                     ## see https://docs.docker.com/desktop/multi-arch/
                     docker run --privileged --rm tonistiigi/binfmt --install linux/amd64,linux/arm64
@@ -304,7 +305,6 @@ workflows:
                 target: included
                 name: "Push Included Image"
                 context: test-runner:docker-push
-                no_output_timeout: 20m # installing cypress on arm can take some time.
                 filters:
                     branches:
                         only:  # only branches matching the below regex filters will run

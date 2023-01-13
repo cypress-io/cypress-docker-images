@@ -61,7 +61,7 @@ jobs:
                   name: check node version
                   command: |
                     ACTUAL_VERSION=$(docker compose run test-factory-all-included node -v)
-                    if [ v${NODE_VERSION} != ${ACTUAL_VERSION} ]; then
+                    if [ v${NODE_VERSION} != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, v${NODE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
@@ -70,7 +70,7 @@ jobs:
                   name: check yarn version
                   command: |
                     ACTUAL_VERSION=$(docker compose run test-factory-all-included yarn -v)
-                    if [ ${YARN_VERSION} != ${ACTUAL_VERSION} ]; then
+                    if [ ${YARN_VERSION} != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, ${YARN_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
@@ -79,7 +79,7 @@ jobs:
                   name: check chrome version
                   command: |
                     ACTUAL_VERSION=$(docker compose run test-factory-all-included google-chrome --version)
-                    if [ "Google Chrome ${CHROME_VERSION}" != ${ACTUAL_VERSION} ]; then
+                    if [ "Google Chrome ${CHROME_VERSION}" != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, Google Chrome ${CHROME_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
@@ -88,7 +88,7 @@ jobs:
                   name: check firefox version
                   command: |
                     ACTUAL_VERSION=$(docker compose run test-factory-all-included firefox --version)
-                    if [ "Mozilla Firefox ${FIREFOX_VERSION}" != ${ACTUAL_VERSION} ]; then
+                    if [ "Mozilla Firefox ${FIREFOX_VERSION}" != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, Mozilla Firefox ${FIREFOX_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
@@ -97,7 +97,7 @@ jobs:
                   name: check edge version
                   command: |
                     ACTUAL_VERSION=$(docker compose run test-factory-all-included edge --version)
-                    if [ "Microsoft Edge ${EDGE_VERSION}" != ${ACTUAL_VERSION} ]; then
+                    if [ "Microsoft Edge ${EDGE_VERSION}" != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, Microsoft Edge ${EDGE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
@@ -106,7 +106,7 @@ jobs:
                   name: check cypress version
                   command: |
                     ACTUAL_VERSION=$(docker compose run test-factory-all-included cypress -v) | sed 1q
-                    if [  "Cypress package version: ${NODE_VERSION}" != ${ACTUAL_VERSION} ]; then
+                    if [  "Cypress package version: ${NODE_VERSION}" != "${ACTUAL_VERSION}" ]; then
                       echo "NodeVersion mismatch, Cypress package version: ${NODE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi

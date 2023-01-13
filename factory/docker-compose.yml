@@ -14,6 +14,7 @@ services:
         BASE_IMAGE: ${BASE_IMAGE}
         DEFAULT_NODE_VERSION: ${NODE_VERSION}
       tags:
+       - ${REPO_PREFIX-}cypress/factory:latest
        - ${REPO_PREFIX-}cypress/factory:${FACTORY_VERSION}
     command: node -v
 

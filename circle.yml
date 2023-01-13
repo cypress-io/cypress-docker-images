@@ -107,9 +107,10 @@ jobs:
             - run:
                   name: check cypress version
                   command: |
-                    ACTUAL_VERSION=$(docker compose run test-factory-all-included cypress -v | cat |sed 1q)
-                    if [  "Cypress package version: ${CYPRESS_VERSION}" != "${ACTUAL_VERSION}" ]; then
-                      echo "NodeVersion mismatch, Cypress package version: ${CYPRESS_VERSION} != ${ACTUAL_VERSION}"
+                    ACTUAL_VERSION=$(docker compose run test-factory-all-included cypress -v)
+                    TRIMMED_ACTUAL_VERSION=$(echo ${ACTUAL_VERSION} | sed -e 's/ Cypress binary version:.*$//g')
+                    if [  "Cypress package version: ${CYPRESS_VERSION}" != "${TRIMMED_ACTUAL_VERSION}" ]; then
+                      echo "NodeVersion mismatch, Cypress package version: ${CYPRESS_VERSION} != ${TRIMMED_ACTUAL_VERSION}"
                       exit 1;
                     fi
                   working_directory: factory/test-project

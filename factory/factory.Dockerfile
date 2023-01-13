@@ -52,7 +52,7 @@ RUN ls -la /root \
     gnupg \
     dirmngr
 
-# Copy install scripts into container, these will be deleted in an on build step later.
+# Copy install scripts into container, these will be deleted in an onbuild step later.
 COPY ./installScripts /opt/installScripts
 
 # Set the default node version, node is required.
@@ -64,7 +64,7 @@ ENV CYPRESS_DEFAULT_NODE_VERSION=${DEFAULT_NODE_VERSION}
 # Install Node: Node MUST be installed, so the default lives here
 ONBUILD ARG NODE_VERSION=${CYPRESS_DEFAULT_NODE_VERSION}
 
-# Node is isntalled via a bash script because node isn't installed yet!
+# Node is installed via a bash script because node isn't installed yet!
 ONBUILD RUN bash /opt/installScripts/node/install-node-version.sh ${NODE_VERSION}
 
 # Install Yarn: Optional

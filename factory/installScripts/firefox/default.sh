@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# Firefox does not have a debian package that is kept upt to date, so instead we install deps directly and download the tar to unzip.
+# Firefox does not have a debian package that is kept up to date, so instead we install deps directly and download the tar to unzip.
 apt-get update \
   && apt-get install -y \
     libxtst6 \

@@ -96,7 +96,7 @@ WORKDIR /opt/app
 RUN npm install --save-dev cypress
 ```
 
-Then, is the same directory as the Dockerfile, run the following commands to build the docker container and run Cypress against the chrome browser.
+Then, in the same directory as the Dockerfile, run the following commands to build the docker container and run Cypress against the chrome browser.
 
 ```bash
 docker build . -t test

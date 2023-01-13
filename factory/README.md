@@ -16,7 +16,7 @@
 * Smaller docker sizes especially when not including unused browsers.
 * Easily test multiple browser versions.
 * Reduced maintenance and pull requests for the cypress-docker repo.
-* Ability to offer more variations of docker containers at low cost.
+* Ability for Cypress to offer more variations of docker containers at low cost.
 
 ## API
 

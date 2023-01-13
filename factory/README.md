@@ -198,4 +198,4 @@ Due to the large amount of possible version combinations, we're not able to exha
 
 If you run across a combination that should reasonably work, but doesn't, log an issue and we will take a look at supporting it.
 
-Additionally this docker image and containers generated from it are intended for test use only, and are not intended for use hosting services in a production environment.
+Additionally this docker image and containers generated from it are intended for test use only, and are not intended for hosting services in a production environment.

@@ -22,7 +22,7 @@
 
 The following args can be set to define what versions the cypress factory docker includes in it's final build.
 
-If no args are defined, only the default version of node will be installed. This can still be a useful container though since we will also install any required cypress apt dependencies.
+If no args are defined, only the default version of node will be installed. This can still be a useful container though since we will also install any dependencies required to run cypress.
 
 ### NODE_VERSION
 

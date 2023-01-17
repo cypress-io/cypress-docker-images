@@ -1,0 +1,10 @@
+{
+  "name": "test-project",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "cypress run"
+  },
+  "author": "",
+  "license": "ISC"
+}

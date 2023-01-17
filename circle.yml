@@ -170,7 +170,7 @@ jobs:
                     ## now, let's re-build those same images for Amazon ECR this is basically a re-tag and push because of the cache from the previous build.
                     ## see https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html
                     docker login --username AWS --password "$(aws ecr-public get-login-password --region $AWS_ECR_REGION)" $AWS_ECR_PREFIX
-                    REPO_PREFIX=$AWS_ECR_PREFIX docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64,linux/amd64 --push << parameters.target >>
+                    REPO_PREFIX=$AWS_ECR_PREFIX/ docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64,linux/amd64 --push << parameters.target >>
 
                 working_directory: factory
 

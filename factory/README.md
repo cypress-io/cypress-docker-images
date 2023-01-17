@@ -26,7 +26,7 @@ If no args are defined, only the default version of node will be installed. This
 
 ### NODE_VERSION
 
-The version of Node to install in the docker container. If not specified, the default version of Node (defined [here](./.env)) is installed. Node is required. The exact version must be used, no wildcards or shorthands are supported.
+The version of Node to install in the docker container. If the env is unset or an empty string, the default version of Node (defined [here](./.env)) is installed. Node is required. The exact version must be used, no wildcards or shorthands are supported.
 
 Example: `NODE_VERSION='16.18.1'`
 
@@ -34,7 +34,7 @@ Example: `NODE_VERSION='16.18.1'`
 
 ### YARN_VERSION
 
-The version of yarn to install (via npm). If not specified, Yarn is not installed.
+The version of yarn to install (via npm). If the env is unset or an empty string, Yarn is not installed.
 
 Example: `YARN_VERSION='1.22.19'`
 
@@ -42,7 +42,7 @@ Example: `YARN_VERSION='1.22.19'`
 
 ### CYPRESS_VERSION
 
-The version of Cypress to install (via npm). If not specified, Cypress is not installed.
+The version of Cypress to install (via npm). If the env is unset or an empty string, Cypress is not installed.
 
 Example: `CYPRESS_VERSION='12.1.0'`
 
@@ -50,7 +50,7 @@ Example: `CYPRESS_VERSION='12.1.0'`
 
 ### CHROME_VERSION
 
-The version of Chrome to install. If not specified, Chrome is not installed. The exact version must be used, no wildcards or shorthands are supported.
+The version of Chrome to install. If the env is unset or an empty string, Chrome is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
 Example: `CHROME_VERSION='107.0.5304.121-1'`
 
@@ -58,7 +58,7 @@ Example: `CHROME_VERSION='107.0.5304.121-1'`
 
 ### FIREFOX_VERSION
 
-The version of Firefox to install. If not specified, Firefox is not installed. The exact version must be used, no wildcards or shorthands are supported.
+The version of Firefox to install. If the env is unset or an empty string, Firefox is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
 Example: `FIREFOX_VERSION='107.0'`
 
@@ -66,7 +66,7 @@ Example: `FIREFOX_VERSION='107.0'`
 
 ### EDGE_VERSION
 
-The version of Edge to install. If not specified, Edge is not installed. The exact version must be used, no wildcards or shorthands are supported.
+The version of Edge to install. If the env is unset or an empty string, Edge is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
 Example: `EDGE_VERSION='100.0.1185.29-1'`
 
@@ -74,7 +74,7 @@ Example: `EDGE_VERSION='100.0.1185.29-1'`
 
 ## Usage
 
-The cypress docker factory works by relying on the [`ONBUILD`](https://docs.docker.com/engine/reference/builder/#onbuild) docker instruction to run commands at the container's build time. Docker `args` can be specified in a number of ways, some of which are demonstrated below. For each of these examples we are building the equivalent of the `cypress/browsers` docker image. In each instance since the example is only testing the chrome version, the examples could just install chrome by itself if the other browsers were not used.
+The cypress docker factory works by relying on the [`ONBUILD`](https://docs.docker.com/engine/reference/builder/#onbuild) docker instruction to run commands at the container's build time. To make use of the docker factory users will have to create a dockerfile to declare what dependency versions are desired. Docker `args` can be specified in a number of ways, some of which are demonstrated below. For each of these examples we are building the equivalent of the `cypress/browsers` docker image. In each instance since the example is only testing the chrome version, the examples could just install chrome by itself if the other browsers were not used.
 
 ### In the Dockerfile
 

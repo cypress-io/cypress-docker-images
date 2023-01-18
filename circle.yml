@@ -65,6 +65,7 @@ jobs:
                       echo "Version mismatch, v${NODE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
+                    echo "Version ${ACTUAL_VERSION} confirmed"
                   working_directory: factory/test-project
             - run:
                   name: check yarn version
@@ -74,6 +75,7 @@ jobs:
                       echo "Version mismatch, ${YARN_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
+                    echo "Version ${ACTUAL_VERSION} confirmed"
                   working_directory: factory/test-project
             - run:
                   name: check chrome version
@@ -84,6 +86,7 @@ jobs:
                       echo "Version mismatch, Google Chrome ${TRIMMED_CHROME_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
+                    echo "Version ${ACTUAL_VERSION} confirmed"
                   working_directory: factory/test-project
             - run:
                   name: check firefox version
@@ -93,6 +96,7 @@ jobs:
                       echo "Version mismatch, Mozilla Firefox ${FIREFOX_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
+                    echo "Version ${ACTUAL_VERSION} confirmed"
                   working_directory: factory/test-project
             - run:
                   name: check edge version
@@ -103,6 +107,7 @@ jobs:
                       echo "Version mismatch, Microsoft Edge ${TRIMMED_EDGE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
+                    echo "Version ${ACTUAL_VERSION} confirmed"
                   working_directory: factory/test-project
             - run:
                   name: check cypress version
@@ -113,6 +118,7 @@ jobs:
                       echo "NodeVersion mismatch, Cypress package version: ${CYPRESS_VERSION} != ${TRIMMED_ACTUAL_VERSION}"
                       exit 1;
                     fi
+                    echo "Version ${ACTUAL_VERSION} confirmed"
                   working_directory: factory/test-project
     test-image:
         machine:

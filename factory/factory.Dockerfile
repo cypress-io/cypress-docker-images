@@ -62,10 +62,12 @@ ARG DEFAULT_NODE_VERSION
 ENV CYPRESS_DEFAULT_NODE_VERSION=${DEFAULT_NODE_VERSION}
 
 # Install Node: Node MUST be installed, so the default lives here
-ONBUILD ARG NODE_VERSION=${CYPRESS_DEFAULT_NODE_VERSION}
+ONBUILD ARG NODE_VERSION
+
+ONBUILD ENV NODE_VERSION_DEFAULT_APPLIED=${NODE_VERSION:-${CYPRESS_DEFAULT_NODE_VERSION}}
 
 # Node is installed via a bash script because node isn't installed yet!
-ONBUILD RUN bash /opt/installScripts/node/install-node-version.sh ${NODE_VERSION}
+ONBUILD RUN bash /opt/installScripts/node/install-node-version.sh ${NODE_VERSION_DEFAULT_APPLIED}
 
 # Install Yarn: Optional
 ONBUILD ARG YARN_VERSION

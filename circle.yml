@@ -120,6 +120,32 @@ jobs:
                     fi
                     echo "Version ${ACTUAL_VERSION} confirmed"
                   working_directory: factory/test-project
+    check-node-override-version:
+        machine:
+            image: ubuntu-2204:2022.10.2
+        steps:
+            - checkout
+            - expand-env-file
+            - run:
+                  name: building docker image
+                  command: |
+                      docker compose build --progress plain factory
+                  working_directory: factory
+            - run:
+                  name: build test image
+                  command: |
+                    docker compose build --progress plain test-factory-node-override
+                  working_directory: factory/test-project
+            - run:
+                  name: check node version
+                  command: |
+                    ACTUAL_VERSION=$(docker compose run test-factory-node-override node -v)
+                    if [ v14.21.1 != "${ACTUAL_VERSION}" ]; then
+                      echo "Version mismatch, v14.21.1 != ${ACTUAL_VERSION}"
+                      exit 1;
+                    fi
+                    echo "Version ${ACTUAL_VERSION} confirmed"
+                  working_directory: factory/test-project
     test-image:
         machine:
             image: ubuntu-2204:2022.10.2
@@ -185,6 +211,7 @@ workflows:
     test:
         jobs:
             - check-factory-versions
+            - check-node-override-version
             - test-image:
                 matrix:
                     alias: factory-arm
@@ -286,6 +313,8 @@ workflows:
                 requires:
                     - factory
                     - factory-arm
+                    - check-node-override-version
+                    - check-factory-versions
             - push:
                 name: "Push Base Image"
                 target: base

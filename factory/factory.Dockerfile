@@ -62,10 +62,13 @@ ARG DEFAULT_NODE_VERSION
 ENV CYPRESS_DEFAULT_NODE_VERSION=${DEFAULT_NODE_VERSION}
 
 # Install Node: Node MUST be installed, so the default lives here
-ONBUILD ARG NODE_VERSION=${CYPRESS_DEFAULT_NODE_VERSION}
+ONBUILD ARG NODE_VERSION
+
+# Don't rely on the docker arg default, if we do the default won't be overriden if the arg is declared in the dockerfile.
+ONBUILD ENV APPLIED_DEFAULT_NODE_VERSION=${NODE_VERSION:-${CYPRESS_DEFAULT_NODE_VERSION}}
 
 # Node is installed via a bash script because node isn't installed yet!
-ONBUILD RUN bash /opt/installScripts/node/install-node-version.sh ${NODE_VERSION}
+ONBUILD RUN bash /opt/installScripts/node/install-node-version.sh ${APPLIED_DEFAULT_NODE_VERSION}
 
 # Install Yarn: Optional
 ONBUILD ARG YARN_VERSION

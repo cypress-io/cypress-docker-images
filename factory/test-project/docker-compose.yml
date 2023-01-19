@@ -83,6 +83,14 @@ services:
       context: .
     command: cypress run -b edge
 
+  test-factory-node-override:
+    build:
+      args:
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: node-override-version.Dockerfile
+      context: .
+    command: node -v
+
   # this test takes the longest because we run against all browsers in the same job.
   test-factory-all-included:
     build:

@@ -87,7 +87,7 @@ services:
     build:
       args:
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
-      dockerfile: node-override.Dockerfile
+      dockerfile: node-override-version.Dockerfile
       context: .
     command: node -v
 

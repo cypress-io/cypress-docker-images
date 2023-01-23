@@ -42,7 +42,7 @@ RUN ls -la /root \
     libgtk-3-0 \
     libgbm1 \
     libasound2 \
-    # Needed for ps support
+    # Needed to support the ps command, while not used by cypress directly it is used by some of our examples and the dependency is small (~1mb).
     procps \
     # Always install: Needed for dashboard integration
     git \

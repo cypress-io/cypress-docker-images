@@ -42,6 +42,8 @@ RUN ls -la /root \
     libgtk-3-0 \
     libgbm1 \
     libasound2 \
+    # Needed for ps support
+    procps \
     # Always install: Needed for dashboard integration
     git \
     # Chrome and Edge require wget even after installation. We could do more work to dynamically remove it, but I doubt it's worth it.

@@ -347,6 +347,7 @@ workflows:
                     branches:
                         only:  # only branches matching the below regex filters will run
                             - master
+                            - matth/fix/12.4.0
                 requires:
                     - "Push Factory Image"
                     - included

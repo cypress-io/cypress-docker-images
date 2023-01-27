@@ -31,6 +31,7 @@ commands:
                       if [ << parameters.target >> == base ]; then DOCKER_TAG=cypress/base:${BASE_IMAGE_TAG}; fi
                       if [ << parameters.target >> == browsers ]; then DOCKER_TAG=cypress/browsers:${BROWSERS_IMAGE_TAG}; fi
                       if [ << parameters.target >> == included ]; then DOCKER_TAG=cypress/included:${INCLUDED_IMAGE_TAG}; fi
+                      if [ << parameters.target >> == included-short-tag ]; then DOCKER_TAG=cypress/included:${INCLUDED_IMAGE_SHORT_TAG}; fi
 
                       if npx docker-image-not-found --repo $DOCKER_TAG; then
                         echo Docker hub says image $DOCKER_TAG does not exist
@@ -347,7 +348,18 @@ workflows:
                     branches:
                         only:  # only branches matching the below regex filters will run
                             - master
-                            - matth/fix/12.4.0
+                requires:
+                    - "Push Factory Image"
+                    - included
+                    - included-arm
+            - push:
+                target: included-short-tag
+                name: "Push Included Image with the short tag"
+                context: test-runner:docker-push
+                filters:
+                    branches:
+                        only:  # only branches matching the below regex filters will run
+                            - master
                 requires:
                     - "Push Factory Image"
                     - included

@@ -17,6 +17,10 @@ Of these images, we provide multiple tags for various operating systems and spec
 
 It is recommended to use a specific image tag, and not rely on the `default` tag. For example, it is better to use `cypress/base:12` than `cypress/base`. Even better it is to use full version of the image, like `cypress/base:12.18.0` - we will never overwrite the existing Docker images to prevent accidental changes.
 
+>📍Cypress Docker images are offered as a convenience measure. The goal is to offer Node, Browser and Cypress versions to streamline running in CI or other sandboxed environments. Some preparations and optimizations and not included. For example, given the infinite permutations, images are not monitored for security vulnerabilities of included components.
+>
+> Thus, they should **not** be used for production deployment and security scans should be performed as-needed by users of these images.
+
 ## DockerHub
 
 All of the images and tags are published to DockerHub under

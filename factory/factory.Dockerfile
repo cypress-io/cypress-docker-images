@@ -44,13 +44,14 @@ RUN ls -la /root \
     libasound2 \
     # Needed to support the ps command, while not used by cypress directly it is used by some of our examples and the dependency is small (~1mb).
     procps \
+    # Needed to support curl, similar to ps, it's not directly used by cypress but leaving it in the container is practically free.
+    curl \
     # Always install: Needed for dashboard integration
     git \
     # Chrome and Edge require wget even after installation. We could do more work to dynamically remove it, but I doubt it's worth it.
     wget \
     # build only dependancies: removed in onbuild step
     bzip2 \
-    curl \
     gnupg \
     dirmngr
 
@@ -111,7 +112,6 @@ ONBUILD RUN node /opt/installScripts/cypress/install-cypress-version.js ${CYPRES
 # Global Cleanup
 ONBUILD RUN apt-get purge -y --auto-remove \
     bzip2 \
-    curl \
     gnupg \
     dirmngr\
   && rm -rf /usr/share/doc \

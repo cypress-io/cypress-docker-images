@@ -187,3 +187,12 @@ services:
       args:
         BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
     command: cypress run -b edge
+
+  test-included-non-root-user:
+    build:
+      dockerfile: included.nonroot.Dockerfile
+      context: .
+      args:
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+    user: node
+    command: cypress run

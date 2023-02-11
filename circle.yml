@@ -289,7 +289,8 @@ workflows:
                             test-included-electron,
                             test-included-chrome,
                             test-included-firefox,
-                            test-included-edge
+                            test-included-edge,
+                            test-included-non-root-user,
                         ]
                         resourceClass: [medium]
                         target: [included]

@@ -101,7 +101,7 @@ services:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
-      dockerfile: included-non-root.Dockerfile
+      dockerfile: included-non-root-user.Dockerfile
       context: .
     command: cypress run -b firefox
 

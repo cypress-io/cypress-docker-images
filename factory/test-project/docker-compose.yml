@@ -176,7 +176,7 @@ services:
   test-included-electron:
     user: node
     build:
-      dockerfile: included.Dockerfile
+      dockerfile: included-owner-node.Dockerfile
       context: .
       args:
         BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
@@ -185,7 +185,7 @@ services:
   test-included-chrome:
     user: node
     build:
-      dockerfile: included.Dockerfile
+      dockerfile: included-owner-node.Dockerfile
       context: .
       args:
         BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
@@ -194,7 +194,7 @@ services:
   test-included-firefox:
     user: node
     build:
-      dockerfile: included.Dockerfile
+      dockerfile: included-owner-node.Dockerfile
       context: .
       args:
         BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
@@ -203,7 +203,7 @@ services:
   test-included-edge:
     user: node
     build:
-      dockerfile: included.Dockerfile
+      dockerfile: included-owner-node.Dockerfile
       context: .
       args:
         BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}

@@ -64,7 +64,7 @@ services:
       context: .
     command: cypress run
 
-    test-factory-cypress-included-electron-non-root-user:
+  test-factory-cypress-included-electron-non-root-user:
     user: node
     build:
       args:

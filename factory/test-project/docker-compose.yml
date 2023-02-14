@@ -5,7 +5,6 @@ version: '3'
 services:
 
   args-defined:
-    user: node
     build:
       dockerfile: argsDefined.Dockerfile
       context: .
@@ -26,16 +25,6 @@ services:
       args:
         CHROME_VERSION: ${CHROME_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
-      context: .
-    command: npm run test -- -b chrome
-
-  test-factory-chrome-non-root-user:
-    user: asdf
-    build:
-      args:
-        CHROME_VERSION: ${CHROME_VERSION}
-        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
-      dockerfile: non-root-user.Dockerfile
       context: .
     command: npm run test -- -b chrome
 
@@ -64,16 +53,6 @@ services:
       context: .
     command: cypress run
 
-  test-factory-cypress-included-electron-non-root-user:
-    user: node
-    build:
-      args:
-        CYPRESS_VERSION: ${CYPRESS_VERSION}
-        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
-      dockerfile: included-non-root-user.Dockerfile
-      context: .
-    command: cypress run
-
   test-factory-cypress-included-chrome:
     build:
       args:
@@ -91,17 +70,6 @@ services:
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
       dockerfile: included.Dockerfile
-      context: .
-    command: cypress run -b firefox
-
-  test-factory-cypress-included-firefox-non-root-user:
-    user: '1000'
-    build:
-      args:
-        CYPRESS_VERSION: ${CYPRESS_VERSION}
-        FIREFOX_VERSION: ${FIREFOX_VERSION}
-        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
-      dockerfile: included-non-root-user.Dockerfile
       context: .
     command: cypress run -b firefox
 

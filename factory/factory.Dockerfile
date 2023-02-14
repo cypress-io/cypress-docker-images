@@ -29,7 +29,7 @@ ENV DBUS_SESSION_BUS_ADDRESS=/dev/null \
 # we really only need to worry about the top folder, fortunately
 # TODO: there are other folders that need permissions but I don't know what they are yet, See: https://github.com/cypress-io/cypress/issues/23962
 RUN ls -la /root \
-  && chmod 755 /root \
+  && chmod 777 /root \
   && apt-get update \
   && apt-get install --no-install-recommends -y \
     # Always install: Needed to run Cypress

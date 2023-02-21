@@ -1,5 +1,17 @@
 # Change log
 
+## 2.0.0
+
+* Updated default node version from `16.18.1` to `18.14.1`. Changed in in [#843](https://github.com/cypress-io/cypress-docker-images/pull/843)
+
+## 1.0.4
+
+* Loosened file permissions to allow non root users to create files in the Cypress cache. Fixed in [#839](https://github.com/cypress-io/cypress-docker-images/pull/839)
+
+## 1.0.3
+
+* Added the curl dependency to the finished image. Added in [#834](https://github.com/cypress-io/cypress-docker-images/pull/834)
+
 ## 1.0.2
 
 * Fixed issue where the `ps` command was not included in the image. Fixed in [#819](https://github.com/cypress-io/cypress-docker-images/pull/819)

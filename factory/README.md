@@ -136,12 +136,12 @@ version: '3'
 
 services:
   test:
-    args:
-      CHROME_VERSION: '107.0.5304.121-1'
-      EDGE_VERSION: '100.0.1185.29-1'
-      FIREFOX_VERSION: '107.0'
     build:
       context: .
+      args:
+        CHROME_VERSION: '107.0.5304.121-1'
+        EDGE_VERSION: '100.0.1185.29-1'
+        FIREFOX_VERSION: '107.0'
     command: npm run test
 ```
 

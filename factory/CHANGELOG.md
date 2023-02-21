@@ -2,7 +2,7 @@
 
 ## 2.0.0
 
-* Updated default node version from `16.18.1` to `18.14.1`. Changed in in [#843](https://github.com/cypress-io/cypress-docker-images/pull/843)
+* Updated default node version from `16.18.1` to `18.14.1`. Addressed in [#843](https://github.com/cypress-io/cypress-docker-images/pull/843)
 
 ## 1.0.4
 
@@ -10,7 +10,7 @@
 
 ## 1.0.3
 
-* Added the curl dependency to the finished image. Added in [#834](https://github.com/cypress-io/cypress-docker-images/pull/834)
+* Added the curl dependency to the finished image. Addressed in [#834](https://github.com/cypress-io/cypress-docker-images/pull/834)
 
 ## 1.0.2
 

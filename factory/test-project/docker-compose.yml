@@ -30,7 +30,7 @@ services:
     command: npm run test -- -b chrome
 
   test-factory-chrome-non-root-user:
-    user: node
+    user: '1001'
     build:
       args:
         CHROME_VERSION: ${CHROME_VERSION}
@@ -65,7 +65,7 @@ services:
     command: cypress run
 
   test-factory-cypress-included-electron-non-root-user:
-    user: node
+    user: '1001'
     build:
       args:
         CYPRESS_VERSION: ${CYPRESS_VERSION}

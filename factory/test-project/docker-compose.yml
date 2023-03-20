@@ -30,7 +30,7 @@ services:
     command: npm run test -- -b chrome
 
   test-factory-chrome-non-root-user:
-    user: '1001'
+    user: node
     build:
       args:
         CHROME_VERSION: ${CHROME_VERSION}

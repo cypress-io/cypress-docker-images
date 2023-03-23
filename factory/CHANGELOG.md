@@ -1,5 +1,9 @@
 # Change log
 
+## 2.0.1
+
+* Removed the curl dependency to remove critical vulnerability. Addressed in [#855](https://github.com/cypress-io/cypress-docker-images/pull/855)
+
 ## 2.0.0
 
 * Updated default node version from `16.18.1` to `18.14.1`. Addressed in [#843](https://github.com/cypress-io/cypress-docker-images/pull/843)

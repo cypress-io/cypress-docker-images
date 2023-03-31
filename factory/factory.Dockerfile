@@ -112,8 +112,6 @@ ONBUILD RUN node /opt/installScripts/cypress/install-cypress-version.js ${CYPRES
 # Global Cleanup
 ONBUILD RUN apt-get purge -y --auto-remove \
     curl \
-    libcurl4 \
-    libcurl3-gnutls \
     bzip2 \
     gnupg \
     dirmngr\

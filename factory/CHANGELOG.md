@@ -1,5 +1,9 @@
 # Change log
 
+## 2.0.2
+
+* Git was accidentally removed. Addressed in [#855](https://github.com/cypress-io/cypress-docker-images/pull/874)
+
 ## 2.0.1
 
 * Removed the curl dependency to remove critical vulnerability. Addressed in [#855](https://github.com/cypress-io/cypress-docker-images/pull/855)

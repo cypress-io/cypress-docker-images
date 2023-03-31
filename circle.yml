@@ -124,7 +124,7 @@ jobs:
             - run:
                   name: check git version
                   command: |
-                    ACTUAL_VERSION=$(docker compose run test-factory-all-included git -v)
+                    ACTUAL_VERSION=$(docker compose run test-factory-all-included git --version)
                     TRIMMED_ACTUAL_VERSION=$(echo ${ACTUAL_VERSION} | sed -e 's/ Cypress binary version:.*$//g')
                     if [  "git version 2.30.2" != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, git package version: git version 2.30.2 != ${TRIMMED_ACTUAL_VERSION}"

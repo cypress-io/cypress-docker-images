@@ -8,8 +8,8 @@ if (!edgeVersion) {
   return
 }
 
-if (process.arch === 'arm64') {
-  console.log('Not downloading Edge since we are on arm64: https://techcommunity.microsoft.com/t5/discussions/edge-for-linux-arm64/m-p/1532272')
+if (process.arch !== 'x64') {
+  console.log('Not downloading Edge since we are not on x64. For arm64 status see https://techcommunity.microsoft.com/t5/discussions/edge-for-linux-arm64/m-p/1532272')
   return;
 }
 

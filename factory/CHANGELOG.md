@@ -1,8 +1,12 @@
 # Change log
 
+## 2.0.3
+
+* Updated browser install scripts to explicitly check for supported platforms instead of subset of unsupported platforms. Addressed in [#875](https://github.com/cypress-io/cypress-docker-images/pull/875)
+
 ## 2.0.2
 
-* Git was accidentally removed. Addressed in [#855](https://github.com/cypress-io/cypress-docker-images/pull/874)
+* Git was accidentally removed. Addressed in [#874](https://github.com/cypress-io/cypress-docker-images/pull/874)
 
 ## 2.0.1
 

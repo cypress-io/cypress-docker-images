@@ -8,8 +8,8 @@ if (!firefoxVersion) {
   return
 }
 
-if (process.arch === 'arm64') {
-  console.log('Not downloading Firefox since we are on arm64: https://bugzilla.mozilla.org/show_bug.cgi?id=1678342')
+if (process.arch !== 'x64') {
+  console.log('Not downloading Firefox since we are not on x64. For arm64 status see https://bugzilla.mozilla.org/show_bug.cgi?id=1678342')
   return
 }
 

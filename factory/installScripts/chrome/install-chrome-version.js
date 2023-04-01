@@ -8,8 +8,8 @@ if (!chromeVersion) {
   return
 }
 
-if (process.arch === 'arm64') {
-  console.log('Not downloading Chrome since we are on arm64: https://crbug.com/677140')
+if (process.arch !== 'x64') {
+  console.log('Not downloading Chrome since we are not on x64. For arm64 status see https://crbug.com/677140')
   return;
 }
 

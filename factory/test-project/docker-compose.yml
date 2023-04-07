@@ -18,12 +18,14 @@ services:
     build:
       context: .
       args:
+        NODE_VERSION: ${NODE_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
     command: npm run test
 
   test-factory-chrome:
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
@@ -33,6 +35,7 @@ services:
     user: node
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
       dockerfile: non-root-user.Dockerfile
@@ -42,6 +45,7 @@ services:
   test-factory-firefox:
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
@@ -50,6 +54,7 @@ services:
   test-factory-edge:
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
       context: .
@@ -58,6 +63,7 @@ services:
   test-factory-cypress-included-electron:
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
       dockerfile: included.Dockerfile
@@ -68,6 +74,7 @@ services:
     user: node
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
       dockerfile: included-non-root-user.Dockerfile
@@ -77,6 +84,7 @@ services:
   test-factory-cypress-included-chrome:
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
@@ -87,6 +95,7 @@ services:
   test-factory-cypress-included-firefox:
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
@@ -98,6 +107,7 @@ services:
     user: node
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
@@ -108,6 +118,7 @@ services:
   test-factory-cypress-included-edge:
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
@@ -127,6 +138,7 @@ services:
   test-factory-all-included:
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         YARN_VERSION: ${YARN_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
@@ -140,6 +152,7 @@ services:
   test-factory-all-included-electron-only:
     build:
       args:
+        NODE_VERSION: ${NODE_VERSION}
         YARN_VERSION: ${YARN_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}

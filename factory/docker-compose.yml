@@ -12,7 +12,7 @@ services:
       context: .
       args:
         BASE_IMAGE: ${BASE_IMAGE}
-        DEFAULT_NODE_VERSION: ${NODE_VERSION}
+        FACTORY_DEFAULT_NODE_VERSION: ${FACTORY_DEFAULT_NODE_VERSION}
       tags:
        - ${REPO_PREFIX-}cypress/factory:latest
        - ${REPO_PREFIX-}cypress/factory:${FACTORY_VERSION}
@@ -24,6 +24,7 @@ services:
       target: included_image
       context: .
       args:
+        NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
@@ -32,24 +33,9 @@ services:
         YARN_VERSION: ${YARN_VERSION}
         # WEBKIT_VERSION: ${WEBKIT_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG}
-    command: node -v
-
-  included-short-tag:
-    image: ${REPO_PREFIX-}cypress/included
-    build:
-      target: included_image
-      context: .
-      args:
-        FACTORY_VERSION: ${FACTORY_VERSION}
-        CHROME_VERSION: ${CHROME_VERSION}
-        CYPRESS_VERSION: ${CYPRESS_VERSION}
-        EDGE_VERSION: ${EDGE_VERSION}
-        FIREFOX_VERSION: ${FIREFOX_VERSION}
-        YARN_VERSION: ${YARN_VERSION}
-        # WEBKIT_VERSION: ${WEBKIT_VERSION}
-      tags:
+       - ${REPO_PREFIX-}cypress/included:latest
        - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_SHORT_TAG}
+       - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG}
     command: node -v
 
   browsers:
@@ -58,12 +44,14 @@ services:
       target: default_image
       context: .
       args:
+        NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
         YARN_VERSION: ${YARN_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
       tags:
+       - ${REPO_PREFIX-}cypress/browsers:latest
        - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: node -v
 
@@ -73,9 +61,11 @@ services:
       target: default_image
       context: .
       args:
+        NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
         YARN_VERSION: ${YARN_VERSION}
       tags:
+       - ${REPO_PREFIX-}cypress/base:latest
        - ${REPO_PREFIX-}cypress/base:${BASE_IMAGE_TAG}
     command: node -v
 
@@ -86,6 +76,7 @@ services:
       target: default_image
       context: .
       args:
+        NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
       tags:
@@ -98,6 +89,7 @@ services:
       target: default_image
       context: .
       args:
+        NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
       tags:
@@ -110,6 +102,7 @@ services:
       target: default_image
       context: .
       args:
+        NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
       tags:
@@ -134,6 +127,7 @@ services:
       target: default_image
       context: .
       args:
+        NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
       tags:
@@ -146,6 +140,7 @@ services:
       target: default_image
       context: .
       args:
+        NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
@@ -159,6 +154,7 @@ services:
       target: default_image
       context: .
       args:
+        NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
@@ -172,6 +168,7 @@ services:
       target: default_image
       context: .
       args:
+        NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
@@ -180,11 +177,10 @@ services:
     command: node -v
 
   ## Test image
-  test-node-override:
+  test-node-default:
     build:
       target: default_image
       context: .
       args:
         FACTORY_VERSION: ${FACTORY_VERSION}
-        NODE_VERSION: 16.17.0
     command: node -v

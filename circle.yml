@@ -202,8 +202,8 @@ jobs:
         steps:
             - checkout
             - expand-env-file
-            - halt-if-docker-image-exists:
-                 target: << parameters.target >>
+            # - halt-if-docker-image-exists:
+            #      target: << parameters.target >>
             - run:
                 name: building Docker image for target << parameters.target >>
                 no_output_timeout: 20m # installing cypress on arm can take some time.
@@ -323,19 +323,6 @@ workflows:
                         target: [included]
             # pushing the factory image must come first because the other images may pull it down to build
             - push:
-                name: "Push Factory Image"
-                target: factory
-                context: test-runner:docker-push
-                filters:
-                    branches:
-                        only:  # only branches matching the below regex filters will run
-                            - master
-                requires:
-                    - factory
-                    - factory-arm
-                    - check-node-override-version
-                    - check-factory-versions
-            - push:
                 name: "Push Base Image"
                 target: base
                 context: test-runner:docker-push
@@ -343,8 +330,12 @@ workflows:
                     branches:
                         only:  # only branches matching the below regex filters will run
                             - master
+                            - matth/backpatch
                 requires:
-                    - "Push Factory Image"
+                    - factory
+                    - factory-arm
+                    - check-node-override-version
+                    - check-factory-versions
                     - base
                     - base-arm
             - push:
@@ -355,19 +346,11 @@ workflows:
                     branches:
                         only:  # only branches matching the below regex filters will run
                             - master
+                            - matth/backpatch
                 requires:
-                    - "Push Factory Image"
+                    - factory
+                    - factory-arm
+                    - check-node-override-version
+                    - check-factory-versions
                     - browsers
                     - browsers-arm
-            - push:
-                target: included
-                name: "Push Included Image"
-                context: test-runner:docker-push
-                filters:
-                    branches:
-                        only:  # only branches matching the below regex filters will run
-                            - master
-                requires:
-                    - "Push Factory Image"
-                    - included
-                    - included-arm

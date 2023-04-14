@@ -2,7 +2,7 @@
 
 ## 2.2.0
 
-* Install ssh client to enable get cloning via ssh without falling back to CI's native get client. Addressed in [#880](https://github.com/cypress-io/cypress-docker-images/pull/880)
+* Install ssh client to enable git cloning via ssh without falling back to CI's native git client. Addressed in [#880](https://github.com/cypress-io/cypress-docker-images/pull/880)
 
 ## 2.1.0
 

@@ -1,5 +1,9 @@
 # Change log
 
+## 2.3.0
+
+* Updated default node version from `18.15.0` to `18.16.0`. Addressed in [#881](https://github.com/cypress-io/cypress-docker-images/pull/881)
+
 ## 2.2.0
 
 * Install ssh client to enable git cloning via ssh without falling back to CI's native git client. Addressed in [#880](https://github.com/cypress-io/cypress-docker-images/pull/880)

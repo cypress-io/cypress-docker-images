@@ -274,11 +274,7 @@ docker push cypress/included:9.4.1
 
 ## GitHub Action
 
-You can quickly run your tests in GitHub Actions using these images, see [cypress-gh-action-included](https://github.com/bahmutov/cypress-gh-action-included) repository.
-
-## GitLab CI
-
-You can use the included images to run Cypress tests on GitLab CI, see how in [cypress-example-included](https://gitlab.com/cypress-io/cypress-example-included) repository.
+You can quickly run your tests in GitHub Actions using these images, see [GitHub Action example](https://github.com/cypress-io/github-action#docker-image) repository.
 
 ## Wait-on
 

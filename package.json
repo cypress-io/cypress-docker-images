@@ -25,7 +25,7 @@
     "url": "git+https://github.com/cypress-io/cypress-docker-images.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Cypress-io",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/cypress-io/cypress-docker-images/issues"

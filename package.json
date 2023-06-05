@@ -26,7 +26,7 @@
   },
   "keywords": [],
   "author": "Cypress-io",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/cypress-io/cypress-docker-images/issues"
   },

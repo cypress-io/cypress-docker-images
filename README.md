@@ -77,6 +77,44 @@ export _MITSHM=0
 
 See [issue #270](https://github.com/cypress-io/cypress-docker-images/issues/270)
 
+## Firefox doesn't work with root user
+
+By default, the containers run with the root user. However, Firefox by design cannot run with root user, leading to failures such as the cypress application claiming firefox is not installed when it is. 
+
+To resolve this, the container needs to run with user id `1001`. 
+
+One example using the [cypress-io/github-action](https://github.com/cypress-io/github-action)
+
+```yml
+name: E2E in custom container
+on: push
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    container: 
+     image: cypress/browsers:node18.12.0-chrome106-ff106
+     options: --user 1001  
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-action@v5
+        with:
+          browser: firefox
+```
+
+Or within a Dockerfile
+
+```Dockerfile
+# Use Cypress base image
+FROM cypress/browsers:node18.12.0-chrome106-ff106
+
+# Change to a non-root user
+USER 1001
+
+#rest of your dockerfile here
+```
+
+See [issue #871](https://github.com/cypress-io/cypress-docker-images/issues/871) for more details.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)

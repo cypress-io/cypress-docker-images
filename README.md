@@ -79,7 +79,12 @@ See [issue #270](https://github.com/cypress-io/cypress-docker-images/issues/270)
 
 ## Firefox doesn't work with root user
 
-By default, the containers run with the root user. However, Firefox by design cannot run with root user, leading to failures such as the cypress application claiming firefox is not installed when it is. 
+By default, the containers run with the root user. However, Firefox by design cannot run with root user, leading to failures such as:
+
+```
+Browser: firefox was not found on your system or is not supported by Cypress.
+Can't run because you've entered an invalid browser name.
+```
 
 To resolve this, the container needs to run with user id `1001`. 
 

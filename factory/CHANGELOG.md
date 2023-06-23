@@ -1,5 +1,8 @@
 # Change log
 
+## 2.4.0
+
+* Updated default node version from `18.16.0` to `18.16.1`. Addressed in [#906](https://github.com/cypress-io/cypress-docker-images/pull/906)
 ## 2.3.0
 
 * Updated default node version from `18.15.0` to `18.16.0`. Addressed in [#881](https://github.com/cypress-io/cypress-docker-images/pull/881)

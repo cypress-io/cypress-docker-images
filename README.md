@@ -77,7 +77,7 @@ export _MITSHM=0
 
 See [issue #270](https://github.com/cypress-io/cypress-docker-images/issues/270)
 
-## Firefox doesn't work with root user
+## Firefox not found
 
 By default, the containers run with the root user. However, Firefox by design cannot run with root user, leading to failures such as:
 

@@ -58,6 +58,7 @@
 [cypress/browsers:node16.16.0-chrome107-ff107](./node16.16.0-chrome107-ff107) | `cypress/base:16.16.0` | `107.0.5304.121` | `107.0` | `🚫`
 [cypress/browsers:node16.16.0-chrome107-ff107-edge](./node16.16.0-chrome107-ff107-edge) | `cypress/base:16.16.0` | `107.0.5304.121` | `107.0` | `--edge` 
 [cypress/browsers:node18.12.0-chrome107](./node18.12.0-chrome107) | `cypress/base:18.12.0` | `107.0.5304.121` | `🚫` | `🚫` 
+[cypress/browsers:node18.15.0-chrome114-ff115](./node18.15.0-chrome114-ff115) | `cypress/base:18.15.0` | `114.0.5735.198-1` | `115.0.1` | `🚫` 
  
 To find the available Chrome versions, check [https://chromium.cypress.io/](https://chromium.cypress.io/).
 

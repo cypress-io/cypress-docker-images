@@ -29,7 +29,9 @@ Some examples with specific tags including an explanation of the tag meanings ar
 - [cypress/included:12.17.1](https://hub.docker.com/layers/cypress/included/12.17.1/images/sha256-5d541ff206ed28631e720f8fe98dcadf5c62f8e194c028715fb748e564c8c0cc)
     Cypress `12.17.1`
 
-Once an image has been published to [Cypress on Docker Hub](https://hub.docker.com/u/cypress) it is frozen. We will never overwrite the existing Docker images to prevent accidental changes.
+Once an image with a specific version tag (except `latest`) has been published to [Cypress on Docker Hub](https://hub.docker.com/u/cypress) it is frozen. This prevents accidental changes.
+
+When a new version is published, an image copy with the `latest` tag is also published. This means that the Docker image selected using the `latest` tag (or selected by default if no tag is specified) will also change over time. Specify an explicit version, for example [cypress/base:18.16.0](https://hub.docker.com/layers/cypress/base/18.16.0/images/sha256-d00c441748e2f1b79d4002bddafe6628f9f9f5458a8a3c66697e622600dc5ad5), to access instead a frozen version.
 
 >📍Cypress Docker images are offered as a convenience measure. The goal is to offer Node.js, Browser and Cypress versions to streamline running tests in CI or other non-public, sandboxed environments.
 >

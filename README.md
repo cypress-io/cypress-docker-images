@@ -134,7 +134,7 @@ USER 1001
 #rest of your dockerfile here
 ```
 
-See [issue #871](https://github.com/cypress-io/cypress-docker-images/issues/871) for more details.
+The [GitHub Actions Runner](https://github.com/actions/runner) creates the `/github/home` (`$HOME`) directory with non-root ownership `1001` (`runner`). Specifying this same user allows Cypress to detect and run Firefox.
 
 ## Contributing
 

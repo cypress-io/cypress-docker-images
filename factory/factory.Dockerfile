@@ -52,6 +52,7 @@ RUN ls -la /root \
     openssh-client\
     # Chrome and Edge require wget even after installation. We could do more work to dynamically remove it, but I doubt it's worth it.
     wget \
+    # Needed to make https calls from the docker container
     openssl \
     ca-certificates \
     # build only dependancies: removed in onbuild step

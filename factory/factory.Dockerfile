@@ -52,12 +52,12 @@ RUN ls -la /root \
     openssh-client\
     # Chrome and Edge require wget even after installation. We could do more work to dynamically remove it, but I doubt it's worth it.
     wget \
+    openssl \
+    ca-certificates \
     # build only dependancies: removed in onbuild step
     bzip2 \
     gnupg \
-    dirmngr \
-    openssl \
-    ca-certificates
+    dirmngr
 
 # Copy install scripts into container, these will be deleted in an onbuild step later.
 COPY ./installScripts /opt/installScripts

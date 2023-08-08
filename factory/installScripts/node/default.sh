@@ -16,7 +16,7 @@ ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     esac \
     && set -ex \
     && savedAptMark="$(apt-mark showmanual)" \
-    && apt-get update && apt-get install -y ca-certificates curl wget gnupg dirmngr xz-utils libatomic1 --no-install-recommends \
+    && apt-get update && apt-get install -y curl wget gnupg dirmngr xz-utils libatomic1 --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && for key in \
       4ED778F539E3634C779C87C6D7062848A1AB005C \

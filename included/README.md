@@ -142,13 +142,13 @@ $ docker run -it -v $PWD:/e2e -w /e2e -e DEBUG=cypress:* cypress/included:9.4.1
 These images have its entry point set to `cypress run` without any additional arguments. You can specify additional Cypress CLI arguments after the image name. For example to print the Help menu for the `cypress run` command:
 
 ```shell
-$ docker run -it --entrypoint=cypress cypress/included:9.4.1 --help
+$ docker run -it --entrypoint=cypress cypress/included:9.4.1 run --help
 ```
 
 To run a single spec using Chrome browser:
 
 ```shell
-$ docker run -it --entrypoint=cypress cypress/included:9.4.1 --spec cypress/integration/spec-a.js --browser chrome
+$ docker run -it --entrypoint=cypress cypress/included:9.4.1 run --spec cypress/integration/spec-a.js --browser chrome
 ```
 
 ## Entry

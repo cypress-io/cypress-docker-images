@@ -93,6 +93,49 @@ export _MITSHM=0
 
 See [issue #270](https://github.com/cypress-io/cypress-docker-images/issues/270)
 
+## Firefox not found
+
+By default, the containers run with the root user. However, Firefox by design cannot run with root user, leading to failures such as:
+
+```
+Browser: firefox was not found on your system or is not supported by Cypress.
+Can't run because you've entered an invalid browser name.
+```
+
+To resolve this, the container needs to run with user id `1001`. 
+
+One example using the [cypress-io/github-action](https://github.com/cypress-io/github-action)
+
+```yml
+name: E2E in custom container
+on: push
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    container: 
+     image: cypress/browsers:node18.12.0-chrome106-ff106
+     options: --user 1001  
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-action@v5
+        with:
+          browser: firefox
+```
+
+Or within a Dockerfile
+
+```Dockerfile
+# Use Cypress base image
+FROM cypress/browsers:node18.12.0-chrome106-ff106
+
+# Change to a non-root user
+USER 1001
+
+#rest of your dockerfile here
+```
+
+The [GitHub Actions Runner](https://github.com/actions/runner) creates the `/github/home` (`$HOME`) directory with non-root ownership `1001` (`runner`). Specifying this same user allows Cypress to detect and run Firefox.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)

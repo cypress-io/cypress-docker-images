@@ -34,6 +34,7 @@ RUN ls -la /root \
   && apt-get install --no-install-recommends -y \
     # Always install: Needed to run Cypress
     xvfb \
+    xauth \
     libglib2.0-0 \
     libnss3 \
     libatk1.0-0 \

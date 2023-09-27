@@ -364,7 +364,7 @@ workflows:
                 filters:
                     branches:
                         only:  # only branches matching the below regex filters will run
-                            - master
+                            - backpatch-13.2.0
                 requires:
                     - "Push Factory Image"
                     - included

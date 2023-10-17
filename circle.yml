@@ -202,8 +202,8 @@ jobs:
         steps:
             - checkout
             - expand-env-file
-            - halt-if-docker-image-exists:
-                 target: << parameters.target >>
+            # - halt-if-docker-image-exists:
+            #      target: << parameters.target >>
             - run:
                 name: building Docker image for target << parameters.target >>
                 no_output_timeout: 20m # installing cypress on arm can take some time.
@@ -367,6 +367,7 @@ workflows:
                     branches:
                         only:  # only branches matching the below regex filters will run
                             - master
+                            - backpatch-13.3.1
                 requires:
                     - "Push Factory Image"
                     - included

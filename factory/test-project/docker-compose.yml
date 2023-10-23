@@ -206,7 +206,7 @@ services:
       dockerfile: included.Dockerfile
       context: .
       args:
-        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_SHORT_TAG}
     command: cypress run
 
   test-included-chrome:
@@ -214,7 +214,7 @@ services:
       dockerfile: included.Dockerfile
       context: .
       args:
-        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_SHORT_TAG}
     command: cypress run -b chrome
 
   test-included-firefox:
@@ -222,7 +222,7 @@ services:
       dockerfile: included.Dockerfile
       context: .
       args:
-        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_SHORT_TAG}
     command: cypress run -b firefox
 
   test-included-edge:
@@ -230,5 +230,5 @@ services:
       dockerfile: included.Dockerfile
       context: .
       args:
-        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_SHORT_TAG}
     command: cypress run -b edge

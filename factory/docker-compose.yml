@@ -34,7 +34,7 @@ services:
         # WEBKIT_VERSION: ${WEBKIT_VERSION}
       tags:
       #  - ${REPO_PREFIX-}cypress/included:latest
-       - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_SHORT_TAG}
+      #  - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_SHORT_TAG}
        - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG}
     command: node -v
 

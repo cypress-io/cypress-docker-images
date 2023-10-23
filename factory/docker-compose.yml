@@ -28,13 +28,14 @@ services:
         FACTORY_VERSION: ${FACTORY_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
-        # EDGE_VERSION: ${EDGE_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         YARN_VERSION: ${YARN_VERSION}
         # WEBKIT_VERSION: ${WEBKIT_VERSION}
       tags:
       #  - ${REPO_PREFIX-}cypress/included:latest
        - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_SHORT_TAG}
+      # We didn't start publishing these tags until 12.3.0
       #  - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG}
     command: node -v
 

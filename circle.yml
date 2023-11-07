@@ -363,10 +363,10 @@ workflows:
                 target: included
                 name: "Push Included Image"
                 context: test-runner:docker-push
-                filters:
-                    branches:
-                        only:  # only branches matching the below regex filters will run
-                            - master
+                # filters:
+                #     branches:
+                #         only:  # only branches matching the below regex filters will run
+                #             - master
                 requires:
                     - "Push Factory Image"
                     - included

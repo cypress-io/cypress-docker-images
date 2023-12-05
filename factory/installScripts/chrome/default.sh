@@ -12,4 +12,4 @@ apt-get update
 apt-get install -f -y /usr/src/google-chrome-stable_current_amd64.deb
 
 # remove temp download
-rm -f /usr/src/google-chrome-stable_current_amd64.debd
+rm -f /usr/src/google-chrome-stable_current_amd64.deb

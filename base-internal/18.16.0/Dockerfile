@@ -1,5 +1,5 @@
 # build it with command
-#   docker build -t cypress/base-internal:18.15.0 .
+#   docker build -t cypress/base-internal:18.16.0 --platform linux/amd64 .
 #
 FROM node:18.16.0-bullseye-slim
 

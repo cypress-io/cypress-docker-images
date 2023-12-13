@@ -1,5 +1,5 @@
 # build this image with command
-#   docker build -t cypress/browsers-internal:node18.15.0-chrome1114-ff115 .
+#   docker build -t cypress/browsers-internal:node18.16.0-chrome116-ff115 --platform linux/amd64 .
 #
 FROM cypress/base-internal:18.16.0
 

@@ -1,5 +1,9 @@
 # Change log
 
+## 3.4.0
+
+* Updated default node version from `20.9.0` to `20.10.0`. Addressed in [#999](https://github.com/cypress-io/cypress-docker-images/pull/999)
+
 ## 3.3.0
 * **Fixed:** Issue with temporary file cleanup due to extra character in temp Debian package file path. Addressed in [#998](https://github.com/cypress-io/cypress-docker-images/pull/998)
  

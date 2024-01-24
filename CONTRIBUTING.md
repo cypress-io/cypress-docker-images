@@ -49,6 +49,10 @@ To produce new updated images, simply open a PR with the desired version(s) upda
 
 In general, `factory/.env` master should contain the latest versions we officially support. If you need to release an older version please modify `circle.yml` to push releases from a feature branch instead of setting the version in master to older versions.
 
+## Releasing a new factory version
+
+To release a new [factory](/factory/README.md), open a PR with the desired changes to the [factory.Dockerfile](/factory/factory.Dockerfile) or [installScripts](/factory/installScripts/). After making changes, note the changes in the factory [CHANGELOG](/factory/CHANGELOG.md) and bump the `FACTORY_VERSION` in the [.env](/factory/.env) file to trigger a new release.
+
 ## Minimize image sizes
 
 By default, the current base image is `bullseye-slim`. This dramatically decreases the size of all images. Other optimizations have been made to the Dockerfiles per Docker's recommendations.
@@ -183,3 +187,5 @@ When following these steps, you may get into a state where you have cached copie
     ```
 12. Delete the `tmp` tag.
 </details>
+
+

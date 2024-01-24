@@ -1,5 +1,9 @@
 # Change log
 
+## 3.5.0
+
+* Updated default node version from `20.10.0` to `20.11.0`. Addressed in [#1010](https://github.com/cypress-io/cypress-docker-images/pull/1010)
+
 ## 3.4.0
 
 * Updated default node version from `20.9.0` to `20.10.0`. Addressed in [#999](https://github.com/cypress-io/cypress-docker-images/pull/999)

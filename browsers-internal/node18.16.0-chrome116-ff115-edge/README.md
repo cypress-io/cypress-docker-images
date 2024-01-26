@@ -1,4 +1,4 @@
-# cypress/browsers-internal:node18.16.0-chrome116-ff115
+# cypress/browsers-internal:node18.16.0-chrome116-ff115-edge
 
 A complete image with all operating system dependencies for Cypress, and Chrome 116.0.5845.187-1, Firefox 115.0.1, Edge latest browsers.
 

@@ -16,7 +16,7 @@ NOTE: This image is intended for internal use with https://github.com/cypress-io
 Sample Dockerfile
 
 ```
-FROM cypress/base-internal:18.16.0
+FROM cypress/base-internal:18.17.0
 RUN npm install --save-dev cypress
 RUN $(npm bin)/cypress verify
 RUN $(npm bin)/cypress run

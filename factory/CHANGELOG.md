@@ -3,6 +3,8 @@
 ## 3.5.0
 
 * Updated default node version from `20.10.0` to `20.11.0`. Addressed in [#1010](https://github.com/cypress-io/cypress-docker-images/pull/1010)
+* Updated edge version from `118.0.2088.46-1` to `109.0.1518.70-1`. Addressed in [#1010](https://github.com/cypress-io/cypress-docker-images/pull/1010)
+* Updated firefox version from `118.0.2` to `122.0`. Addressed in [#1010](https://github.com/cypress-io/cypress-docker-images/pull/1010)
 
 ## 3.4.0
 

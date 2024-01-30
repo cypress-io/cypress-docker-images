@@ -1,6 +1,6 @@
 # cypress/browsers-internal:node18.17.1-chrome118-ff115
 
-A complete image with all operating system dependencies for Cypress, and Chrome 118.0.5993.117-1, Firefox 115.0.1
+A complete image with all operating system dependencies for Cypress, and Chrome 118.0.5993.117-1, Firefox 115.0.1 browsers.
 
 NOTE: This image is intended for internal use with https://github.com/cypress-io/cypress. It contains a few differences from the factory, such as:
 

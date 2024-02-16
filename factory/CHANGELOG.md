@@ -1,5 +1,9 @@
 # Change log
 
+## 3.5.1
+
+* Added `unzip` to factory. Addressed in [#1015](https://github.com/cypress-io/cypress-docker-images/pull/1015)
+
 ## 3.5.0
 
 * Updated default node version from `20.10.0` to `20.11.0`. Addressed in [#1012](https://github.com/cypress-io/cypress-docker-images/pull/1012)
@@ -9,8 +13,8 @@
 * Updated default node version from `20.9.0` to `20.10.0`. Addressed in [#999](https://github.com/cypress-io/cypress-docker-images/pull/999)
 
 ## 3.3.0
+
 * **Fixed:** Issue with temporary file cleanup due to extra character in temp Debian package file path. Addressed in [#998](https://github.com/cypress-io/cypress-docker-images/pull/998)
- 
 
 ## 3.2.0
 
@@ -27,10 +31,10 @@
 
 * Added `openssl` and `ca-certificates` to factory. Addressed in [#920](https://github.com/cypress-io/cypress-docker-images/pull/920)
 
-
 ## 2.4.0
 
 * Updated default node version from `18.16.0` to `18.16.1`. Addressed in [#906](https://github.com/cypress-io/cypress-docker-images/pull/906)
+
 ## 2.3.0
 
 * Updated default node version from `18.15.0` to `18.16.0`. Addressed in [#881](https://github.com/cypress-io/cypress-docker-images/pull/881)

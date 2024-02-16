@@ -58,7 +58,9 @@ RUN ls -la /root \
     # build only dependancies: removed in onbuild step
     bzip2 \
     gnupg \
-    dirmngr
+    dirmngr \
+    # Needed by cypress installation 'unzip.js' script
+    unzip
 
 # Copy install scripts into container, these will be deleted in an onbuild step later.
 COPY ./installScripts /opt/installScripts

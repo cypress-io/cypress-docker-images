@@ -63,7 +63,7 @@ In general, `factory/.env` master should contain the latest versions we official
 4. Select 'Push to Hub' on the generate image within Docker Desktop.
 5. Check dockerhub to ensure the new image it published and test that it works.
 
-![Screenshot 2024-02-20 at 11 07 15 AM](https://github.com/cypress-io/cypress/assets/1271364/85507060-acc3-48b5-bc16-4160c4620e1e)
+![](https://github.com/cypress-io/cypress/assets/1271364/85507060-acc3-48b5-bc16-4160c4620e1e)
 
 ## Releasing a new factory version
 

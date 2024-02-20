@@ -43,11 +43,27 @@ set -a && . ../.env && set +a
 docker compose run test-factory-all-included
 ```
 
-### Updating images
+### Publishing images
 
-To produce new updated images, simply open a PR with the desired version(s) updated in the `factory/.env` file. Once the PR is merged into master the corresponding images will be pushed to dockerhub.
+#### Automatic
+
+To publish a new image for `factory`, `included`, `browsers`, and `base`, open a PR with the desired version(s) updated in the `factory/.env` file. Once the PR is merged into master, the corresponding images will be pushed to dockerhub via an automated script run in CI. Please check that the CI jobs pass after merge.
 
 In general, `factory/.env` master should contain the latest versions we officially support. If you need to release an older version please modify `circle.yml` to push releases from a feature branch instead of setting the version in master to older versions.
+
+#### Manual
+
+>Note: This requires being a member of the Cypress org
+
+`base-internal` and `browsers-internal` images are not automatically published after changes are merged. They require manual publishing to dockerhub. To manual publish:
+
+1. Generate the corresponding files within the `base-internal` and/or `browsers-internal` directories that you want to generate the image from.
+2. Log into Docker Desktop using `cypressdockerpublisher` credentials.
+3. Follow the instructions to build the image from within the generated Dockerfile within the appropriate directory in order to build the image locally.
+4. Select 'Push to Hub' on the generate image within Docker Desktop.
+5. Check dockerhub to ensure the new image it published and test that it works.
+
+![Screenshot 2024-02-20 at 11 07 15 AM](https://github.com/cypress-io/cypress/assets/1271364/85507060-acc3-48b5-bc16-4160c4620e1e)
 
 ## Releasing a new factory version
 

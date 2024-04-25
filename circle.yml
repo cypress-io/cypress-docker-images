@@ -330,6 +330,7 @@ workflows:
                     branches:
                         only:  # only branches matching the below regex filters will run
                             - master
+                            - chore/build_node22_images
                 requires:
                     - factory
                     - factory-arm
@@ -343,6 +344,7 @@ workflows:
                     branches:
                         only:  # only branches matching the below regex filters will run
                             - master
+                            - chore/build_node22_images
                 requires:
                     - "Push Factory Image"
                     - base
@@ -355,6 +357,7 @@ workflows:
                     branches:
                         only:  # only branches matching the below regex filters will run
                             - master
+                            - chore/build_node22_images
                 requires:
                     - "Push Factory Image"
                     - browsers
@@ -367,6 +370,7 @@ workflows:
                     branches:
                         only:  # only branches matching the below regex filters will run
                             - master
+                            - chore/build_node22_images
                 requires:
                     - "Push Factory Image"
                     - included

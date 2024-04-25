@@ -65,6 +65,8 @@ In general, `factory/.env` master should contain the latest versions we official
 
 ![](https://github.com/cypress-io/cypress/assets/1271364/85507060-acc3-48b5-bc16-4160c4620e1e)
 
+If you need to test that the image works with Cypress, you can follow this [gist](https://gist.github.com/AtofStryker/da2e94e8535cffeebf676b6399f96b47) if on a MacOS machine which might prove helpful when debugging image dependencies.
+
 ## Releasing a new factory version
 
 To release a new [factory](/factory/README.md), open a PR with the desired changes to the [factory.Dockerfile](/factory/factory.Dockerfile) or [installScripts](/factory/installScripts/). After making changes, note the changes in the factory [CHANGELOG](/factory/CHANGELOG.md) and bump the `FACTORY_VERSION` in the [.env](/factory/.env) file to trigger a new release.

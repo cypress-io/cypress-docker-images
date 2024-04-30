@@ -65,6 +65,23 @@ In general, `factory/.env` master should contain the latest versions we official
 
 ![](https://github.com/cypress-io/cypress/assets/1271364/85507060-acc3-48b5-bc16-4160c4620e1e)
 
+#### To forward X11 from inside a docker container to a host running macOS
+
+If you need to test that the image works with Cypress, you can follow these instructions if on a MacOS machine, which might prove helpful when debugging image dependencies:
+
+1. Install XQuartz: https://www.xquartz.org/
+2. Launch XQuartz.  Under the XQuartz menu, select Settings
+3. Go to the security tab and ensure "Allow connections from network clients" is checked.
+4. From the XQuarts terminal, run `xhost + ${hostname}` to allow connections to the macOS host
+5. From the XQuarts terminal, Setup a HOSTNAME env var `` export HOSTNAME="host.docker.internal:0" ``
+6. From the XQuarts terminal, run your docker image like such:
+
+```bash
+docker run --rm -it -e DISPLAY="host.docker.internal:0" -v /tmp/.X11-unix:/tmp/.X11-unix --entrypoint bash <YOUR_IMAGE_TAG>
+ ```
+
+ When executing `npx cypress open` from the docker container, the display should now be visible!
+
 ## Releasing a new factory version
 
 To release a new [factory](/factory/README.md), open a PR with the desired changes to the [factory.Dockerfile](/factory/factory.Dockerfile) or [installScripts](/factory/installScripts/). After making changes, note the changes in the factory [CHANGELOG](/factory/CHANGELOG.md) and bump the `FACTORY_VERSION` in the [.env](/factory/.env) file to trigger a new release.

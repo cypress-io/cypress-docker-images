@@ -1,0 +1,234 @@
+version: '3'
+
+## To run these tests you must export the environment variables in /factory/.env with `set -a && . ../.env && set +a`
+
+services:
+
+  args-defined:
+    user: node
+    build:
+      dockerfile: argsDefined.Dockerfile
+      context: .
+      args:
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+    command: npm run test
+
+  ## factory
+  test-factory-electron:
+    build:
+      context: .
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+    command: npm run test
+
+  test-factory-chrome:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      context: .
+    command: npm run test -- -b chrome
+
+  test-factory-chrome-non-root-user:
+    user: node
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: non-root-user.Dockerfile
+      context: .
+    command: npm run test -- -b chrome
+
+  test-factory-firefox:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      context: .
+    command: npm run test -- -b firefox
+
+  test-factory-edge:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      context: .
+    command: npm run test -- -b edge
+
+  test-factory-cypress-included-electron:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
+      context: .
+    command: cypress run
+
+  test-factory-cypress-included-electron-non-root-user:
+    user: node
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included-non-root-user.Dockerfile
+      context: .
+    command: cypress run
+
+  test-factory-cypress-included-chrome:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
+      context: .
+    command: cypress run -b chrome
+
+  test-factory-cypress-included-firefox:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
+      context: .
+    command: cypress run -b firefox
+
+  test-factory-cypress-included-firefox-non-root-user:
+    user: node
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included-non-root-user.Dockerfile
+      context: .
+    command: cypress run -b firefox
+
+  test-factory-cypress-included-edge:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
+      context: .
+    command: cypress run -b edge
+
+  test-factory-node-override:
+    build:
+      args:
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: node-override-version.Dockerfile
+      context: .
+    command: node -v
+
+  # this test takes the longest because we run against all browsers in the same job.
+  test-factory-all-included:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        YARN_VERSION: ${YARN_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
+      context: .
+    command: sh -c "cypress run && cypress run -b chrome && cypress run -b edge && cypress run -b firefox"
+
+  test-factory-all-included-electron-only:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        YARN_VERSION: ${YARN_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        CHROME_VERSION: ${CHROME_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        EDGE_VERSION: ${EDGE_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
+      context: .
+    command: cypress run
+
+  ## base
+  test-base:
+    build:
+      context: .
+      args:
+        BASE_TEST_IMAGE: cypress/base:${BASE_IMAGE_TAG}
+    command: npm run test
+
+  ## browsers
+  test-browsers-electron:
+    build:
+      context: .
+      args:
+        BASE_TEST_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
+    command: npm run test
+
+  test-browsers-chrome:
+    build:
+      context: .
+      args:
+        BASE_TEST_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
+    command: npm run test -- -b chrome
+
+  test-browsers-firefox:
+    build:
+      context: .
+      args:
+        BASE_TEST_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
+    command: npm run test -- -b firefox
+
+  test-browsers-edge:
+    build:
+      context: .
+      args:
+        BASE_TEST_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}
+    command: npm run test -- -b edge
+
+  ## Included
+  test-included-electron:
+    build:
+      dockerfile: included.Dockerfile
+      context: .
+      args:
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+    command: cypress run
+
+  test-included-chrome:
+    build:
+      dockerfile: included.Dockerfile
+      context: .
+      args:
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+    command: cypress run -b chrome
+
+  test-included-firefox:
+    build:
+      dockerfile: included.Dockerfile
+      context: .
+      args:
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+    command: cypress run -b firefox
+
+  test-included-edge:
+    build:
+      dockerfile: included.Dockerfile
+      context: .
+      args:
+        BASE_TEST_IMAGE: cypress/included:${INCLUDED_IMAGE_TAG}
+    command: cypress run -b edge

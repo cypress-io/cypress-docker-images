@@ -9,7 +9,7 @@ mkdir test
 cd test
 npm init --yes
 npm i -D cypress
-npx @bahmutov/cly init
+cp ./test-project ./e2e
 rm -rf package-lock.json package.json node_modules
 
 echo "Testing Electron browser"

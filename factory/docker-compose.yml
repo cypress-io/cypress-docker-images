@@ -1,5 +1,3 @@
-version: '3.8'
-
 # REPO_PREFIX is used in CI to deploy to other docker registries than dockerhub.
 
 services:

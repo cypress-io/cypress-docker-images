@@ -1,22 +1,41 @@
 # Test-project
 
-This test project was generated via the cypress GUI.
+This test project was generated via the Cypress GUI.
 
-In the event of a breaking major change this project can be updated by:
+This project can be updated to the latest Cypress default scaffolded E2E test specs by carrying out the following steps in the directory `/factory/test-project`:
 
-1. Remove the following folders/files
-    * `cypress` folder
-    * `cypress.config.js` file
-2. run command `npm install cypress@<latest version> --save-dev`
-3. run command `cypress open`
-4. Configure `e2e testing`, accept defaults
-5. Run in chrome
-6. Choose `Scaffold example specs`
-7. Exit Cypress
-8. Remove cypress from package.json
+```shell
+rm -rf cypress cypress.config.js
+npm install cypress@latest --no-package-lock
+npx cypress open
+```
+
+- Select "E2E Testing"
+- Select "Electron" browser
+- Select "Continue"
+- Select "Scaffold example specs"
+- Close all Cypress windows
+
+Test that scaffolded specs run:
+
+```shell
+npm test
+```
+
+Remove Cypress from `package.json`:
+
+```shell
+npm uninstall cypress --no-package-lock
+```
 
 ## Tests
 
-Tests are run via the the included docker compose file.
-The tests in the docker compose file rely on factory images, so those must be built first.
-Additionally, to run these tests you must export the environment variables in /factory/.env with `set -a && . ../.env && set +a`
+Tests are run via the included [docker-compose](docker-compose.yml) file.
+The tests rely on factory images, so those must be built first.
+Additionally, to run these tests you must export the environment variables in [/factory/.env](../.env) with:
+
+```shell
+set -a && . ../.env && set +a
+```
+
+See [CONTRIBUTING > Development](../../CONTRIBUTING.md#development) for step-by-step instructions.

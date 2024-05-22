@@ -1,6 +1,4 @@
 /// <reference types="cypress" />
-// remove no check once Cypress.sinon is typed
-// https://github.com/cypress-io/cypress/issues/6720
 
 context('Spies, Stubs, and Clock', () => {
   it('cy.spy() - wrap a method in a spy', () => {
@@ -69,30 +67,33 @@ context('Spies, Stubs, and Clock', () => {
   it('cy.clock() - control time in the browser', () => {
     // https://on.cypress.io/clock
 
-    // create the date in UTC so its always the same
+    // create the date in UTC so it's always the same
     // no matter what local timezone the browser is running in
     const now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
     cy.clock(now)
     cy.visit('https://example.cypress.io/commands/spies-stubs-clocks')
     cy.get('#clock-div').click()
+    cy.get('#clock-div')
       .should('have.text', '1489449600')
   })
 
   it('cy.tick() - move time in the browser', () => {
     // https://on.cypress.io/tick
 
-    // create the date in UTC so its always the same
+    // create the date in UTC so it's always the same
     // no matter what local timezone the browser is running in
     const now = new Date(Date.UTC(2017, 2, 14)).getTime()
 
     cy.clock(now)
     cy.visit('https://example.cypress.io/commands/spies-stubs-clocks')
     cy.get('#tick-div').click()
+    cy.get('#tick-div')
       .should('have.text', '1489449600')
 
     cy.tick(10000) // 10 seconds passed
     cy.get('#tick-div').click()
+    cy.get('#tick-div')
       .should('have.text', '1489449610')
   })
 

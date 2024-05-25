@@ -162,7 +162,7 @@ In CI, the images are built and tested in real `arm64` and `x64` architectures. 
 └─────────────────────────────────────────────┘
 ```
 
-A current limitation is that no `arm64` images have browser binaries - see https://github.com/cypress-io/cypress-docker-images/issues/695 for details. [`global-profile.sh`](./scripts/for-images/global-profile.sh) is placed in `/etc/bash.bashrc`, so Arm Docker users will see a warning about this limitation.
+A current limitation is that no `arm64` images have browser binaries - see https://github.com/cypress-io/cypress-docker-images/issues/695 for details.
 
 ### Updating images to add `linux/arm64`
 
@@ -220,5 +220,3 @@ When following these steps, you may get into a state where you have cached copie
     ```
 12. Delete the `tmp` tag.
 </details>
-
-

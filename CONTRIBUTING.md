@@ -84,7 +84,7 @@ docker run --rm -it -e DISPLAY="host.docker.internal:0" -v /tmp/.X11-unix:/tmp/.
 
 ## Releasing a new factory version
 
-To release a new [factory](/factory/README.md), open a PR with the desired changes to the [factory.Dockerfile](/factory/factory.Dockerfile) or [installScripts](/factory/installScripts/). After making changes, note the changes in the factory [CHANGELOG](/factory/CHANGELOG.md) and bump the `FACTORY_VERSION` in the [.env](/factory/.env) file to trigger a new release.
+To release a new [factory](./factory/README.md), open a PR with the desired changes to the [factory.Dockerfile](./factory/factory.Dockerfile) or [installScripts](./factory/installScripts/). After making changes, note the changes in the factory [CHANGELOG](./factory/CHANGELOG.md) and bump the `FACTORY_VERSION` in the [.env](./factory/.env) file to trigger a new release.
 
 ## Minimize image sizes
 

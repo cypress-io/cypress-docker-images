@@ -133,30 +133,6 @@ By default, the included images run as `root` user. You can switch the user to t
 $ docker run -it -v $PWD/src:/test -w /test -u node cypress/included:9.4.1
 ```
 
-## Building and testing
-
-To build a new image use command from the root of the repo
-
-```shell
-$ npm run add:included -- <Cypress version> <cypress/base:image>
-# example
-$ npm run add:included -- 9.4.1 cypress/browsers:node13.6.0-chrome80-ff72
-```
-
-You should also update the `circle.yml` file after creating the new image with
-
-```shell
-$ npm run build
-```
-
-You can test the new image by creating a new project and running headless tests. See the script [test.sh](test.sh) for an example.
-
-The tests should finish successfully using local image. Now push the image to the Docker hub
-
-```shell
-docker push cypress/included:9.4.1
-```
-
 ## GitHub Action
 
 You can quickly run your tests in GitHub Actions using these images, see [GitHub Action example](https://github.com/cypress-io/github-action#docker-image) repository.

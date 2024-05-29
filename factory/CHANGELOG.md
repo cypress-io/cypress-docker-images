@@ -1,5 +1,9 @@
 # Change log
 
+## 3.5.7
+
+* Updated Yarn (v1 Classic) version from `1.22.19` to `1.22.22`. Addressed in [#1071](https://github.com/cypress-io/cypress-docker-images/pull/1071)
+
 ## 3.5.6
 
 * Updated default node version from `20.13.0` to `20.13.1`. Addressed in [#1059](https://github.com/cypress-io/cypress-docker-images/pull/1059)

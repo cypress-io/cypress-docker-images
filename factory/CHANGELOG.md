@@ -1,5 +1,9 @@
 # Change log
 
+## 4.0.0
+
+* Updated Debian base image to `debian:12-slim` (codename `bookworm`). Addressed in [#1057](https://github.com/cypress-io/cypress-docker-images/pull/1057)
+
 ## 3.5.7
 
 * Updated Yarn (v1 Classic) version from `1.22.19` to `1.22.22`. Addressed in [#1071](https://github.com/cypress-io/cypress-docker-images/pull/1071)

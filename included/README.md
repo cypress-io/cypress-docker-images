@@ -12,7 +12,7 @@ $ docker run -it -v $PWD:/e2e -w /e2e cypress/included:13.10.0
 
 ## Debug
 
-If you want to see the [Cypress debug logs](https://on.cypress.io/debugging#Print-DEBUG-logs) during the run, pass environment variable `DEBUG`:
+If you want to see the [Cypress debug logs](https://on.cypress.io/troubleshooting#Print-DEBUG-logs) during the run, pass the environment variable setting `DEBUG=cypress:*`:
 
 ```text
 $ docker run -it -v $PWD:/e2e -w /e2e -e DEBUG=cypress:* cypress/included:13.10.0

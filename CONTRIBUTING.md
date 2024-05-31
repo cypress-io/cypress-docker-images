@@ -88,16 +88,22 @@ To release a new [factory](./factory/README.md), open a PR with the desired chan
 
 ## Minimize image sizes
 
-By default, the current base image is `bullseye-slim`. This dramatically decreases the size of all images. Other optimizations have been made to the Dockerfiles per Docker's recommendations.
+The `BASE_IMAGE` defined in [factory/.env](./factory/.env) uses a [Debian Docker image](https://hub.docker.com/_/debian) and the current `BASE_IMAGE` is `debian:12-slim` (codename `bookworm`). To keep the image size of the generated Cypress Docker images to a minimum, choose the `slim` variant when other versions of Debian are used, for instance when [Debian releases](https://www.debian.org/releases/) a new major version.
 
-Node versions less than or equal to Node 14 will use the `buster-slim` base image if they are recreated. Older images may still rely on `buster`.
+To see the size of an image, you can use the command [`docker images`](https://docs.docker.com/engine/reference/commandline/images/), for instance with:
 
-To see the final size of an image, you can use command [`docker images`](https://docs.docker.com/engine/reference/commandline/images/)
-
-```bash
-$ docker images --format "{{.Tag}} {{.Size}}" cypress/base:11.13.0
-11.13.0 969MB
+```shell
+docker images --format "table {{.Repository}} {{.Tag}} {{.Size}}"
 ```
+
+A snapshot of current sizes shows:
+
+| REPOSITORY       | TAG                                                               | SIZE   |
+| ---------------- | ----------------------------------------------------------------- | ------ |
+| cypress/factory  | 4.0.0                                                             | 506MB  |
+| cypress/base     | 20.13.1                                                           | 640MB  |
+| cypress/browsers | node-20.13.1-chrome-125.0.6422.60-1-ff-126.0-edge-125.0.2535.51-1 | 2.14GB |
+| cypress/included | 13.10.0                                                           | 2.86GB |
 
 ### Clean up `apt-get` artifacts
 

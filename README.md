@@ -54,16 +54,7 @@ Don't see the exact combination of Cypress, Node.js and browser versions you nee
 
 ## Examples
 
-These images have all dependencies necessary to install and run Cypress. Just install your npm dependencies (including Cypress) and run the tests. We utilize many of these docker images in our own projects, with different CI providers.
-
-[Check out our docs for examples.](https://on.cypress.io/docker)
-
-If you want to use the `cypress/included` image, read [Run Cypress with a single Docker command](https://www.cypress.io/blog/2019/05/02/run-cypress-with-a-single-docker-command/)
-
-- [examples/included-as-non-root](examples/included-as-non-root) shows how to build a new Docker image on top of `cypress/included` image and run the tests as non-root user `node`.
-- [examples/included-as-non-root-alternative](examples/included-as-non-root-alternative) shows another approach to allow built-in non-root user `node` to run tests using `cypress/included` image.
-- [examples/included-as-non-root-mapped](examples/included-as-non-root-mapped) shows how to build a Docker image on top of `cypress/included` that runs with a non-root user that matches the id of the user on the host machine. This way, the permissions on any files created during the test run match the user's permissions on the host machine.
-- [examples/included-with-plugins](examples/included-with-plugins) shows how to use locally installed [Cypress plugins](https://on.cypress.io/plugins) while running `cypress/included` image.
+Check out the [README](./included/README.md) document in the [included](./included) directory for examples of how to use `cypress/included` images. (As described above, these images include all operating system dependencies, Cypress, and some browsers installed globally.)
 
 ## Common problems
 

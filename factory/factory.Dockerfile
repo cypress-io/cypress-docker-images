@@ -11,8 +11,6 @@ ENV DBUS_SESSION_BUS_ADDRESS=/dev/null \
   TERM=xterm \
   # avoid million NPM install messages
   npm_config_loglevel=warn \
-  # allow installing when the main user is root
-  npm_config_unsafe_perm=true \
   # avoid too many progress messages
   # https://github.com/cypress-io/cypress/issues/1243
   CI=1 \

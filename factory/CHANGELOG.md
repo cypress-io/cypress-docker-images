@@ -1,5 +1,9 @@
 # Change log
 
+## 4.0.1
+
+* Removed obsolete environment variable `npm_config_unsafe_perm`, not used or needed in npm `v7` and later. Addressed in [#1078](https://github.com/cypress-io/cypress-docker-images/pull/1078)
+
 ## 4.0.0
 
 * Updated Debian base image to `debian:12-slim` (codename `bookworm`). Addressed in [#1057](https://github.com/cypress-io/cypress-docker-images/pull/1057)

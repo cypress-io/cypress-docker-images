@@ -58,20 +58,6 @@ Check out the [README](./included/README.md) document in the [included](./includ
 
 ## Common problems
 
-### Cannot run post-install hook
-
-Some versions of Node.js restrict running the `postinstall` hook with the following error message:
-
-```text
-lifecycle realworld@1.0.0~postinstall: cannot run in wd realworld@1.0.0
-```
-
-In that case run install with `npm install --unsafe-perm` flag, or set an environment variable in the container
-
-```shell
-npm_config_unsafe_perm: true
-```
-
 ### Blank screen in Chrome
 
 When running headed tests with X11 forwarding in Cypress v4 you might see a blank Chrome screen. Try disabling memory sharing by setting the following environment variables:

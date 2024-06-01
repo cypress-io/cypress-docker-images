@@ -342,7 +342,7 @@ workflows:
                 filters:
                     branches:
                         only:  # only branches matching the below regex filters will run
-                            - master
+                            - 13.10.0-node-18.20.3-publish
                 requires:
                     - "Push Factory Image"
                     - base
@@ -354,7 +354,7 @@ workflows:
                 filters:
                     branches:
                         only:  # only branches matching the below regex filters will run
-                            - master
+                            - 13.10.0-node-18.20.3-publish
                 requires:
                     - "Push Factory Image"
                     - browsers
@@ -366,7 +366,7 @@ workflows:
                 filters:
                     branches:
                         only:  # only branches matching the below regex filters will run
-                            - master
+                            - 13.10.0-node-18.20.3-publish
                 requires:
                     - "Push Factory Image"
                     - included

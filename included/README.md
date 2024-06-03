@@ -7,7 +7,7 @@
 This image should be enough to run Cypress tests headlessly or in the interactive mode with a single Docker command like this:
 
 ```shell
-$ docker run -it -v $PWD:/e2e -w /e2e cypress/included:13.10.0
+$ docker run -it -v .:/e2e -w /e2e cypress/included:13.10.0
 ```
 
 ## Debug
@@ -15,7 +15,7 @@ $ docker run -it -v $PWD:/e2e -w /e2e cypress/included:13.10.0
 If you want to see the [Cypress debug logs](https://on.cypress.io/troubleshooting#Print-DEBUG-logs) during the run, pass the environment variable setting `DEBUG=cypress:*`:
 
 ```text
-$ docker run -it -v $PWD:/e2e -w /e2e -e DEBUG=cypress:* cypress/included:13.10.0
+$ docker run -it -v .:/e2e -w /e2e -e DEBUG=cypress:* cypress/included:13.10.0
   cypress:cli:cli cli starts with arguments ["/usr/local/bin/node","/usr/local/bin/cypress","run"] +0ms
   cypress:cli NODE_OPTIONS is not set +0ms
   cypress:cli:cli program parsing arguments +3ms
@@ -103,7 +103,7 @@ Every time you run `docker run` you spawn a new container. That container then s
 If you are running a lot of tests again and again, you might start the container once using Bash as the entrypoint, instead of the default `cypress` command. Then you can execute the `cypress run` or any other commands, while still in the same container:
 
 ```text
-$ docker run -it -v $PWD:/e2e -w /e2e --entrypoint=/bin/bash cypress/included:13.10.0
+$ docker run -it -v .:/e2e -w /e2e --entrypoint=/bin/bash cypress/included:13.10.0
 # we are inside the container
 # let's run the tests
 root@814ed01841fe:/e2e# cypress run
@@ -117,7 +117,7 @@ root@814ed01841fe:/e2e# cypress run
 If you want to use a different browser (assuming it is installed in the container) use:
 
 ```text
-$ docker run -it -v $PWD:/e2e -w /e2e --entrypoint=cypress cypress/included:13.10.0 run --browser chrome
+$ docker run -it -v .:/e2e -w /e2e --entrypoint=cypress cypress/included:13.10.0 run --browser chrome
 
 DevTools listening on ws://127.0.0.1:45315/devtools/browser/0c510bb9-b365-49e7-8a99-67f3c69e1ab9
 
@@ -163,7 +163,7 @@ docker run --rm  # remove container after finish
 If you want to simulate slow container, run the Docker container with `--cpus` parameter, for example, let's debug the browser detection problems when the CPU is (very) slow:
 
 ```shell
-docker run -it -v $PWD:/e2e -w /e2e --cpus=0.02   -e DEBUG=cypress:launcher --entrypoint=cypress   cypress/included:13.10.0 info
+docker run -it -v .:/e2e -w /e2e --cpus=0.02   -e DEBUG=cypress:launcher --entrypoint=cypress   cypress/included:13.10.0 info
 ```
 
 ## Alternate users

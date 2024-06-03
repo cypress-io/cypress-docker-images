@@ -160,10 +160,10 @@ docker run --rm  # remove container after finish
 
 ## Restrict CPU
 
-If you want to simulate slow container, run the Docker container with `--cpus` parameter, for example, let's debug the browser detection problems when the CPU is (very) slow:
+If you want to simulate a slow container, run the Docker container with the `--cpus` parameter, for example, let's debug possible browser detection problems when the CPU is slow:
 
 ```shell
-docker run -it -v .:/e2e -w /e2e --cpus=0.02   -e DEBUG=cypress:launcher --entrypoint=cypress   cypress/included:13.10.0 info
+docker run -it --cpus=0.2 -e DEBUG=cypress:launcher:* --entrypoint=cypress cypress/included:13.10.0 info
 ```
 
 ## Alternate users

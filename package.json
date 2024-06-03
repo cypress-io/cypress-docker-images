@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "These images provide all of the required dependencies for running Cypress in Docker.",
   "main": "index.js",
-  "directories": {
-    "example": "examples"
-  },
   "scripts": {
-    "check:markdown": "find . -type f -name '*.md' ! -path './node_modules/*' ! -path './examples/*' | xargs -L1 npx markdown-link-check -c markdownLinkConfig.json --quiet",
+    "check:markdown": "find . -type f -name '*.md' ! -path './node_modules/*' | xargs -L1 npx markdown-link-check -c markdownLinkConfig.json --quiet",
     "format": "prettier --write ."
   },
   "engines": {

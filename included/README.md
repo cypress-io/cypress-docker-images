@@ -183,17 +183,3 @@ If you want to simulate a slow container, run the Docker container with the `--c
 ```shell
 docker run -it --cpus=0.2 -e DEBUG=cypress:launcher:* --entrypoint=cypress cypress/included:13.10.0 info
 ```
-
-## Alternate users
-
-The following examples are built on `cypress/included:3.8.0` and have not yet been updated to demonstrate current Cypress versions:
-
-- [examples/included-as-non-root](../examples/included-as-non-root) shows how to build a new Docker image on top of `cypress/included` image and run the tests as non-root user `node`.
-- [examples/included-as-non-root-alternative](../examples/included-as-non-root-alternative) shows another approach to allow built-in non-root user `node` to run tests using `cypress/included` image.
-- [examples/included-as-non-root-mapped](../examples/included-as-non-root-mapped) shows how to build a Docker image on top of `cypress/included` that runs with a non-root user that matches the id of the user on the host machine. This way, the permissions on any files created during the test run match the user's permissions on the host machine.
-
-## Using plugins
-
-The following example is built on `cypress/included:3.8.0` and has not yet been updated to demonstrate current Cypress versions:
-
-- [examples/included-with-plugins](../examples/included-with-plugins) shows how to use locally installed [Cypress plugins](https://on.cypress.io/plugins) while running `cypress/included` image.

@@ -1,5 +1,9 @@
 # Change log
 
+## 4.0.2
+
+* Updated default node version from `20.13.1` to `20.14.0`. Addressed in [#1097](https://github.com/cypress-io/cypress-docker-images/pull/1097)
+
 ## 4.0.1
 
 * Removed obsolete environment variable `npm_config_unsafe_perm`, not used or needed in npm `v7` and later. Addressed in [#1078](https://github.com/cypress-io/cypress-docker-images/pull/1078)

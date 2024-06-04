@@ -3,7 +3,7 @@
 version: 2.1
 
 orbs:
-    node: circleci/node@5.2.0
+    node: circleci/node@5.0.0
 
 commands:
     expand-env-file:
@@ -43,7 +43,7 @@ commands:
 jobs:
     check-factory-versions:
         machine:
-            image: ubuntu-2204:2024.04.4
+            image: ubuntu-2204:2022.10.2
         steps:
             - checkout
             - expand-env-file
@@ -138,7 +138,7 @@ jobs:
                   working_directory: factory/test-project
     check-node-override-version:
         machine:
-            image: ubuntu-2204:2024.04.4
+            image: ubuntu-2204:2022.10.2
         steps:
             - checkout
             - expand-env-file
@@ -164,7 +164,7 @@ jobs:
                   working_directory: factory/test-project
     test-image:
         machine:
-            image: ubuntu-2204:2024.04.4
+            image: ubuntu-2204:2022.10.2
         parameters:
             target:
                 type: string
@@ -194,7 +194,7 @@ jobs:
 
     push:
         machine:
-            image: ubuntu-2204:2024.04.4
+            image: ubuntu-2204:2022.10.2
         parameters:
             target:
                 type: string

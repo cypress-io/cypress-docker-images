@@ -58,18 +58,6 @@ Check out the [README](./included/README.md) document in the [included](./includ
 
 ## Common problems
 
-### Blank screen in Chrome
-
-When running headed tests with X11 forwarding in Cypress v4 you might see a blank Chrome screen. Try disabling memory sharing by setting the following environment variables:
-
-```shell
-export QT_X11_NO_MITSHM=1
-export _X11_NO_MITSHM=1
-export _MITSHM=0
-```
-
-See [issue #270](https://github.com/cypress-io/cypress-docker-images/issues/270)
-
 ## Firefox not found
 
 By default, the containers run with the root user. However, Firefox by design cannot run with root user, leading to failures such as:

@@ -1,5 +1,10 @@
 # REPO_PREFIX is used in CI to deploy to other docker registries than dockerhub.
 
+## If you wish to release an older Docker image, do not modify this file in the master branch.
+## Follow the instructions in the CONTRIBUTING document and work instead in a feature branch.
+## Comment out the tags entries for latest tags below so that no latest tag is created.
+## Comment out the INCLUDED_IMAGE_SHORT_TAG so that this tag is not reassigned to an older version.
+
 services:
 
   factory:
@@ -12,7 +17,7 @@ services:
         BASE_IMAGE: ${BASE_IMAGE}
         FACTORY_DEFAULT_NODE_VERSION: ${FACTORY_DEFAULT_NODE_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/factory:latest
+       - ${REPO_PREFIX-}cypress/factory:latest  # comment out for release of older version
        - ${REPO_PREFIX-}cypress/factory:${FACTORY_VERSION}
     command: node -v
 
@@ -31,8 +36,8 @@ services:
         YARN_VERSION: ${YARN_VERSION}
         # WEBKIT_VERSION: ${WEBKIT_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/included:latest
-       - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_SHORT_TAG}
+       - ${REPO_PREFIX-}cypress/included:latest # comment out for release of older version
+       - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_SHORT_TAG}  # comment out for release of older version
        - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG}
     command: node -v
 
@@ -49,7 +54,7 @@ services:
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/browsers:latest
+       - ${REPO_PREFIX-}cypress/browsers:latest # comment out for release of older version
        - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: node -v
 
@@ -63,7 +68,7 @@ services:
         FACTORY_VERSION: ${FACTORY_VERSION}
         YARN_VERSION: ${YARN_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/base:latest
+       - ${REPO_PREFIX-}cypress/base:latest # comment out for release of older version
        - ${REPO_PREFIX-}cypress/base:${BASE_IMAGE_TAG}
     command: node -v
 

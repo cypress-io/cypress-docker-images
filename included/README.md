@@ -33,7 +33,7 @@ $ docker run -it --entrypoint=cypress cypress/included:13.10.0 run --help
 To run a single spec using Chrome browser:
 
 ```shell
-$ docker run -it --entrypoint=cypress cypress/included:13.10.0 run --spec cypress/e2e/spec-a.cy.js --browser chrome
+$ docker run -it -v .:/e2e -w /e2e --entrypoint=cypress cypress/included:13.10.0 run --spec cypress/e2e/spec.cy.js --browser chrome
 ```
 
 ## Entry
@@ -93,7 +93,7 @@ System Memory: 5.16 GB free 4.09 GB
 If you want to provide Cypress command line arguments, specify the entry point and the arguments. For example to run tests with recording and parallel mode using custom build ID "abc123" we can use:
 
 ```shell
-$ docker run -it --entrypoint=cypress cypress/included:13.10.0   run --record --parallel --ci-build-id abc123
+$ docker run -it -v .:/e2e -w /e2e --entrypoint=cypress cypress/included:13.10.0 run --record --parallel --ci-build-id abc123
 ```
 
 ## Keep the container

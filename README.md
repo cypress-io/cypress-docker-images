@@ -19,15 +19,15 @@ If no tag is specified, for example `cypress/included`, then the tag `latest` is
 
 Some examples with specific tags including an explanation of the tag meanings are:
 
-- [cypress/base:18.16.0](https://hub.docker.com/layers/cypress/base/18.16.0/images/sha256-d00c441748e2f1b79d4002bddafe6628f9f9f5458a8a3c66697e622600dc5ad5)
-    Node.js `18.16.0`
-- [cypress/browsers:node-18.16.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1](https://hub.docker.com/layers/cypress/browsers/node-18.16.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1/images/sha256-e4c1a47c8107c37ca47398d8936743965d871c7285f58b852d5cb2658c400922)
-    Node.js `18.16.0`
-    Chrome `114.0.5735.133-1`
-    Firefox `114.0.2`
-    Edge `114.0.1823.51-1`
-- [cypress/included:12.17.1](https://hub.docker.com/layers/cypress/included/12.17.1/images/sha256-5d541ff206ed28631e720f8fe98dcadf5c62f8e194c028715fb748e564c8c0cc)
-    Cypress `12.17.1`
+- [cypress/base:20.14.0](https://hub.docker.com/layers/cypress/base/20.14.0/images/sha256-ed706ff91fb0642b34422c65d53ee3ad079a03b86c30e7de42a4c15f7d7bb17d)
+    Node.js `20.14.0`
+- [cypress/browsers:node-20.14.0-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1](https://hub.docker.com/layers/cypress/browsers/node-20.14.0-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1/images/sha256-a8b9c0a4d9b0bb1ca2ebfe1afbf829f248dd73617438a89e65c0e7d842ac7ec6)
+    Node.js `20.14.0`
+    Chrome `125.0.6422.141-1`
+    Firefox `126.0.1`
+    Edge `125.0.2535.85-1`
+- [cypress/included:13.11.0](https://hub.docker.com/layers/cypress/included/13.11.0/images/sha256-20ee9650d920abc422b62c039d2b1a11b415f0ac19a84bc17f4da0c7d2f77a2d)
+    Cypress `13.11.0`
 
 Once an image with a specific version tag (except `latest`) has been published to [Cypress on Docker Hub](https://hub.docker.com/u/cypress) it is frozen. This prevents accidental changes.
 

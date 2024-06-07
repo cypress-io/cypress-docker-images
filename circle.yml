@@ -329,7 +329,7 @@ workflows:
                 filters:
                     branches:
                         only:  # only branches matching the below regex filters will run
-                            - master
+                            - 13.11.0-node-18.20.3-publish
                 requires:
                     - factory
                     - factory-arm

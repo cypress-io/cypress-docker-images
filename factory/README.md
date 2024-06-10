@@ -9,6 +9,20 @@
 * edge
 * cypress
 
+## Tags
+
+[cypress/factory](https://hub.docker.com/r/cypress/factory/tags) images on [Cypress on Docker Hub](https://hub.docker.com/u/cypress) use image tags in the form:
+
+- `<factory version>`
+- `latest`
+
+for example:
+
+- `cypress/factory:4.0.2`
+- `cypress/factory:latest`
+
+ To avoid unplanned breaking changes, specify a fixed `<factory version>` tag, not the `latest` tag.  The `latest` tag is linked to the latest released `cypress/factory` image and is updated without notice.
+
 ## Benefits
 
 * Freedom to choose which versions to test against.

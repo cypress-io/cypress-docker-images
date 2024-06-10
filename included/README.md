@@ -4,6 +4,24 @@
 
 > Docker images with all operating system dependencies, Cypress, and some pre-installed browsers.
 
+## Tags
+
+[cypress/included](https://hub.docker.com/r/cypress/included/tags) images on [Cypress on Docker Hub](https://hub.docker.com/u/cypress) use image tags in the form:
+
+- `<cypress version>`-node-`<node version>`-chrome-`<chrome version>`-ff-`<firefox version>`-edge-`<edge version>`-
+- `<cypress version>`<br>This is a short-form convenience tag,  equivalent to the above full tag.
+- `latest`
+
+for example:
+
+- `cypress/included:cypress-13.11.0-node-20.14.0-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1`
+- `cypress/included:13.11.0`
+- `cypress/included:latest`
+
+ To avoid unplanned breaking changes, specify a fixed `<cypress version>`, `<node version>` & `<browser version>` combination tag or use the short-form `<cypress version>` tag, not the `latest` tag.  The `latest` tag is linked to the latest released `cypress/included` image and is updated without notice.
+
+## Usage
+
 This image should be enough to run Cypress tests headlessly or in the interactive mode with a single Docker command like this:
 
 ```shell

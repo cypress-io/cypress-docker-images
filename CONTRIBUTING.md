@@ -136,11 +136,9 @@ Whenever upgrading or installing packages with `apt-get`, use the `--no-install-
 
 ### Omit `apt-get clean`
 
-Per the official Docker documentation, you don't need to add `apt-get clean`, since the Docker images implicitly run that command after every `apt-get` execution.
+Per the Docker documentation [Building best practices](https://docs.docker.com/build/building/best-practices/#apt-get), you don't need to add `apt-get clean`, since the Docker images implicitly run that command after every `apt-get` execution.
 
 >Official Debian and Ubuntu images automatically run `apt-get clean`, so explicit invocation is not required.
-
--[Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run)
 
 ## Tool versions
 

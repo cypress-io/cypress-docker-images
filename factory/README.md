@@ -1,13 +1,13 @@
 # cypress/factory
 
-`cypress/factory` is a docker image that can be used with docker [`args`](https://docs.docker.com/engine/reference/builder/#arg) to generate a docker container with specific versions of:
+[`cypress/factory`](https://hub.docker.com/r/cypress/factory) is a Docker image that can be used with [`ARG`](https://docs.docker.com/reference/dockerfile/#arg) instructions in a custom-built [`Dockerfile`](https://docs.docker.com/reference/dockerfile/) to generate a new Docker image with specific versions of:
 
-* node
-* yarn
-* chrome
-* firefox
-* edge
-* cypress
+* Node.js
+* Yarn v1 Classic
+* Chrome
+* Firefox
+* Edge
+* Cypress
 
 ## Tags
 
@@ -27,20 +27,20 @@ for example:
 
 * Freedom to choose which versions to test against.
 * No need to wait on an official release to test the latest version of a browser.
-* Smaller docker sizes especially when not including unused browsers.
+* Smaller Docker image sizes especially when not including unused browsers.
 * Easily test multiple browser versions.
-* Reduced maintenance and pull requests for the cypress-docker repo.
-* Ability for Cypress to offer more variations of docker containers at low cost.
+* Reduced maintenance and pull requests in this repo.
+* Ability for Cypress to offer more variations of Docker images at low cost.
 
 ## API
 
-The following args can be set to define what versions the cypress factory docker image includes in its final build.
+The following `ARG` variable values can be set to define what versions the Docker image includes in its build.
 
-If no args are defined, only the default version of node will be installed. This can still be a useful container though since we will also install any dependencies required to run cypress.
+If no `ARG` variables are defined, only the default version of Node.js will be installed. This can still be a useful container though since we will also install any dependencies required to run Cypress.
 
 ### NODE_VERSION
 
-The version of Node to install in the docker container. If the env is unset or an empty string, the default version of Node (defined [here](./.env)) is installed. Node is required. The exact version must be used, no wildcards or shorthands are supported.
+The version of Node.js to install in the Docker image. The exact version must be used, no wildcards or shorthands are supported. If the `ARG` variable is not defined or an empty string, the default version of Node.js (defined in [.env](./.env) as `FACTORY_DEFAULT_NODE_VERSION`) is installed. Node.js is a prerequisite for Cypress.
 
 Example: `NODE_VERSION='20.14.0'`
 
@@ -48,7 +48,7 @@ Example: `NODE_VERSION='20.14.0'`
 
 ### YARN_VERSION
 
-The version of yarn to install (via npm). If the env is unset or an empty string, Yarn is not installed.
+The version of Yarn v1 Classic to install (via npm). If the `ARG` variable is unset or an empty string, Yarn is not installed.
 
 Example: `YARN_VERSION='1.22.22'`
 
@@ -56,7 +56,7 @@ Example: `YARN_VERSION='1.22.22'`
 
 ### CYPRESS_VERSION
 
-The version of Cypress to install (via npm). If the env is unset or an empty string, Cypress is not installed.
+The version of Cypress to install (via npm). If the `ARG` variable is unset or an empty string, Cypress is not installed.
 
 Example: `CYPRESS_VERSION='13.11.0'`
 
@@ -64,7 +64,7 @@ Example: `CYPRESS_VERSION='13.11.0'`
 
 ### CHROME_VERSION
 
-The version of Chrome to install. If the env is unset or an empty string, Chrome is not installed. The exact version must be used, no wildcards or shorthands are supported.
+The version of Chrome to install. If the `ARG` variable is unset or an empty string, Chrome is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
 Example: `CHROME_VERSION='125.0.6422.141-1'`
 
@@ -72,7 +72,7 @@ Example: `CHROME_VERSION='125.0.6422.141-1'`
 
 ### FIREFOX_VERSION
 
-The version of Firefox to install. If the env is unset or an empty string, Firefox is not installed. The exact version must be used, no wildcards or shorthands are supported.
+The version of Firefox to install. If the `ARG` variable is unset or an empty string, Firefox is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
 Example: `FIREFOX_VERSION='126.0.1'`
 
@@ -80,7 +80,7 @@ Example: `FIREFOX_VERSION='126.0.1'`
 
 ### EDGE_VERSION
 
-The version of Edge to install. If the env is unset or an empty string, Edge is not installed. The exact version must be used, no wildcards or shorthands are supported.
+The version of Edge to install. If the `ARG` variable is unset or an empty string, Edge is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
 Example: `EDGE_VERSION='125.0.2535.85-1'`
 
@@ -88,7 +88,7 @@ Example: `EDGE_VERSION='125.0.2535.85-1'`
 
 ## Usage
 
-The cypress docker factory works by relying on the [`ONBUILD`](https://docs.docker.com/engine/reference/builder/#onbuild) docker instruction to run commands at the container's build time. To make use of the docker factory users will have to create a dockerfile to declare what dependency versions are desired. Docker `args` can be specified in a number of ways, some of which are demonstrated below. For each of these examples we are building the equivalent of the `cypress/browsers` docker image with Cypress additionally installed. In each instance, since the example is only testing the chrome version, the examples could just install chrome by itself if the other browsers were not used.
+The Docker `cypress/factory` build process works by relying on the [`ONBUILD`](https://docs.docker.com/engine/reference/builder/#onbuild) Docker instruction to run commands at the image's build time. To make use of the Docker `cypress/factory` image and process, users will have to create a [`Dockerfile`](https://docs.docker.com/reference/dockerfile/) to declare what dependency versions are desired. Docker `ARG` variables can be specified in a number of ways, some of which are demonstrated below. For each of these examples we are building the equivalent of the `cypress/browsers` Docker image with Cypress additionally installed. In each instance, since the example is only testing the Chrome version, the examples could just install Chrome by itself if the other browsers were not used.
 
 In the examples below, we install Cypress into the Docker image using:
 
@@ -128,7 +128,7 @@ npx cypress run
 
 ### In the Dockerfile
 
-Args can be defined directly in the Dockerfile to specify variables that are available when the container is built.
+`ARG` variables can be defined directly in the `Dockerfile` to make the variables available when the container is built.
 
 Create a `Dockerfile` with the following content:
 
@@ -148,7 +148,7 @@ RUN npm install cypress --save-dev
 RUN npx cypress install
 ```
 
-Then, in the same directory as the Dockerfile, run the following commands to build the docker container and run Cypress against the chrome browser.
+Then, in the same directory as the `Dockerfile`, run the following commands to build the Docker image and run Cypress against the Chrome browser.
 
 ```bash
 docker build . -t test
@@ -157,7 +157,7 @@ docker run -it --rm test npx cypress run -b chrome
 
 ### At build time
 
-Args can be passed to the docker build command with the `--build-arg` flag. Note: any value set via the command line will override the ARG value provided in the Dockerfile.
+`ARG` variables can be passed to the `docker build` command with the `--build-arg` flag. Note: any value set via the command line will override the default `ARG` variable value provided in the `Dockerfile`.
 
 Create a `Dockerfile` with the following content:
 
@@ -179,7 +179,7 @@ docker run -it --rm test npx cypress run -b chrome
 
 ### In docker-compose.yml
 
-Finally, args can be specified in the `docker-compose.yml` file.
+Finally, [Dockerfile `ARG`](https://docs.docker.com/reference/dockerfile/#arg) variable values can be specified in the `docker-compose.yml` file using [compose `args`](https://docs.docker.com/compose/compose-file/build/#args) build arguments.
 
 Create a `docker-compose.yml` file with the following content:
 
@@ -215,9 +215,9 @@ docker compose run --rm test
 
 ### Reducing the size of the docker container
 
-As mentioned above we can reduce the size of the docker image by removing browsers we aren't using.
+As mentioned above we can reduce the size of the Docker image by removing browsers we aren't using.
 
-Since this example only uses chrome, removing edge and firefox is as simple as not including a version.
+Since this example only uses Chrome, removing Edge and Firefox is as simple as not including a version.
 
 Create a `Dockerfile` with the following content:
 
@@ -232,7 +232,7 @@ RUN npm install cypress --save-dev
 RUN npx cypress install
 ```
 
-Then, in the same directory as the Dockerfile, run the following commands to build the docker container and run Cypress against the chrome browser.
+Then, in the same directory as the `Dockerfile`, run the following commands to build the Docker image and run Cypress against the Chrome browser.
 
 ```bash
 docker build . -t test

@@ -47,9 +47,22 @@ docker compose run test-factory-all-included
 
 #### Automatic
 
-To publish a new image for `factory`, `included`, `browsers`, and `base`, open a PR with the desired version(s) updated in the `factory/.env` file. Once the PR is merged into master, the corresponding images will be pushed to dockerhub via an automated script run in CI. Please check that the CI jobs pass after merge.
+##### New versions
 
-In general, `factory/.env` master should contain the latest versions we officially support. If you need to release an older version please modify `circle.yml` to push releases from a feature branch instead of setting the version in master to older versions.
+To publish a new image for `factory`, `base`, `browsers`, and `included`, open a PR with the desired version(s) updated in the [factory/.env](./factory/.env) file. Once the PR is merged into the `master` branch, the corresponding images will be pushed to Docker Hub via an automated script run in CI. Please check that the CI jobs pass after merge.
+
+##### Older versions
+
+>Note: Assistance from a member of the Cypress org is required for this process
+
+In general, [factory/.env](./factory/.env) in the `master` branch should contain the latest versions we officially support. If you need to release an older version, do not modify contents in the `master` branch. Instead, carry out the following steps:
+
+1. Create a feature branch in the form `<cypress-version>-node-<node.js version>-publish`, for example `13.11.0-node-18.20.3-publish`, branched from the `master` branch. If you are not a member of the Cypress org, make a request via a new issue to create a feature branch.
+2. Modify [factory/.env](./factory/.env) with the desired versions. Do not modify the `FACTORY_VERSION`. No new `cypress/factory` image should be published with this process.
+3. Modify [factory/docker-compose.yml](./factory/docker-compose.yml) to comment out the creation of `latest` tags. Comment out the `cypress/included` `INCLUDED_IMAGE_SHORT_TAG` to also prevent this tag from being created. This step is essential to avoid related tags of existing released images being moved back to point to older images.
+4. Modify [circle.yml](circle.yml) to push releases from the feature branch.
+5. Open a PR which targets the feature branch.
+6. After PR merge, check Docker Hub and the associated new image(s).
 
 #### Manual
 

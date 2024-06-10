@@ -1,5 +1,10 @@
 # info on building Docker images on Circle
 # https://circleci.com/docs/2.0/building-docker-images/
+
+## If you wish to release an older Docker image, do not modify this file in the master branch.
+## Follow the instructions in the CONTRIBUTING document and work instead in a feature branch.
+## Modify the push jobs below to be triggered on the feature branch, not the master branch.
+
 version: 2.1
 
 orbs:
@@ -328,7 +333,11 @@ workflows:
                 context: test-runner:docker-push
                 filters:
                     branches:
-                        only:  # only branches matching the below regex filters will run
+                        only:
+                        # Only branches matching the below regex filters will run
+                        # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
+                        # if publishing an old version
+                        # This job must run because the base, browsers and included jobs depend on it
                             - master
                 requires:
                     - factory
@@ -341,7 +350,10 @@ workflows:
                 context: test-runner:docker-push
                 filters:
                     branches:
-                        only:  # only branches matching the below regex filters will run
+                        only:
+                        # Only branches matching the below regex filters will run
+                        # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
+                        # if publishing an old version
                             - master
                 requires:
                     - "Push Factory Image"
@@ -353,7 +365,10 @@ workflows:
                 context: test-runner:docker-push
                 filters:
                     branches:
-                        only:  # only branches matching the below regex filters will run
+                        only:
+                        # Only branches matching the below regex filters will run
+                        # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
+                        # if publishing an old version
                             - master
                 requires:
                     - "Push Factory Image"
@@ -365,7 +380,10 @@ workflows:
                 context: test-runner:docker-push
                 filters:
                     branches:
-                        only:  # only branches matching the below regex filters will run
+                        only:
+                        # Only branches matching the below regex filters will run
+                        # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
+                        # if publishing an old version
                             - master
                 requires:
                     - "Push Factory Image"

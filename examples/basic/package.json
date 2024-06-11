@@ -1,0 +1,12 @@
+{
+  "name": "example-basic",
+  "version": "1.0.0",
+  "description": "Basic E2E Cypress test example",
+  "scripts": {
+    "test": "cypress run"
+  },
+  "private": true,
+  "devDependencies": {
+    "cypress": "^13.11.0"
+  }
+}

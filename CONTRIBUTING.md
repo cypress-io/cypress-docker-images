@@ -4,9 +4,19 @@ Thanks for taking the time to contribute! :smile:
 
 ## Code of Conduct
 
-All contributors are expecting to abide by our [Code of Conduct](https://github.com/cypress-io/cypress/blob/develop/CODE_OF_CONDUCT.md).
+All contributors are expected to abide by our [Code of Conduct](https://github.com/cypress-io/cypress/blob/develop/CODE_OF_CONDUCT.md).
 
 ## Development
+
+This document describes the process to contribute Cypress Docker images for release to the public Cypress repositories on
+
+- [Docker Hub](https://hub.docker.com/u/cypress)
+- [Amazon ECR (Elastic Container Registry) Public Gallery](https://gallery.ecr.aws/cypress-io)
+
+Releases to these public repositories are reserved for configurations that cover general needs, not special configurations.
+
+> [!TIP]
+> To generate customized Cypress Docker images for private organizational use please refer to the [cypress/factory](./factory/README.md) document.
 
 ### Replacing existing images
 

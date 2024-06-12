@@ -1,5 +1,6 @@
-describe('template spec', () => {
-  it('passes', () => {
-    cy.visit('https://example.cypress.io')
+describe('test local demo page', () => {
+  it('heading', () => {
+    cy.visit('index.html')
+    cy.contains('h2', 'Test')
   })
 })

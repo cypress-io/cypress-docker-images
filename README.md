@@ -56,7 +56,9 @@ Don't see the exact combination of Cypress, Node.js and browser versions you nee
 
 ## Examples
 
-Check out the [README](./included/README.md) document in the [included](./included) directory for examples of how to use `cypress/included` images. (As described above, these images include all operating system dependencies, Cypress, and some browsers installed globally.)
+- Check out the [README](./included/README.md) document in the [included](./included) directory for examples of how to use `cypress/included` images. (As described above, these images include all operating system dependencies, Cypress, and some browsers installed globally.)
+
+- See the example workflow [.github/workflows//example-cypress-github-action.yml](./.github/workflows/example-cypress-github-action.yml) for Continuous Integration (CI) using [`cypress-io/github-action`](https://github.com/cypress-io/github-action) together with Cypress Docker images.
 
 ## Known problems
 

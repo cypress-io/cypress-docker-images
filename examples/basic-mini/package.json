@@ -1,0 +1,6 @@
+{
+  "name": "example-basic-mini",
+  "version": "1.0.0",
+  "description": "Basic E2E Cypress test example - no Cypress module",
+  "private": true
+}

@@ -59,7 +59,15 @@ docker compose run test-factory-all-included
 
 ##### New versions
 
-To publish a new image for `factory`, `base`, `browsers`, and `included`, open a PR with the desired version(s) updated in the [factory/.env](./factory/.env) file. Once the PR is merged into the `master` branch, the corresponding images will be pushed to Docker Hub via an automated script run in CI. Please check that the CI jobs pass after merge.
+To publish a new image for `factory`, `base`, `browsers`, or `included`, open a PR with the desired version(s) updated in the [factory/.env](./factory/.env) file. If you change any of the following environment variables in [factory/.env](./factory/.env), then you should also bump the `FACTORY_VERSION` in the same file and make a note of the change in the factory [CHANGELOG](./factory/CHANGELOG.md):
+
+- `BASE_IMAGE`
+- `FACTORY_DEFAULT_NODE_VERSION`
+- `YARN_VERSION`
+
+You should not change the `FACTORY_VERSION` or make an entry into the factory [CHANGELOG](./factory/CHANGELOG.md) if you are only changing browser versions or the Cypress version.
+
+Once the PR is merged into the `master` branch, the corresponding images will be pushed to [Docker Hub](https://hub.docker.com/u/cypress) and to the [Amazon ECR (Elastic Container Registry) Public Gallery](https://gallery.ecr.aws/cypress-io) via an automated script run through [CircleCI](circle.yml). Please check that the CI jobs pass after merge. Any CI failure can cause the release process to be interrupted.
 
 ##### Older versions
 

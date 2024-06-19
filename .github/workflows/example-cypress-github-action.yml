@@ -1,0 +1,81 @@
+name: Example Cypress GitHub Actions
+# This example workflow demonstrates
+# GitHub Actions (https://docs.github.com/en/actions) using the
+# Cypress JavaScript GitHub Action (https://github.com/cypress-io/github-action) with
+# Cypress Docker images (https://github.com/cypress-io/cypress-docker-images)
+
+# The workflow is triggered manually on demand, see
+# https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow
+# To automatically trigger a workflow, for instance on a push event, see
+# https://docs.github.com/en/actions/using-workflows/triggering-a-workflow
+
+on: workflow_dispatch
+
+jobs:
+  docker-base:
+    runs-on: ubuntu-22.04
+    container:
+      # Examples use latest tag
+      # For production use, to avoid the risk of breaking changes,
+      # choose a fixed version tag from
+      # https://hub.docker.com/r/cypress/base/tags
+      image: cypress/base:latest
+      # User 1001 matches the owner of the HOME directory which GitHub Actions creates
+      # Selecting the same user minimizes permissions issues
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cypress-io/github-action@v6
+        with:
+          # Only the Electron browser is available with cypress/base
+          # This is the default browser and does not need to be specified
+          working-directory: examples/basic
+
+  docker-browsers:
+    runs-on: ubuntu-22.04
+    strategy:
+      # Makes sure that each browser test runs, even if any other test fails
+      fail-fast: false
+      matrix:
+        browser: [chrome, edge, firefox]
+    container:
+      # Examples use latest tag
+      # For production use, to avoid the risk of breaking changes,
+      # choose a fixed version tag from
+      # https://hub.docker.com/r/cypress/browser/tags
+      image: cypress/browsers:latest
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cypress-io/github-action@v6
+        with:
+          working-directory: examples/basic
+          browser: ${{ matrix.browser }}
+
+  docker-included:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, edge, firefox]
+    # from https://hub.docker.com/r/cypress/included/tags
+    container:
+      # Examples use latest tag
+      # For production use, to avoid the risk of breaking changes,
+      # choose a fixed version tag from
+      # https://hub.docker.com/r/cypress/included/tags
+      image: cypress/included:latest
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cypress-io/github-action@v6
+        with:
+          # Using Cypress project with no Cypress version pre-installed
+          working-directory: examples/basic-mini
+          browser: ${{ matrix.browser }}
+        env:
+          # Cypress binary is already installed in cypress/included image
+          # Use CYPRESS_INSTALL_BINARY=0 to prevent unneeded caching
+          # which can cause errors with non-root user
+          # see https://on.cypress.io/guides/references/advanced-installation#Skipping-installation
+          CYPRESS_INSTALL_BINARY: 0

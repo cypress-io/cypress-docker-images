@@ -10,14 +10,3 @@ NOTE: This image is intended for internal use with https://github.com/cypress-io
 
 #### Env variables
 * Does not contain the `CACHE_FOLDER` and `FACTORY_DEFAULT_NODE_VERSION` env variables to keep unit tests non environment specific
-
-## Example
-
-Sample Dockerfile
-
-```
-FROM cypress/base-internal:18.18.2
-RUN npm install --save-dev cypress
-RUN $(npm bin)/cypress verify
-RUN $(npm bin)/cypress run
-```

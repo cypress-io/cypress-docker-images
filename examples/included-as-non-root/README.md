@@ -1,84 +1,35 @@
 # Running cypress/included image as non-root
 
-## Running as root
+## Displaying user information
 
-Whenever you run tests using `cypress/included:...` image, it runs as `root` user
+Cypress Docker images `cypress/included` run by default as `root` user. You can check this with the Unix command `whoami`:
 
-```shell
-$ docker run -it -v $PWD/src:/test -w /test --entrypoint whoami cypress/included:3.8.0
+```text
+$ docker run -it --rm --entrypoint whoami cypress/included
 root
-$ docker run -it -v $PWD/src:/test -w /test cypress/included:3.8.0
-...
 ```
 
-## Root vs non-root user
+The Unix command `id` provides some more information about the user:
 
-You can determine if you are a root user inside a container using Node and printing
-
-```js
-process.geteuid()
-// 0 - root user
-// non zero - non-root user
-```
-
-As a single line
-
-```shell
-$ node -p 'process.geteuid()'
-```
-
-From shell, you can print user id via `id` command
-
-```shell
-$ id
+```text
+$ docker run -it --rm --entrypoint id cypress/included
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
 ## Run as non-root
 
-If you try to run `cypress/included` image as another user, for example `node` you hit problems
+The non-root `node` user is available in `cypress/included` Cypress Docker images. You can pass the user `node` as an option when running a Cypress Docker image as a container and this then replaces the default `root` user:
 
-```shell
-$ docker run -it -v $PWD/src:/test -w /test -u node cypress/included:3.8.0
-The cypress npm package is installed, but the Cypress binary is missing.
-
-We expected the binary to be installed here: /home/node/.cache/Cypress/3.8.0/Cypress/Cypress
-```
-
-You can see the user id when running as `-u node` by opening shell
-
-```shell
-$ docker run -it -v $PWD/src:/test -w /test -u node --entrypoint /bin/sh cypress/included:3.8.0
-$ id
+```text
+$ docker run -it --rm --entrypoint id -u node cypress/included
 uid=1000(node) gid=1000(node) groups=1000(node)
 ```
 
-### Solution
-
-You need to build your own Docker image on top of the desired `cypress/included:...` image where you change the user. Before changing from `root` to `node` you need to move the cache folder though - to give `node` user access to it. See [Dockerfile](Dockerfile) in the current folder.
-
-```Dockerfile
-FROM cypress/included:3.8.0
-
-# "root"
-RUN whoami
-
-# there is a built-in user "node" that comes from the very base Docker Node image
-# move test runner binary folder to the non-root's user home directory
-RUN mv /root/.cache /home/node/.cache
-
-USER node
-# show user effective id and group - it should be non-zero
-# meaning the current user "node" is not root
-RUN id
-```
-
-You can build the above image using [build.sh](build.sh), which names it `cypress/example`. Now run the tests as non-root user `node` - it should work.
+To run the example Cypress project in the [src](./src/) subdirectory with `node` as user, change directory to `examples/included-as-non-root` and execute the following `docker run` command:
 
 ```shell
-$ docker run -it -v $PWD/src:/test -w /test -u node cypress/example
-Running tests against cypress/example
-...
+cd examples/included-as-non-root
+docker run -it --rm -v ./src:/test -w /test -u node cypress/included
 ```
 
-Good read [Use non-root user inside Docker container](https://glebbahmutov.com/blog/docker-user/) and [Processes In Containers Should Not Run As Root](https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b)
+You can expect this command to run successfully.

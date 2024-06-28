@@ -43,8 +43,6 @@ RUN apt-get update && \
 ENV TERM=xterm
 # avoid million NPM install messages
 ENV npm_config_loglevel=warn
-# allow installing when the main user is root
-ENV npm_config_unsafe_perm=true
 
 RUN npm --version \
   && npm install -g yarn@latest --force \

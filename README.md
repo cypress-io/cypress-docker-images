@@ -2,7 +2,7 @@
 
 Cypress Docker images are published to [Cypress on Docker Hub](https://hub.docker.com/u/cypress).
 
-These images provide all of the required dependencies for running Cypress in Docker.
+These images provide all of the required dependencies for running Cypress in [Docker](https://docs.docker.com/guides/docker-overview/).
 
 We build four images: click on the image name to see the available tags and versions. We provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need.
 
@@ -12,6 +12,16 @@ We build four images: click on the image name to see the available tags and vers
 | [cypress/base](https://hub.docker.com/r/cypress/base/)         | All operating system dependencies, no Cypress, and no browsers.                    | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/base.svg?maxAge=604800)](https://hub.docker.com/r/cypress/base/)         |
 | [cypress/browsers](https://hub.docker.com/r/cypress/browsers/) | All operating system dependencies, no Cypress, and some browsers.                  | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/browsers.svg?maxAge=604800)](https://hub.docker.com/r/cypress/browsers/) |
 | [cypress/included](https://hub.docker.com/r/cypress/included/) | All operating system dependencies, Cypress, and some browsers installed globally.  | [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/included.svg?maxAge=604800)](https://hub.docker.com/r/cypress/included/) |
+
+## Platforms
+
+Cypress Docker images are Linux based, using the Docker image [debian:12-slim](https://hub.docker.com/_/debian) as the default base image. Each of the above listed Cypress Docker images is published with [multi-architecture](https://docs.docker.com/contribute/style/terminology/#multi-architecture--multi-arch) support for `Linux/amd64` and `Linux/arm64` platforms.
+
+Note that `Linux/arm64` variants of [cypress/browsers](./browsers/) and [cypress/included](./included/) images do **not** contain additional browsers (see related Enhancement Request [#695](https://github.com/cypress-io/cypress-docker-images/issues/695)).
+
+Cypress Docker images can be run as containers on Continuous Integration (CI) systems which support Docker. Cypress Docker images can also be run locally under [Docker Desktop](https://docs.docker.com/desktop/) for Mac, Linux or Windows environments.
+
+ In the case of Windows environments, see [Docker Desktop for Windows](https://docs.docker.com/desktop/install/windows-install/) and Cypress documentation [Windows Subsystem for Linux](https://on.cypress.io/guides/references/advanced-installation#Windows-Subsystem-for-Linux) for additional information regarding Microsoft's `WSL2` and `WSLg` subsystems. The documentation and scripts in this repository assume that Docker Desktop for Windows runs in a virtual Linux environment.
 
 ## Tag Selection
 

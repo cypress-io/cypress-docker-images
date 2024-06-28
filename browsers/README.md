@@ -4,6 +4,11 @@
 
 > Docker image with all operating system dependencies and some pre-installed browsers, **but NOT Cypress itself**. See [cypress/included](../included) images if you need Cypress pre-installed in the image.
 
+## Platforms
+
+`cypress/browsers` images are available for `Linux/amd64` and `Linux/arm64` platforms.
+`Linux/arm64` images do **not** currently contain additional browsers.
+
 ## Tags
 
 [cypress/browsers](https://hub.docker.com/r/cypress/browsers/tags) images on [Cypress on Docker Hub](https://hub.docker.com/u/cypress) use image tags in the form:

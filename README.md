@@ -21,7 +21,7 @@ Note that `Linux/arm64` variants of [cypress/browsers](./browsers/) and [cypress
 
 Cypress Docker images can be run as containers on Continuous Integration (CI) systems which support Docker. Cypress Docker images can also be run locally under [Docker Desktop](https://docs.docker.com/desktop/) for Mac, Linux or Windows environments.
 
- In the case of Windows environments, see [Docker Desktop for Windows](https://docs.docker.com/desktop/install/windows-install/) and Cypress documentation [Windows Subsystem for Linux](https://on.cypress.io/guides/references/advanced-installation#Windows-Subsystem-for-Linux) for additional information regarding Microsoft's `WSL2` and `WSLg` subsystems. The documentation and scripts in this repository assume that Docker Desktop for Windows runs in a virtual Linux environment.
+In the case of Windows environments, see [Docker Desktop for Windows](https://docs.docker.com/desktop/install/windows-install/) and Cypress documentation [Windows Subsystem for Linux](https://on.cypress.io/guides/references/advanced-installation#Windows-Subsystem-for-Linux) for additional information regarding Microsoft's `WSL2` and `WSLg` subsystems. The documentation and scripts in this repository assume that Docker Desktop for Windows runs in a virtual Linux environment.
 
 ## Tag Selection
 
@@ -30,14 +30,14 @@ If no tag is specified, for example `cypress/included`, then the tag `latest` is
 Some examples with specific tags including an explanation of the tag meanings are:
 
 - [cypress/base:20.14.0](https://hub.docker.com/layers/cypress/base/20.14.0/images/sha256-ed706ff91fb0642b34422c65d53ee3ad079a03b86c30e7de42a4c15f7d7bb17d)
-    Node.js `20.14.0`
+  Node.js `20.14.0`
 - [cypress/browsers:node-20.14.0-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1](https://hub.docker.com/layers/cypress/browsers/node-20.14.0-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1/images/sha256-a8b9c0a4d9b0bb1ca2ebfe1afbf829f248dd73617438a89e65c0e7d842ac7ec6)
-    Node.js `20.14.0`
-    Chrome `125.0.6422.141-1`
-    Firefox `126.0.1`
-    Edge `125.0.2535.85-1`
+  Node.js `20.14.0`
+  Chrome `125.0.6422.141-1`
+  Firefox `126.0.1`
+  Edge `125.0.2535.85-1`
 - [cypress/included:13.11.0](https://hub.docker.com/layers/cypress/included/13.11.0/images/sha256-20ee9650d920abc422b62c039d2b1a11b415f0ac19a84bc17f4da0c7d2f77a2d)
-    Cypress `13.11.0`
+  Cypress `13.11.0`
 
 Once an image with a specific version tag (except `latest`) has been published to [Cypress on Docker Hub](https://hub.docker.com/u/cypress) it is frozen. This prevents accidental changes.
 
@@ -92,9 +92,9 @@ See [Cypress issue #27121](https://github.com/cypress-io/cypress/issues/27121).
 To allow Firefox to run in GitHub Actions in a Docker container, add `options: --user 1001` to the workflow to match GitHub Actions' `runner` user.
 
 ```yml
-    container:
-      image: cypress/browsers
-      options: --user 1001
+container:
+  image: cypress/browsers
+  options: --user 1001
 ```
 
 See [Tag Selection](#tag-selection) above for advice on selecting a non-default image tag.

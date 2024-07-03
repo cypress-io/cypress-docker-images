@@ -1,7 +1,7 @@
 # Set base image arg to allow easy testing of other debian versions.
 ARG BASE_IMAGE
 
-FROM ${BASE_IMAGE} as factory
+FROM ${BASE_IMAGE} AS factory
 
 # "fake" dbus address to prevent errors
 # https://github.com/SeleniumHQ/docker-selenium/issues/87

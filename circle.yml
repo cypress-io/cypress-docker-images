@@ -24,24 +24,31 @@ commands:
         parameters:
             target:
                 type: string
-                description: docker compose target being tested
+                description: cypress/* repo name (factory, base, browser or included)
         steps:
             - run:
-                  name: Check if image for << parameters.target >> exists or Docker hub does not respond
-                  # using https://github.com/cypress-io/docker-image-not-found
-                  # to check if Docker hub definitely does not have this image
+                  name: Check if image for << parameters.target >> exists on Docker Hub
+                  # using Docker HUB API https://docs.docker.com/docker-hub/api/latest/
+                  # to check if Docker Hub definitely does not have this image
                   command: |
-                      DOCKER_TAG=''
-                      if [ << parameters.target >> == factory ]; then DOCKER_TAG=cypress/factory:${FACTORY_VERSION}; fi
-                      if [ << parameters.target >> == base ]; then DOCKER_TAG=cypress/base:${BASE_IMAGE_TAG}; fi
-                      if [ << parameters.target >> == browsers ]; then DOCKER_TAG=cypress/browsers:${BROWSERS_IMAGE_TAG}; fi
-                      if [ << parameters.target >> == included ]; then DOCKER_TAG=cypress/included:${INCLUDED_IMAGE_TAG}; fi
+                      DOCKER_NAMESPACE='cypress'
+                      DOCKER_REPO=<< parameters.target >>
 
-                      if npx docker-image-not-found --repo $DOCKER_TAG; then
-                        echo Docker hub says image $DOCKER_TAG does not exist
+                      DOCKER_TAG=''
+                      if [ ${DOCKER_REPO} == factory ]; then DOCKER_TAG=${FACTORY_VERSION}; fi
+                      if [ ${DOCKER_REPO} == base ]; then DOCKER_TAG=${BASE_IMAGE_TAG}; fi
+                      if [ ${DOCKER_REPO} == browsers ]; then DOCKER_TAG=${BROWSERS_IMAGE_TAG}; fi
+                      if [ ${DOCKER_REPO} == included ]; then DOCKER_TAG=${INCLUDED_IMAGE_TAG}; fi
+
+                      DOCKER_NAME=${DOCKER_NAMESPACE}/${DOCKER_REPO}:${DOCKER_TAG}
+
+                      if curl -s https://hub.docker.com/v2/namespaces/${DOCKER_NAMESPACE}/repositories/${DOCKER_REPO}/tags/${DOCKER_TAG} \
+                        | grep -iq 'httperror 404'; then
+                        echo Docker Hub says image $DOCKER_NAME does not exist - HTTP status 404 returned
+                        echo $DOCKER_NAME available for publishing
                       else
-                        echo Docker hub has image $DOCKER_TAG or not responding
-                        echo We should stop in this case
+                        echo Docker Hub found image $DOCKER_NAME - or error occurred
+                        echo Stop to avoid republishing
                         circleci-agent step halt
                       fi
 

@@ -228,7 +228,6 @@ jobs:
                 working_directory: factory
 
 workflows:
-    version: 2
     test:
         jobs:
             - check-factory-versions

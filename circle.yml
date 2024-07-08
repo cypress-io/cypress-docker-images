@@ -48,7 +48,7 @@ commands:
                         echo $DOCKER_NAME available for publishing
                       else
                         echo Docker Hub found image $DOCKER_NAME - or error occurred
-                        echo Stop to avoid republishing
+                        echo Stopping to avoid republishing
                         circleci-agent step halt
                       fi
 

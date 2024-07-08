@@ -7,9 +7,6 @@
 
 version: 2.1
 
-orbs:
-    node: circleci/node@5.0.0
-
 commands:
     expand-env-file:
         description: Sets up bash env to load envs from the env file

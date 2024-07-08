@@ -238,7 +238,7 @@ workflows:
                             test-factory-cypress-included-electron,
                             test-factory-cypress-included-electron-non-root-user,
                             test-factory-all-included-electron-only
-                        ]
+                            ]
                         resourceClass: [arm.medium]
                         target: [factory]
             - test-image:
@@ -258,7 +258,7 @@ workflows:
                             test-factory-cypress-included-firefox-non-root-user,
                             test-factory-cypress-included-edge,
                             test-factory-all-included
-                        ]
+                            ]
                         resourceClass: [medium]
                         target: [factory]
             - test-image:
@@ -267,7 +267,7 @@ workflows:
                     parameters:
                         test-target: [
                             test-base
-                        ]
+                            ]
                         resourceClass: [medium]
                         target: [base]
             - test-image:
@@ -276,7 +276,7 @@ workflows:
                     parameters:
                         test-target: [
                             test-base
-                        ]
+                            ]
                         resourceClass: [arm.medium]
                         target: [base]
             - test-image:
@@ -288,7 +288,7 @@ workflows:
                             test-browsers-chrome,
                             test-browsers-firefox,
                             test-browsers-edge
-                        ]
+                            ]
                         resourceClass: [medium]
                         target: [browsers]
 
@@ -298,7 +298,7 @@ workflows:
                     parameters:
                         test-target: [
                             test-browsers-electron
-                        ]
+                            ]
                         resourceClass: [arm.medium]
                         target: [browsers]
             - test-image:
@@ -310,7 +310,7 @@ workflows:
                             test-included-chrome,
                             test-included-firefox,
                             test-included-edge
-                        ]
+                            ]
                         resourceClass: [medium]
                         target: [included]
             - test-image:
@@ -319,7 +319,7 @@ workflows:
                     parameters:
                         test-target: [
                             test-included-electron
-                        ]
+                            ]
                         resourceClass: [arm.medium]
                         target: [included]
             # pushing the factory image must come first because the other images may pull it down to build

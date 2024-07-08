@@ -1,5 +1,7 @@
 # Running cypress/included image as non-root mapped
 
+Note: *This example uses a legacy version of Cypress and is based on using [Docker Desktop on Mac](https://docs.docker.com/desktop/install/mac-install/). Refer to [Docker Desktop documentation](https://docs.docker.com/desktop/) for details of file sharing under other operating systems.*
+
 If we don't want to run `cypress/included` image as built-in default `root` user, we can use `node` user that already exists in the image thanks to the very base `node` image. But, if that user creates any files on the _host_ machine, then these files are owned by the `node` user id and group that might NOT even be present on the host machine.
 
 We want to run inside the Docker container as the non-root user from the host machine with the same id and group id. Then when the container exits, any new files are "magically" owned by the host machine's user.

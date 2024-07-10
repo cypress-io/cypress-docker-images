@@ -59,12 +59,12 @@ jobs:
             - run:
                   name: building docker image
                   command: |
-                      docker compose build --progress plain factory
+                      docker compose --progress plain build factory
                   working_directory: factory
             - run:
                   name: build test image
                   command: |
-                    docker compose build --progress plain test-factory-all-included
+                    docker compose --progress plain build test-factory-all-included
                   working_directory: factory/test-project
             - run:
                   name: check node version
@@ -154,12 +154,12 @@ jobs:
             - run:
                   name: building docker image
                   command: |
-                      docker compose build --progress plain factory
+                      docker compose --progress plain build factory
                   working_directory: factory
             - run:
                   name: build test image
                   command: |
-                    docker compose build --progress plain test-factory-node-override
+                    docker compose --progress plain build test-factory-node-override
                   working_directory: factory/test-project
             - run:
                   name: check node version
@@ -191,13 +191,13 @@ jobs:
             - run:
                   name: building docker image
                   command: |
-                      if [ << parameters.target >> != factory ]; then docker compose build --progress plain factory; fi
-                      docker compose build --progress plain << parameters.target >>
+                      if [ << parameters.target >> != factory ]; then docker compose --progress plain build factory; fi
+                      docker compose --progress plain build << parameters.target >>
                   working_directory: factory
             - run:
                   name: test
                   command: |
-                    docker compose build --progress plain << parameters.test-target >>
+                    docker compose --progress plain build << parameters.test-target >>
                     docker compose run << parameters.test-target >>
                   working_directory: factory/test-project
 

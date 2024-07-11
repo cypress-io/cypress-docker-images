@@ -52,7 +52,7 @@ commands:
 jobs:
     check-factory-versions:
         machine:
-            image: ubuntu-2204:2024.01.1
+            image: ubuntu-2204:2024.05.1
         steps:
             - checkout
             - expand-env-file
@@ -147,7 +147,7 @@ jobs:
                   working_directory: factory/test-project
     check-node-override-version:
         machine:
-            image: ubuntu-2204:2024.01.1
+            image: ubuntu-2204:2024.05.1
         steps:
             - checkout
             - expand-env-file
@@ -173,7 +173,7 @@ jobs:
                   working_directory: factory/test-project
     test-image:
         machine:
-            image: ubuntu-2204:2024.01.1
+            image: ubuntu-2204:2024.05.1
         parameters:
             target:
                 type: string
@@ -203,7 +203,7 @@ jobs:
 
     push:
         machine:
-            image: ubuntu-2204:2024.01.1
+            image: ubuntu-2204:2024.05.1
         parameters:
             target:
                 type: string

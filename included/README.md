@@ -25,6 +25,10 @@ for example:
 
  To avoid unplanned breaking changes, specify a fixed `<cypress version>`, `<node version>` & `<browser version>` combination tag or use the short-form `<cypress version>` tag, not the `latest` tag.  The `latest` tag is linked to the latest released `cypress/included` image and is updated without notice.
 
+## ENTRYPOINT
+
+When running a container from a `cypress/included` image, `cypress run` is executed, as defined by the [ENTRYPOINT](https://docs.docker.com/reference/dockerfile/#entrypoint) parameter of the image.
+
 ## Usage
 
 This image should be enough to run Cypress tests headlessly or in the interactive mode with a single Docker command like this:

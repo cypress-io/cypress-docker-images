@@ -3,7 +3,6 @@
 services:
 
   args-defined:
-    user: node
     build:
       dockerfile: argsDefined.Dockerfile
       context: .

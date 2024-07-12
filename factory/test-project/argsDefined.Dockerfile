@@ -1,7 +1,7 @@
-# Args are defined in the dockerfile before the FROM command.
-ARG CHROME_VERSION='107.0.5304.121-1'
-ARG EDGE_VERSION='100.0.1185.29-1'
-ARG FIREFOX_VERSION='107.0'
+# Args are defined in the Dockerfile before the FROM command.
+ARG CHROME_VERSION='126.0.6478.114-1'
+ARG EDGE_VERSION='126.0.2592.61-1'
+ARG FIREFOX_VERSION='128.0'
 
 ARG BASE_TEST_IMAGE
 

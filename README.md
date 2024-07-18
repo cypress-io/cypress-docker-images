@@ -68,7 +68,7 @@ Don't see the exact combination of Cypress, Node.js and browser versions you nee
 
 - Check out the documentation for each type of Cypress Docker image to read about example usage: [cypress/base](./base/README.md), [cypress/browsers](./browsers/README.md) and [cypress/included](./included/README.md) can all be used directly without change. Each of the Docker images can be used to build other images. [cypress/factory](./factory/README.md) is the preferred image to generate custom images.
 
-- See the example workflow [.github/workflows//example-cypress-github-action.yml](./.github/workflows/example-cypress-github-action.yml) for Continuous Integration (CI) using [cypress&#8209;io/github&#8209;action](https://github.com/cypress-io/github-action) together with Cypress Docker images.
+- Refer to [CI Docker examples](https://on.cypress.io/guides/continuous-integration/introduction#CI-Docker-examples) for links to examples of using Cypress Docker images with different Continuous Integration (CI) providers. See also the example workflow [.github/workflows/example-cypress-github-action.yml](./.github/workflows/example-cypress-github-action.yml) in this repository for CI usage with [cypress&#8209;io/github&#8209;action](https://github.com/cypress-io/github-action) running under the CI provider [GitHub Actions](https://docs.github.com/en/actions).
 
 ## User
 

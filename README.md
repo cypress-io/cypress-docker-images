@@ -70,6 +70,14 @@ Don't see the exact combination of Cypress, Node.js and browser versions you nee
 
 - See the example workflow [.github/workflows//example-cypress-github-action.yml](./.github/workflows/example-cypress-github-action.yml) for Continuous Integration (CI) using [cypress&#8209;io/github&#8209;action](https://github.com/cypress-io/github-action) together with Cypress Docker images.
 
+## User
+
+By default, Docker containers run as `root` user. [cypress/base](./base/README.md), [cypress/browsers](./browsers/README.md) and [cypress/included](./included/README.md) images provide the additional non-root user `node`.
+
+If you run a Cypress Docker image locally as container with a non-root user, refer to the [Docker documentation](https://docs.docker.com/), such as [Docker Desktop FAQs](https://docs.docker.com/desktop/), for information on file-sharing between your host system and Docker. File-sharing details differ depending on the host operating system running Docker.
+
+If you specify a Cypress Docker image in a [GitHub Actions job](https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container) `container` workflow section, add `options: --user 1001` to the workflow to avoid permissions issues.
+
 ## Known problems
 
 ## Firefox not found

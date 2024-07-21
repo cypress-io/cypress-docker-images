@@ -16,7 +16,7 @@ for example:
 - `cypress/base:20.14.0`
 - `cypress/base:latest`
 
-To avoid unplanned breaking changes, specify a fixed `<node version>` tag, not the `latest` tag.  The `latest` tag is linked to the latest released `cypress/base` image and is updated without notice.
+To avoid unplanned breaking changes, specify a fixed `<node version>` tag, not the `latest` tag. The `latest` tag is linked to the latest released `cypress/base` image and is updated without notice.
 
 ## CMD
 

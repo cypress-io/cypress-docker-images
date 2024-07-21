@@ -1,7 +1,9 @@
 # cypress/base-internal
 
->[!NOTE]
->`cypress/base-internal` Docker images are intended for internal Cypress.io use only. Please see [cypress/base](../base) for public images.
+<!-- prettier-ignore-start -->
+> [!NOTE]
+> `cypress/base-internal` Docker images are intended for internal Cypress.io use only. Please see [cypress/base](../base) for public images.
+<!-- prettier-ignore-end -->
 
 For content details of each image, see the corresponding [releases](./releases/) sub-directory.
 

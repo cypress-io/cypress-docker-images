@@ -1,9 +1,11 @@
 # cypress/browsers-internal
 
->[!NOTE]
->`cypress/browsers-internal` Docker images are intended for internal Cypress.io use only. Please see [cypress/browsers](../browsers) for public images.
+<!-- prettier-ignore-start -->
+> [!NOTE]
+> `cypress/browsers-internal` Docker images are intended for internal Cypress.io use only. Please see [cypress/browsers](../browsers) for public images.
+<!-- prettier-ignore-end -->
 
- Images are generally built from [cypress/base-internal](../base-internal/) images. For content details of each image, see the corresponding [releases](./releases/) sub-directory.
+Images are generally built from [cypress/base-internal](../base-internal/) images. For content details of each image, see the corresponding [releases](./releases/) sub-directory.
 
 ## Tags
 

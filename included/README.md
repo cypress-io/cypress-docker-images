@@ -14,7 +14,7 @@
 [cypress/included](https://hub.docker.com/r/cypress/included/tags) images on [Cypress on Docker Hub](https://hub.docker.com/u/cypress) use image tags in the form:
 
 - `<cypress version>`-node-`<node version>`-chrome-`<chrome version>`-ff-`<firefox version>`-edge-`<edge version>`-
-- `<cypress version>`<br>This is a short-form convenience tag,  equivalent to the above full tag.
+- `<cypress version>`<br>This is a short-form convenience tag, equivalent to the above full tag.
 - `latest`
 
 for example:
@@ -23,7 +23,7 @@ for example:
 - `cypress/included:13.11.0`
 - `cypress/included:latest`
 
- To avoid unplanned breaking changes, specify a fixed `<cypress version>`, `<node version>` & `<browser version>` combination tag or use the short-form `<cypress version>` tag, not the `latest` tag.  The `latest` tag is linked to the latest released `cypress/included` image and is updated without notice.
+To avoid unplanned breaking changes, specify a fixed `<cypress version>`, `<node version>` & `<browser version>` combination tag or use the short-form `<cypress version>` tag, not the `latest` tag. The `latest` tag is linked to the latest released `cypress/included` image and is updated without notice.
 
 ## ENTRYPOINT
 

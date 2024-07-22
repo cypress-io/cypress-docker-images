@@ -2,12 +2,12 @@
 
 [`cypress/factory`](https://hub.docker.com/r/cypress/factory) is a Docker image that can be used with [`ARG`](https://docs.docker.com/reference/dockerfile/#arg) instructions in a custom-built [`Dockerfile`](https://docs.docker.com/reference/dockerfile/) to generate a new Docker image with specific versions of:
 
-* Node.js
-* Yarn v1 Classic
-* Chrome
-* Firefox
-* Edge
-* Cypress
+- Node.js
+- Yarn v1 Classic
+- Chrome
+- Firefox
+- Edge
+- Cypress
 
 ## Tags
 
@@ -21,16 +21,16 @@ for example:
 - `cypress/factory:4.0.2`
 - `cypress/factory:latest`
 
- To avoid unplanned breaking changes, specify a fixed `<factory version>` tag, not the `latest` tag.  The `latest` tag is linked to the latest released `cypress/factory` image and is updated without notice.
+To avoid unplanned breaking changes, specify a fixed `<factory version>` tag, not the `latest` tag. The `latest` tag is linked to the latest released `cypress/factory` image and is updated without notice.
 
 ## Benefits
 
-* Freedom to choose which versions to test against.
-* No need to wait on an official release to test the latest version of a browser.
-* Smaller Docker image sizes especially when not including unused browsers.
-* Easily test multiple browser versions.
-* Reduced maintenance and pull requests in this repo.
-* Ability for Cypress to offer more variations of Docker images at low cost.
+- Freedom to choose which versions to test against.
+- No need to wait on an official release to test the latest version of a browser.
+- Smaller Docker image sizes especially when not including unused browsers.
+- Easily test multiple browser versions.
+- Reduced maintenance and pull requests in this repo.
+- Ability for Cypress to offer more variations of Docker images at low cost.
 
 ## API
 

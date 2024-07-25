@@ -1,5 +1,5 @@
 # build it with command
-#   docker build -t cypress/base-internal:18.17.1-yarn-4.1.1 --platform linux/amd64 .
+#   docker build -t cypress/base-internal:18.17.1-yarn-berry --platform linux/amd64 .
 #
 FROM node:18.17.1-bookworm-slim
 
@@ -55,7 +55,7 @@ ENV npm_config_unsafe_perm=true
 # need to enable corepack to set yarn version
 RUN corepack enable
 # set the yarn version to 4 to get yarn berry, which does not install modules into node_modules
-RUN yarn set version 4.1.1
+RUN yarn set version 4.3.1
 
 RUN npm --version \
   && yarn --version \

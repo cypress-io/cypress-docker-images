@@ -1,0 +1,14 @@
+{
+  "name": "example-chromium",
+  "version": "1.0.0",
+  "description": "Basic E2E Cypress test example",
+  "scripts": {
+    "test": "cypress run",
+    "e2e": "cypress run",
+    "e2e:chromium": "cypress run --browser chromium"
+  },
+  "private": true,
+  "devDependencies": {
+    "cypress": "^13.13.3"
+  }
+}

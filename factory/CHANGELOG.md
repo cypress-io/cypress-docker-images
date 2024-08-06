@@ -1,5 +1,9 @@
 # Change log
 
+## 4.0.6
+
+- Reinstates empty directory structure `/usr/share/man` which was previously removed as part of factory build process. Addresses [#1184](https://github.com/cypress-io/cypress-docker-images/issues/1184)
+
 ## 4.0.5
 
 - Updated default node version from `20.15.1` to `20.16.0`. Addressed in [#1182](https://github.com/cypress-io/cypress-docker-images/pull/1182)

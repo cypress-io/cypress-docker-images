@@ -121,7 +121,6 @@ ONBUILD RUN apt-get purge -y --auto-remove \
     gnupg \
     dirmngr\
   && rm -rf /usr/share/doc \
-  && rm -rf /usr/share/man \
   && rm -rf /var/lib/apt/lists/* \
   # Remove cypress install scripts
   && rm -rf /opt/installScripts

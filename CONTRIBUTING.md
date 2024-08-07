@@ -150,7 +150,7 @@ rm -rf /var/lib/apt/lists/*
 
 Note that due to the use of `debian:<suite>-slim` the directories `/usr/share/doc` and `/usr/share/man` already have minimal content.
 
-Deleting `/usr/share/man` has been removed due to side effects of preventing installation of some other Debian packages.
+Deleting `/usr/share/man` has been removed as a default cleanup command due to side effects of preventing installation of some other Debian packages.
 
 ### Use the `--no-install-recommends` with `apt-get`
 

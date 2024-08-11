@@ -17,11 +17,33 @@ We build four images: click on the image name to see the available tags and vers
 
 Cypress Docker images are Linux based, using the Docker image [debian:12-slim](https://hub.docker.com/_/debian) as the default base image. Each of the above listed Cypress Docker images is published with [multi-architecture](https://docs.docker.com/contribute/style/terminology/#multi-architecture--multi-arch) support for `Linux/amd64` and `Linux/arm64` platforms.
 
-Note that `Linux/arm64` variants of [cypress/browsers](./browsers/) and [cypress/included](./included/) images do **not** contain additional browsers (see related Enhancement Request [#695](https://github.com/cypress-io/cypress-docker-images/issues/695)).
-
 Cypress Docker images can be run as containers on Continuous Integration (CI) systems which support Docker. Cypress Docker images can also be run locally under [Docker Desktop](https://docs.docker.com/desktop/) for Mac, Linux or Windows environments.
 
 In the case of Windows environments, see [Docker Desktop for Windows](https://docs.docker.com/desktop/install/windows-install/) and Cypress documentation [Windows Subsystem for Linux](https://on.cypress.io/guides/references/advanced-installation#Windows-Subsystem-for-Linux) for additional information regarding Microsoft's `WSL2` and `WSLg` subsystems. The documentation and scripts in this repository assume that Docker Desktop for Windows runs in a virtual Linux environment.
+
+## Browsers
+
+Cypress Docker images [cypress/browsers](./browsers/) include browsers for the `Linux/amd64` platform. Availability is pending for the `Linux/arm64` platform.
+
+| Browser                    |   `Linux/amd64`    | `Linux/arm64`                                                                |
+| -------------------------- | :----------------: | :--------------------------------------------------------------------------- |
+| [Google Chrome][Chrome]    | :white_check_mark: | see [#1188](https://github.com/cypress-io/cypress-docker-images/issues/1188) |
+| [Mozilla Firefox][Firefox] | :white_check_mark: | see [#1190](https://github.com/cypress-io/cypress-docker-images/issues/1190) |
+| [Microsoft Edge][Edge]     | :white_check_mark: | see [#1189](https://github.com/cypress-io/cypress-docker-images/issues/1189) |
+
+On POSIX-based systems, or with [Git for Windows](https://gitforwindows.org/) at a Git Bash prompt, execute `uname -m` to display your system's architecture. ([x86_64](https://en.wikipedia.org/wiki/X86-64) is equivalent to `amd64`.)
+
+<!-- browser links -->
+
+[Chrome]: https://developer.chrome.com/
+[Firefox]: https://www.mozilla.org/firefox
+[Edge]: https://developer.microsoft.com/microsoft-edge/
+
+[cypress/included](./included/) images, which are built on top of [cypress/browsers](./browsers/), contain the same set of browsers.
+
+[Tags](#tag-selection) for [cypress/browsers](./browsers/) and [cypress/included](./included/) images show which versions of the browsers are loaded into the respective image. (Disregard the browser version tags for current `Linux/arm64` images however.)
+
+Building a custom image with [cypress/factory](./factory/) allows selection of individual browsers from the above list.
 
 ## Tag Selection
 

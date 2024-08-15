@@ -45,6 +45,13 @@ On POSIX-based systems, or with [Git for Windows](https://gitforwindows.org/) at
 
 Building a custom image with [cypress/factory](./factory/) allows selection of individual browsers from the above list.
 
+The [Chromium][Chromium] browser is available from [Debian][Debian-Chromium-Wiki] for both `amd64` and `arm64` architectures and the directory [examples/chromium](./examples/chromium/) demonstrates how the current version of Chromium for Debian can be added to Cypress Docker images.
+At this time, Chromium is not included in the `cypress/factory` build process (see [#1191](https://github.com/cypress-io/cypress-docker-images/issues/1191) for progress).
+
+<!-- chromium links -->
+[Chromium]: https://www.chromium.org/Home/
+[Debian-Chromium-Wiki]: https://wiki.debian.org/Chromium
+
 ## Tag Selection
 
 If no tag is specified, for example `cypress/included`, then the tag `latest` is used by default: `cypress/included:latest`. It is however recommended to use a specific image tag to avoid breaking changes when new images are released, especially when they include new major versions of Node.js or Cypress.

@@ -25,19 +25,13 @@ In the case of Windows environments, see [Docker Desktop for Windows](https://do
 
 Cypress Docker images [cypress/browsers](./browsers/) include browsers for the `Linux/amd64` platform. Availability is pending for the `Linux/arm64` platform.
 
-| Browser                    |   `Linux/amd64`    | `Linux/arm64`                                                                |
-| -------------------------- | :----------------: | :--------------------------------------------------------------------------- |
-| [Google Chrome][Chrome]    | :white_check_mark: | see [#1188](https://github.com/cypress-io/cypress-docker-images/issues/1188) |
-| [Mozilla Firefox][Firefox] | :white_check_mark: | see [#1190](https://github.com/cypress-io/cypress-docker-images/issues/1190) |
-| [Microsoft Edge][Edge]     | :white_check_mark: | see [#1189](https://github.com/cypress-io/cypress-docker-images/issues/1189) |
+| Browser                    |   `Linux/amd64`    | `Linux/arm64`                                                                                                                    |
+| -------------------------- | :----------------: | :------------------------------------------------------------------------------------------------------------------------------- |
+| [Google Chrome][Chrome]    | :white_check_mark: | see [#1188](https://github.com/cypress-io/cypress-docker-images/issues/1188)                                                     |
+| [Mozilla Firefox][Firefox] | :white_check_mark: | see [#1190](https://github.com/cypress-io/cypress-docker-images/issues/1190) and [examples/firefox-esr](./examples/firefox-esr/) |
+| [Microsoft Edge][Edge]     | :white_check_mark: | see [#1189](https://github.com/cypress-io/cypress-docker-images/issues/1189)                                                     |
 
 On POSIX-based systems, or with [Git for Windows](https://gitforwindows.org/) at a Git Bash prompt, execute `uname -m` to display your system's architecture. ([x86_64](https://en.wikipedia.org/wiki/X86-64) is equivalent to `amd64`.)
-
-<!-- browser links -->
-
-[Chrome]: https://developer.chrome.com/
-[Firefox]: https://www.mozilla.org/firefox
-[Edge]: https://developer.microsoft.com/microsoft-edge/
 
 [cypress/included](./included/) images, which are built on top of [cypress/browsers](./browsers/), contain the same set of browsers.
 
@@ -45,12 +39,32 @@ On POSIX-based systems, or with [Git for Windows](https://gitforwindows.org/) at
 
 Building a custom image with [cypress/factory](./factory/) allows selection of individual browsers from the above list.
 
-The [Chromium][Chromium] browser is available from [Debian][Debian-Chromium-Wiki] for both `amd64` and `arm64` architectures and the directory [examples/chromium](./examples/chromium/) demonstrates how the current version of Chromium for Debian can be added to Cypress Docker images.
-At this time, Chromium is not included in the `cypress/factory` build process (see [#1191](https://github.com/cypress-io/cypress-docker-images/issues/1191) for progress).
-
-<!-- chromium links -->
+<!-- browser links -->
+[Chrome]: https://developer.chrome.com/
+[Firefox]: https://www.mozilla.org/firefox
+[Edge]: https://developer.microsoft.com/microsoft-edge/
 [Chromium]: https://www.chromium.org/Home/
+[Firefox Channel Choice]: https://support.mozilla.org/en-US/kb/choosing-firefox-update-channel
+
+### Debian packages
+
+[Debian][Debian packages] provides two Cypress-compatible browsers as packages covering both `amd64` and `arm64` architectures.
+These can be used to complement the browsers that are configurable through the `cypress/factory` build process:
+
+- See the directory [examples/chromium](./examples/chromium/) to add the current version of Chromium for Debian to Cypress Docker images.
+  The [Debian Chromium Wiki][Debian-Chromium-Wiki] describes the [Chromium][Chromium] browser distribution details.
+  Chromium is not currently included in the `cypress/factory` build process.
+  See [#1191](https://github.com/cypress-io/cypress-docker-images/issues/1191) for progress of this integration.
+
+- See the directory [examples/firefox-esr](./examples/firefox-esr/) to add Firefox ESR for Debian to Cypress Docker images.
+  The [Debian Firefox Wiki][Debian-Firefox-Wiki] describes the [Firefox][Firefox] browser distribution details from the [Extended Support Release][Firefox Channel Choice] channel.
+  This differs from the `cypress/factory` build process which uses Firefox `amd64` versions from the [Rapid Release][Firefox Channel Choice] channel.
+  See [#1190](https://github.com/cypress-io/cypress-docker-images/issues/1190) for availability of Firefox `arm64` [Rapid Release][Firefox Channel Choice] versions.
+
+<!-- Debian links -->
+[Debian packages]: https://www.debian.org/distrib/packages
 [Debian-Chromium-Wiki]: https://wiki.debian.org/Chromium
+[Debian-Firefox-Wiki]: https://wiki.debian.org/Firefox
 
 ## Tag Selection
 

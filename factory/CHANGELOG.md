@@ -1,5 +1,9 @@
 # Change log
 
+## 4.1.0
+
+- Adds [zstd](https://packages.debian.org/stable/utils/zstd) (fast lossless compression algorithm -- CLI tool) to images. Addresses [#584](https://github.com/cypress-io/cypress-docker-images/issues/584)
+
 ## 4.0.6
 
 - Reinstates empty directory structure `/usr/share/man` which was previously removed as part of factory build process. Addresses [#1184](https://github.com/cypress-io/cypress-docker-images/issues/1184)

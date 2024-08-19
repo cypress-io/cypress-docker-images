@@ -55,7 +55,9 @@ RUN ls -la /root \
     # Needed to make https calls from the docker container
     openssl \
     ca-certificates \
-    # build only dependancies: removed in onbuild step
+    # Fast lossless compression algorithm - preferred by GitHub @actions/cache
+    zstd \
+    # build only dependencies: removed in onbuild step
     bzip2 \
     gnupg \
     dirmngr \

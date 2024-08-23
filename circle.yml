@@ -356,6 +356,7 @@ workflows:
                         # if publishing an old version
                         # This job must run because the base, browsers and included jobs depend on it
                             - master
+                            - chore/build_node_22_7_0_image
                 requires:
                     - factory
                     - factory-arm
@@ -372,6 +373,7 @@ workflows:
                         # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
                         # if publishing an old version
                             - master
+                            - chore/build_node_22_7_0_image
                 requires:
                     - "Push Factory Image"
                     - base
@@ -387,6 +389,7 @@ workflows:
                         # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
                         # if publishing an old version
                             - master
+                            - chore/build_node_22_7_0_image
                 requires:
                     - "Push Factory Image"
                     - browsers
@@ -402,6 +405,7 @@ workflows:
                         # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
                         # if publishing an old version
                             - master
+                            - chore/build_node_22_7_0_image
                 requires:
                     - "Push Factory Image"
                     - included

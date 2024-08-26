@@ -1,5 +1,9 @@
 # Change log
 
+## 4.1.1
+
+- Updated default node version from `20.16.0` to `20.17.0`. Addressed in [#1201](https://github.com/cypress-io/cypress-docker-images/pull/1201)
+
 ## 4.1.0
 
 - Adds [zstd](https://packages.debian.org/stable/utils/zstd) (fast lossless compression algorithm -- CLI tool) to images. Addresses [#584](https://github.com/cypress-io/cypress-docker-images/issues/584)

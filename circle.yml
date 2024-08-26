@@ -211,8 +211,8 @@ jobs:
         steps:
             - checkout
             - expand-env-file
-            - halt-if-docker-image-exists:
-                 target: << parameters.target >>
+            # - halt-if-docker-image-exists:
+            #      target: << parameters.target >>
             - run:
                 name: Building Docker image for target << parameters.target >>
                 no_output_timeout: 20m # installing cypress on arm can take some time.
@@ -356,6 +356,7 @@ workflows:
                         # if publishing an old version
                         # This job must run because the base, browsers and included jobs depend on it
                             - master
+                            - chore/republish_factory_default
                 requires:
                     - factory
                     - factory-arm
@@ -372,6 +373,7 @@ workflows:
                         # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
                         # if publishing an old version
                             - master
+                            - chore/republish_factory_default
                 requires:
                     - "Push Factory Image"
                     - base
@@ -387,6 +389,7 @@ workflows:
                         # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
                         # if publishing an old version
                             - master
+                            - chore/republish_factory_default
                 requires:
                     - "Push Factory Image"
                     - browsers
@@ -402,6 +405,7 @@ workflows:
                         # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
                         # if publishing an old version
                             - master
+                            - chore/republish_factory_default
                 requires:
                     - "Push Factory Image"
                     - included

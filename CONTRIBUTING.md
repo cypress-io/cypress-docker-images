@@ -57,7 +57,9 @@ docker compose run test-factory-all-included
 
 #### Automatic
 
-##### New versions
+##### Primary versions
+
+The [factory/.env](./factory/.env) in the `master` branch should be maintained with the latest stable and supported versions. An exception is the `FACTORY_DEFAULT_NODE_VERSION` which should be set to the [Node.js Active LTS](https://nodejs.org/en/about/previous-releases) version, not the "Current" version.
 
 To publish a new image for `factory`, `base`, `browsers`, or `included`, open a PR with the desired version(s) updated in the [factory/.env](./factory/.env) file. If you change any of the following environment variables in [factory/.env](./factory/.env), then you should also bump the `FACTORY_VERSION` in the same file and make a note of the change in the factory [CHANGELOG](./factory/CHANGELOG.md):
 
@@ -69,15 +71,15 @@ You should not change the `FACTORY_VERSION` or make an entry into the factory [C
 
 Once the PR is merged into the `master` branch, the corresponding images will be pushed to [Docker Hub](https://hub.docker.com/u/cypress) and to the [Amazon ECR (Elastic Container Registry) Public Gallery](https://gallery.ecr.aws/cypress-io) via an automated script run through [CircleCI](circle.yml). Please check that the CI jobs pass after merge. Any CI failure can cause the release process to be interrupted.
 
-##### Older versions
+##### Alternate versions
 
 > Note: Assistance from a member of the Cypress org is required for this process
 
-In general, [factory/.env](./factory/.env) in the `master` branch should contain the latest versions we officially support. If you need to release an older version, do not modify contents in the `master` branch. Instead, carry out the following steps:
+If you need to release alternate versions that do not qualify to be primary versions, do not modify the contents of the [factory/.env](./factory/.env) file in the `master` branch. An example would be to publish images including updated [Node.js releases](https://nodejs.org/en/about/previous-releases) in the category "Maintenance LTS" or "Current". Instead, carry out the following steps:
 
 1. Create a feature branch in the form `<cypress-version>-node-<node.js version>-publish`, for example `13.11.0-node-18.20.3-publish`, branched from the `master` branch. If you are not a member of the Cypress org, make a request via a new issue to create a feature branch.
 2. Modify [factory/.env](./factory/.env) with the desired versions. Do not modify the `FACTORY_VERSION`. No new `cypress/factory` image should be published with this process.
-3. Modify [factory/docker-compose.yml](./factory/docker-compose.yml) to comment out the creation of `latest` tags. Comment out the `cypress/included` `INCLUDED_IMAGE_SHORT_TAG` to also prevent this tag from being created. This step is essential to avoid related tags of existing released images being moved back to point to older images.
+3. Modify [factory/docker-compose.yml](./factory/docker-compose.yml) to comment out the creation of `latest` tags. Comment out the `cypress/included` `INCLUDED_IMAGE_SHORT_TAG` to also prevent this tag from being created. This step is essential to avoid the related tags of any existing released images being moved to point to non-primary images.
 4. Modify [circle.yml](circle.yml) to push releases from the feature branch.
 5. Open a PR which targets the feature branch.
 6. After PR merge, check Docker Hub and the associated new image(s).

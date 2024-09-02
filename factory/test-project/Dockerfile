@@ -1,4 +1,4 @@
-ARG BASE_TEST_IMAGE
+ARG BASE_TEST_IMAGE='cypress/factory'
 
 FROM ${BASE_TEST_IMAGE}
 RUN echo "current user: $(whoami)"

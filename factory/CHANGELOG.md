@@ -1,5 +1,9 @@
 # Change log
 
+## 4.2.0
+
+- Updated Debian base to `debian:12.7-slim` using [Debian 12.7](https://www.debian.org/News/2024/20240831), released on Aug 31, 2024. Addresses [#1207](https://github.com/cypress-io/cypress-docker-images/issues/1207)
+
 ## 4.1.1
 
 - Updated default node version from `20.16.0` to `20.17.0`. Addressed in [#1201](https://github.com/cypress-io/cypress-docker-images/pull/1201)

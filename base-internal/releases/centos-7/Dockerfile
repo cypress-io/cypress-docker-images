@@ -22,7 +22,7 @@ RUN     for repo in /etc/yum.repos.d/CentOS-SCLo-scl*.repo; do \
         done && yum clean all
 
 # Install dependencies for building the addon and setting devtoolset-8 as the default compiler
-RUN yum -y install curl python3 make atk-devel atk java-atk-wrapper at-spi2-atk gtk3 libXt libdrm mesa-libgbm Xvfb devtoolset-8-gcc devtoolset-8-gcc-c++ gcc openssl-devel bzip2-devel libffi-devel zlib-devel
+RUN yum -y install curl python3 make atk-devel atk java-atk-wrapper at-spi2-atk gtk3 libXt libdrm mesa-libgbm Xvfb devtoolset-8-gcc devtoolset-8-gcc-c++ openssl-devel bzip2-devel libffi-devel zlib-devel
 RUN echo >> /etc/profile.d/devtoolset-8.sh 'source scl_source enable devtoolset-8'
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 RUN echo >> /etc/profile.d/nvm.sh 'source ~/.nvm/nvm.sh'

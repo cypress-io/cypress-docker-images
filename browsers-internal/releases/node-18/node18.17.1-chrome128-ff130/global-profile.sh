@@ -6,6 +6,6 @@ if [[ "$(uname -a)" = *"arm"* || "$(uname -a)" = *"aarch64"* ]]; then
     echo "You must use the built-in Electron browser (--browser electron) to run Cypress or find and install unofficial Arm binary builds."
     echo
     echo "More details and links to upstream issues for Chrome, Firefox, and Edge can be found at Cypress's issue tracker:"
-    echo "  https://github.com/cypress-io/cypress-docker-images/issues/695"
+    echo "  https://github.com/cypress-io/cypress-docker-images/blob/master/README.md#browsers"
     printf "\e[0m" # reset
 fi

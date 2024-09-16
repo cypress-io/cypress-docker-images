@@ -133,8 +133,8 @@ jobs:
                   name: check git version
                   command: |
                     ACTUAL_VERSION=$(docker compose run test-factory-all-included git --version)
-                    if [  "git version 2.39.2" != "${ACTUAL_VERSION}" ]; then
-                      echo "Version mismatch, git package version: git version 2.39.2 != ${ACTUAL_VERSION}"
+                    if [  "git version 2.39.5" != "${ACTUAL_VERSION}" ]; then
+                      echo "Version mismatch, git package version: git version 2.39.5 != ${ACTUAL_VERSION}"
                       exit 1;
                     fi
                     echo "Version ${ACTUAL_VERSION} confirmed"

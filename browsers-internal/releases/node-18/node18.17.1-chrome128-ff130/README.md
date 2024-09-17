@@ -17,4 +17,4 @@ NOTE: This image is intended for internal use with https://github.com/cypress-io
 
 **Note:** this image uses the `root` user. You might want to switch to non-root user like `node` when running this container for security
 
-**Note:** Currently, the linux/arm64 build of this image does not contain any browsers except Electron. See https://github.com/cypress-io/cypress-docker-images/issues/695 for more information.
+**Note:** Currently, the linux/arm64 build of this image does not contain any browsers except Electron. See https://github.com/cypress-io/cypress-docker-images/blob/master/README.md#browsers for more information.

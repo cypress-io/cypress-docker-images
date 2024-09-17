@@ -47,7 +47,7 @@ RUN ls -la /root \
     # Needed to support curl, similar to ps, it's not directly used by cypress but leaving it in the container is practically free.
     curl \
     # Always install: Needed for dashboard integration
-    git \
+#    git \
     # Install ssh client to enable git cloning via ssh without falling back to CI's native git client.
     openssh-client\
     # Chrome and Edge require wget even after installation. We could do more work to dynamically remove it, but I doubt it's worth it.

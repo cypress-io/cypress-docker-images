@@ -69,7 +69,7 @@ jobs:
             - run:
                   name: check node version
                   command: |
-                    ACTUAL_VERSION=$(docker compose run test-factory-all-included node -v)
+                    ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included node -v)
                     if [ v${NODE_VERSION} != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, v${NODE_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
@@ -79,7 +79,7 @@ jobs:
             - run:
                   name: check yarn version
                   command: |
-                    ACTUAL_VERSION=$(docker compose run test-factory-all-included yarn -v)
+                    ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included yarn -v)
                     if [ ${YARN_VERSION} != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, ${YARN_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
@@ -89,7 +89,7 @@ jobs:
             - run:
                   name: check chrome version
                   command: |
-                    ACTUAL_VERSION=$(docker compose run test-factory-all-included google-chrome --version | xargs)
+                    ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included google-chrome --version | xargs)
                     TRIMMED_CHROME_VERSION=$(echo ${CHROME_VERSION} | sed -e 's/-.*$//g')
                     if [ "Google Chrome ${TRIMMED_CHROME_VERSION}" != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, Google Chrome ${TRIMMED_CHROME_VERSION} != ${ACTUAL_VERSION}"
@@ -100,7 +100,7 @@ jobs:
             - run:
                   name: check firefox version
                   command: |
-                    ACTUAL_VERSION=$(docker compose run test-factory-all-included firefox --version)
+                    ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included firefox --version)
                     if [ "Mozilla Firefox ${FIREFOX_VERSION}" != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, Mozilla Firefox ${FIREFOX_VERSION} != ${ACTUAL_VERSION}"
                       exit 1;
@@ -110,7 +110,7 @@ jobs:
             - run:
                   name: check edge version
                   command: |
-                    ACTUAL_VERSION=$(docker compose run test-factory-all-included edge --version | xargs)
+                    ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included edge --version | xargs)
                     TRIMMED_EDGE_VERSION=$(echo ${EDGE_VERSION} | sed -e 's/-.*$//g')
                     if [ "Microsoft Edge ${TRIMMED_EDGE_VERSION}" != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, Microsoft Edge ${TRIMMED_EDGE_VERSION} != ${ACTUAL_VERSION}"
@@ -121,7 +121,7 @@ jobs:
             - run:
                   name: check cypress version
                   command: |
-                    ACTUAL_VERSION=$(docker compose run test-factory-all-included cypress -v)
+                    ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included cypress -v)
                     TRIMMED_ACTUAL_VERSION=$(echo ${ACTUAL_VERSION} | sed -e 's/ Cypress binary version:.*$//g')
                     if [  "Cypress package version: ${CYPRESS_VERSION}" != "${TRIMMED_ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, Cypress package version: ${CYPRESS_VERSION} != ${TRIMMED_ACTUAL_VERSION}"
@@ -135,13 +135,13 @@ jobs:
                   # There is no check for a certain version of git
                   name: check git version
                   command: |
-                    ACTUAL_VERSION=$(docker compose run test-factory-all-included git --version)
+                    ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included git --version)
                     echo "Version ${ACTUAL_VERSION} confirmed"
                   working_directory: factory/test-project
             - run:
                   name: check ssh version # We don't really care what version ssh has as long as the command doesn't error
                   command: |
-                    ACTUAL_VERSION=$(docker compose run test-factory-all-included ssh -V)
+                    ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included ssh -V)
                     echo "Version ${ACTUAL_VERSION} confirmed"
                   working_directory: factory/test-project
     check-node-override-version:
@@ -163,7 +163,7 @@ jobs:
             - run:
                   name: check node version
                   command: |
-                    ACTUAL_VERSION=$(docker compose run test-factory-node-override node -v)
+                    ACTUAL_VERSION=$(docker compose run --rm test-factory-node-override node -v)
                     if [ v18.17.1 != "${ACTUAL_VERSION}" ]; then
                       echo "Version mismatch, v18.17.1 != ${ACTUAL_VERSION}"
                       exit 1;
@@ -197,7 +197,7 @@ jobs:
                   name: test
                   command: |
                     docker compose --progress plain build << parameters.test-target >>
-                    docker compose run << parameters.test-target >>
+                    docker compose run --rm << parameters.test-target >>
                   working_directory: factory/test-project
 
     push:

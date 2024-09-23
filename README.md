@@ -121,6 +121,12 @@ If you run a Cypress Docker image locally as container with a non-root user, ref
 
 If you specify a Cypress Docker image in a [GitHub Actions job](https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container) `container` workflow section, add `options: --user 1001` to the workflow to avoid permissions issues.
 
+## Debug logs
+
+To enable all Cypress debug logs when running Cypress in a Docker container, set the environment variable `DEBUG` to the value `cypress:*`. To filter the debug logs read [Log sources](https://on.cypress.io/troubleshooting#Log-sources) for alternate values of `DEBUG`.
+- For `docker run` in a command line, refer to [docker run: set environment variables](https://docs.docker.com/reference/cli/docker/container/run/#env) for options to pass environment variables to a Docker container.
+- In a Continuous Integration (CI) workflow using a Cypress Docker image, refer to your CI documentation for information on setting environment variables.
+
 ## Known problems
 
 ## Firefox not found

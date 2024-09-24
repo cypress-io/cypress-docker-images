@@ -141,7 +141,7 @@ jobs:
             - run:
                   name: check ssh version # We don't really care what version ssh has as long as the command doesn't error
                   command: |
-                    ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included ssh -V)
+                    ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included ssh -V 2>&1)
                     echo "Version ${ACTUAL_VERSION} confirmed"
                   working_directory: factory/test-project
     check-node-override-version:

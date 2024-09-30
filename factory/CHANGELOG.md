@@ -1,5 +1,9 @@
 # Change log
 
+## 4.2.1
+
+- Rebuilt factory with latest Debian `12.x` fixes. This removes the [CVE-2024-32002](https://nvd.nist.gov/vuln/detail/CVE-2024-32002), [CVE-2024-45490](https://nvd.nist.gov/vuln/detail/CVE-2024-45490), [CVE-2024-45491](https://nvd.nist.gov/vuln/detail/CVE-2024-45491) and [CVE-2024-45492](https://nvd.nist.gov/vuln/detail/CVE-2024-45492) vulnerabilities being reported in security scans. Addresses [#1217](https://github.com/cypress-io/cypress-docker-images/issues/1217) for `cypress/factory`.
+
 ## 4.2.0
 
 - Updated Debian base to `debian:12.7-slim` using [Debian 12.7](https://www.debian.org/News/2024/20240831), released on Aug 31, 2024. Addresses [#1207](https://github.com/cypress-io/cypress-docker-images/issues/1207)

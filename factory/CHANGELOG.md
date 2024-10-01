@@ -1,5 +1,9 @@
 # Change log
 
+## 4.2.2
+
+- Updated default node version from `20.17.0` to `20.18.0`. Addresses [#1217](https://github.com/cypress-io/cypress-docker-images/issues/1217) for `cypress/base`, `cypress/browsers` and `cypress/included`.
+
 ## 4.2.1
 
 - Rebuilt factory with latest Debian `12.x` fixes. This removes the [CVE-2024-32002](https://nvd.nist.gov/vuln/detail/CVE-2024-32002), [CVE-2024-45490](https://nvd.nist.gov/vuln/detail/CVE-2024-45490), [CVE-2024-45491](https://nvd.nist.gov/vuln/detail/CVE-2024-45491) and [CVE-2024-45492](https://nvd.nist.gov/vuln/detail/CVE-2024-45492) vulnerabilities being reported in security scans. Addresses [#1217](https://github.com/cypress-io/cypress-docker-images/issues/1217) for `cypress/factory`.

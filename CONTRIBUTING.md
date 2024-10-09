@@ -50,7 +50,7 @@ cd test-project
 set -a && . ../.env && set +a
 
 # run the test in an image built on top of the factory.
-docker compose run test-factory-all-included
+docker compose run --rm test-factory-all-included
 ```
 
 ### Publishing images

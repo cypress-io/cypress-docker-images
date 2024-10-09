@@ -1,5 +1,5 @@
 # build this image with command
-#   docker build -t cypress/browsers-internal:node20.18.0-chrome130-ff131 --platform linux/amd64 .
+#   docker build -t cypress/browsers-internal:node20.18.0-chrome129-ff131 --platform linux/amd64 .
 #
 FROM cypress/base-internal:20.18.0
 
@@ -41,7 +41,7 @@ RUN wget --no-verbose /usr/src/libappindicator3-1_0.4.92-7_amd64.deb "http://ftp
 
 # install Chrome browser
 RUN node -p "process.arch === 'arm64' ? 'Not downloading Chrome since we are on arm64: https://crbug.com/677140' : process.exit(1)" || \
-  (wget --no-verbose -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_130.0.6723.44_amd64.deb" && \
+  (wget --no-verbose -O /usr/src/google-chrome-stable_current_amd64.deb "http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_129.0.6668.100-1_amd64.deb" && \
   dpkg -i /usr/src/google-chrome-stable_current_amd64.deb ; \
   apt-get install -f -y && \
   rm -f /usr/src/google-chrome-stable_current_amd64.deb)

@@ -52,7 +52,7 @@ ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 # install Firefox browser
 RUN node -p "process.arch === 'arm64' ? 'Not downloading Firefox since we are on arm64: https://bugzilla.mozilla.org/show_bug.cgi?id=1678342' : process.exit(1)" || \
-  (wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/131.0.2/linux-x86_64/en-US/firefox-131.0.1.tar.bz2 && \
+  (wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/131.0.2/linux-x86_64/en-US/firefox-131.0.2.tar.bz2 && \
   tar -C /opt -xjf /tmp/firefox.tar.bz2 && \
   rm /tmp/firefox.tar.bz2 && \
   ln -fs /opt/firefox/firefox /usr/bin/firefox)

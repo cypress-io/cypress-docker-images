@@ -94,6 +94,7 @@ If you need to release alternate versions that do not qualify to be primary vers
 2. Log into Docker Desktop using `cypressdockerpublisher` credentials.
 3. Follow the instructions to build the image from within the generated `Dockerfile` within the appropriate directory in order to build the image locally.
 4. Select 'Push to Hub' on the generate image within Docker Desktop.
+  * If pushing the image fails with `(HTTP code 400) unexpected - invalid tag format`, you can try pushing the image through the CLI, `docker push <NAME:TAG>`
 5. Check Docker Hub to ensure the new image is published and test that it works.
 
 ![](https://github.com/cypress-io/cypress/assets/1271364/85507060-acc3-48b5-bc16-4160c4620e1e)

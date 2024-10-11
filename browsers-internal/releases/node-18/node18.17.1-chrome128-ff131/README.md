@@ -1,4 +1,4 @@
-# cypress/browsers-internal:node18.17.1-chrome128-ff130
+# cypress/browsers-internal:node18.17.1-chrome128-ff131
 
 A complete image with all operating system dependencies for Cypress, and Chrome 128.0.6613.137-1, Firefox 131.0.2 browsers.
 

@@ -18,6 +18,7 @@ RUN apt-get update && \
   libcurl4 \
   libcurl3-gnutls \
   libcurl3-nss \
+  libvulkan1 \
   xdg-utils \
   wget \
   curl \

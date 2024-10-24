@@ -1,5 +1,9 @@
 # Change log
 
+## 4.3.0
+
+- Add the [Node.js release key](https://github.com/nodejs/node/blob/main/README.md#release-keys) for Antoine du Hamel duhamelantoine1995@gmail.com `C0D6248439F1D5604AAFFB4021D900FFDB233756`. Addresses [#1234](https://github.com/cypress-io/cypress-docker-images/issues/1234).
+
 ## 4.2.2
 
 - Updated default node version from `20.17.0` to `20.18.0`. Addresses [#1217](https://github.com/cypress-io/cypress-docker-images/issues/1217) for `cypress/base`, `cypress/browsers` and `cypress/included`.

@@ -4,6 +4,7 @@ groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
 # The following is borrowed from https://github.com/nodejs/docker-node/blob/main/20/bookworm-slim/Dockerfile
+# Node.js GPG keys are taken from https://github.com/nodejs/node/
 ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     && case "${dpkgArch##*-}" in \
       amd64) ARCH='x64';; \
@@ -31,6 +32,7 @@ ARCH= && dpkgArch="$(dpkg --print-architecture)" \
       C82FA3AE1CBEDC6BE46B9360C43CEC45C17AB93C \
       108F52B48DB57BB0CC439B2997B01419BD92F80A \
       A363A499291CBBC940DD62E41F10027AF002F8B0 \
+      C0D6248439F1D5604AAFFB4021D900FFDB233756 \
     ; do \
       gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$key" || \
       gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key" ; \

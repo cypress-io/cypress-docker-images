@@ -1,5 +1,9 @@
 # Change log
 
+## 5.0.0
+
+- Updated default node version from `20.18.0` (`Iron` - Maintenance LTS) to `22.11.0` (`Jod` - Active LTS) - see [Blog v22.11.0](https://nodejs.org/en/blog/release/v22.11.0). Addresses [#1239]https://github.com/cypress-io/cypress-docker-images/issues/1239).
+
 ## 4.3.0
 
 - Add the [Node.js release key](https://github.com/nodejs/node/blob/main/README.md#release-keys) for Antoine du Hamel duhamelantoine1995@gmail.com `C0D6248439F1D5604AAFFB4021D900FFDB233756`. Addresses [#1234](https://github.com/cypress-io/cypress-docker-images/issues/1234).

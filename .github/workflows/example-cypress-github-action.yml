@@ -13,7 +13,7 @@ on: workflow_dispatch
 
 jobs:
   docker-base:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     container:
       # Examples use latest tag
       # For production use, to avoid the risk of breaking changes,
@@ -32,7 +32,7 @@ jobs:
           working-directory: examples/basic
 
   docker-browsers:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     strategy:
       # Makes sure that each browser test runs, even if any other test fails
       fail-fast: false
@@ -53,7 +53,7 @@ jobs:
           browser: ${{ matrix.browser }}
 
   docker-included:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:

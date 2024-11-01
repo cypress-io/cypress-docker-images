@@ -196,7 +196,3 @@ docker run -it --cpus=0.2 -e DEBUG=cypress:launcher:* --entrypoint=cypress cypre
 ## Alternate users
 
 - [examples/included-as-non-root](../examples/included-as-non-root) describes how to run tests as non-root user `node` using a `cypress/included` image
-
-The following example is built on a legacy version of Cypress and has not yet been updated to demonstrate current Cypress versions:
-
-- [examples/included-as-non-root-mapped](../examples/included-as-non-root-mapped) shows how to build a Docker image on top of `cypress/included` that runs with a non-root user that matches the id of the user on the host machine. This way, the permissions on any files created during the test run match the user's permissions on the host machine. This example is specific to using `cypress/included` images under [Docker Desktop on Mac](https://docs.docker.com/desktop/install/mac-install/).

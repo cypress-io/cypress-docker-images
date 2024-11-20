@@ -1,8 +1,12 @@
 # Change log
 
+## 5.1.0
+
+- Updated Debian base to `debian:12.8-slim` using [Debian 12.8](https://www.debian.org/News/2024/20241109), released on Nov 9, 2024. Addresses [#1252](https://github.com/cypress-io/cypress-docker-images/issues/1252).
+
 ## 5.0.0
 
-- Updated default node version from `20.18.0` (`Iron` - Maintenance LTS) to `22.11.0` (`Jod` - Active LTS) - see [Blog v22.11.0](https://nodejs.org/en/blog/release/v22.11.0). Addresses [#1239]https://github.com/cypress-io/cypress-docker-images/issues/1239).
+- Updated default node version from `20.18.0` (`Iron` - Maintenance LTS) to `22.11.0` (`Jod` - Active LTS) - see [Blog v22.11.0](https://nodejs.org/en/blog/release/v22.11.0). Addresses [#1239](https://github.com/cypress-io/cypress-docker-images/issues/1239).
 
 ## 4.3.0
 

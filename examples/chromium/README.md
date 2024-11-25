@@ -26,10 +26,10 @@ In this example we first run the unchanged image `cypress/base` as a container:
 ```shell
 cd examples/chromium  # Use a pre-configured simple Cypress E2E project
 npm ci                # Install Cypress
-docker run -it --rm -v .:/e2e -w /e2e cypress/base  # Run image as container
+docker run -it --rm -v .:/app -w /app cypress/base  # Run image as container
 ```
 
-At the `bash` prompt `:/e2e#`, we can then enter the following commands:
+At the `bash` prompt `:/app#`, we can then enter the following commands:
 
 ```shell
 apt-get update                      # Update package index

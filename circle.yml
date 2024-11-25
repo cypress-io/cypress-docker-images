@@ -1,8 +1,8 @@
 # info on building Docker images on Circle
 # https://circleci.com/docs/2.0/building-docker-images/
 
-## If you wish to release an older Docker image, do not modify this file in the master branch.
-## Follow the instructions in the CONTRIBUTING document and work instead in a feature branch.
+## If you wish to release Docker image(s) with alternate (i.e. non-primary) versions, do not modify this file in the master branch.
+## Follow the instructions in the CONTRIBUTING document for alternate versions and work instead in a feature branch.
 ## Modify the push jobs below to be triggered on the feature branch, not the master branch.
 
 version: 2.1
@@ -351,8 +351,9 @@ workflows:
                     branches:
                         only:
                         # Only branches matching the below regex filters will run
-                        # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
-                        # if publishing an old version
+                        # Follow the instructions in the CONTRIBUTING document for alternate versions and
+                        # change to a feature branch such as <cypress-version>-node-<node.js version>-publish
+                        # if publishing an alternate (non-primary) version
                         # This job must run because the base, browsers and included jobs depend on it
                             - master
                 requires:
@@ -369,7 +370,7 @@ workflows:
                         only:
                         # Only branches matching the below regex filters will run
                         # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
-                        # if publishing an old version
+                        # if publishing an alternate version
                             - master
                 requires:
                     - "Push Factory Image"
@@ -384,7 +385,7 @@ workflows:
                         only:
                         # Only branches matching the below regex filters will run
                         # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
-                        # if publishing an old version
+                        # if publishing an alternate version
                             - master
                 requires:
                     - "Push Factory Image"
@@ -399,7 +400,7 @@ workflows:
                         only:
                         # Only branches matching the below regex filters will run
                         # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
-                        # if publishing an old version
+                        # if publishing an alternate version
                             - master
                 requires:
                     - "Push Factory Image"

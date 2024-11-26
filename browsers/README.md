@@ -13,15 +13,21 @@
 
 [cypress/browsers](https://hub.docker.com/r/cypress/browsers/tags) images on [Cypress on Docker Hub](https://hub.docker.com/u/cypress) use image tags in the form:
 
-- node-`<node version>`-chrome-`<chrome version>`-ff-`<firefox version>`-edge-`<edge version>`
+- `node-<node version>-chrome-<chrome version>-ff-<firefox version>-edge-<edge version>`
+- `<node version>`<br>This is a moveable short-form convenience tag, equivalent to the above full tag.
 - `latest`
 
 for example:
 
 - `cypress/browsers:node-20.14.0-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1`
+- `cypress/browsers:22.11.0`
 - `cypress/browsers:latest`
 
-To avoid unplanned breaking changes, specify a fixed `<node version>` & `<browser version>` combination tag, not the `latest` tag. The `latest` tag is linked to the latest released `cypress/browsers` image and is updated without notice.
+To avoid unplanned breaking changes, specify a fixed `<node version>` & `<browser version>` combination tag.
+
+The short-form `<node version>` convenience tag is linked to the latest image release for the named Node.js version. The contents of the image may be updated with newer browser versions without notice when they are released. `cypress/browsers:22.11.0` is the first image with a `cypress/browsers` short-form tag. Previously published `cypress/browsers` images do not have the short-form tag available.
+
+The `latest` tag is linked to the latest released `cypress/browsers` image for the [Node.js Active LTS version](https://github.com/nodejs/release#release-schedule) and is updated without notice.
 
 ## CMD
 

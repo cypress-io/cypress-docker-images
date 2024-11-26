@@ -4,7 +4,7 @@ Cypress Docker images are published to [Cypress on Docker Hub](https://hub.docke
 
 These images provide all of the required dependencies for running Cypress in [Docker](https://docs.docker.com/guides/docker-overview/).
 
-We build four images: click on the image name to see the available tags and versions. We provide multiple tags for various operating systems and specific browser versions. These allow you to target specific combinations you need.
+We build four images: click on the image name to see the available tags with versions, and refer to the [Tags](#tags) section below. These allow you to target specific combinations you need.
 
 | Image Name                                                     | Description                                                                        | Monthly pulls                                                                                                                         |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -35,7 +35,7 @@ On POSIX-based systems, or with [Git for Windows](https://gitforwindows.org/) at
 
 [cypress/included](./included/) images, which are built on top of [cypress/browsers](./browsers/), contain the same set of browsers.
 
-[Tags](#tag-selection) for [cypress/browsers](./browsers/) and [cypress/included](./included/) images show which versions of the browsers are loaded into the respective image. (Disregard the browser version tags for current `Linux/arm64` images however.)
+[Tags](#tags) for [cypress/browsers](./browsers/) and [cypress/included](./included/) images show which versions of the browsers are loaded into the respective image. (Disregard the browser version tags for current `Linux/arm64` images however.)
 
 Building a custom image with [cypress/factory](./factory/) allows selection of individual browsers from the above list.
 
@@ -66,25 +66,26 @@ These can be used to complement the browsers that are configurable through the `
 [Debian-Chromium-Wiki]: https://wiki.debian.org/Chromium
 [Debian-Firefox-Wiki]: https://wiki.debian.org/Firefox
 
-## Tag Selection
+## Tags
 
-If no tag is specified, for example `cypress/included`, then the tag `latest` is used by default: `cypress/included:latest`. It is however recommended to use a specific image tag to avoid breaking changes when new images are released, especially when they include new major versions of Node.js or Cypress.
+To select an image, use the `[REPOSITORY[:TAG]]` format.  `REPOSITORY` is one of `cypress/factory`, `cypress/base`, `cypress/browsers` or `cypress/included`. If `TAG` is omitted, it defaults to `latest`.
 
-Some examples with specific tags including an explanation of the tag meanings are:
+For each of the `REPOSITORY` image types, see the `Tags` section of each `README` document for more detail.
 
-- [cypress/base:20.14.0](https://hub.docker.com/layers/cypress/base/20.14.0/images/sha256-ed706ff91fb0642b34422c65d53ee3ad079a03b86c30e7de42a4c15f7d7bb17d)
-  Node.js `20.14.0`
-- [cypress/browsers:node-20.14.0-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1](https://hub.docker.com/layers/cypress/browsers/node-20.14.0-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1/images/sha256-a8b9c0a4d9b0bb1ca2ebfe1afbf829f248dd73617438a89e65c0e7d842ac7ec6)
-  Node.js `20.14.0`
-  Chrome `125.0.6422.141-1`
-  Firefox `126.0.1`
-  Edge `125.0.2535.85-1`
-- [cypress/included:13.11.0](https://hub.docker.com/layers/cypress/included/13.11.0/images/sha256-20ee9650d920abc422b62c039d2b1a11b415f0ac19a84bc17f4da0c7d2f77a2d)
-  Cypress `13.11.0`
+| Image Type README                                    | Example Tag |
+| ---------------------------------------------------- | ----------- |
+| [cypress/factory README](./factory/README.md#tags)   | `5.1.0`     |
+| [cypress/base README](./base/README.md#tags)         | `22.11.0`   |
+| [cypress/browsers README](./browsers/README.md#tags) | `22.11.0`   |
+| [cypress/included README](./included/README.md#tags) | `13.16.0`   |
 
-Once an image with a specific version tag (except `latest`) has been published to [Cypress on Docker Hub](https://hub.docker.com/u/cypress) it is frozen. This prevents accidental changes.
+Images with a specific version tag for `cypress/factory` and `cypress/base` (for example: `cypress/factory:5.1.0` and `cypress/base:22.11.0`) are frozen once they have been published. The same is true for images linked to full browser version tags for `cypress/browsers` and `cypress/included` (for example: `cypress/browsers:node-22.11.0-chrome-131.0.6778.69-1-ff-132.0.2-edge-131.0.2903.51-1` and `cypress/included:cypress-13.16.0-node-22.11.0-chrome-131.0.6778.69-1-ff-132.0.2-edge-131.0.2903.51-1`).
 
-When a new version is published, an image copy with the `latest` tag is also published. This means that the Docker image selected using the `latest` tag (or selected by default if no tag is specified) will also change over time. Specify an explicit version, for example [cypress/base:18.16.0](https://hub.docker.com/layers/cypress/base/18.16.0/images/sha256-d00c441748e2f1b79d4002bddafe6628f9f9f5458a8a3c66697e622600dc5ad5), to access instead a frozen version.
+`cypress/browsers` and `cypress/included` images are also offered with short-form convenience tags that do not include browser version details (example: `cypress/browsers:22.11.0` and `cypress/included:13.16.0`). The tags that these images refer to can change without notice if browser updates are made.
+
+Similarly, the convenience tag `latest`, for each of the image types, changes without notice.
+
+To avoid breaking changes when new images are released, use a corresponding frozen image tag rather than a convenience tag.
 
 ## Usage
 

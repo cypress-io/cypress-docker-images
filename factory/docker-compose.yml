@@ -55,6 +55,7 @@ services:
         EDGE_VERSION: ${EDGE_VERSION}
       tags:
        - ${REPO_PREFIX-}cypress/browsers:latest # comment out for release of alternate version
+       - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_SHORT_TAG}
        - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: node -v
 

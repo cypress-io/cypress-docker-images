@@ -1,0 +1,15 @@
+{
+  "name": "example-chrome-for-testing",
+  "version": "1.0.0",
+  "description": "Basic E2E Cypress test example",
+  "scripts": {
+    "test": "cypress run",
+    "e2e": "cypress run",
+    "e2e:chrome-for-testing": "cypress run --browser chrome-for-testing"
+  },
+  "private": true,
+  "devDependencies": {
+    "@puppeteer/browsers": "^2.6.1",
+    "cypress": "^13.17.0"
+  }
+}

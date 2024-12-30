@@ -25,11 +25,11 @@ $ docker run -it --rm --entrypoint id -u node cypress/included
 uid=1000(node) gid=1000(node) groups=1000(node)
 ```
 
-To run the example Cypress project in the [src](./src/) subdirectory with `node` as user, change directory to `examples/included-as-non-root` and execute the following `docker run` command:
+To run the example Cypress project with `node` as user, change directory to `examples/included-as-non-root` and execute the following `docker run` command:
 
 ```shell
 cd examples/included-as-non-root
-docker run -it --rm -v ./src:/test -w /test -u node cypress/included
+docker run --rm -v .:/test -w /test -u node cypress/included
 ```
 
 You can expect this command to run successfully.

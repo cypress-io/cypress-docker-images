@@ -1,0 +1,28 @@
+name: Example Tests
+# This workflow tests examples from the examples directory of this repo.
+
+on:
+  push:
+    paths:
+      - examples/**
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  example:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        directory: [
+          basic-mini,
+          basic,
+          chromium,
+          firefox-esr,
+          included-as-non-root
+          ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run test script
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh

@@ -17,6 +17,7 @@ jobs:
         directory: [
           basic-mini,
           basic,
+          chrome-for-testing,
           chromium,
           firefox-esr,
           included-as-non-root

@@ -157,6 +157,38 @@ container:
 
 See [Tag Selection](#tag-selection) above for advice on selecting a non-default image tag.
 
+## EACCES permission denied binary_state.json
+
+### Problem
+
+If a custom Docker image is built from a `cypress/base` or `cypress/browsers` Cypress Docker image, using a `Dockerfile` to install the Cypress binary (for instance with `npx cypress install`), and the custom image is then run as a container with a non-root user, Cypress will fail to run with an error message:
+
+> Error: EACCES: permission denied, open '/root/.cache/Cypress/`<Cypress version>`/binary_state.json'
+
+This is due to an open Cypress issue [#30684](https://github.com/cypress-io/cypress/issues/30684) where Cypress fails to verify the installed Cypress binary if it does not have write access to the Cypress binary directory.
+
+### Workaround
+
+To workaround this issue, either make the Cypress binary directory writable, or skip the Cypress binary verification.
+
+To make the complete Cypress binary directory writable, add the following to the `Dockerfile` after the step to install the Cypress binary:
+
+```Dockerfile
+RUN chmod -R 777 /root/.cache/Cypress
+```
+
+To skip Cypress binary verification using the environment variable `CYPRESS_SKIP_VERIFY`, described in the Cypress documentation [Advanced Installation](https://docs.cypress.io/app/references/advanced-installation#Environment-variables), either add the following to the `Dockerfile`:
+
+```Dockerfile
+ENV CYPRESS_SKIP_VERIFY=true
+```
+
+or pass the environment variable as a CLI option:
+
+```shell
+docker run --env CYPRESS_SKIP_VERIFY=true
+```
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)

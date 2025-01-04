@@ -183,11 +183,7 @@ To skip Cypress binary verification using the environment variable `CYPRESS_SKIP
 ENV CYPRESS_SKIP_VERIFY=true
 ```
 
-or pass the environment variable as a CLI option:
-
-```shell
-docker run --env CYPRESS_SKIP_VERIFY=true
-```
+or pass the environment variable as an additional CLI option `--env CYPRESS_SKIP_VERIFY=true` to the [docker run](https://docs.docker.com/reference/cli/docker/container/run/) command.
 
 ## Contributing
 

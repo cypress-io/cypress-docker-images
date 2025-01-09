@@ -8,6 +8,7 @@ set -e # fail on error
 namedExamplesAmd64=(
     'basic'
     'basic-mini'
+    'chrome-for-testing'
     'chromium'
     'firefox-esr'
     'included-as-non-root'

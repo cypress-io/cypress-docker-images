@@ -185,6 +185,26 @@ ENV CYPRESS_SKIP_VERIFY=true
 
 or pass the environment variable as an additional CLI option `--env CYPRESS_SKIP_VERIFY=true` to the [docker run](https://docs.docker.com/reference/cli/docker/container/run/) command.
 
+## Fontconfig error: No writable cache directories
+
+### Problem
+
+If a Cypress Docker image is run with a non-root user other than `node` (`1000`) then Cypress may be unable to write into the Linux `$HOME` directory and may fail. The error message contains the text:
+
+```text
+Fontconfig error: No writable cache directories
+The Test Runner unexpectedly exited via a exit event with signal SIGTRAP
+```
+
+### Workaround
+
+Build a custom Docker image and add the following instructions to the end of the `Dockerfile` to allow the `$HOME` directory for the non-root user `node` to be used and to allow Cypress write access to the necessary cache directories:
+
+```Dockerfile
+ENV HOME=/home/node
+RUN chmod -R 777 $HOME /root/.cache/Cypress
+```
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)

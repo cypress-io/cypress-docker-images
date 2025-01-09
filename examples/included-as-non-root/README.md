@@ -34,6 +34,10 @@ docker run --rm -v .:/test -w /test -u node cypress/included
 
 You can expect this command to run successfully.
 
+### Non-root user not node 1000
+
+If you need to run a `cypress/included` image with a non-root user other than `node` (`1000`) and you are experiencing permissions errors, please refer to the [Known Problems](../../README.md#known-problems) section regarding workarounds.
+
 ## GitHub Actions
 
 In general when running Cypress Docker images in GitHub Actions it is recommended to use the GitHub Actions' `container` syntax (see [Running jobs in a container](https://docs.github.com/en/actions/writing-workflows/choosing-where-your-workflow-runs/running-jobs-in-a-container) and [.github/workflows/example-cypress-github-action.yml](../../.github/workflows/example-cypress-github-action.yml)).

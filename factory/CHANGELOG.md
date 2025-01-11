@@ -1,5 +1,9 @@
 # Change log
 
+## 5.2.0
+
+- Add support for HTTP_PROXY when building a `cypress/factory` based image. Adressed in [#1276](https://github.com/cypress-io/cypress-docker-images/pull/1276).
+
 ## 5.1.2
 
 - Updated default node version from `22.12.0` to `22.13.0`. Addressed in [#1277](https://github.com/cypress-io/cypress-docker-images/pull/1277).

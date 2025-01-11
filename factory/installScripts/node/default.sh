@@ -5,6 +5,7 @@ groupadd --gid 1000 node \
 
 # The following is borrowed from https://github.com/nodejs/docker-node/blob/main/20/bookworm-slim/Dockerfile
 # Node.js GPG keys are taken from https://github.com/nodejs/node/
+# Tweaked for gpg proxy management
 ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     && case "${dpkgArch##*-}" in \
       amd64) ARCH='x64';; \

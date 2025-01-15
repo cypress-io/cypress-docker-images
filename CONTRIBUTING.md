@@ -106,10 +106,11 @@ If you need to test that the image works with Cypress, you can follow these inst
 1. Install XQuartz: https://www.xquartz.org/
 2. Launch XQuartz. Under the XQuartz menu, select Settings
 3. Go to the security tab and ensure "Allow connections from network clients" is checked.
-4. `xhost +$(ipconfig getifaddr en0)` to allow connections to the macOS host, this adds IP related to our en0 network interface to the access control list
+4. `export IP=$(ipconfig getifaddr en0)`
+5. `xhost + $IP` to allow connections to the macOS host, this adds IP related to our en0 network interface to the access control list
   - If we get `xhost` command not found error, try running this instead `/usr/X11/bin/xhost + $(ipconfig getifaddr en0)`
-5. Set up a `DISPLAY` env var `export DISPLAY="$IP:0"`
-6. Run your Docker image like such:
+6. Set up a `DISPLAY` env var `export DISPLAY="$IP:0"`
+7. Run your Docker image like such:
 ```bash
 docker run --rm -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --entrypoint bash <YOUR_IMAGE_TAG>
 ```

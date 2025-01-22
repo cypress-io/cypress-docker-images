@@ -6,11 +6,11 @@ set -ex \
   && savedAptMark="$(apt-mark showmanual)" \
   && apt-get update && apt-get install -y ca-certificates curl wget gnupg dirmngr --no-install-recommends \
   && rm -rf /var/lib/apt/lists/* \
-  && keyserver_options=$( [[ -n $HTTP_PROXY ]] && echo "--keyserver-options http-proxy=$HTTP_PROXY" || echo "" ) \
+  && keyserverOptions=$( [[ -n $HTTP_PROXY ]] && echo "--keyserver-options http-proxy=$HTTP_PROXY" || echo "" ) \
   && for key in \
     6A010C5166006599AA17F08146C2130DFD2497F5 \
   ; do \
-    gpg --batch --keyserver hkps://keys.openpgp.org $keyserver_options --recv-keys "$key" || \
+    gpg --batch --keyserver hkps://keys.openpgp.org $keyserverOptions --recv-keys "$key" || \
     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key" ; \
   done \
   && curl -fsSLO --compressed "https://yarnpkg.com/downloads/$1/yarn-v$1.tar.gz" \

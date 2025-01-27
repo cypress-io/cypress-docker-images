@@ -38,6 +38,44 @@ RUN apt-get update && \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean
 
+USER root
+
+RUN node --version
+
+# Install dependencies
+RUN apt-get update && \
+  apt-get install -y \
+  fonts-liberation \
+  git \
+  libcurl4 \
+  libcurl3-gnutls \
+  libcurl3-nss \
+  libvulkan1 \
+  xdg-utils \
+  wget \
+  # needed for circle orb browsers to install firefox
+  gpg \
+  # needed for circle orb browsers to install chromedriver
+  jq \
+  curl \
+  # chrome dependencies
+  libu2f-udev \
+  # firefox dependencies
+  bzip2 \
+  # add codecs needed for video playback in firefox
+  # https://github.com/cypress-io/cypress-docker-images/issues/150
+  mplayer \
+  \
+  # clean up
+  && rm -rf /var/lib/apt/lists/* \
+  && apt-get clean
+
+# install libappindicator3-1 - not included with Debian 11
+RUN wget --no-verbose /usr/src/libappindicator3-1_0.4.92-7_amd64.deb "http://ftp.us.debian.org/debian/pool/main/liba/libappindicator/libappindicator3-1_0.4.92-7_amd64.deb" && \
+  dpkg -i /usr/src/libappindicator3-1_0.4.92-7_amd64.deb ; \
+  apt-get install -f -y && \
+  rm -f /usr/src/libappindicator3-1_0.4.92-7_amd64.deb
+
 # a few environment variables to make NPM installs easier
 # good colors for most applications
 ENV TERM=xterm

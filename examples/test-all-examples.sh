@@ -2,7 +2,7 @@
 set -e # fail on error
 #
 # Test all examples
-# Run in examples directory
+# Run ./test-all-examples.sh in examples directory
 #
 # These examples are compatible with amd64 architecture
 namedExamplesAmd64=(
@@ -16,12 +16,16 @@ namedExamplesAmd64=(
 
 # These examples are compatible with arm64 architecture
 namedExamplesArm64=(
+    'basic'
+    'basic-mini'
+#    'chrome-for-testing' # not available for arm64
     'chromium'
     'firefox-esr'
+    'included-as-non-root'
     )
 
 if [ "$(uname -m)" = "x86_64" ]; then
-    echo Testing all examples
+    echo Testing examples for amd64
     for i in ${!namedExamplesAmd64[@]}; do
     echo
     echo testing examples/${namedExamplesAmd64[$i]} directory
@@ -30,7 +34,7 @@ if [ "$(uname -m)" = "x86_64" ]; then
     cd ..
     done
 else
-    echo Testing examples for arm64 only
+    echo Testing examples for arm64
     for i in ${!namedExamplesArm64[@]}; do
     echo
     echo testing examples/${namedExamplesArm64[$i]} directory

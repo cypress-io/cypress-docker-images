@@ -5,6 +5,7 @@ groupadd --gid 1000 node \
 
 # The following is borrowed from https://github.com/nodejs/docker-node/blob/main/20/bookworm-slim/Dockerfile
 # Node.js GPG keys are taken from https://github.com/nodejs/node/
+# Tweaked for gpg proxy management
 ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     && case "${dpkgArch##*-}" in \
       amd64) ARCH='x64';; \
@@ -19,6 +20,7 @@ ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     && savedAptMark="$(apt-mark showmanual)" \
     && apt-get update && apt-get install -y curl wget gnupg dirmngr xz-utils libatomic1 --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
+    && keyserverOptions=$( [[ -n $HTTP_PROXY ]] && echo "--keyserver-options http-proxy=$HTTP_PROXY" || echo "" ) \
     && for key in \
       4ED778F539E3634C779C87C6D7062848A1AB005C \
       141F07595B7B3FFE74309A937405533BE57C7D57 \
@@ -34,7 +36,7 @@ ARCH= && dpkgArch="$(dpkg --print-architecture)" \
       A363A499291CBBC940DD62E41F10027AF002F8B0 \
       C0D6248439F1D5604AAFFB4021D900FFDB233756 \
     ; do \
-      gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$key" || \
+      gpg --batch --keyserver hkps://keys.openpgp.org $keyserverOptions --recv-keys "$key"  || \
       gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key" ; \
     done \
     && curl -fsSLO --compressed "https://nodejs.org/dist/v$1/node-v$1-linux-$ARCH.tar.xz" \

@@ -10,7 +10,6 @@ on:
 
 jobs:
   example:
-    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
@@ -22,6 +21,14 @@ jobs:
           firefox-esr,
           included-as-non-root
           ]
+        os: [
+          ubuntu-24.04,     # testing Linux/amd64 platform
+          ubuntu-24.04-arm  # testing Linux/arm64 platform
+          ]
+        exclude:
+          - os: ubuntu-24.04-arm
+            directory: chrome-for-testing #browser not available for Linux/arm64
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - name: Run test script

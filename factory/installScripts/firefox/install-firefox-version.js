@@ -13,10 +13,19 @@ if (process.arch !== 'x64') {
   return
 }
 
+// Change in compression from bz2 to xz in Firefox 135.0
+// See https://www.mozilla.org/en-US/firefox/135.0/releasenotes/
+
+let compression = `bz2`
+
+if (firefoxVersion >= '135.0') {
+  compression = `xz`
+}
+
 console.log('Installing Firefox version: ', firefoxVersion)
 
 // Insert logic here if needed to run a different install script based on chrome version.
-const install = spawn(`${__dirname}/default.sh`, [firefoxVersion], {stdio: 'inherit'})
+const install = spawn(`${__dirname}/default.sh`, [firefoxVersion, compression], {stdio: 'inherit'})
 
 install.on('error', function (error) {
   console.log('child process errored with ' + error.toString())

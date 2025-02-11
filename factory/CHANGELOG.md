@@ -1,5 +1,9 @@
 # Change log
 
+## 5.3.1
+
+- Updated default node version from `22.13.1` to `22.14.0`. Addressed in [#1299](https://github.com/cypress-io/cypress-docker-images/pull/1299).
+-
 ## 5.3.0
 
 - Additionally support Firefox 135.0 and above with download file extension `xz` instead of `bz2`. (See [Firefox 135.0 release notes](https://www.mozilla.org/en-US/firefox/135.0/releasenotes/) and [Announcing Faster, Lighter Firefox Downloads for Linux with .tar.xz Packaging!](https://blog.nightly.mozilla.org/2024/11/28/announcing-faster-lighter-firefox-downloads-for-linux-with-tar-xz-packaging/)). Addresses [#1294](https://github.com/cypress-io/cypress-docker-images/issues/1294).

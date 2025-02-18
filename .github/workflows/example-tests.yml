@@ -22,12 +22,16 @@ jobs:
           included-as-non-root
           ]
         os: [
-          ubuntu-24.04,     # testing Linux/amd64 platform
-          ubuntu-24.04-arm  # testing Linux/arm64 platform
+          ubuntu-24.04     # testing Linux/amd64 platform
+          #
+          # temporarily disable testing on arm due to reliability issues
+          # see https://github.com/actions/partner-runner-images/issues for updates
+          #
+          # ubuntu-24.04-arm  # testing Linux/arm64 platform
           ]
-        exclude:
-          - os: ubuntu-24.04-arm
-            directory: chrome-for-testing #browser not available for Linux/arm64
+        # exclude:
+        #   - os: ubuntu-24.04-arm
+        #     directory: chrome-for-testing #browser not available for Linux/arm64
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4

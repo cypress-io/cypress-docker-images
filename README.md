@@ -155,7 +155,7 @@ container:
   options: --user 1001
 ```
 
-See [Tag Selection](#tag-selection) above for advice on selecting a non-default image tag.
+See [Tags](#tags) section above for advice on selecting a non-default image tag.
 
 ## EACCES permission denied binary_state.json
 

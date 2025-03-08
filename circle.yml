@@ -255,8 +255,11 @@ workflows:
                     parameters:
                         test-target: [
                             test-factory-electron,
+                            test-factory-firefox,
                             test-factory-cypress-included-electron,
                             test-factory-cypress-included-electron-non-root-user,
+                            test-factory-cypress-included-firefox,
+                            test-factory-cypress-included-firefox-non-root-user,
                             test-factory-all-included-electron-only
                             ]
                         resourceClass: [arm.medium]
@@ -317,7 +320,8 @@ workflows:
                     alias: browsers-arm
                     parameters:
                         test-target: [
-                            test-browsers-electron
+                            test-browsers-electron,
+                            test-browsers-firefox
                             ]
                         resourceClass: [arm.medium]
                         target: [browsers]
@@ -338,7 +342,8 @@ workflows:
                     alias: included-arm
                     parameters:
                         test-target: [
-                            test-included-electron
+                            test-included-electron,
+                            test-included-firefox
                             ]
                         resourceClass: [arm.medium]
                         target: [included]

@@ -1,5 +1,9 @@
 # Change log
 
+## 5.5.0
+
+- Add factory support for Firefox `arm64` with versions `136.0` and above. Addresses [#1306](https://github.com/cypress-io/cypress-docker-images/issues/1306).
+
 ## 5.4.0
 
 - Add support for HTTP_PROXY when building a `cypress/factory` based image. Addressed in [#1276](https://github.com/cypress-io/cypress-docker-images/pull/1276).

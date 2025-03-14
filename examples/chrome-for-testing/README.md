@@ -37,6 +37,7 @@ docker run --rm --entrypoint bash test-chrome-for-testing -c "npx cypress run --
 ```
 
 To build the Docker image with a different version of Chrome for Testing, change the value of the Docker environment variable `CHROME_VERSION.` Any value accepted by [@puppeteer/browsers](https://pptr.dev/browsers-api) is valid. This includes:
+
 - an explicit full version e.g. `131.0.6778.204`
 - a major version e.g. `131`
 - a channel alias:
@@ -46,12 +47,13 @@ To build the Docker image with a different version of Chrome for Testing, change
   - `canary`
 
 The value can be changed by:
-  - editing the [Dockerfile](./Dockerfile) and replacing the version in `ARG CHROME_VERSION=` or
-  - adding the version as a `build-arg` to the build command line, for example:
 
-    ```shell
-    docker build --build-arg CHROME_VERSION=beta -t test-chrome-for-testing .
-    ```
+- editing the [Dockerfile](./Dockerfile) and replacing the version in `ARG CHROME_VERSION=` or
+- adding the version as a `build-arg` to the build command line, for example:
+
+  ```shell
+  docker build --build-arg CHROME_VERSION=beta -t test-chrome-for-testing .
+  ```
 
 Refer to [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/) for current versions or [available downloads](https://googlechromelabs.github.io/chrome-for-testing/files) for other versions.
 

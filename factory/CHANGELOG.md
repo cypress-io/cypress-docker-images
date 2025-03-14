@@ -197,4 +197,4 @@
 
 ## 1.0.0
 
-- Initial Release of [cypress/factory](https://hub.docker.com/repository/docker/cypress/factory/general#)
+- Initial Release of [cypress/factory](https://hub.docker.com/r/cypress/factory)

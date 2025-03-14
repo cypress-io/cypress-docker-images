@@ -27,7 +27,7 @@ For issues with Cypress, we recommend checking the [Cypress issue list](https://
 
 Cypress is included only in [cypress/included][included] Cypress Docker images.
 
-[factory]:  https://github.com/cypress-io/cypress-docker-images/tree/master/factory
-[base]:     https://github.com/cypress-io/cypress-docker-images/tree/master/base
+[factory]: https://github.com/cypress-io/cypress-docker-images/tree/master/factory
+[base]: https://github.com/cypress-io/cypress-docker-images/tree/master/base
 [browsers]: https://github.com/cypress-io/cypress-docker-images/tree/master/browsers
 [included]: https://github.com/cypress-io/cypress-docker-images/tree/master/included

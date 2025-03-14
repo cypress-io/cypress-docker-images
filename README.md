@@ -40,6 +40,7 @@ On POSIX-based systems, or with [Git for Windows](https://gitforwindows.org/) at
 Building a custom image with [cypress/factory](./factory/) allows selection of individual browsers from the above list.
 
 <!-- browser links -->
+
 [Chrome]: https://developer.chrome.com/
 [Firefox]: https://www.mozilla.org/firefox
 [Edge]: https://developer.microsoft.com/microsoft-edge/
@@ -62,13 +63,14 @@ These can be used to complement the browsers that are configurable through the `
   See [#1190](https://github.com/cypress-io/cypress-docker-images/issues/1190) for availability of Firefox `arm64` [Rapid Release][Firefox Channel Choice] versions.
 
 <!-- Debian links -->
+
 [Debian packages]: https://www.debian.org/distrib/packages
 [Debian-Chromium-Wiki]: https://wiki.debian.org/Chromium
 [Debian-Firefox-Wiki]: https://wiki.debian.org/Firefox
 
 ## Tags
 
-To select an image, use the `[REPOSITORY[:TAG]]` format.  `REPOSITORY` is one of `cypress/factory`, `cypress/base`, `cypress/browsers` or `cypress/included`. If `TAG` is omitted, it defaults to `latest`.
+To select an image, use the `[REPOSITORY[:TAG]]` format. `REPOSITORY` is one of `cypress/factory`, `cypress/base`, `cypress/browsers` or `cypress/included`. If `TAG` is omitted, it defaults to `latest`.
 
 For each of the `REPOSITORY` image types, see the `Tags` section of each `README` document for more detail.
 
@@ -125,6 +127,7 @@ If you specify a Cypress Docker image in a [GitHub Actions job](https://docs.git
 ## Debug logs
 
 To enable all Cypress debug logs when running Cypress in a Docker container, set the environment variable `DEBUG` to the value `cypress:*`. To filter the debug logs read [Log sources](https://on.cypress.io/troubleshooting#Log-sources) for alternate values of `DEBUG`.
+
 - For `docker run` in a command line, refer to [docker run: set environment variables](https://docs.docker.com/reference/cli/docker/container/run/#env) for options to pass environment variables to a Docker container.
 - In a Continuous Integration (CI) workflow using a Cypress Docker image, refer to your CI documentation for information on setting environment variables.
 

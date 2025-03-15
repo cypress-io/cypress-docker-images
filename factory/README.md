@@ -70,6 +70,8 @@ Example: `CHROME_VERSION='131.0.6778.264-1'`
 
 [Chrome versions](https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable)
 
+This browser is currently available only for the `Linux/amd64` platform.
+
 ### FIREFOX_VERSION
 
 The version of Firefox to install. If the `ARG` variable is unset or an empty string, Firefox is not installed. The exact version must be used, no wildcards or shorthands are supported.
@@ -78,6 +80,8 @@ Example: `FIREFOX_VERSION='134.0'`
 
 [Firefox versions](https://download-installer.cdn.mozilla.net/pub/firefox/releases/)
 
+This browser is available for the `Linux/amd64` platform in all versions, and for the `Linux/arm64` platform in Firefox `136.0` and above.
+
 ### EDGE_VERSION
 
 The version of Edge to install. If the `ARG` variable is unset or an empty string, Edge is not installed. The exact version must be used, no wildcards or shorthands are supported.
@@ -85,6 +89,8 @@ The version of Edge to install. If the `ARG` variable is unset or an empty strin
 Example: `EDGE_VERSION='131.0.2903.112-1'`
 
 [Edge versions](https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/)
+
+This browser is currently available only for the `Linux/amd64` platform.
 
 ## Usage
 

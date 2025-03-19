@@ -1,5 +1,9 @@
 # Change log
 
+## 5.6.0
+
+- Change image manifest to [Provenance attestations](https://docs.docker.com/build/metadata/attestations/slsa-provenance/) for compatibility with [Open Container Initiative](https://github.com/opencontainers) [OCI image spec](https://github.com/opencontainers/image-spec/blob/main/spec.md). Addresses [#1316](https://github.com/cypress-io/cypress-docker-images/issues/1316).
+
 ## 5.5.0
 
 - Add factory support for Firefox `arm64` with versions `136.0` and above. Addresses [#1306](https://github.com/cypress-io/cypress-docker-images/issues/1306).

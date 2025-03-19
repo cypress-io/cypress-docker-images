@@ -23,19 +23,21 @@ In the case of Windows environments, see [Docker Desktop for Windows](https://do
 
 ## Browsers
 
-Cypress Docker images [cypress/browsers](./browsers/) include browsers for the `Linux/amd64` platform. Availability is pending for the `Linux/arm64` platform.
+Cypress Docker images [cypress/browsers](./browsers/) include browsers for the `Linux/amd64` and the `Linux/arm64` platform according to browser availability as shown in the following table.
 
-| Browser                    |   `Linux/amd64`    | `Linux/arm64`                                                                                                                    |
-| -------------------------- | :----------------: | :------------------------------------------------------------------------------------------------------------------------------- |
-| [Google Chrome][Chrome]    | :white_check_mark: | see [#1188](https://github.com/cypress-io/cypress-docker-images/issues/1188)                                                     |
-| [Mozilla Firefox][Firefox] | :white_check_mark: | see [#1190](https://github.com/cypress-io/cypress-docker-images/issues/1190) and [examples/firefox-esr](./examples/firefox-esr/) |
-| [Microsoft Edge][Edge]     | :white_check_mark: | see [#1189](https://github.com/cypress-io/cypress-docker-images/issues/1189)                                                     |
+| Browser                    |   `Linux/amd64`    | `Linux/arm64`                                                                |
+| -------------------------- | :----------------: | :--------------------------------------------------------------------------- |
+| [Google Chrome][Chrome]    | :white_check_mark: | see [#1188](https://github.com/cypress-io/cypress-docker-images/issues/1188) |
+| [Mozilla Firefox][Firefox] | :white_check_mark: | :white_check_mark:                                                           |
+| [Microsoft Edge][Edge]     | :white_check_mark: | see [#1189](https://github.com/cypress-io/cypress-docker-images/issues/1189) |
 
 On POSIX-based systems, or with [Git for Windows](https://gitforwindows.org/) at a Git Bash prompt, execute `uname -m` to display your system's architecture. ([x86_64](https://en.wikipedia.org/wiki/X86-64) is equivalent to `amd64`.)
 
 [cypress/included](./included/) images, which are built on top of [cypress/browsers](./browsers/), contain the same set of browsers.
 
-[Tags](#tags) for [cypress/browsers](./browsers/) and [cypress/included](./included/) images show which versions of the browsers are loaded into the respective image. (Disregard the browser version tags for current `Linux/arm64` images however.)
+[Tags](#tags) for [cypress/browsers](./browsers/) and [cypress/included](./included/) images show which versions of the browsers are loaded into the respective image.
+
+For `Linux/arm64` images, the lowest available Firefox version is `136`.
 
 Building a custom image with [cypress/factory](./factory/) allows selection of individual browsers from the above list.
 
@@ -43,9 +45,9 @@ Building a custom image with [cypress/factory](./factory/) allows selection of i
 
 [Chrome]: https://developer.chrome.com/
 [Firefox]: https://www.mozilla.org/firefox
+[Firefox Channel Choice]: https://support.mozilla.org/en-US/kb/choosing-firefox-update-channel
 [Edge]: https://developer.microsoft.com/microsoft-edge/
 [Chromium]: https://www.chromium.org/Home/
-[Firefox Channel Choice]: https://support.mozilla.org/en-US/kb/choosing-firefox-update-channel
 
 ### Debian packages
 
@@ -59,8 +61,7 @@ These can be used to complement the browsers that are configurable through the `
 
 - See the directory [examples/firefox-esr](./examples/firefox-esr/) to add Firefox ESR for Debian to Cypress Docker images.
   The [Debian Firefox Wiki][Debian-Firefox-Wiki] describes the [Firefox][Firefox] browser distribution details from the [Extended Support Release][Firefox Channel Choice] channel.
-  This differs from the `cypress/factory` build process which uses Firefox `amd64` versions from the [Rapid Release][Firefox Channel Choice] channel.
-  See [#1190](https://github.com/cypress-io/cypress-docker-images/issues/1190) for availability of Firefox `arm64` [Rapid Release][Firefox Channel Choice] versions.
+  This differs from the `cypress/factory` build process which uses Firefox versions from the [Rapid Release][Firefox Channel Choice] channel.
 
 <!-- Debian links -->
 
@@ -82,6 +83,9 @@ For each of the `REPOSITORY` image types, see the `Tags` section of each `README
 | [cypress/included README](./included/README.md#tags) | `13.16.0`   |
 
 Images with a specific version tag for `cypress/factory` and `cypress/base` (for example: `cypress/factory:5.1.0` and `cypress/base:22.11.0`) are frozen once they have been published. The same is true for images linked to full browser version tags for `cypress/browsers` and `cypress/included` (for example: `cypress/browsers:node-22.11.0-chrome-131.0.6778.69-1-ff-132.0.2-edge-131.0.2903.51-1` and `cypress/included:cypress-13.16.0-node-22.11.0-chrome-131.0.6778.69-1-ff-132.0.2-edge-131.0.2903.51-1`).
+
+The version tags for Chrome and Edge for `Linux/arm64` images, as well as Firefox version tags below `ff-136.x`, do not carry any meaning due to browser unavailability for this platform.
+With the tag scheme used by Cypress Docker images, all tags are required to be in place to allow use of Docker's [multi-platform images](https://docs.docker.com/build/building/multi-platform/), irrespective of whether the browser is actually available or not.
 
 `cypress/browsers` and `cypress/included` images are also offered with short-form convenience tags that do not include browser version details (example: `cypress/browsers:22.11.0` and `cypress/included:13.16.0`). The tags that these images refer to can change without notice if browser updates are made.
 

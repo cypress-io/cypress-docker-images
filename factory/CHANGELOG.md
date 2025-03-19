@@ -1,5 +1,9 @@
 # Change log
 
+## 5.7.0
+
+- Show user-friendly error message if Yarn Modern (`YARN_VERSION>=2`) specified for factory build. Addresses [#1317](https://github.com/cypress-io/cypress-docker-images/issues/1317).
+
 ## 5.6.0
 
 - Change image manifest to [Provenance attestations](https://docs.docker.com/build/metadata/attestations/slsa-provenance/) for compatibility with [Open Container Initiative](https://github.com/opencontainers) [OCI image spec](https://github.com/opencontainers/image-spec/blob/main/spec.md). Addresses [#1316](https://github.com/cypress-io/cypress-docker-images/issues/1316).

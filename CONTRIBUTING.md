@@ -206,8 +206,6 @@ In CI, the images are built and tested in real `arm64` and `x64` architectures. 
 └─────────────────────────────────────────────┘
 ```
 
-A current limitation is that no `arm64` images have browser binaries - see https://github.com/cypress-io/cypress-docker-images/issues/695 for details.
-
 ### Updating images to add `linux/arm64`
 
 Using the `docker` CLI, you can build the `linux/arm64` image of an image, glue the existing `linux/amd64` image to it to create a "manifest list", and then push that to update the current tag on the registry. The end result is that `amd64` users will see no change at all, while `arm64` users will now get the correct `arm64` image.

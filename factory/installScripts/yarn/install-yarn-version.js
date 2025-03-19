@@ -8,6 +8,11 @@ if (!yarnVersion) {
   return
 }
 
+if (yarnVersion >= '2') {
+  console.log(`Yarn ${yarnVersion} is not supported, Yarn installation failed`)
+  process.exit(1)
+}
+
 console.log('Installing Yarn version: ', yarnVersion)
 
 // Insert logic here if needed to run a different install script based on version.

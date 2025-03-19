@@ -52,7 +52,10 @@ The version of Yarn v1 Classic to install (via npm). If the `ARG` variable is un
 
 Example: `YARN_VERSION='1.22.22'`
 
-[Yarn versions](https://www.npmjs.com/package/yarn)
+[Yarn v1 versions](https://www.npmjs.com/package/yarn)
+
+[Yarn Modern](https://yarnpkg.com/) (versions 2 and above) are not supported.
+They are not currently published to the npm registry and require the experimental [Corepack](https://yarnpkg.com/corepack) to [install](https://yarnpkg.com/getting-started/install).
 
 ### CYPRESS_VERSION
 

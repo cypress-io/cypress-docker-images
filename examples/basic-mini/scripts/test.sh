@@ -14,9 +14,8 @@ case $ARCHITECTURE in
       docker run --rm -v .:/app -w /app --entrypoint cypress cypress/included run -b chrome
     ;;
   aarch64)
-    echo Testing cypress/included in arm64 using Electron
-    echo No other browsers available
-      docker run --rm -v .:/app -w /app cypress/included
+    echo Testing cypress/included in arm64 using Firefox
+      docker run --rm -v .:/app -w /app --entrypoint cypress cypress/included run -b firefox
     ;;
   *)
     echo Unsupported architecture

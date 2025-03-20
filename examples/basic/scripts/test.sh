@@ -20,8 +20,10 @@ case $ARCHITECTURE in
       docker run --rm --entrypoint bash test-browsers -c "npx cypress run -b chrome" # Run Cypress test in container using Chrome
     ;;
   aarch64)
-    echo Skipping browser tests for arm64
-    echo No browsers available
+    echo Testing browsers in amd64
+    echo Build and test with cypress/browsers in Firefox
+      docker build -f Dockerfile.browsers -t test-browsers . # Build a new image
+      docker run --rm --entrypoint bash test-browsers -c "npx cypress run -b firefox" # Run Cypress test in container using Firefox
     ;;
   *)
     echo Unsupported architecture

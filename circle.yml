@@ -50,6 +50,13 @@ commands:
                       fi
 
 jobs:
+    lint:
+        machine:
+            image: ubuntu-2204:2024.11.1
+        steps:
+            - checkout
+            - run: npm ci
+            - run: npm run lint
     check-factory-versions:
         machine:
             image: ubuntu-2204:2024.11.1
@@ -238,6 +245,7 @@ jobs:
 workflows:
     test:
         jobs:
+            - lint
             - check-factory-versions
             - check-node-override-version
             - test-image:

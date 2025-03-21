@@ -1,5 +1,9 @@
 # Change log
 
+## 5.8.0
+
+- Updated Debian base to `debian:12.10-slim` using [Debian 12.10](https://www.debian.org/News/2025/20250315), released on Mar 15, 2025. Addresses [#1324](https://github.com/cypress-io/cypress-docker-images/issues/1324).
+
 ## 5.7.0
 
 - Show user-friendly error message if Yarn Modern (`YARN_VERSION>=2`) specified for factory build. Addresses [#1317](https://github.com/cypress-io/cypress-docker-images/issues/1317).

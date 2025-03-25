@@ -1,4 +1,4 @@
-const { defineConfig } = require('cypress');
+const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
   downloadsFolder: '/tmp/cypress/downloads',
@@ -8,4 +8,4 @@ module.exports = defineConfig({
   e2e: {
     supportFile: false,
   },
-});
+})

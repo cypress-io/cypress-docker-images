@@ -6,7 +6,6 @@
 ## Comment out the INCLUDED_IMAGE_SHORT_TAG so that this tag is not reassigned to a non-primary version.
 
 services:
-
   factory:
     image: ${REPO_PREFIX-}cypress/factory
     build:
@@ -17,8 +16,8 @@ services:
         BASE_IMAGE: ${BASE_IMAGE}
         FACTORY_DEFAULT_NODE_VERSION: ${FACTORY_DEFAULT_NODE_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/factory:latest  # comment out for release of alternate version
-       - ${REPO_PREFIX-}cypress/factory:${FACTORY_VERSION}
+        - ${REPO_PREFIX-}cypress/factory:latest # comment out for release of alternate version
+        - ${REPO_PREFIX-}cypress/factory:${FACTORY_VERSION}
     command: node -v
 
   included:
@@ -36,9 +35,9 @@ services:
         YARN_VERSION: ${YARN_VERSION}
         # WEBKIT_VERSION: ${WEBKIT_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/included:latest # comment out for release of alternate version
-       - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_SHORT_TAG}  # comment out for release of alternate version
-       - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG}
+        - ${REPO_PREFIX-}cypress/included:latest # comment out for release of alternate version
+        - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_SHORT_TAG} # comment out for release of alternate version
+        - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG}
     command: node -v
 
   browsers:
@@ -54,9 +53,9 @@ services:
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/browsers:latest # comment out for release of alternate version
-       - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_SHORT_TAG}
-       - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_TAG}
+        - ${REPO_PREFIX-}cypress/browsers:latest # comment out for release of alternate version
+        - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_SHORT_TAG}
+        - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: node -v
 
   base:
@@ -69,13 +68,13 @@ services:
         FACTORY_VERSION: ${FACTORY_VERSION}
         YARN_VERSION: ${YARN_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/base:latest # comment out for release of alternate version
-       - ${REPO_PREFIX-}cypress/base:${BASE_IMAGE_TAG}
+        - ${REPO_PREFIX-}cypress/base:latest # comment out for release of alternate version
+        - ${REPO_PREFIX-}cypress/base:${BASE_IMAGE_TAG}
     command: node -v
 
   ## Unused images that we could release in the future if we choose.
   chrome:
-    image: "${REPO_PREFIX-}cypress/chrome"
+    image: '${REPO_PREFIX-}cypress/chrome'
     build:
       target: default_image
       context: .
@@ -84,7 +83,7 @@ services:
         FACTORY_VERSION: ${FACTORY_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/chrome:${CHROME_VERSION}
+        - ${REPO_PREFIX-}cypress/chrome:${CHROME_VERSION}
     command: google-chrome --version
 
   edge:
@@ -97,7 +96,7 @@ services:
         FACTORY_VERSION: ${FACTORY_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/edge:${EDGE_VERSION}
+        - ${REPO_PREFIX-}cypress/edge:${EDGE_VERSION}
     command: edge --version
 
   firefox:
@@ -110,7 +109,7 @@ services:
         FACTORY_VERSION: ${FACTORY_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/firefox:${FIREFOX_VERSION}
+        - ${REPO_PREFIX-}cypress/firefox:${FIREFOX_VERSION}
     command: firefox --version
 
   # webkit:
@@ -135,7 +134,7 @@ services:
         FACTORY_VERSION: ${FACTORY_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/cypress:${CYPRESS_VERSION}
+        - ${REPO_PREFIX-}cypress/cypress:${CYPRESS_VERSION}
     command: cypress verify
 
   cypress-chrome:
@@ -149,7 +148,7 @@ services:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         CHROME_VERSION: ${CHROME_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/cypress-chrome:cypress-${CYPRESS_VERSION}-chrome-${CHROME_VERSION}
+        - ${REPO_PREFIX-}cypress/cypress-chrome:cypress-${CYPRESS_VERSION}-chrome-${CHROME_VERSION}
     command: node -v
 
   cypress-edge:
@@ -163,7 +162,7 @@ services:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/cypress-edge:cypress-${CYPRESS_VERSION}-edge-${EDGE_VERSION}
+        - ${REPO_PREFIX-}cypress/cypress-edge:cypress-${CYPRESS_VERSION}-edge-${EDGE_VERSION}
     command: node -v
 
   cypress-firefox:
@@ -177,7 +176,7 @@ services:
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
       tags:
-       - ${REPO_PREFIX-}cypress/cypress-firefox:cypress-${CYPRESS_VERSION}-firefox-${FIREFOX_VERSION}
+        - ${REPO_PREFIX-}cypress/cypress-firefox:cypress-${CYPRESS_VERSION}-firefox-${FIREFOX_VERSION}
     command: node -v
 
   ## Test image

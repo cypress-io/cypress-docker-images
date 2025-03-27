@@ -57,6 +57,7 @@ jobs:
       - checkout
       - run: npm ci
       - run: npm run lint
+      - run: npm run format:check
   check-factory-versions:
     machine:
       image: ubuntu-2204:2024.11.1

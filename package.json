@@ -9,6 +9,7 @@
   "scripts": {
     "check:markdown": "find . -type f -name '*.md' ! -path '*/node_modules/*' | xargs -L1 npx markdown-link-check -c markdownLinkConfig.json",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint"
   },
   "engines": {
@@ -31,6 +32,6 @@
     "eslint-plugin-cypress": "^4.2.0",
     "globals": "^16.0.0",
     "markdown-link-check": "3.12.2",
-    "prettier": "3.3.3"
+    "prettier": "3.5.3"
   }
 }

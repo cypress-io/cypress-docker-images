@@ -41,6 +41,8 @@ For `Linux/arm64` images, the lowest available Firefox version is `136`.
 
 Building a custom image with [cypress/factory](./factory/) allows selection of individual browsers from the above list.
 
+Cypress officially [supports][Cypress Browser Support] the latest 3 major versions of Chrome, Firefox, and Edge browsers. We recommend using up to date Cypress Docker images for supportability.
+
 <!-- browser links -->
 
 [Chrome]: https://developer.chrome.com/
@@ -48,6 +50,7 @@ Building a custom image with [cypress/factory](./factory/) allows selection of i
 [Firefox Channel Choice]: https://support.mozilla.org/en-US/kb/choosing-firefox-update-channel
 [Edge]: https://developer.microsoft.com/microsoft-edge/
 [Chromium]: https://www.chromium.org/Home/
+[Cypress Browser Support]: https://docs.cypress.io/app/references/launching-browsers#Browser-versions-supported
 
 ### Debian packages
 

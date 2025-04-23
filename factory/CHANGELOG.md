@@ -1,5 +1,9 @@
 # Change log
 
+## 5.8.1
+
+- Updated default node version from `22.14.0` to `22.15.0`. Addressed in [#1335](https://github.com/cypress-io/cypress-docker-images/pull/1335).
+
 ## 5.8.0
 
 - Updated Debian base to `debian:12.10-slim` using [Debian 12.10](https://www.debian.org/News/2025/20250315), released on Mar 15, 2025. Addresses [#1324](https://github.com/cypress-io/cypress-docker-images/issues/1324).

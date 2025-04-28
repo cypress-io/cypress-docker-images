@@ -172,8 +172,8 @@ jobs:
           name: check node version
           command: |
             ACTUAL_VERSION=$(docker compose run --rm test-factory-node-override node -v)
-            if [ v18.17.1 != "${ACTUAL_VERSION}" ]; then
-              echo "Version mismatch, v18.17.1 != ${ACTUAL_VERSION}"
+            if [ v22.15.0 != "${ACTUAL_VERSION}" ]; then
+              echo "Version mismatch, v22.15.0 != ${ACTUAL_VERSION}"
               exit 1;
             fi
             echo "Version ${ACTUAL_VERSION} confirmed"

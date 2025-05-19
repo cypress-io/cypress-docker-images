@@ -103,6 +103,16 @@ ONBUILD ARG FIREFOX_VERSION
 
 ONBUILD RUN node /opt/installScripts/firefox/install-firefox-version.js ${FIREFOX_VERSION}
 
+# Install Geckodriver: optional
+# Used with Firefox
+ONBUILD ARG GECKODRIVER_VERSION
+# If geckodriver is installed, make it available to npm package geckodriver
+# See https://github.com/webdriverio-community/node-geckodriver/blob/main/README.md#customgeckodriverpath
+# Path is only set if geckodriver is installed
+# see Dockerfile environment variable syntax https://docs.docker.com/reference/dockerfile/#environment-replacement
+ONBUILD ENV GECKODRIVER_PATH=${GECKODRIVER_VERSION:+/opt/geckodriver/geckodriver}
+ONBUILD RUN node /opt/installScripts/geckodriver/install-geckodriver-version.js ${GECKODRIVER_VERSION}
+
 # TODO: Globally installed webkit currently isn't found, see issue https://github.com/cypress-io/cypress/issues/25344
 # Install Webkit: optional
 # ONBUILD ARG WEBKIT_VERSION

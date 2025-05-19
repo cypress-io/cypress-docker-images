@@ -112,6 +112,20 @@ services:
         - ${REPO_PREFIX-}cypress/firefox:${FIREFOX_VERSION}
     command: firefox --version
 
+  firefox-geckodriver:
+    image: ${REPO_PREFIX-}cypress/firefox-geckodriver
+    build:
+      target: default_image
+      context: .
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        FACTORY_VERSION: ${FACTORY_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        GECKODRIVER_VERSION: ${GECKODRIVER_VERSION}
+      tags:
+        - ${REPO_PREFIX-}cypress/firefox-geckodriver:${FIREFOX_VERSION}-${GECKODRIVER_VERSION}
+    command: firefox --version
+
   # webkit:
   #   image: ${REPO_PREFIX-}cypress/webkit
   #   build:
@@ -177,6 +191,21 @@ services:
         FIREFOX_VERSION: ${FIREFOX_VERSION}
       tags:
         - ${REPO_PREFIX-}cypress/cypress-firefox:cypress-${CYPRESS_VERSION}-firefox-${FIREFOX_VERSION}
+    command: node -v
+
+  cypress-firefox-geckodriver:
+    image: ${REPO_PREFIX-}cypress/cypress-firefox-geckodriver
+    build:
+      target: default_image
+      context: .
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        FACTORY_VERSION: ${FACTORY_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        GECKODRIVER_VERSION: ${GECKODRIVER_VERSION}
+      tags:
+        - ${REPO_PREFIX-}cypress/cypress-firefox:cypress-${CYPRESS_VERSION}-firefox-${FIREFOX_VERSION}-geckodriver-${GECKODRIVER_VERSION}
     command: node -v
 
   ## Test image

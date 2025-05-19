@@ -1,0 +1,3 @@
+FROM cypress/factory
+COPY . /opt/app
+WORKDIR /opt/app

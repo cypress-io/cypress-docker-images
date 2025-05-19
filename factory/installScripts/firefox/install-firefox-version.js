@@ -9,14 +9,14 @@ if (!firefoxVersion) {
 }
 
 const architecture = process.arch
-let platform
+let platformFilename
 
 switch (architecture) {
   case 'x64':
-    platform = 'linux-x86_64'
+    platformFilename = 'linux-x86_64'
     break
   case 'arm64':
-    platform = 'linux-aarch64'
+    platformFilename = 'linux-aarch64'
     if (firefoxVersion >= '136.0') {
       break
     }
@@ -41,8 +41,8 @@ if (firefoxVersion >= '135.0') {
   compression = 'xz'
 }
 
-// Insert logic here if needed to run a different install script based on chrome version.
-const install = spawn(`${__dirname}/default.sh`, [firefoxVersion, compression, platform], { stdio: 'inherit' })
+// Insert logic here if needed to run a different install script based on Firefox version.
+const install = spawn(`${__dirname}/default.sh`, [firefoxVersion, compression, platformFilename], { stdio: 'inherit' })
 
 install.on('error', function (error) {
   console.log('child process errored with ' + error.toString())

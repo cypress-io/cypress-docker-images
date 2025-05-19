@@ -29,7 +29,6 @@ switch (architecture) {
     platformFilename = 'linux-aarch64'
     break
 
-  // eslint-disable-next-line no-fallthrough
   default:
     console.log(`Unsupported architecture ${architecture} for geckodriver installation, skipping install`)
     process.exit(0)

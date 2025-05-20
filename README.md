@@ -144,20 +144,20 @@ To enable all Cypress debug logs when running Cypress in a Docker container, set
 
 ### Problem
 
-When running in [GitHub Actions](https://docs.github.com/en/actions) using a `cypress/browsers` or `cypress/included` image and testing against the Mozilla Firefox browser with the default `root` user, Cypress may fail to detect an installed Firefox browser. Instead Cypress shows the following error message:
+When running in [GitHub Actions](https://docs.github.com/en/actions) using a `cypress/browsers` or `cypress/included` image and testing against the Mozilla Firefox browser with the default `root` user, Cypress may fail to detect an installed Firefox browser for Firefox versions below `138`. Instead Cypress shows the following error message:
 
 > Browser: firefox was not found on your system or is not supported by Cypress.
 > Can't run because you've entered an invalid browser name.
 
-The [GitHub Actions Runner](https://github.com/actions/runner) creates the `/github/home` directory with non-root ownership `1001` (`runner`) and sets the environment variable `HOME` to point to this directory. Firefox will not run with these settings. If the command `firefox --version` is executed, Firefox explains the restriction:
+The [GitHub Actions Runner](https://github.com/actions/runner) creates the `/github/home` directory with non-root ownership `1001` (`runner`) and sets the environment variable `HOME` to point to this directory. Firefox will not run with these settings. If the command `firefox --version` is executed, Firefox versions below `138` explain the restriction:
 
 > Running Firefox as root in a regular user's session is not supported. ($HOME is /github/home which is owned by uid 1001.)
 
-See [Cypress issue #27121](https://github.com/cypress-io/cypress/issues/27121).
+Note: Firefox `138` has changed, compared to lower versions. In response to `firefox --version`, it displays the version, for instance "Mozilla Firefox 138.0.3", but then when attempting to run Firefox as `root` user in GitHub Actions, Firefox hangs indefinitely.
 
 ### Resolution
 
-To allow Firefox to run in GitHub Actions in a Docker container, add `options: --user 1001` to the workflow to match GitHub Actions' `runner` user.
+To allow Firefox to run in GitHub Actions in a Docker container, add `options: --user 1001` to the workflow to match GitHub Actions' `runner` user. This setting should be used for all Firefox versions.
 
 ```yml
 container:

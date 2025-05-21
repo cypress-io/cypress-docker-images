@@ -1,5 +1,9 @@
 # Change log
 
+## 5.8.4
+
+- Updated default node version from `22.15.1` to `22.16.0`. Addressed in [#1358](https://github.com/cypress-io/cypress-docker-images/pull/1358).
+
 ## 5.8.3
 
 - Updated default node version from `22.15.0` to `22.15.1`. Addressed in [#1350](https://github.com/cypress-io/cypress-docker-images/pull/1350).

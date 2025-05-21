@@ -9,7 +9,7 @@
   },
   "private": true,
   "devDependencies": {
-    "@puppeteer/browsers": "^2.6.1",
-    "cypress": "^14.0.0"
+    "@puppeteer/browsers": "^2.10.5",
+    "cypress": "^14.4.0"
   }
 }

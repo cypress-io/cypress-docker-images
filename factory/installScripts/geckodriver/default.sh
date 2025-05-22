@@ -8,4 +8,5 @@
 wget --no-verbose -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v${1}/geckodriver-v${1}-${2}.tar.gz \
   && mkdir -p /opt/geckodriver \
   && tar -C /opt/geckodriver -xaf /tmp/geckodriver.tar.gz \
+  && chown -R root:root /opt/geckodriver \
   && rm /tmp/geckodriver.tar.gz \

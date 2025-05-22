@@ -92,7 +92,7 @@ The version of [Mozilla geckodriver](https://firefox-source-docs.mozilla.org/tes
 
 Example: `GECKODRIVER_VERSION='0.36.0'`
 
-[mozilla/geckodriver versions](https://github.com/mozilla/geckodriver/releases) provides drivers for both `Linux/amd64` and `Linux/arm64` platforms. Cypress release [13.15.1](https://docs.cypress.io/app/references/changelog#13-15-1), and above, require `geckodriver` when testing Firefox. If `GECKODRIVER_VERSION` is not defined, Cypress uses the npm wrapper package [geckodriver](https://www.npmjs.com/package/geckodriver) to download [mozilla/geckodriver](https://github.com/mozilla/geckodriver) at run-time. Specifying `GECKODRIVER_VERSION` is advised if testing in an air-gapped environment, and to use a defined version of `geckodriver`.
+[Mozilla geckodriver releases](https://github.com/mozilla/geckodriver/releases) provides drivers for both `Linux/amd64` and `Linux/arm64` platforms. Cypress release [13.15.1](https://docs.cypress.io/app/references/changelog#13-15-1), and above, require `geckodriver` when testing Firefox. If `GECKODRIVER_VERSION` is not defined, Cypress uses the npm wrapper package [geckodriver](https://www.npmjs.com/package/geckodriver) to download [Mozilla geckodriver](https://github.com/mozilla/geckodriver) at run-time. Specifying `GECKODRIVER_VERSION` is advised if testing in an air-gapped environment, and to use a defined version of `geckodriver`.
 
 ### EDGE_VERSION
 

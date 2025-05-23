@@ -61,13 +61,13 @@ docker compose run --build --rm test-factory-all-included
 
 The [factory/.env](./factory/.env) in the `master` branch should be maintained with the latest stable and supported versions. An exception is the `FACTORY_DEFAULT_NODE_VERSION` which should be set to the [Node.js Active LTS](https://nodejs.org/en/about/previous-releases) version, not the "Current" version.
 
-To publish a new image for `factory`, `base`, `browsers`, or `included`, open a PR with the desired version(s) updated in the [factory/.env](./factory/.env) file. If you change any of the following environment variables in [factory/.env](./factory/.env), then you should also bump the `FACTORY_VERSION` in the same file and make a note of the change in the factory [CHANGELOG](./factory/CHANGELOG.md):
+To publish a new image for `factory`, `base`, `browsers`, or `included`, open a PR with the desired version(s) updated in the [factory/.env](./factory/.env) file. If you change installation scripts or any of the following environment variables in [factory/.env](./factory/.env), then you should also bump the `FACTORY_VERSION` in the same file and make a note of the change in the factory [CHANGELOG](./factory/CHANGELOG.md):
 
 - `BASE_IMAGE`
 - `FACTORY_DEFAULT_NODE_VERSION`
 - `YARN_VERSION`
 
-You should not change the `FACTORY_VERSION` or make an entry into the factory [CHANGELOG](./factory/CHANGELOG.md) if you are only changing browser versions or the Cypress version.
+You should not change the `FACTORY_VERSION` or make an entry into the factory [CHANGELOG](./factory/CHANGELOG.md) if you are only changing browser versions, geckodriver version or the Cypress version.
 
 Once the PR is merged into the `master` branch, the corresponding images will be pushed to [Docker Hub](https://hub.docker.com/u/cypress) and to the [Amazon ECR (Elastic Container Registry) Public Gallery](https://gallery.ecr.aws/cypress-io) via an automated script run through [CircleCI](circle.yml). Please check that the CI jobs pass after merge. Any CI failure can cause the release process to be interrupted.
 

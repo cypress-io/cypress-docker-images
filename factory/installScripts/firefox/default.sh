@@ -4,7 +4,7 @@
 #
 # $1: version (example: 136.0)
 # $2: compression (xz or bz2)
-# $3: platform (linux-x86_64 or linux-aarch64)
+# $3: platformFilename (linux-x86_64 or linux-aarch64)
 
 apt-get update \
   && apt-get install -y \

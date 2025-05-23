@@ -48,6 +48,16 @@ services:
       context: .
     command: npm run test -- -b firefox
 
+  test-factory-firefox-geckodriver:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        GECKODRIVER_VERSION: ${GECKODRIVER_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      context: .
+    command: npm run test -- -b firefox
+
   test-factory-edge:
     build:
       args:
@@ -95,6 +105,18 @@ services:
         NODE_VERSION: ${NODE_VERSION}
         CYPRESS_VERSION: ${CYPRESS_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      dockerfile: included.Dockerfile
+      context: .
+    command: cypress run -b firefox
+
+  test-factory-cypress-included-firefox-geckodriver:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        FIREFOX_VERSION: ${FIREFOX_VERSION}
+        GECKODRIVER_VERSION: ${GECKODRIVER_VERSION}
         BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
       dockerfile: included.Dockerfile
       context: .

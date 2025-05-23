@@ -1,5 +1,9 @@
 # Change log
 
+## 5.10.0
+
+- Updated Debian base image to `debian:12.11-slim` using [Debian 12.11](https://www.debian.org/News/2025/20250517), released on May 17, 2025. Addresses [#1352](https://github.com/cypress-io/cypress-docker-images/issues/1352).
+
 ## 5.9.0
 
 - Added ability to install geckodriver with `GECKODRIVER_VERSION`. Addresses [#1351](https://github.com/cypress-io/cypress-docker-images/issues/1351).

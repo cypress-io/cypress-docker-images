@@ -260,7 +260,6 @@ workflows:
                   test-factory-cypress-included-electron,
                   test-factory-cypress-included-electron-non-root-user,
                   test-factory-cypress-included-firefox,
-                  test-factory-cypress-included-firefox-geckodriver,
                   test-factory-cypress-included-firefox-non-root-user,
                   test-factory-all-included-electron-only,
                 ]
@@ -281,7 +280,6 @@ workflows:
                   test-factory-cypress-included-electron-non-root-user,
                   test-factory-cypress-included-chrome,
                   test-factory-cypress-included-firefox,
-                  test-factory-cypress-included-firefox-geckodriver,
                   test-factory-cypress-included-firefox-non-root-user,
                   test-factory-cypress-included-edge,
                   test-factory-all-included,

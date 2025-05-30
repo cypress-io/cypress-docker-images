@@ -52,6 +52,12 @@ Cypress officially [supports][Cypress Browser Support] the latest 3 major versio
 [Chromium]: https://www.chromium.org/Home/
 [Cypress Browser Support]: https://docs.cypress.io/app/references/launching-browsers#Browser-versions-supported
 
+### Mozilla geckodriver
+
+[cypress/browsers](./browsers/) and [cypress/included](./included/) images with Firefox `139.0.1` and above are built with the [Mozilla geckodriver](https://github.com/mozilla/geckodriver) included. This driver is needed to test when using Firefox with Cypress versions >= [13.15.1](https://docs.cypress.io/app/references/changelog#13-15-1). The environment variable `GECKODRIVER_PATH` points to the driver located at `/opt/geckodriver/geckodriver`. Earlier images, that do not include the driver, may attempt to download the driver at run-time when testing Firefox, causing failures in air-gapped network environments with no Internet access.
+
+[cypress/factory](./factory/) provides the parameter [GECKODRIVER_VERSION](./factory/README.md#geckodriver_version) to optionally add the driver to a custom image.
+
 ### Debian packages
 
 [Debian][Debian packages] provides two Cypress-compatible browsers as packages covering both `amd64` and `arm64` architectures.

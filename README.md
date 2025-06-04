@@ -46,11 +46,16 @@ Cypress officially [supports][Cypress Browser Support] the latest 3 major versio
 <!-- browser links -->
 
 [Chrome]: https://developer.chrome.com/
+[Chrome for Testing]: https://developer.chrome.com/blog/chrome-for-testing
 [Firefox]: https://www.mozilla.org/firefox
 [Firefox Channel Choice]: https://support.mozilla.org/en-US/kb/choosing-firefox-update-channel
 [Edge]: https://developer.microsoft.com/microsoft-edge/
 [Chromium]: https://www.chromium.org/Home/
 [Cypress Browser Support]: https://docs.cypress.io/app/references/launching-browsers#Browser-versions-supported
+
+### Chrome for Testing
+
+[Google Chrome for Testing][Chrome for Testing] is an alternate version of Chrome which is supported by [Cypress 13.17.0](https://docs.cypress.io/app/references/changelog#13-17-0) and above. The [examples/chrome-for-testing](./examples/chrome-for-testing/) directory shows how it can be built into a custom Cypress Docker image.
 
 ### Mozilla geckodriver
 

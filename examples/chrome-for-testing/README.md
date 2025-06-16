@@ -6,11 +6,15 @@ Note that Chrome for Testing is currently not available for the `linux/arm64` pl
 
 ## Docker
 
+The example below downloads Chrome for Testing using [@puppeteer/browsers](https://pptr.dev/browsers-api).
+
+[cypress/factory](../../factory/) also supports building a customer Docker image with Chrome for Testing using the parameter [CHROME_FOR_TESTING_VERSION](../../factory/README.md#chrome_for_testing_version) which must be a full version specification. This is more restrictive than the example below with [@puppeteer/browsers](https://pptr.dev/browsers-api), which has the flexibility of using a version alias, such as `stable` or a short version specification.
+
 ### Docker build and run
 
 In this example we use a customized `Dockerfile` which bases a new image on `cypress/base`, copies the complete Cypress project into the image, including installed dependencies, then installs the Cypress binary and Chrome for Testing into the image.
 
-The file is [examples/chrome-for-testing/Dockerfile](./Dockerfile). It has the following contents which build a custom Docker image using the `stable` version of Chrome for Testing:
+The file is [examples/chrome-for-testing/Dockerfile](./Dockerfile). It has the following contents which build a custom Docker image using the `stable` version of Chrome for Testing, downloaded with [@puppeteer/browsers](https://pptr.dev/browsers-api):
 
 ```dockerfile
 FROM cypress/base

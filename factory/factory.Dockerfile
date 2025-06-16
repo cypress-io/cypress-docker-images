@@ -93,6 +93,11 @@ ONBUILD ARG CHROME_VERSION
 
 ONBUILD RUN node /opt/installScripts/chrome/install-chrome-version.js ${CHROME_VERSION}
 
+# Install Chrome for Testing: optional
+ONBUILD ARG CHROME_FOR_TESTING_VERSION
+
+ONBUILD RUN node /opt/installScripts/chrome-for-testing/install-chrome-for-testing-version.js ${CHROME_FOR_TESTING_VERSION}
+
 # Install Edge: optional
 ONBUILD ARG EDGE_VERSION
 

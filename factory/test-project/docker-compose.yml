@@ -28,6 +28,15 @@ services:
       context: .
     command: npm run test -- -b chrome
 
+  test-factory-chrome-for-testing:
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        CHROME_FOR_TESTING_VERSION: ${CHROME_FOR_TESTING_VERSION}
+        BASE_TEST_IMAGE: cypress/factory:${FACTORY_VERSION}
+      context: .
+    command: npm run test -- -b chrome-for-testing
+
   test-factory-chrome-non-root-user:
     user: node
     build:

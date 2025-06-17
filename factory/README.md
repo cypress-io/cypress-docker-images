@@ -5,6 +5,7 @@
 - Node.js
 - Yarn v1 Classic
 - Chrome
+- Chrome for Testing
 - Firefox
 - geckodriver
 - Edge
@@ -75,6 +76,16 @@ Example: `CHROME_VERSION='131.0.6778.264-1'`
 [Chrome versions](https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable)
 
 This browser is currently available only for the `Linux/amd64` platform.
+
+### CHROME_FOR_TESTING_VERSION
+
+The version of [Google Chrome for Testing](https://developer.chrome.com/blog/chrome-for-testing/) to install. If the `ARG` variable is unset or an empty string, Chrome for Testing is not installed.
+
+Example: `CHROME_FOR_TESTING_VERSION='137.0.7151.70'`
+
+Refer to [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/) for current versions or [available downloads](https://googlechromelabs.github.io/chrome-for-testing/files) for other versions.
+
+The parameter `CHROME_FOR_TESTING_VERSION` can be used for custom-built images based on `cypress/factory`. The browser is however not currently built into `cypress/browsers` or `cypress/included` images and is currently available only for the `Linux/amd64` platform.
 
 ### FIREFOX_VERSION
 

@@ -88,6 +88,19 @@ services:
         - ${REPO_PREFIX-}cypress/chrome:${CHROME_VERSION}
     command: google-chrome --version
 
+  chrome-for-testing:
+    image: '${REPO_PREFIX-}cypress/chrome-for-testing'
+    build:
+      target: default_image
+      context: .
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        FACTORY_VERSION: ${FACTORY_VERSION}
+        CHROME_FOR_TESTING_VERSION: ${CHROME_FOR_TESTING_VERSION}
+      tags:
+        - ${REPO_PREFIX-}cypress/chrome-for-testing:${CHROME_FOR_TESTING_VERSION}
+    command: chrome --version
+
   edge:
     image: ${REPO_PREFIX-}cypress/edge
     build:
@@ -152,6 +165,20 @@ services:
         CHROME_VERSION: ${CHROME_VERSION}
       tags:
         - ${REPO_PREFIX-}cypress/cypress-chrome:cypress-${CYPRESS_VERSION}-chrome-${CHROME_VERSION}
+    command: node -v
+
+  cypress-chrome-for-testing:
+    image: ${REPO_PREFIX-}cypress/cypress-chrome
+    build:
+      target: default_image
+      context: .
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        FACTORY_VERSION: ${FACTORY_VERSION}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        CHROME_FOR_TESTING_VERSION: ${CHROME_FOR_TESTING_VERSION}
+      tags:
+        - ${REPO_PREFIX-}cypress/cypress-chrome-for-testing:cypress-${CYPRESS_VERSION}-chrome-for-testing-${CHROME_FOR_TESTING_VERSION}
     command: node -v
 
   cypress-edge:

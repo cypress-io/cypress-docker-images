@@ -1,5 +1,9 @@
 # Change log
 
+## 5.11.1
+
+- Updated default node version from `22.16.0` to `22.17.0`. Addressed in [#1374](https://github.com/cypress-io/cypress-docker-images/pull/1374).
+
 ## 5.11.0
 
 - Added ability to install Google [Chrome for Testing](https://developer.chrome.com/blog/chrome-for-testing/) with `CHROME_FOR_TESTING_VERSION`. Addresses [#1367](https://github.com/cypress-io/cypress-docker-images/issues/1367).

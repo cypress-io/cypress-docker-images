@@ -5,7 +5,9 @@
 - Node.js
 - Yarn v1 Classic
 - Chrome
+- Chrome for Testing
 - Firefox
+- geckodriver
 - Edge
 - Cypress
 
@@ -67,7 +69,7 @@ Example: `CYPRESS_VERSION='13.11.0'`
 
 ### CHROME_VERSION
 
-The version of Chrome to install. If the `ARG` variable is unset or an empty string, Chrome is not installed. The exact version must be used, no wildcards or shorthands are supported.
+The version of Google Chrome to install. If the `ARG` variable is unset or an empty string, Chrome is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
 Example: `CHROME_VERSION='131.0.6778.264-1'`
 
@@ -75,9 +77,19 @@ Example: `CHROME_VERSION='131.0.6778.264-1'`
 
 This browser is currently available only for the `Linux/amd64` platform.
 
+### CHROME_FOR_TESTING_VERSION
+
+The version of [Google Chrome for Testing](https://developer.chrome.com/blog/chrome-for-testing/) to install. If the `ARG` variable is unset or an empty string, Chrome for Testing is not installed.
+
+Example: `CHROME_FOR_TESTING_VERSION='137.0.7151.70'`
+
+Refer to [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/) for current versions or [available downloads](https://googlechromelabs.github.io/chrome-for-testing/files) for other versions.
+
+The parameter `CHROME_FOR_TESTING_VERSION` can be used for custom-built images based on `cypress/factory`. The browser is however not currently built into `cypress/browsers` or `cypress/included` images and is currently available only for the `Linux/amd64` platform.
+
 ### FIREFOX_VERSION
 
-The version of Firefox to install. If the `ARG` variable is unset or an empty string, Firefox is not installed. The exact version must be used, no wildcards or shorthands are supported.
+The version of Mozilla Firefox to install. If the `ARG` variable is unset or an empty string, Firefox is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
 Example: `FIREFOX_VERSION='134.0'`
 
@@ -85,9 +97,17 @@ Example: `FIREFOX_VERSION='134.0'`
 
 This browser is available for the `Linux/amd64` platform in all versions, and for the `Linux/arm64` platform in Firefox `136.0` and above.
 
+### GECKODRIVER_VERSION
+
+The version of [Mozilla geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/index.html) to install. If the `ARG` variable is unset or an empty string, the `geckodriver` is not installed. The exact version must be used, no wildcards or shorthands are supported. A minimum version `0.34.0` is required.
+
+Example: `GECKODRIVER_VERSION='0.36.0'`
+
+[Mozilla geckodriver releases](https://github.com/mozilla/geckodriver/releases) provides drivers for both `Linux/amd64` and `Linux/arm64` platforms. Cypress release [13.15.1](https://docs.cypress.io/app/references/changelog#13-15-1), and above, require `geckodriver` when testing Firefox. If `GECKODRIVER_VERSION` is not defined, Cypress uses the npm wrapper package [geckodriver](https://www.npmjs.com/package/geckodriver) to download [Mozilla geckodriver](https://github.com/mozilla/geckodriver) at run-time. Specifying `GECKODRIVER_VERSION` is advised if testing in an air-gapped environment, and to use a defined version of `geckodriver`.
+
 ### EDGE_VERSION
 
-The version of Edge to install. If the `ARG` variable is unset or an empty string, Edge is not installed. The exact version must be used, no wildcards or shorthands are supported.
+The version of Microsoft Edge to install. If the `ARG` variable is unset or an empty string, Edge is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
 Example: `EDGE_VERSION='131.0.2903.112-1'`
 

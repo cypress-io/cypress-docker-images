@@ -11,8 +11,9 @@ npx cypress open
 ```
 
 - Select "E2E Testing"
-- Select "Electron" browser
 - Select "Continue"
+- Select "Electron" browser
+- Select "Start E2E Testing in Electron"
 - Select "Scaffold example specs"
 - Close all Cypress windows
 
@@ -27,6 +28,8 @@ Remove Cypress from `package.json`:
 ```shell
 npm uninstall cypress --no-package-lock
 ```
+
+Commit the changes.
 
 ## Tests
 

@@ -36,8 +36,8 @@ ARCH= && dpkgArch="$(dpkg --print-architecture)" \
       A363A499291CBBC940DD62E41F10027AF002F8B0 \
       C0D6248439F1D5604AAFFB4021D900FFDB233756 \
     ; do \
-      gpg --batch --keyserver hkps://keys.openpgp.org $keyserverOptions --recv-keys "$key"  || \
-      gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key" ; \
+      gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key"  || \
+      gpg --batch --keyserver hkps://keys.openpgp.org $keyserverOptions --recv-keys "$key" ; \
     done \
     && curl -fsSLO --compressed "https://nodejs.org/dist/v$1/node-v$1-linux-$ARCH.tar.xz" \
     && curl -fsSLO --compressed "https://nodejs.org/dist/v$1/SHASUMS256.txt.asc" \

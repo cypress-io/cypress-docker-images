@@ -1,5 +1,29 @@
 # Change log
 
+## 5.11.2
+
+- Load PGP keys for Node.js from keyserver.ubuntu.com with fallback to hkps://keys.openpgp.org, reversing the previous order. Addresses [#1375](https://github.com/cypress-io/cypress-docker-images/issues/1375) and [#1376](https://github.com/cypress-io/cypress-docker-images/issues/1376).
+
+## 5.11.1
+
+- Updated default node version from `22.16.0` to `22.17.0`. Addressed in [#1374](https://github.com/cypress-io/cypress-docker-images/pull/1374).
+
+## 5.11.0
+
+- Added ability to install Google [Chrome for Testing](https://developer.chrome.com/blog/chrome-for-testing/) with `CHROME_FOR_TESTING_VERSION`. Addresses [#1367](https://github.com/cypress-io/cypress-docker-images/issues/1367).
+
+## 5.10.0
+
+- Updated Debian base image to `debian:12.11-slim` using [Debian 12.11](https://www.debian.org/News/2025/20250517), released on May 17, 2025. Addresses [#1352](https://github.com/cypress-io/cypress-docker-images/issues/1352).
+
+## 5.9.0
+
+- Added ability to install geckodriver with `GECKODRIVER_VERSION`. Addresses [#1351](https://github.com/cypress-io/cypress-docker-images/issues/1351).
+
+## 5.8.4
+
+- Updated default node version from `22.15.1` to `22.16.0`. Addressed in [#1358](https://github.com/cypress-io/cypress-docker-images/pull/1358).
+
 ## 5.8.3
 
 - Updated default node version from `22.15.0` to `22.15.1`. Addressed in [#1350](https://github.com/cypress-io/cypress-docker-images/pull/1350).

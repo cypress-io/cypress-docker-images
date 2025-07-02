@@ -93,6 +93,11 @@ ONBUILD ARG CHROME_VERSION
 
 ONBUILD RUN node /opt/installScripts/chrome/install-chrome-version.js ${CHROME_VERSION}
 
+# Install Chrome for Testing: optional
+ONBUILD ARG CHROME_FOR_TESTING_VERSION
+
+ONBUILD RUN node /opt/installScripts/chrome-for-testing/install-chrome-for-testing-version.js ${CHROME_FOR_TESTING_VERSION}
+
 # Install Edge: optional
 ONBUILD ARG EDGE_VERSION
 
@@ -102,6 +107,16 @@ ONBUILD RUN node /opt/installScripts/edge/install-edge-version.js ${EDGE_VERSION
 ONBUILD ARG FIREFOX_VERSION
 
 ONBUILD RUN node /opt/installScripts/firefox/install-firefox-version.js ${FIREFOX_VERSION}
+
+# Install Geckodriver: optional
+# Used with Firefox
+ONBUILD ARG GECKODRIVER_VERSION
+# If geckodriver is installed, make it available to npm package geckodriver
+# See https://github.com/webdriverio-community/node-geckodriver/blob/main/README.md#customgeckodriverpath
+# Path is only set if geckodriver is installed
+# see Dockerfile environment variable syntax https://docs.docker.com/reference/dockerfile/#environment-replacement
+ONBUILD ENV GECKODRIVER_PATH=${GECKODRIVER_VERSION:+/opt/geckodriver/geckodriver}
+ONBUILD RUN node /opt/installScripts/geckodriver/install-geckodriver-version.js ${GECKODRIVER_VERSION}
 
 # TODO: Globally installed webkit currently isn't found, see issue https://github.com/cypress-io/cypress/issues/25344
 # Install Webkit: optional

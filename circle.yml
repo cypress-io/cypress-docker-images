@@ -273,6 +273,7 @@ workflows:
                 [
                   test-factory-electron,
                   test-factory-chrome,
+                  test-factory-chrome-for-testing,
                   test-factory-chrome-non-root-user,
                   test-factory-firefox,
                   test-factory-edge,

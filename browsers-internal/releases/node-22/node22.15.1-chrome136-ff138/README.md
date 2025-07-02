@@ -14,4 +14,4 @@ Node 22.15.1 with Chrome 136.0.7103.149 and Firefox 138.0.4 on Debian Bookworm
 docker run -it --rm cypress/browsers-internal:node22.15.1-chrome136-ff138 node --version
 docker run -it --rm cypress/browsers-internal:node22.15.1-chrome136-ff138 google-chrome --version
 docker run -it --rm cypress/browsers-internal:node22.15.1-chrome136-ff138 firefox --version
-``` 
+```

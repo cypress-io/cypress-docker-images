@@ -1,6 +1,7 @@
 # Ubuntu 22.04 with Node.js 22.15.1
 
 This is a base image for Cypress that includes:
+
 - Ubuntu 22.04
 - Node.js 22.15.1
 - Latest NPM
@@ -18,4 +19,4 @@ docker pull cypress/base-internal:ubuntu22-node22
 
 ```bash
 ./build.sh
-``` 
+```

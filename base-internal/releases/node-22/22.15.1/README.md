@@ -12,4 +12,4 @@ Node 22.15.1 on Debian Bookworm
 
 ```bash
 docker run -it --rm cypress/base-internal:22.15.1 node --version
-``` 
+```

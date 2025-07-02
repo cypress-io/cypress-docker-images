@@ -12,4 +12,4 @@ Node 22.15.1 on Debian Bullseye
 
 ```bash
 docker run -it --rm cypress/base-internal:22.15.1-bullseye node --version
-``` 
+```

@@ -1,6 +1,8 @@
 #!/bin/bash
+set e+x
 
-set -e
+# build image with Cypress dependencies
+LOCAL_NAME=cypress/base-internal:22.15.1-bullseye
 
-docker build -t cypress/base-internal:22.15.1-bullseye --platform linux/amd64 .
-docker push cypress/base-internal:22.15.1-bullseye 
+echo "Building $LOCAL_NAME"
+docker build -t $LOCAL_NAME . --platform linux/amd64

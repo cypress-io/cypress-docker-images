@@ -1,15 +1,15 @@
-# cypress/base-internal:22.15.1-bullseye
+# cypress/base-internal:22.15.1-yarn-berry
 
-Node 22.15.1 on Debian Bullseye
+A Docker image with all dependencies pre-installed, based on Debian Bookworm.
 
-## Build
+NOTE: This image is intended for internal use with https://github.com/cypress-io/cypress. It contains a few differences from the factory, such as:
 
-```bash
-./build.sh
-```
+#### Dependency Additions
 
-## Test
+- xauth (to run xvfb inside system-tests)
+- build-essential to install `make` and other linux build packages
+- has yarn 4 to test yarn PnP dependencies with Cypress in order to verify the `@cypress/webpack-batteries-included-preprocessor` works with yarn PnP (without `node_modules`)
 
-```bash
-docker run -it --rm cypress/base-internal:22.15.1-yarn-berry node --version
-```
+#### Env variables
+
+- Does not contain the `CACHE_FOLDER` and `FACTORY_DEFAULT_NODE_VERSION` env variables to keep unit tests non environment specific

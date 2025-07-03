@@ -1,15 +1,14 @@
 # cypress/base-internal:22.15.1-bullseye
 
-Node 22.15.1 on Debian Bullseye
+A Docker image with all dependencies pre-installed.
 
-## Build
+NOTE: This image is intended for internal use with https://github.com/cypress-io/cypress. It contains a few differences from the factory, such as:
 
-```bash
-./build.sh
-```
+#### Dependency Additions
 
-## Test
+- xauth (to run xvfb inside system-tests)
+- build-essential to install `make` and other linux build packages
 
-```bash
-docker run -it --rm cypress/base-internal:22.15.1-bullseye node --version
-```
+#### Env variables
+
+- Does not contain the `CACHE_FOLDER` and `FACTORY_DEFAULT_NODE_VERSION` env variables to keep unit tests non environment specific

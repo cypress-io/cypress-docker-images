@@ -1,5 +1,9 @@
 # Change log
 
+## 5.11.3
+
+- Implement PGP key import checks for Node.js and restore the keyserver order to use hkps://keys.openpgp.org first with fallback to keyserver.ubuntu.com. Addressed in [#1380](https://github.com/cypress-io/cypress-docker-images/issues/1380).
+
 ## 5.11.2
 
 - Load PGP keys for Node.js from keyserver.ubuntu.com with fallback to hkps://keys.openpgp.org, reversing the previous order. Addresses [#1375](https://github.com/cypress-io/cypress-docker-images/issues/1375) and [#1376](https://github.com/cypress-io/cypress-docker-images/issues/1376).

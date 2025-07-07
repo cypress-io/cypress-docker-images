@@ -13,7 +13,7 @@ NOTE: This image is intended for internal use with https://github.com/cypress-io
 
 - xauth (to run xvfb inside system-tests)
 - build-essential to install `make` and other linux build packages
-- python3.8 and gcc-10.5 to be able to build better-sqlite3
+- python3.8 to be able to build better-sqlite3
 
 #### Env variables
 

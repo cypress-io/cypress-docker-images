@@ -1,5 +1,9 @@
 # Change log
 
+## 5.11.4
+
+- Updated default node version from `22.17.0` to `22.17.1`. Addressed in [#1384](https://github.com/cypress-io/cypress-docker-images/pull/1384).
+
 ## 5.11.3
 
 - Implement PGP key import checks for Node.js and restore the keyserver order to use hkps://keys.openpgp.org first with fallback to keyserver.ubuntu.com. Addressed in [#1380](https://github.com/cypress-io/cypress-docker-images/issues/1380).

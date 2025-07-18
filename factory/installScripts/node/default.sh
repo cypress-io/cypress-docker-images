@@ -37,7 +37,8 @@ ARCH= && dpkgArch="$(dpkg --print-architecture)" \
       C0D6248439F1D5604AAFFB4021D900FFDB233756 \
     ; do \
       { gpg --batch --keyserver hkps://keys.openpgp.org $keyserverOptions --recv-keys "$key" && gpg --batch --fingerprint "$key" ; } ||
-      { gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key" && gpg --batch --fingerprint "$key" ; } ; \
+      { gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key" && gpg --batch --fingerprint "$key" ; } ||
+      { echo failed to import Node.js release key "$key" ; } ; \
     done \
     && curl -fsSLO --compressed "https://nodejs.org/dist/v$1/node-v$1-linux-$ARCH.tar.xz" \
     && curl -fsSLO --compressed "https://nodejs.org/dist/v$1/SHASUMS256.txt.asc" \

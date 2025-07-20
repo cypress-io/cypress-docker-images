@@ -1,5 +1,9 @@
 # Change log
 
+## 5.12.0
+
+- Import all PGP keys for Node.js from `pgp` keyring in https://github.com/nodejs/release-keys repo. Addressed in [#1388](https://github.com/cypress-io/cypress-docker-images/issues/1388)
+
 ## 5.11.5
 
 - When importing PGP keys for Node.js, allow individual key imports to fail. Log an error and continue to build. Resolves an issue when there is a network connectivity problem to the fallback keyserver keyserver.ubuntu.com. Addressed in [#1385](https://github.com/cypress-io/cypress-docker-images/issues/1385).

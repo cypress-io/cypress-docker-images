@@ -1,4 +1,5 @@
 #! /bin/bash
+set -e
 # TODO: should typescript be versioned? Should it have it's own ARG for the factory?
 # Typescript is installed to allow testing of .ts spec files.
 if [[ -n "$1" ]]; then

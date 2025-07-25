@@ -1,5 +1,9 @@
 # Change log
 
+## 5.11.6
+
+- When building an image that includes Cypress, ensure that a failed download results in a failure exit code. Fixes [#1391](https://github.com/cypress-io/cypress-docker-images/issues/1391).
+
 ## 5.11.5
 
 - When importing PGP keys for Node.js, allow individual key imports to fail. Log an error and continue to build. Resolves an issue when there is a network connectivity problem to the fallback keyserver keyserver.ubuntu.com. Addressed in [#1385](https://github.com/cypress-io/cypress-docker-images/issues/1385).

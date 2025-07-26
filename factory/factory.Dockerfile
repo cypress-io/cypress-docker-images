@@ -131,8 +131,7 @@ ONBUILD ARG CYPRESS_VERSION
 # This is only set if the cypress version is passed in (thats what the + syntax stuff does.)
 ONBUILD ENV NODE_PATH=${CYPRESS_VERSION:+/usr/local/lib/node_modules}
 
-ONBUILD RUN node /opt/installScripts/cypress/install-cypress-version.js ${CYPRESS_VERSION}
-
+ONBUILD RUN /opt/installScripts/cypress/install.sh ${CYPRESS_VERSION}
 # Global Cleanup
 ONBUILD RUN apt-get purge -y --auto-remove \
     curl \

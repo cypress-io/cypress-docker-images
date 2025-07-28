@@ -20,7 +20,7 @@ ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     && savedAptMark="$(apt-mark showmanual)" \
     && apt-get update && apt-get install -y curl wget gnupg dirmngr xz-utils libatomic1 --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
-    && curl -fsSLO https://raw.githubusercontent.com/nodejs/release-keys/main/gpg/pubring.kbx \
+    && curl -fsSLO https://github.com/nodejs/release-keys/raw/refs/heads/main/gpg/pubring.kbx \
     && gpg --no-default-keyring --keyring ./pubring.kbx --export | gpg --import \
     && curl -fsSLO --compressed "https://nodejs.org/dist/v$1/node-v$1-linux-$ARCH.tar.xz" \
     && curl -fsSLO --compressed "https://nodejs.org/dist/v$1/SHASUMS256.txt.asc" \

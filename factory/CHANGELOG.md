@@ -1,8 +1,12 @@
 # Change log
 
+## 5.12.0
+
+- Import all PGP keys for Node.js from `pgp` keyring in https://github.com/nodejs/release-keys repo. Addressed in [#1388](https://github.com/cypress-io/cypress-docker-images/issues/1388).
+
 ## 5.11.6
 
-- Failed installs of Cypress no longer get cached as a docker layer. Addressed in [#1390](https://github.com/cypress-io/cypress-docker-images/pull/1390)
+- Failed installs of Cypress no longer get cached as a docker layer. Addressed in [#1390](https://github.com/cypress-io/cypress-docker-images/pull/1390).
 
 ## 5.11.5
 

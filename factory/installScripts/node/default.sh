@@ -3,9 +3,7 @@
 groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
-# The following is borrowed from https://github.com/nodejs/docker-node/blob/main/20/bookworm-slim/Dockerfile
-# Node.js GPG keys are taken from https://github.com/nodejs/node/
-# Tweaked for gpg proxy management
+# The following was originally based on https://github.com/nodejs/docker-node/blob/main/20/bookworm-slim/Dockerfile
 ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     && case "${dpkgArch##*-}" in \
       amd64) ARCH='x64';; \

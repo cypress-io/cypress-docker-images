@@ -1,5 +1,9 @@
 # Change log
 
+## 5.12.1
+
+- Updated default node version from `22.17.1` to `22.18.0`. Addressed in [#1394](https://github.com/cypress-io/cypress-docker-images/pull/1394).
+
 ## 5.12.0
 
 - Import all PGP keys for Node.js from `pgp` keyring in https://github.com/nodejs/release-keys repo. Addressed in [#1388](https://github.com/cypress-io/cypress-docker-images/issues/1388).

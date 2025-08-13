@@ -122,7 +122,7 @@ To release a new [factory](./factory/README.md), open a PR with the desired chan
 
 ## Minimize image sizes
 
-The `BASE_IMAGE` defined in [factory/.env](./factory/.env) uses a [Debian Docker image](https://hub.docker.com/_/debian) and the current `BASE_IMAGE` is `debian:12-slim` (codename `bookworm`). To keep the image size of the generated Cypress Docker images to a minimum, choose the `slim` variant when other versions of Debian are used, for instance when [Debian releases](https://www.debian.org/releases/) a new major version.
+The `BASE_IMAGE` defined in [factory/.env](./factory/.env) uses a [Debian Docker image](https://hub.docker.com/_/debian). To keep the image size of the generated Cypress Docker images to a minimum, choose the `slim` variant when other versions of Debian are used, for instance when [Debian releases](https://www.debian.org/releases/) a new major version.
 
 To see the size of an image, you can use the command [`docker images`](https://docs.docker.com/engine/reference/commandline/images/), for instance with:
 
@@ -130,7 +130,7 @@ To see the size of an image, you can use the command [`docker images`](https://d
 docker images --format "table {{.Repository}} {{.Tag}} {{.Size}}"
 ```
 
-A snapshot of current sizes shows:
+A snapshot of sizes shows:
 
 | REPOSITORY       | TAG                                                               | SIZE   |
 | ---------------- | ----------------------------------------------------------------- | ------ |

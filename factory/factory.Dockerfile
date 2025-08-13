@@ -1,7 +1,7 @@
 # BASE_IMAGE is expected to be overridden
 # Regular builds, using docker compose, take the value from
 # the .env file in the same directory as this file
-ARG BASE_IMAGE='debian:12-slim'
+ARG BASE_IMAGE='debian:13-slim'
 
 FROM ${BASE_IMAGE} AS factory
 

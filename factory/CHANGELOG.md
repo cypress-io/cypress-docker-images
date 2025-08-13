@@ -1,5 +1,9 @@
 # Change log
 
+## 6.0.0
+
+- Updated Debian base image from `debian:12.11-slim` to `debian:13.0-slim` using [Debian 13.0 (trixie)](https://www.debian.org/releases/trixie/). Addressed in [#1396](https://github.com/cypress-io/cypress-docker-images/pull/1396).
+
 ## 5.12.1
 
 - Updated default node version from `22.17.1` to `22.18.0`. Addressed in [#1394](https://github.com/cypress-io/cypress-docker-images/pull/1394).
@@ -11,6 +15,7 @@
 ## 5.11.6
 
 - Failed installs of Cypress no longer get cached as a docker layer. Addressed in [#1390](https://github.com/cypress-io/cypress-docker-images/pull/1390).
+
 
 ## 5.11.5
 

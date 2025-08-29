@@ -1,5 +1,9 @@
 # Change log
 
+## 6.0.1
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `22.18.0` to `22.19.0`. Addressed in [#1408](https://github.com/cypress-io/cypress-docker-images/pull/1408).
+
 ## 6.0.0
 
 - Updated Debian base image from `debian:12.11-slim` to `debian:13.0-slim` using [Debian 13.0 (trixie)](https://www.debian.org/releases/trixie/). Addressed in [#1396](https://github.com/cypress-io/cypress-docker-images/pull/1396).

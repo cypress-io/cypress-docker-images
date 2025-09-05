@@ -77,7 +77,7 @@ Once the PR is merged into the `master` branch, the corresponding images will be
 
 If you need to release alternate versions that do not qualify to be primary versions, do not modify the contents of the [factory/.env](./factory/.env) file in the `master` branch. An example would be to publish images including updated [Node.js releases](https://nodejs.org/en/about/previous-releases) in the category "Maintenance LTS" or "Current". Instead, carry out the following steps:
 
-1. Create a feature branch in the form `<cypress-version>-node-<node.js version>-publish`, for example `13.11.0-node-18.20.3-publish`, branched from the `master` branch. If you are not a member of the Cypress org, make a request via a new issue to create a feature branch.
+1. Create a feature branch in the form `<cypress-version>-node-<node.js version>-publish`, for example `15.1.0-node-20.19.4-publish`, branched from the `master` branch. If you are not a member of the Cypress org, make a request via a new issue to create a feature branch.
 2. Modify [factory/.env](./factory/.env) with the desired versions. Do not modify the `FACTORY_VERSION`. No new `cypress/factory` image should be published with this process.
 3. Modify [factory/docker-compose.yml](./factory/docker-compose.yml) to comment out the creation of `latest` tags. Comment out the `cypress/included` `INCLUDED_IMAGE_SHORT_TAG` to also prevent this tag from being created. This step is essential to avoid the related tags of any existing released images being moved to point to non-primary images.
 4. Modify [circle.yml](circle.yml) to push releases from the feature branch.

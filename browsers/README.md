@@ -19,8 +19,8 @@
 
 for example:
 
-- `cypress/browsers:node-20.14.0-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1`
-- `cypress/browsers:22.11.0`
+- `cypress/browsers:node-22.19.0-chrome-139.0.7258.154-1-ff-142.0.1-edge-139.0.3405.125-1`
+- `cypress/browsers:22.19.0`
 - `cypress/browsers:latest`
 
 To avoid unplanned breaking changes, specify a fixed `<node version>` & `<browser version>` combination tag.

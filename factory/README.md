@@ -63,7 +63,7 @@ They are not currently published to the npm registry and require the experimenta
 
 The version of Cypress to install (via npm). If the `ARG` variable is unset or an empty string, Cypress is not installed.
 
-Example: `CYPRESS_VERSION='13.11.0'`
+Example: `CYPRESS_VERSION='15.1.0'`
 
 [Cypress versions](https://www.npmjs.com/package/cypress)
 
@@ -71,7 +71,7 @@ Example: `CYPRESS_VERSION='13.11.0'`
 
 The version of Google Chrome to install. If the `ARG` variable is unset or an empty string, Chrome is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
-Example: `CHROME_VERSION='131.0.6778.264-1'`
+Example: `CHROME_VERSION='139.0.7258.154-1'`
 
 [Chrome versions](https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable)
 
@@ -81,7 +81,7 @@ This browser is currently available only for the `Linux/amd64` platform.
 
 The version of [Google Chrome for Testing](https://developer.chrome.com/blog/chrome-for-testing/) to install. If the `ARG` variable is unset or an empty string, Chrome for Testing is not installed.
 
-Example: `CHROME_FOR_TESTING_VERSION='137.0.7151.70'`
+Example: `CHROME_FOR_TESTING_VERSION='139.0.7258.154'`
 
 Refer to [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/) for current versions or [available downloads](https://googlechromelabs.github.io/chrome-for-testing/files) for other versions.
 
@@ -91,7 +91,7 @@ The parameter `CHROME_FOR_TESTING_VERSION` can be used for custom-built images b
 
 The version of Mozilla Firefox to install. If the `ARG` variable is unset or an empty string, Firefox is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
-Example: `FIREFOX_VERSION='134.0'`
+Example: `FIREFOX_VERSION='142.0.1'`
 
 [Firefox versions](https://download-installer.cdn.mozilla.net/pub/firefox/releases/)
 
@@ -109,7 +109,7 @@ Example: `GECKODRIVER_VERSION='0.36.0'`
 
 The version of Microsoft Edge to install. If the `ARG` variable is unset or an empty string, Edge is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
-Example: `EDGE_VERSION='131.0.2903.112-1'`
+Example: `EDGE_VERSION='139.0.3405.125-1'`
 
 [Edge versions](https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/)
 
@@ -165,9 +165,9 @@ Create a `Dockerfile` with the following content:
 # Args are defined in the Dockerfile before the FROM command.
 # Using these args will cause an image to be created with
 # Node.js (default version from .env file), Chrome, Firefox and Edge.
-ARG CHROME_VERSION='131.0.6778.264-1'
-ARG EDGE_VERSION='131.0.2903.112-1'
-ARG FIREFOX_VERSION='134.0'
+ARG CHROME_VERSION='139.0.7258.154-1'
+ARG EDGE_VERSION='139.0.3405.125'
+ARG FIREFOX_VERSION='142.0.1'
 
 FROM cypress/factory
 
@@ -202,7 +202,7 @@ RUN npx cypress install
 Run the Docker commands:
 
 ```bash
-docker build . --build-arg CHROME_VERSION='131.0.6778.264-1' --build-arg EDGE_VERSION='131.0.2903.112-1' --build-arg FIREFOX_VERSION='134.0' -t test
+docker build . --build-arg CHROME_VERSION='139.0.7258.154-1' --build-arg EDGE_VERSION='139.0.3405.125-1' --build-arg FIREFOX_VERSION='142.0.1' -t test
 docker run -it --rm test npx cypress run -b chrome
 ```
 
@@ -218,9 +218,9 @@ services:
     build:
       context: .
       args:
-        CHROME_VERSION: '125.0.6422.141-1'
-        EDGE_VERSION: '125.0.2535.85-1'
-        FIREFOX_VERSION: '126.0.1'
+        CHROME_VERSION: '139.0.7258.154-1'
+        EDGE_VERSION: '139.0.3405.125-1'
+        FIREFOX_VERSION: '142.0.1'
     command: npx cypress run
 ```
 
@@ -251,7 +251,7 @@ Since this example only uses Chrome, removing Edge and Firefox is as simple as n
 Create a `Dockerfile` with the following content:
 
 ```dockerfile
-ARG CHROME_VERSION='131.0.6778.264-1'
+ARG CHROME_VERSION='139.0.7258.154-1'
 
 FROM cypress/factory
 
@@ -282,8 +282,6 @@ docker build . --build-arg HTTP_PROXY=http://my-corporate-proxy.com:3128 -t test
 
 ## Version Testing
 
-Due to the large amount of possible version combinations, we're not able to exhaustively test each combination of versions, nor do we block versions that are incompatible. For example, Cypress 12 removed support for Node.js version 12.0.0. You are still able to generate a container with node 12.0.0 and Cypress 12, but Cypress will fail to run. This is because the factory supports earlier versions of Cypress and must support earlier versions of node.
+Due to the large amount of possible version combinations, we're not able to exhaustively test each combination of versions, nor do we block versions that are incompatible. For example, Cypress 12 removed support for Node.js version 12.0.0. You are still able to generate a container with Node.js 12.0.0 and Cypress 12, but Cypress will fail to run. This is because the factory supports earlier versions of Cypress and must support earlier versions of Node.js.
 
-If you run across a combination that should reasonably work, but doesn't, log an issue and we will take a look at supporting it.
-
-Additionally this docker image and containers generated from it are intended for test use only, and are not intended for hosting services in a production environment.
+Additionally, Cypress Docker images and containers generated from them are intended for test use only, and are not intended for hosting services in a production environment.

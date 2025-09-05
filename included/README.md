@@ -19,8 +19,8 @@
 
 for example:
 
-- `cypress/included:cypress-13.15.1-node-22.11.0-chrome-130.0.6723.69-1-ff-132.0-edge-130.0.2849.56-1`
-- `cypress/included:13.15.1`
+- `cypress/included:cypress-15.1.0-node-22.19.0-chrome-139.0.7258.154-1-ff-142.0.1-edge-139.0.3405.125-1`
+- `cypress/included:15.1.0`
 - `cypress/included:latest`
 
 To avoid unplanned breaking changes, specify a fixed `<cypress version>`, `<node version>` & `<browser version>` combination tag.
@@ -111,7 +111,7 @@ docker run -it --rm --entrypoint cypress cypress/included info
 ```
 
 ```text
-DevTools listening on ws://127.0.0.1:36243/devtools/browser/eb85524a-6459-41d6-b855-94c10cd2b242
+DevTools listening on ws://127.0.0.1:37627/devtools/browser/0db3d002-dc65-49b3-83a9-471ea4920af4
 Displaying Cypress info...
 
 Detected 3 browsers installed:
@@ -119,41 +119,41 @@ Detected 3 browsers installed:
 1. Chrome
   - Name: chrome
   - Channel: stable
-  - Version: 130.0.6723.69
+  - Version: 139.0.7258.154
   - Executable: google-chrome
 
 2. Edge
   - Name: edge
   - Channel: stable
-  - Version: 130.0.2849.56
+  - Version: 139.0.3405.125
   - Executable: edge
 
 3. Firefox
   - Name: firefox
   - Channel: stable
-  - Version: 132.0
+  - Version: 142.0.1
   - Executable: firefox
 
 Note: to run these browsers, pass <name>:<channel> to the '--browser' field
 
 Examples:
-- cypress run --browser firefox
 - cypress run --browser chrome
+- cypress run --browser edge
 
 Learn More: https://on.cypress.io/launching-browsers
 
 Proxy Settings: none detected
 Environment Variables:
 CYPRESS_CACHE_FOLDER: /root/.cache/Cypress
-CYPRESS_FACTORY_DEFAULT_NODE_VERSION: 22.11.0
+CYPRESS_FACTORY_DEFAULT_NODE_VERSION: 22.19.0
 
 Application Data: /root/.config/cypress/cy/development
 Browser Profiles: /root/.config/cypress/cy/development/browsers
 Binary Caches: /root/.cache/Cypress
 
-Cypress Version: 13.15.1 (stable)
-System Platform: linux (Debian - 12.7)
-System Memory: 5.16 GB free 4.12 GB
+Cypress Version: 15.1.0 (stable)
+System Platform: linux (Debian - 13.0)
+System Memory: 5.16 GB free 3.79 GB
 ```
 
 ## User

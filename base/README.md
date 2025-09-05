@@ -13,7 +13,7 @@
 
 for example:
 
-- `cypress/base:20.14.0`
+- `cypress/base:22.19.0`
 - `cypress/base:latest`
 
 To avoid unplanned breaking changes, specify a fixed `<node version>` tag, not the `latest` tag.

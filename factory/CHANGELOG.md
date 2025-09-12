@@ -1,5 +1,9 @@
 # Change log
 
+## 6.1.0
+
+- Updated Debian `BASE_IMAGE` from `debian:13.0-slim` to `debian:13.1-slim` using [Debian 13.1 (trixie)](https://www.debian.org/releases/trixie/). Addresses [#1412](https://github.com/cypress-io/cypress-docker-images/issues/1412).
+
 ## 6.0.2
 
 - When installing Microsoft Edge, use only `/etc/apt/sources.list.d/microsoft-edge.list` to resolve a multiple configuration warning from Debian package management. Addresses [#1404](https://github.com/cypress-io/cypress-docker-images/issues/1404).

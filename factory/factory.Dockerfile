@@ -144,4 +144,4 @@ ONBUILD RUN apt-get purge -y --auto-remove \
   && rm -rf /opt/installScripts
 
 # Disable dbus connections
-ONBUILD ENV DBUS_SESSION_BUS_ADDRESS='disabled:'
+ONBUILD ENV DBUS_SYSTEM_BUS_ADDRESS='disabled:'

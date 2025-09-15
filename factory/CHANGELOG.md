@@ -1,5 +1,9 @@
 # Change log
 
+## 6.1.1
+
+- Set `DBUS_SESSION_BUS_ADDRESS` to `disabled:`, which prevents Electron from attempting to connect to dbus. Addressed in
+
 ## 6.1.0
 
 - Updated Debian `BASE_IMAGE` from `debian:13.0-slim` to `debian:13.1-slim` using [Debian 13.1 (trixie)](https://www.debian.org/releases/trixie/). Addresses [#1412](https://github.com/cypress-io/cypress-docker-images/issues/1412).

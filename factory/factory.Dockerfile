@@ -73,9 +73,6 @@ ARG FACTORY_DEFAULT_NODE_VERSION
 # Set the default node version to an env to allow us to access it in the onbuild step.
 ENV CYPRESS_FACTORY_DEFAULT_NODE_VERSION=${FACTORY_DEFAULT_NODE_VERSION}
 
-# Inform Electron that it will not need to connect to dbus, and should not try
-ENV DBUS_SESSION_BUS_ADDRESS='disabled:'
-
 # Install Node: Node MUST be installed, so the default lives here
 ONBUILD ARG NODE_VERSION
 
@@ -145,3 +142,6 @@ ONBUILD RUN apt-get purge -y --auto-remove \
   && rm -rf /var/lib/apt/lists/* \
   # Remove cypress install scripts
   && rm -rf /opt/installScripts
+
+# Disable dbus connections
+ONBUILD ENV DBUS_SESSION_BUS_ADDRESS='disabled:'

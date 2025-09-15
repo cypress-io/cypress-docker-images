@@ -2,7 +2,7 @@
 
 ## 6.1.1
 
-- Set `DBUS_SESSION_BUS_ADDRESS` to `disabled:`, which prevents Electron from attempting to connect to dbus. Addressed in [#1415](https://github.com/cypress-io/cypress-docker-images/pull/1415).
+- Factory now defaults to setting `DBUS_SESSION_BUS_ADDRESS` to `disabled:`, which prevents Electron from attempting to connect to dbus. Addressed in [#1415](https://github.com/cypress-io/cypress-docker-images/pull/1415).
 
 ## 6.1.0
 

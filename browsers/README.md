@@ -68,6 +68,6 @@ We build the new image, run the container from the image and execute the Cypress
 ```shell
 cd examples/basic         # Use a pre-configured simple Cypress E2E project
 npm ci                    # Install Cypress
-docker build . -f Dockerfile.browsers -t test-browsers  # Build a new image
+docker build -f Dockerfile.browsers -t test-browsers . # Build a new image
 docker run -it --rm --entrypoint bash test-browsers -c "npx cypress run -b chrome" # Run Cypress test in container using Chrome
 ```

@@ -59,6 +59,6 @@ We build the new image, run the container from the image and execute the Cypress
 ```shell
 cd examples/basic         # Use a pre-configured simple Cypress E2E project
 npm ci                    # Install Cypress
-docker build . -f Dockerfile.base -t test-base  # Build a new image
+docker build -f Dockerfile.base -t test-base . # Build a new image
 docker run -it --rm --entrypoint bash test-base -c "npx cypress run" # Run Cypress test in container
 ```

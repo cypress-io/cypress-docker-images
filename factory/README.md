@@ -180,7 +180,7 @@ RUN npx cypress install
 Then, in the same directory as the `Dockerfile`, run the following commands to build the Docker image and run Cypress against the Chrome browser.
 
 ```bash
-docker build . -t test
+docker build -t test .
 docker run -it --rm test npx cypress run -b chrome
 ```
 
@@ -202,7 +202,7 @@ RUN npx cypress install
 Run the Docker commands:
 
 ```bash
-docker build . --build-arg CHROME_VERSION='139.0.7258.154-1' --build-arg EDGE_VERSION='139.0.3405.125-1' --build-arg FIREFOX_VERSION='142.0.1' -t test
+docker build --build-arg CHROME_VERSION='139.0.7258.154-1' --build-arg EDGE_VERSION='139.0.3405.125-1' --build-arg FIREFOX_VERSION='142.0.1' -t test .
 docker run -it --rm test npx cypress run -b chrome
 ```
 
@@ -264,7 +264,7 @@ RUN npx cypress install
 Then, in the same directory as the `Dockerfile`, run the following commands to build the Docker image and run Cypress against the Chrome browser.
 
 ```bash
-docker build . -t test
+docker build -t test .
 docker run -it --rm test npx cypress run -b chrome
 ```
 
@@ -277,7 +277,7 @@ To build a custom image behind a corporate proxy, it is possible to set the opti
 Example with the `--build-arg` flag :
 
 ```bash
-docker build . --build-arg HTTP_PROXY=http://my-corporate-proxy.com:3128 -t test
+docker build --build-arg HTTP_PROXY=http://my-corporate-proxy.com:3128 -t test .
 ```
 
 ## Version Testing

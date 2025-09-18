@@ -60,6 +60,6 @@ We build the new image, run the container from the image and execute the Cypress
 ```shell
 cd examples/chromium             # Use a pre-configured simple Cypress E2E project
 npm ci                           # Install all dependencies
-docker build . -t test-chromium  # Build a new image
+docker build -t test-chromium . # Build a new image
 docker run -it --rm --entrypoint bash test-chromium -c "npx cypress run --browser chromium" # Run Cypress test using Chromium
 ```

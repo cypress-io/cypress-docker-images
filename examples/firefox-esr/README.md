@@ -62,6 +62,6 @@ We build the new image, run the container from the image and execute the Cypress
 ```shell
 cd examples/firefox-esr             # Use a pre-configured simple Cypress E2E project
 npm ci                              # Install all dependencies
-docker build . -t test-firefox-esr  # Build a new image
+docker build -t test-firefox-esr . # Build a new image
 docker run -it --rm --entrypoint bash test-firefox-esr -c "npx cypress run --browser firefox" # Run Cypress test using Firefox ESR
 ```

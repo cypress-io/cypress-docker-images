@@ -13,7 +13,7 @@
     "lint": "eslint"
   },
   "engines": {
-    "node": ">=18.17"
+    "node": ">=20.18.1"
   },
   "repository": {
     "type": "git",

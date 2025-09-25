@@ -6,3 +6,4 @@
 /factory/test-project
 
 **/*.js
+**/*.?js

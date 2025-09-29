@@ -206,6 +206,8 @@ jobs:
           command: |
             docker compose --progress plain build << parameters.test-target >>
             docker compose run --rm << parameters.test-target >>
+          max_auto_reruns: 3
+          auto_rerun_delay: 5m
           working_directory: factory/test-project
 
   push:

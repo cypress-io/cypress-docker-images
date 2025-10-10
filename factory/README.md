@@ -285,3 +285,5 @@ docker build --build-arg HTTP_PROXY=http://my-corporate-proxy.com:3128 -t test .
 Due to the large amount of possible version combinations, we're not able to exhaustively test each combination of versions, nor do we block versions that are incompatible. For example, Cypress 12 removed support for Node.js version 12.0.0. You are still able to generate a container with Node.js 12.0.0 and Cypress 12, but Cypress will fail to run. This is because the factory supports earlier versions of Cypress and must support earlier versions of Node.js.
 
 Additionally, Cypress Docker images and containers generated from them are intended for test use only, and are not intended for hosting services in a production environment.
+
+Refer to Cypress [System requirements](https://docs.cypress.io/app/get-started/install-cypress#System-requirements) for details of currently supported environments, including [Node.js](https://docs.cypress.io/app/get-started/install-cypress#Nodejs) and [Browsers](https://docs.cypress.io/app/get-started/install-cypress#Browsers) support.

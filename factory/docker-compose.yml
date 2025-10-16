@@ -16,7 +16,7 @@ services:
         BASE_IMAGE: ${BASE_IMAGE}
         FACTORY_DEFAULT_NODE_VERSION: ${FACTORY_DEFAULT_NODE_VERSION}
       tags:
-        - ${REPO_PREFIX-}cypress/factory:latest # comment out for release of alternate version
+        # - ${REPO_PREFIX-}cypress/factory:latest # comment out for release of alternate version
         - ${REPO_PREFIX-}cypress/factory:${FACTORY_VERSION}
     command: node -v
 
@@ -36,7 +36,7 @@ services:
         YARN_VERSION: ${YARN_VERSION}
         # WEBKIT_VERSION: ${WEBKIT_VERSION}
       tags:
-        - ${REPO_PREFIX-}cypress/included:latest # comment out for release of alternate version
+        # - ${REPO_PREFIX-}cypress/included:latest # comment out for release of alternate version
         - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_SHORT_TAG} # comment out for release of alternate version
         - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG}
     command: node -v
@@ -55,7 +55,7 @@ services:
         GECKODRIVER_VERSION: ${GECKODRIVER_VERSION}
         EDGE_VERSION: ${EDGE_VERSION}
       tags:
-        - ${REPO_PREFIX-}cypress/browsers:latest # comment out for release of alternate version
+        # - ${REPO_PREFIX-}cypress/browsers:latest # comment out for release of alternate version
         - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_SHORT_TAG}
         - ${REPO_PREFIX-}cypress/browsers:${BROWSERS_IMAGE_TAG}
     command: node -v
@@ -70,7 +70,7 @@ services:
         FACTORY_VERSION: ${FACTORY_VERSION}
         YARN_VERSION: ${YARN_VERSION}
       tags:
-        - ${REPO_PREFIX-}cypress/base:latest # comment out for release of alternate version
+        # - ${REPO_PREFIX-}cypress/base:latest # comment out for release of alternate version
         - ${REPO_PREFIX-}cypress/base:${BASE_IMAGE_TAG}
     command: node -v
 

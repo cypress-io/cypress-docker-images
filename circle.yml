@@ -358,7 +358,7 @@ workflows:
                 # change to a feature branch such as <cypress-version>-node-<node.js version>-publish
                 # if publishing an alternate (non-primary) version
                 # This job must run because the base, browsers and included jobs depend on it
-                - master
+                - 15.4.0-node-25.0.0-publish
           requires:
             - factory
             - factory-arm
@@ -374,7 +374,7 @@ workflows:
                 # Only branches matching the below regex filters will run
                 # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
                 # if publishing an alternate version
-                - master
+                - 15.4.0-node-25.0.0-publish
           requires:
             - 'Push Factory Image'
             - base
@@ -389,7 +389,7 @@ workflows:
                 # Only branches matching the below regex filters will run
                 # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
                 # if publishing an alternate version
-                - master
+                - 15.4.0-node-25.0.0-publish
           requires:
             - 'Push Factory Image'
             - browsers
@@ -404,7 +404,7 @@ workflows:
                 # Only branches matching the below regex filters will run
                 # Change to a feature branch such as <cypress-version>-node-<node.js version>-publish
                 # if publishing an alternate version
-                - master
+                - 15.4.0-node-25.0.0-publish
           requires:
             - 'Push Factory Image'
             - included

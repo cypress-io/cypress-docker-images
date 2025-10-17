@@ -75,14 +75,18 @@ Once the PR is merged into the `master` branch, the corresponding images will be
 
 > Note: Assistance from a member of the Cypress org is required for this process
 
-If you need to release alternate versions that do not qualify to be primary versions, do not modify the contents of the [factory/.env](./factory/.env) file in the `master` branch. An example would be to publish images including updated [Node.js releases](https://nodejs.org/en/about/previous-releases) in the category "Maintenance LTS" or "Current". Instead, carry out the following steps:
+An example of an alternate version of a Cypress Docker image would be one based on a [Node.js release](https://nodejs.org/en/about/previous-releases) in the category "Maintenance LTS" or "Current". Primary versions of Cypress Docker images are always based on the latest Node.js version from the "Active LTS" category.
 
-1. Create a feature branch in the form `<cypress-version>-node-<node.js version>-publish`, for example `15.1.0-node-20.19.4-publish`, branched from the `master` branch. If you are not a member of the Cypress org, make a request via a new issue to create a feature branch.
-2. Modify [factory/.env](./factory/.env) with the desired versions. Do not modify the `FACTORY_VERSION`. No new `cypress/factory` image should be published with this process.
-3. Modify [factory/docker-compose.yml](./factory/docker-compose.yml) to comment out the creation of `latest` tags. Comment out the `cypress/included` `INCLUDED_IMAGE_SHORT_TAG` to also prevent this tag from being created. This step is essential to avoid the related tags of any existing released images being moved to point to non-primary images.
-4. Modify [circle.yml](circle.yml) to push releases from the feature branch.
-5. Open a PR which targets the feature branch.
-6. After PR merge, check Docker Hub and the associated new image(s).
+If you need to release an alternate version that does not qualify to be a primary version, do not modify any files in the `master` branch. Instead, carry out the following steps to work in a separate branch.
+
+1. Create a feature branch in the form `<cypress-version>-node-<node.js version>-publish`, for example `15.4.0-node-25.0.0-publish`, branched from the `master` branch. If you are not a member of the Cypress org, and you are working in a fork of the repo, make a request via a new issue to create a feature branch in the parent repo.
+2. Create a similarly named working branch, for example, `15.4.0-node-25.0.0-work`, also branched from the `master` branch.
+3. Now modify the three files as follows in your working branch. Pay attention to comments in the files affected for additional details of the changes necessary.
+4. Modify [factory/.env](./factory/.env) with the desired versions. Do not modify the `FACTORY_VERSION`. No new `cypress/factory` image should be published with this process.
+5. Modify [factory/docker-compose.yml](./factory/docker-compose.yml) to comment out the creation of `latest` tags. Comment out the `cypress/included` `INCLUDED_IMAGE_SHORT_TAG` to also prevent this tag from being created. This step is essential to avoid the related tags of any existing released images being moved to point to non-primary images.
+6. Modify [circle.yml](circle.yml) to push releases from the feature branch.
+7. Open a PR which commits the changes from your working branch to the publish feature branch. Do **not** target the `master` branch with the PR.
+8. After PR merge, check Cypress on [Docker Hub](https://hub.docker.com/u/cypress) for the presence of the associated new image(s).
 
 #### Manual
 

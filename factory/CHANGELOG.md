@@ -1,8 +1,12 @@
 # Change log
 
+## 6.1.2
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `22.20.0` to `22.21.0`. Addressed in [#1437](https://github.com/cypress-io/cypress-docker-images/pull/1437).
+
 ## 6.1.1
 
-- Updated `FACTORY_DEFAULT_NODE_VERSION` from `22.19.0` to `22.20.0`. Addressed in [#1425](https://github.com/cypress-io/cypress-docker-images/pull/1425)
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `22.19.0` to `22.20.0`. Addressed in [#1425](https://github.com/cypress-io/cypress-docker-images/pull/1425).
 
 ## 6.1.0
 

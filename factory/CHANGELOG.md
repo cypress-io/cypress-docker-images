@@ -2,7 +2,7 @@
 
 ## 7.0.0
 
-- Updated `FACTORY_DEFAULT_NODE_VERSION` from `22.21.0` (`Jod` - Maintenance LTS) to `24.11.0` (`Krypton` - Active LTS) - see [Blog v24.11.0](https://nodejs.org/en/blog/release/v24.11.0). Addressed in [#1438](https://github.com/cypress-io/cypress-docker-images/pull/1438).
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `22.21.0` (`Jod` - Maintenance LTS) to `24.11.0` (`Krypton` - Active LTS) - see [Blog v24.11.0](https://nodejs.org/en/blog/release/v24.11.0). Addressed in [#1439](https://github.com/cypress-io/cypress-docker-images/pull/1439).
 
 ## 6.1.2
 

@@ -1,6 +1,6 @@
-# cypress/base-internal:22.19.0-yarn-berry
+# cypress/base-internal:22.19.0-trixie
 
-A Docker image with all dependencies pre-installed based on Debian Trixie with Yarn Berry (v4.3.1).
+A Docker image with all dependencies pre-installed based on Debian Trixie.
 
 NOTE: This image is intended for internal use with https://github.com/cypress-io/cypress. It contains a few differences from the factory, such as:
 
@@ -8,7 +8,6 @@ NOTE: This image is intended for internal use with https://github.com/cypress-io
 
 - xauth (to run xvfb inside system-tests)
 - build-essential to install `make` and other linux build packages
-- Yarn Berry (v4.3.1) instead of classic Yarn
 
 #### Env variables
 

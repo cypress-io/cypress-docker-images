@@ -67,7 +67,7 @@ RUN apt-get update && \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean
 
-# install libappindicator3-1 - not included with Debian 11
+# install libappindicator3-1 - not included with Debian 13
 RUN wget --no-verbose /usr/src/libappindicator3-1_0.4.92-7_amd64.deb "http://ftp.us.debian.org/debian/pool/main/liba/libappindicator/libappindicator3-1_0.4.92-7_amd64.deb" && \
   dpkg -i /usr/src/libappindicator3-1_0.4.92-7_amd64.deb ; \
   apt-get install -f -y && \

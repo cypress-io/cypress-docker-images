@@ -1,5 +1,5 @@
 # build it with command
-#   docker build -t cypress/base-internal:22.19.0-yarn-berry-trixie --platform linux/amd64 .
+#   docker build -t cypress/base-internal:22.19.0-yarn-berry --platform linux/amd64 .
 #
 FROM node:22.19.0-trixie-slim
 

@@ -1,4 +1,4 @@
-# cypress/base-internal:22.19.0-yarn-berry-trixie
+# cypress/base-internal:22.19.0-yarn-berry
 
 A Docker image with all dependencies pre-installed based on Debian Trixie with Yarn Berry (v4.3.1).
 

@@ -7,6 +7,7 @@ if (!firefoxVersion) {
   console.log('No Firefox version provided, skipping Firefox install')
   process.exit(0)
 }
+const firefoxMajorVersion = firefoxVersion.split('.').map(Number)[0]
 
 const architecture = process.arch
 let platformFilename
@@ -17,7 +18,7 @@ switch (architecture) {
     break
   case 'arm64':
     platformFilename = 'linux-aarch64'
-    if (firefoxVersion >= '136.0') {
+    if (firefoxMajorVersion >= 136) {
       break
     }
     else {
@@ -37,7 +38,7 @@ console.log(`Installing Firefox version ${firefoxVersion} for ${architecture}`)
 
 let compression = 'bz2'
 
-if (firefoxVersion >= '135.0') {
+if (firefoxMajorVersion >= 135) {
   compression = 'xz'
 }
 

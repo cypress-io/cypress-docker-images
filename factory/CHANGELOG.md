@@ -1,5 +1,9 @@
 # Change log
 
+## 7.0.1
+
+- Fixed Firefox installation script logic for Firefox versions > `999.x`. Addresses [#1443](https://github.com/cypress-io/cypress-docker-images/issues/1443).
+
 ## 7.0.0
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `22.21.0` (`Jod` - Maintenance LTS) to `24.11.0` (`Krypton` - Active LTS) - see [Blog v24.11.0](https://nodejs.org/en/blog/release/v24.11.0). Addressed in [#1439](https://github.com/cypress-io/cypress-docker-images/pull/1439).

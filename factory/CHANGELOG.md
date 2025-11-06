@@ -1,5 +1,9 @@
 # Change log
 
+## 7.0.2
+
+- Fixed Geckodriver installation script logic for Geckodriver versions > `0.99.x`. Addresses [#1444](https://github.com/cypress-io/cypress-docker-images/issues/1444).
+
 ## 7.0.1
 
 - Fixed Firefox installation script logic for Firefox versions > `999.x`. Addresses [#1443](https://github.com/cypress-io/cypress-docker-images/issues/1443).

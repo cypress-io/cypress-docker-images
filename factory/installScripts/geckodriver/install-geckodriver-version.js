@@ -10,10 +10,15 @@ if (!geckodriverVersion) {
 
 // See https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html for compatibility matrix
 // geckodriver < 0.34.0 only supports up to Firefox 120, which is no longer supported by Cypress
-const MIN_GECKO = '0.34.0'
+const MINIMUM_GECKO_MAJOR = 0
+const MINIMUM_GECKO_MINOR = 34
+const geckodriverMajorVersion = geckodriverVersion.split('.').map(Number)[0]
+const geckodriverMinorVersion = geckodriverVersion.split('.').map(Number)[1]
 
-if (geckodriverVersion < MIN_GECKO) {
-  console.log(`geckodriver version ${geckodriverVersion} provided, minimum version ${MIN_GECKO} required, skipping geckodriver install`)
+if (geckodriverMajorVersion < MINIMUM_GECKO_MAJOR
+  || (geckodriverMajorVersion === MINIMUM_GECKO_MAJOR && geckodriverMinorVersion < MINIMUM_GECKO_MINOR)
+) {
+  console.log(`geckodriver version ${geckodriverVersion} provided, minimum version ${MINIMUM_GECKO_MAJOR}.${MINIMUM_GECKO_MINOR}.x required, skipping geckodriver install`)
   process.exit(0)
 }
 

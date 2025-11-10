@@ -25,6 +25,9 @@ jobs:
       options: --user 1001
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
       - uses: cypress-io/github-action@v6
         with:
           # Only the Electron browser is available with cypress/base
@@ -47,6 +50,9 @@ jobs:
       options: --user 1001
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
       - uses: cypress-io/github-action@v6
         with:
           working-directory: examples/basic
@@ -68,6 +74,9 @@ jobs:
       options: --user 1001
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
       - uses: cypress-io/github-action@v6
         with:
           # Using Cypress project with no Cypress version pre-installed

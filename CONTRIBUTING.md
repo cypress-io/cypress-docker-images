@@ -207,3 +207,14 @@ In CI, the images are built and tested in real `arm64` and `x64` architectures. 
 │  └──────────────────────────────────────┘   │
 └─────────────────────────────────────────────┘
 ```
+
+## Node.js
+
+The version of Node.js to be used in GitHub Actions workflows, and when running locally, is defined in [.node-version](.node-version).
+This version is aligned with the Node.js version provided by the CircleCI machine image used in the config [circle.yml](circle.yml).
+You can find a list of tools on [node-version-usage](https://github.com/shadowspawn/node-version-usage) to switch the version of Node.js based on [.node-version](.node-version).
+For convenience, [.nvmrc](.nvmrc) also contains an identical setting of Node.js version for use with the POSIX version of [nvm](https://github.com/nvm-sh/nvm).
+
+If the CircleCI machine image in [circle.yml](circle.yml) is updated, then [.node-version](.node-version) and [.nvmrc](.nvmrc) should also be updated to use the same version of Node.js throughout.
+
+This is separate from the version of Node.js to be installed and used within Cypress Docker images, which is defined in the [factory NODE_VERSION](./factory/README.md#node_version) document section.

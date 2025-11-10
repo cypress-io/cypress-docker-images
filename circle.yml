@@ -49,6 +49,18 @@ commands:
               circleci-agent step halt
             fi
 
+# Available CircleCI Ubuntu machine images are listed in
+# https://circleci.com/developer/images?imageType=machine
+# ubuntu-2404 images are listed under
+# https://circleci.com/developer/machine/image/ubuntu-2404
+# New releases are generally announced in https://discuss.circleci.com/c/ecosystem/63
+#
+# The currently used image ubuntu-2404:2025.09.1 is described in
+# https://discuss.circleci.com/t/ubuntu-22-04-24-04-q3-edge-release-including-cuda/54106
+#
+# When updating the machine image, update also .node-version and .nvmrc to the same version of Node.js
+# used by the new machine image.
+
 jobs:
   lint:
     machine:

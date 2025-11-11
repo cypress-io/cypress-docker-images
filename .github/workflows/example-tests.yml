@@ -31,6 +31,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
       - name: Run test script
         working-directory: examples/${{ matrix.directory }}
         run: ./scripts/test.sh

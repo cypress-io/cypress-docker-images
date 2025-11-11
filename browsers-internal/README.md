@@ -21,3 +21,11 @@ Images are generally built from [cypress/base-internal](../base-internal/) image
 for example:
 
 - `cypress/browsers-internal:node18.18.2-chrome125-ff126-edge`
+
+## Obsolete Releases
+
+Build information for the following internal images is no longer kept in the default branch of the repo and is instead linked to a historical commit where the information is preserved:
+
+- [browsers-internal/releases/node-18](https://github.com/cypress-io/cypress-docker-images/tree/d7236afec49a2fb9be8f81c8d34f20e6166bcc57/browsers-internal/releases/node-18)
+
+The related internal images remain in the [cypress/browsers-internal](https://hub.docker.com/r/cypress/browsers-internal/tags) Docker Hub container image repository.

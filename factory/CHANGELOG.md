@@ -1,5 +1,9 @@
 # Change log
 
+## 7.0.3
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.11.0` to `24.11.1`. Addressed in [#1451](https://github.com/cypress-io/cypress-docker-images/pull/1451).
+
 ## 7.0.2
 
 - Fixed Geckodriver installation script logic for Geckodriver versions > `0.99.x`. Addresses [#1444](https://github.com/cypress-io/cypress-docker-images/issues/1444).

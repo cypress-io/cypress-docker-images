@@ -1,5 +1,9 @@
 # Change log
 
+## 7.2.0
+
+- Updated Debian `BASE_IMAGE` from `debian:13.2-slim` to `debian:13.3-slim` using [Debian 13.3 (trixie)](https://www.debian.org/releases/trixie/). Addressed in [#1462](https://github.com/cypress-io/cypress-docker-images/issues/1462).
+
 ## 7.1.1
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.11.1` to `24.12.0`. Addressed in [#1457](https://github.com/cypress-io/cypress-docker-images/pull/1457).

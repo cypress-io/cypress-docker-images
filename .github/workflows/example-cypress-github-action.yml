@@ -32,11 +32,11 @@ jobs:
       # Selecting the same user minimizes permissions issues
       options: --user 1001
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version-file: '.node-version'
-      - uses: cypress-io/github-action@v6
+      - uses: cypress-io/github-action@v7
         with:
           # Only the Electron browser is available with cypress/base
           # This is the default browser and does not need to be specified
@@ -57,11 +57,11 @@ jobs:
       image: cypress/browsers:latest
       options: --user 1001
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version-file: '.node-version'
-      - uses: cypress-io/github-action@v6
+      - uses: cypress-io/github-action@v7
         with:
           working-directory: examples/basic
           browser: ${{ matrix.browser }}
@@ -81,11 +81,11 @@ jobs:
       image: cypress/included:latest
       options: --user 1001
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version-file: '.node-version'
-      - uses: cypress-io/github-action@v6
+      - uses: cypress-io/github-action@v7
         with:
           # Using Cypress project with no Cypress version pre-installed
           working-directory: examples/basic-mini

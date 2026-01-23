@@ -4,12 +4,20 @@ name: Example Cypress GitHub Actions
 # Cypress JavaScript GitHub Action (https://github.com/cypress-io/github-action) with
 # Cypress Docker images (https://github.com/cypress-io/cypress-docker-images)
 
-# The workflow is triggered manually on demand, see
-# https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow
 # To automatically trigger a workflow, for instance on a push event, see
 # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow
+# for options and examples.
+# The workflow can be triggered manually on demand, see
+# https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow
 
-on: workflow_dispatch
+on:
+  push:
+    paths:
+      - '.github/workflows/example-cypress-github-action.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/example-cypress-github-action.yml'
+  workflow_dispatch:
 
 jobs:
   docker-base:

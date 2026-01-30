@@ -1,5 +1,9 @@
 # Change log
 
+## 7.2.2
+
+- Updated Yarn v1 Classic PGP signing key retrieval to avoid failure. Addresses [#1469](https://github.com/cypress-io/cypress-docker-images/pull/1469).
+
 ## 7.2.1
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.12.0` to `24.13.0`. Addressed in [#1463](https://github.com/cypress-io/cypress-docker-images/pull/1463).

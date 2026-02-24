@@ -1,5 +1,9 @@
 # Change log
 
+## 7.2.4
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.13.1` to `24.14.0`. Addressed in [#1476](https://github.com/cypress-io/cypress-docker-images/pull/1476).
+
 ## 7.2.3
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.13.0` to `24.13.1`. Addressed in [#1473](https://github.com/cypress-io/cypress-docker-images/pull/1473).

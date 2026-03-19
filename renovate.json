@@ -1,0 +1,22 @@
+{
+  "configMigration": true,
+  "dependencyDashboard": true,
+  "extends": ["config:recommended"],
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 2,
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "labels": ["type: dependencies", "renovate"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["/eslint/", "globals"],
+      "groupName": "eslint"
+    }
+  ]
+}

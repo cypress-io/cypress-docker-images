@@ -99,12 +99,16 @@ jobs:
       - run:
           name: check yarn version
           command: |
-            ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included yarn -v)
-            if [ ${YARN_VERSION} != "${ACTUAL_VERSION}" ]; then
-              echo "Version mismatch, ${YARN_VERSION} != ${ACTUAL_VERSION}"
-              exit 1;
+            if [ -n "${YARN_VERSION}" ]; then
+              ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included yarn -v)
+              if [ ${YARN_VERSION} != "${ACTUAL_VERSION}" ]; then
+                echo "Version mismatch, ${YARN_VERSION} != ${ACTUAL_VERSION}"
+                exit 1;
+              fi
+              echo "Version ${ACTUAL_VERSION} confirmed"
+            else
+              echo "YARN_VERSION not defined, skipping version check"
             fi
-            echo "Version ${ACTUAL_VERSION} confirmed"
           working_directory: factory/test-project
       - run:
           name: check chrome version

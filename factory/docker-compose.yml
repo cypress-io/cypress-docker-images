@@ -33,7 +33,7 @@ services:
         EDGE_VERSION: ${EDGE_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         GECKODRIVER_VERSION: ${GECKODRIVER_VERSION}
-        YARN_VERSION: ${YARN_VERSION}
+        YARN_VERSION: ${YARN_VERSION:-}
         # WEBKIT_VERSION: ${WEBKIT_VERSION}
       tags:
         - ${REPO_PREFIX-}cypress/included:latest # comment out for release of alternate version
@@ -49,7 +49,7 @@ services:
       args:
         NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
-        YARN_VERSION: ${YARN_VERSION}
+        YARN_VERSION: ${YARN_VERSION:-}
         CHROME_VERSION: ${CHROME_VERSION}
         FIREFOX_VERSION: ${FIREFOX_VERSION}
         GECKODRIVER_VERSION: ${GECKODRIVER_VERSION}
@@ -68,7 +68,7 @@ services:
       args:
         NODE_VERSION: ${NODE_VERSION}
         FACTORY_VERSION: ${FACTORY_VERSION}
-        YARN_VERSION: ${YARN_VERSION}
+        YARN_VERSION: ${YARN_VERSION:-}
       tags:
         - ${REPO_PREFIX-}cypress/base:latest # comment out for release of alternate version
         - ${REPO_PREFIX-}cypress/base:${BASE_IMAGE_TAG}

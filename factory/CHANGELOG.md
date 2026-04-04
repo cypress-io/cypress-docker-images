@@ -1,5 +1,12 @@
 # Change log
 
+## 7.4.0
+
+- Yarn v1 Classic was [frozen](https://github.com/yarnpkg/yarn) in January 2020 with no further support or plans for new releases.
+  Use of the parameter `YARN_VERSION` to include Yarn v1 Classic in custom Docker images
+  is deprecated and support will be removed in a future [cypress/factory](../factory/README.md) major release.
+  Addressed in [#1490](https://github.com/cypress-io/cypress-docker-images/pull/1490).
+
 ## 7.3.1
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.14.0` to `24.14.1`. Addressed in [#1486](https://github.com/cypress-io/cypress-docker-images/pull/1486).

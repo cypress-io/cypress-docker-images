@@ -85,10 +85,6 @@ ONBUILD RUN bash /opt/installScripts/node/install-node-version.sh ${APPLIED_FACT
 # Install Yarn: Optional
 ONBUILD ARG YARN_VERSION
 
-# DEPRECATED: Yarn v1 Classic
-ONBUILD ENV YARN_DEPRECATION=${YARN_VERSION:+'**Build support for YARN_VERSION is DEPRECATED and will be removed in a future cypress/factory major release**'}
-ONBUILD RUN echo ${YARN_DEPRECATION}
-
 # Installed using a node script to handle conditionals since we all know javascript
 ONBUILD RUN node /opt/installScripts/yarn/install-yarn-version.js ${YARN_VERSION}
 

@@ -50,7 +50,7 @@ Example: `NODE_VERSION='20.14.0'`
 
 ### YARN_VERSION
 
-The version of Yarn v1 Classic to install (via npm). If the `ARG` variable is unset or an empty string, Yarn is not installed.
+The version of Yarn v1 Classic to install. If the `ARG` variable is unset or an empty string, Yarn is not installed.
 
 Example: `YARN_VERSION='1.22.22'`
 

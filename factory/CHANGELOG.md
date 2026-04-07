@@ -1,5 +1,9 @@
 # Change log
 
+## 7.3.2
+
+- Modified Cypress installation script to install `typescript@5` instead of `typescript@latest`. Addresses [#1491](https://github.com/cypress-io/cypress-docker-images/issues/1491).
+
 ## 7.3.1
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.14.0` to `24.14.1`. Addressed in [#1486](https://github.com/cypress-io/cypress-docker-images/pull/1486).

@@ -13,6 +13,11 @@ if (yarnVersion >= '2') {
   process.exit(1)
 }
 
+console.log(
+  'WARNING: Build support for YARN_VERSION in custom Cypress Docker images is DEPRECATED\n'
+  + 'Support will be removed in a future major release of cypress/factory\n'
+  + 'Proceeding with installation...',
+)
 console.log('Installing Yarn version: ', yarnVersion)
 
 // Insert logic here if needed to run a different install script based on version.

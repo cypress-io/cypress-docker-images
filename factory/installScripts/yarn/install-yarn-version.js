@@ -18,7 +18,7 @@ const YARN_DISALLOW_NODE_VERSION = 26
 const nodeMajorVersion = parseInt(process.versions.node.split('.')[0])
 if (nodeMajorVersion >= YARN_DISALLOW_NODE_VERSION) {
   console.log(
-    `Yarn ${yarnVersion} is not supported for installation in Node.js ${nodeMajorVersion} and above,
+    `Yarn ${yarnVersion} is not supported for installation in Node.js ${YARN_DISALLOW_NODE_VERSION} and above,
 Yarn installation failed`,
   )
   process.exit(1)

@@ -56,7 +56,8 @@ Example: `YARN_VERSION='1.22.22'`
 
 [Yarn v1 Classic](https://classic.yarnpkg.com/) is
 [frozen and unsupported](https://github.com/yarnpkg/yarn).
-Use of `YARN_VERSION` to add Yarn v1 Classic to Cypress Docker images is deprecated.
+Use of `YARN_VERSION` to add Yarn v1 Classic to Cypress Docker images is deprecated
+for `NODE_VERSION<26` and disallowed for `NODE_VERSION>=26`.
 Support will be removed in a future `cypress/factory` major release.
 
 [Yarn Modern](https://yarnpkg.com/) (versions 2 and above) are not supported.

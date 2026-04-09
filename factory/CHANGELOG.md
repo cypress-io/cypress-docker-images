@@ -1,5 +1,9 @@
 # Change log
 
+## 8.0.0
+
+- `YARN_VERSION` is disallowed when `NODE_VERSION` is set to `>=26`. Addresses [#1495](https://github.com/cypress-io/cypress-docker-images/pull/1495).
+
 ## 7.4.0
 
 - Yarn v1 Classic was [frozen](https://github.com/yarnpkg/yarn) in January 2020 with no further support or plans for new releases.

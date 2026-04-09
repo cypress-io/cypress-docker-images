@@ -8,8 +8,19 @@ if (!yarnVersion) {
   process.exit(0)
 }
 
-if (yarnVersion >= '2') {
+const yarnMajorVersion = parseInt(yarnVersion.split('.')[0])
+if (yarnMajorVersion >= 2) {
   console.log(`Yarn ${yarnVersion} is not supported, Yarn installation failed`)
+  process.exit(1)
+}
+
+const YARN_DISALLOW_NODE_VERSION = 26
+const nodeMajorVersion = parseInt(process.versions.node.split('.')[0])
+if (nodeMajorVersion >= YARN_DISALLOW_NODE_VERSION) {
+  console.log(
+    `Yarn ${yarnVersion} is not supported for installation in Node.js ${nodeMajorVersion} and above,
+Yarn installation failed`,
+  )
   process.exit(1)
 }
 
@@ -18,6 +29,7 @@ console.log(
   + 'Support will be removed in a future major release of cypress/factory\n'
   + 'Proceeding with installation...',
 )
+
 console.log('Installing Yarn version: ', yarnVersion)
 
 // Insert logic here if needed to run a different install script based on version.

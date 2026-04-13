@@ -1,5 +1,20 @@
 # Change log
 
+## 8.0.0
+
+- `YARN_VERSION` is disallowed when `NODE_VERSION` is set to `>=26`. Addresses [#1495](https://github.com/cypress-io/cypress-docker-images/pull/1495).
+
+## 7.4.0
+
+- Yarn v1 Classic was [frozen](https://github.com/yarnpkg/yarn) in January 2020 with no further support or plans for new releases.
+  Use of the parameter `YARN_VERSION` to include Yarn v1 Classic in custom Docker images
+  is deprecated and support will be removed in a future [cypress/factory](../factory/README.md) major release.
+  Addressed in [#1490](https://github.com/cypress-io/cypress-docker-images/pull/1490).
+
+## 7.3.1
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.14.0` to `24.14.1`. Addressed in [#1486](https://github.com/cypress-io/cypress-docker-images/pull/1486).
+
 ## 7.3.0
 
 - Updated Debian `BASE_IMAGE` from `debian:13.3-slim` to `debian:13.4-slim` using [Debian 13.4 (trixie)](https://www.debian.org/releases/trixie/). Addressed in [#1483](https://github.com/cypress-io/cypress-docker-images/issues/1483).

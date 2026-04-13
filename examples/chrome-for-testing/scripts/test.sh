@@ -19,8 +19,8 @@ case $ARCHITECTURE in
         'beta'
         'dev'
         'canary'
-        '143'
-        '143.0.7499.192'
+        '147'
+        '147.0.7727.56'
         )
     # Build, show Cypress info and run Cypress test
     for i in ${!chromeVersion[@]}; do

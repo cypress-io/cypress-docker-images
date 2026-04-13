@@ -24,6 +24,14 @@ Cypress Docker images can be run as containers on Continuous Integration (CI) sy
 
 In the case of Windows environments, see [Docker Desktop for Windows](https://docs.docker.com/desktop/install/windows-install/) and Cypress documentation [Windows Subsystem for Linux](https://on.cypress.io/guides/references/advanced-installation#Windows-Subsystem-for-Linux) for additional information regarding Microsoft's `WSL2` and `WSLg` subsystems. The documentation and scripts in this repository assume that Docker Desktop for Windows runs in a virtual Linux environment.
 
+## Component bundles
+
+`cypress/base`, `cypress/browsers` and `cypress/included` include the following components:
+
+- Node.js (see [Node.js distribution policy](https://github.com/nodejs/node/blob/main/doc/contributing/distribution.md) for bundled components)
+- [corepack](https://github.com/nodejs/corepack) through Node.js - dropped in Node.js 25 and above
+- [Yarn v1 Classic](https://github.com/yarnpkg/yarn) installed globally with npm - dropped in Node.js 26 and above
+
 ## Browsers
 
 Cypress Docker images [cypress/browsers](./browsers/) include browsers for the `Linux/amd64` and the `Linux/arm64` platform according to browser availability as shown in the following table.

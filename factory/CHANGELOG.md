@@ -1,5 +1,9 @@
 # Change log
 
+## 8.0.1
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.14.1` to `24.15.0`. Addressed in [#1501](https://github.com/cypress-io/cypress-docker-images/pull/1501).
+
 ## 8.0.0
 
 - `YARN_VERSION` is disallowed when `NODE_VERSION` is set to `>=26`. Addresses [#1495](https://github.com/cypress-io/cypress-docker-images/pull/1495).

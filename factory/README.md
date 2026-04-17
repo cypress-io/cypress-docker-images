@@ -68,11 +68,15 @@ They are not currently published to the
 
 ### CYPRESS_VERSION
 
-The version of Cypress to install (via npm). If the `ARG` variable is unset or an empty string, Cypress is not installed.
+The version of Cypress to install (globally via npm). If the `ARG` variable is unset or an empty string, Cypress is not installed.
 
 Example: `CYPRESS_VERSION='15.1.0'`
 
 [Cypress versions](https://www.npmjs.com/package/cypress)
+
+If the `ARG` variable is set, then
+[typescript@6](https://www.npmjs.com/package/typescript) is also installed (globally via npm)
+to allow running tests written in TypeScript (see [Cypress TypeScript Support](https://on.cypress.io/typescript)).
 
 ### CHROME_VERSION
 

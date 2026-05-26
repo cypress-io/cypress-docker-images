@@ -19,6 +19,9 @@ on:
       - '.github/workflows/example-cypress-github-action.yml'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   docker-base:
     runs-on: ubuntu-24.04

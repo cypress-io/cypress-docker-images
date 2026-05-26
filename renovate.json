@@ -3,6 +3,11 @@
   "dependencyDashboard": true,
   "extends": ["config:recommended"],
   "automerge": true,
+  "minimumReleaseAge": "7 days",
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "minimumReleaseAge": "0 days"
+  },
   "major": {
     "automerge": false
   },

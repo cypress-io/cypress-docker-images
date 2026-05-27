@@ -1,5 +1,13 @@
 # Change log
 
+## 8.1.0
+
+- Updated Debian `BASE_IMAGE` from `debian:13.4-slim` to `debian:13.5-slim`
+  using [Debian 13.5 (trixie)](https://www.debian.org/releases/trixie/).
+  Addresses [#1510](https://github.com/cypress-io/cypress-docker-images/issues/1510).
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.15.0` to `24.16.0`.
+  Addresses [#1511](https://github.com/cypress-io/cypress-docker-images/issues/1511).
+
 ## 8.0.2
 
 - Modified Cypress installation script to pin installation to `typescript@6` instead of `typescript@latest`. Addresses [#1491](https://github.com/cypress-io/cypress-docker-images/issues/1491).

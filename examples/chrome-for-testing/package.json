@@ -11,5 +11,8 @@
   "devDependencies": {
     "@puppeteer/browsers": "^3.0.4",
     "cypress": "^15.16.0"
+  },
+  "allowScripts": {
+    "cypress": true
   }
 }

@@ -1,5 +1,12 @@
 # Change log
 
+## 8.1.2
+
+- Modified Cypress install script to use `--allow-scripts`, introduced in
+  [npm@11.16.0](https://github.com/npm/cli/releases/tag/v11.16.0), to avoid
+  `npm warn allow-scripts` warnings.
+  Addresses [#1523](https://github.com/cypress-io/cypress-docker-images/issues/1523).
+
 ## 8.1.1
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.16.0` to `24.17.0`.

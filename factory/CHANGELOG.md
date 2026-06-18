@@ -1,5 +1,10 @@
 # Change log
 
+## 8.1.1
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.16.0` to `24.17.0`.
+  Addressed in [#1529](https://github.com/cypress-io/cypress-docker-images/pull/1529).
+
 ## 8.1.0
 
 - Updated Debian `BASE_IMAGE` from `debian:13.4-slim` to `debian:13.5-slim`

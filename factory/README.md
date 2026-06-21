@@ -133,11 +133,16 @@ The Docker `cypress/factory` build process works by relying on the [`ONBUILD`](h
 In the examples below, we install Cypress into the Docker image using:
 
 ```dockerfile
-RUN npm install cypress --save-dev
+RUN npm install cypress --save-dev --ignore-scripts
 RUN npx cypress install
 ```
 
-The additional `npx cypress install` command ensures that the Cypress binary component is installed, even if the Docker build step is re-run. The [Docker build cache](https://docs.docker.com/build/cache/) process may otherwise incorrectly optimize the build and fail to include the Cypress binary in the image, leading to run failures.
+The npm option [ignore-scripts](https://docs.npmjs.com/cli/v11/commands/npm-install#ignore-scripts) stops Cypress from running its `postinstall` script to install the Cypress binary.
+Instead, the Cypress npm package and the Cypress binary are installed in two separate steps.
+The `npx cypress install` command follows on to install the Cypress binary.
+
+This avoids potential `allow-scripts` warnings with npm v11 ([npm@11.16.0](https://github.com/npm/cli/releases/tag/v11.16.0) and above) and hard errors related to [upcoming breaking changes for npm v12](https://github.blog/changelog/2026-06-09-upcoming-breaking-changes-for-npm-v12/).
+It also avoids an issue that the [Docker build cache](https://docs.docker.com/build/cache/) could cause the Cypress binary install to be skipped if only the `postinstall` script were used to install the Cypress binary.
 
 ### Example project
 
@@ -147,7 +152,8 @@ To test the following Docker build examples you need to have a Cypress project a
 mkdir cy-example-test # or another directory of your choice
 cd cy-example-test
 npm init -y
-npm install cypress --save-dev
+npm install cypress --save-dev --ignore-scripts
+npx cypress install
 npx cypress open
 ```
 
@@ -184,7 +190,7 @@ FROM cypress/factory
 
 COPY . /opt/app
 WORKDIR /opt/app
-RUN npm install cypress --save-dev
+RUN npm install cypress --save-dev --ignore-scripts
 RUN npx cypress install
 ```
 
@@ -206,7 +212,7 @@ FROM cypress/factory
 
 COPY . /opt/app
 WORKDIR /opt/app
-RUN npm install cypress --save-dev
+RUN npm install cypress --save-dev --ignore-scripts
 RUN npx cypress install
 ```
 
@@ -242,7 +248,7 @@ FROM cypress/factory
 
 COPY . /opt/app
 WORKDIR /opt/app
-RUN npm install cypress --save-dev
+RUN npm install cypress --save-dev --ignore-scripts
 RUN npx cypress install
 ```
 
@@ -268,7 +274,7 @@ FROM cypress/factory
 
 COPY . /opt/app
 WORKDIR /opt/app
-RUN npm install cypress --save-dev
+RUN npm install cypress --save-dev --ignore-scripts
 RUN npx cypress install
 ```
 

@@ -10,7 +10,8 @@ if [[ -z "$1" ]]; then
   exit 0
 fi
 
-npm install -g "cypress@$1"
+npm install -g "cypress@$1" --ignore-scripts
+cypress install
 
 # Loosen file privileges for the Cypress cache. The first time that Cypress runs, it will create a
 # binary_state.json file, if it hasn't already been created. This was causing issues with non-root

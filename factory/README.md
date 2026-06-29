@@ -82,7 +82,7 @@ to allow running tests written in TypeScript (see [Cypress TypeScript Support](h
 
 The version of Google Chrome to install. If the `ARG` variable is unset or an empty string, Chrome is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
-Example: `CHROME_VERSION='139.0.7258.154-1'`
+Example: `CHROME_VERSION='149.0.7827.155-1'`
 
 [Chrome versions](https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable)
 
@@ -92,7 +92,7 @@ This browser is currently available only for the `Linux/amd64` platform.
 
 The version of [Google Chrome for Testing](https://developer.chrome.com/blog/chrome-for-testing/) to install. If the `ARG` variable is unset or an empty string, Chrome for Testing is not installed.
 
-Example: `CHROME_FOR_TESTING_VERSION='139.0.7258.154'`
+Example: `CHROME_FOR_TESTING_VERSION='150.0.7871.24'`
 
 Refer to [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/) for current versions or [available downloads](https://googlechromelabs.github.io/chrome-for-testing/files) for other versions.
 
@@ -102,7 +102,7 @@ The parameter `CHROME_FOR_TESTING_VERSION` can be used for custom-built images b
 
 The version of Mozilla Firefox to install. If the `ARG` variable is unset or an empty string, Firefox is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
-Example: `FIREFOX_VERSION='142.0.1'`
+Example: `FIREFOX_VERSION='152.0'`
 
 [Firefox versions](https://download-installer.cdn.mozilla.net/pub/firefox/releases/)
 
@@ -112,7 +112,7 @@ This browser is available for the `Linux/amd64` platform in all versions, and fo
 
 The version of [Mozilla geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/index.html) to install. If the `ARG` variable is unset or an empty string, the `geckodriver` is not installed. The exact version must be used, no wildcards or shorthands are supported. A minimum version `0.34.0` is required.
 
-Example: `GECKODRIVER_VERSION='0.36.0'`
+Example: `GECKODRIVER_VERSION='0.37.0'`
 
 [Mozilla geckodriver releases](https://github.com/mozilla/geckodriver/releases) provides drivers for both `Linux/amd64` and `Linux/arm64` platforms. Cypress release [13.15.1](https://docs.cypress.io/app/references/changelog#13-15-1), and above, require `geckodriver` when testing Firefox. If `GECKODRIVER_VERSION` is not defined, Cypress uses the npm wrapper package [geckodriver](https://www.npmjs.com/package/geckodriver) to download [Mozilla geckodriver](https://github.com/mozilla/geckodriver) at run-time. Specifying `GECKODRIVER_VERSION` is advised if testing in an air-gapped environment, and to use a defined version of `geckodriver`.
 
@@ -120,7 +120,7 @@ Example: `GECKODRIVER_VERSION='0.36.0'`
 
 The version of Microsoft Edge to install. If the `ARG` variable is unset or an empty string, Edge is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
-Example: `EDGE_VERSION='139.0.3405.125-1'`
+Example: `EDGE_VERSION='149.0.4022.69-1'`
 
 [Edge versions](https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/)
 
@@ -182,9 +182,9 @@ Create a `Dockerfile` with the following content:
 # Args are defined in the Dockerfile before the FROM command.
 # Using these args will cause an image to be created with
 # Node.js (default version from .env file), Chrome, Firefox and Edge.
-ARG CHROME_VERSION='139.0.7258.154-1'
-ARG EDGE_VERSION='139.0.3405.125'
-ARG FIREFOX_VERSION='142.0.1'
+ARG CHROME_VERSION='149.0.7827.155-1'
+ARG EDGE_VERSION='149.0.4022.69-1'
+ARG FIREFOX_VERSION='152.0'
 
 FROM cypress/factory
 
@@ -219,7 +219,7 @@ RUN npx cypress install
 Run the Docker commands:
 
 ```bash
-docker build --build-arg CHROME_VERSION='139.0.7258.154-1' --build-arg EDGE_VERSION='139.0.3405.125-1' --build-arg FIREFOX_VERSION='142.0.1' -t test .
+docker build --build-arg CHROME_VERSION='149.0.7827.155-1' --build-arg EDGE_VERSION='149.0.4022.69-1' --build-arg FIREFOX_VERSION='152.0' -t test .
 docker run -it --rm test npx cypress run -b chrome
 ```
 
@@ -235,9 +235,9 @@ services:
     build:
       context: .
       args:
-        CHROME_VERSION: '139.0.7258.154-1'
-        EDGE_VERSION: '139.0.3405.125-1'
-        FIREFOX_VERSION: '142.0.1'
+        CHROME_VERSION: '149.0.7827.155-1'
+        EDGE_VERSION: '149.0.4022.69-1'
+        FIREFOX_VERSION: '152.0'
     command: npx cypress run
 ```
 
@@ -268,7 +268,7 @@ Since this example only uses Chrome, removing Edge and Firefox is as simple as n
 Create a `Dockerfile` with the following content:
 
 ```dockerfile
-ARG CHROME_VERSION='139.0.7258.154-1'
+ARG CHROME_VERSION='149.0.7827.155-1'
 
 FROM cypress/factory
 

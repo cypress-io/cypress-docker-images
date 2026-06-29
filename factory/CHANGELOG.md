@@ -1,5 +1,10 @@
 # Change log
 
+## 8.2.1
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.17.0` to `24.18.0`.
+  Addresses [#1536](https://github.com/cypress-io/cypress-docker-images/issues/1536).
+
 ## 8.2.0
 
 - Modified Cypress install script to use separate `cypress install`, instead of implicit `postinstall` script to install Cypress binary.

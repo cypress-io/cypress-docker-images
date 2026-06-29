@@ -1,5 +1,11 @@
 # Change log
 
+## 8.2.0
+
+- Modified Cypress install script to use separate `cypress install`, instead of implicit `postinstall` script to install Cypress binary.
+  Avoids `npm warn allow-scripts` warnings in npm>=11.16.0.
+  Addresses [#1523](https://github.com/cypress-io/cypress-docker-images/issues/1523).
+
 ## 8.1.1
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.16.0` to `24.17.0`.

@@ -6,14 +6,12 @@ This project can be updated to the latest Cypress default scaffolded E2E test sp
 
 ```shell
 rm -rf cypress cypress.config.js
-npm install cypress@latest --no-package-lock
-npx cypress open
+npm install cypress@latest --no-package-lock --ignore-scripts
+npx cypress install
+npx cypress open --e2e --browser electron
 ```
 
-- Select "E2E Testing"
 - Select "Continue"
-- Select "Electron" browser
-- Select "Start E2E Testing in Electron"
 - Select "Scaffold example specs"
 - Close all Cypress windows
 

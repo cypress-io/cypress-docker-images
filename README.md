@@ -28,8 +28,12 @@ In the case of Windows environments, see [Docker Desktop for Windows](https://do
 
 `cypress/base`, `cypress/browsers` and `cypress/included` include the following components:
 
-- Node.js (see [Node.js distribution policy](https://github.com/nodejs/node/blob/main/doc/contributing/distribution.md) for bundled components)
-- [corepack](https://github.com/nodejs/corepack) through Node.js - dropped in Node.js 25 and above
+- Node.js (see [Node.js distribution policy](https://github.com/nodejs/node/blob/main/doc/contributing/distribution.md) for bundled components).
+  Images with a `latest` tag track the [Node.js Active LTS release line](https://github.com/nodejs/release#release-schedule).
+- [npm](https://github.com/npm/cli) through Node.js.
+  To update the bundled version use `npm install -g npm@<version>`.
+- [corepack](https://github.com/nodejs/corepack) through Node.js - dropped in Node.js 25 and above.
+  To update the bundled version, or to install, use `npm install -g corepack@<version>`.
 - [Yarn v1 Classic](https://github.com/yarnpkg/yarn) installed globally with npm - dropped in Node.js 26 and above
 
 ## Browsers

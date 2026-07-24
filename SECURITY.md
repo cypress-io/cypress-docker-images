@@ -15,6 +15,21 @@ Refer to [Debian security](https://www.debian.org/security/) for further informa
 
 Debian is used in [cypress/factory][factory], [cypress/base][base], [cypress/browsers][browsers] and [cypress/included][included] Cypress Docker images.
 
+## Node.js
+
+[Node.js][] is installed into Cypress Docker images, unchanged from the distribution on https://nodejs.org/download/release/.
+This includes bundles of certain products as described in the
+[Node.js Distribution Policy](https://github.com/nodejs/node/blob/main/doc/contributing/distribution.md) document.
+Fixes for the bundled products may be individually available before they are packaged and distributed.
+See the [README > Component bundles](./README.md#component-bundles) document section for information
+on updating these products independently of the Node.js releases.
+
+Refer to
+[Node.js security](https://github.com/nodejs/node/blob/main/SECURITY.md) and
+[npm security](https://github.com/npm/cli/blob/latest/SECURITY.md) for further information.
+
+[Node.js][] is installed in [cypress/base][base], [cypress/browsers][browsers] and [cypress/included][included] Cypress Docker images.
+
 ## Browsers
 
 Please refer to the associated browser owner's documentation regarding browser security vulnerabilities.
@@ -31,3 +46,4 @@ Cypress is included only in [cypress/included][included] Cypress Docker images.
 [base]: https://github.com/cypress-io/cypress-docker-images/tree/master/base
 [browsers]: https://github.com/cypress-io/cypress-docker-images/tree/master/browsers
 [included]: https://github.com/cypress-io/cypress-docker-images/tree/master/included
+[Node.js]: https://nodejs.org/

@@ -1,5 +1,10 @@
 # Change log
 
+## 8.3.2
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.18.1` to `24.19.ß`.
+  Addressed in [#1549](https://github.com/cypress-io/cypress-docker-images/issues/1549).
+
 ## 8.3.1
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.18.0` to `24.18.1`.

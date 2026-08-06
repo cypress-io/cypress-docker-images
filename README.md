@@ -42,7 +42,7 @@ Cypress Docker images [cypress/browsers](./browsers/) include browsers for the `
 
 | Browser                    |   `Linux/amd64`    | `Linux/arm64`                                                                |
 | -------------------------- | :----------------: | :--------------------------------------------------------------------------- |
-| [Google Chrome][Chrome]    | :white_check_mark: | see [#1188](https://github.com/cypress-io/cypress-docker-images/issues/1188) |
+| [Google Chrome][Chrome]    | :white_check_mark: | :white_check_mark:                                                           |
 | [Mozilla Firefox][Firefox] | :white_check_mark: | :white_check_mark:                                                           |
 | [Microsoft Edge][Edge]     | :white_check_mark: | see [#1189](https://github.com/cypress-io/cypress-docker-images/issues/1189) |
 
@@ -52,7 +52,7 @@ On POSIX-based systems, or with [Git for Windows](https://gitforwindows.org/) at
 
 [Tags](#tags) for [cypress/browsers](./browsers/) and [cypress/included](./included/) images show which versions of the browsers are loaded into the respective image.
 
-For `Linux/arm64` images, the lowest available Firefox version is `136`.
+For `Linux/arm64` images, the lowest available versions are Chrome `151` and Firefox `136`.
 
 Building a custom image with [cypress/factory](./factory/) allows selection of individual browsers from the above list.
 

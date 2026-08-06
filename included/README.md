@@ -7,7 +7,9 @@
 ## Platforms
 
 `cypress/included` images are available for `Linux/amd64` and `Linux/arm64` platforms.
-`Linux/arm64` images contain no Chrome or Edge browsers. Firefox is included in `Linux/arm64` images starting with Firefox `136.0.2`.
+`Linux/arm64` images contain no Edge browser.
+Firefox is included in `Linux/arm64` images starting with Firefox `136.0.2`.
+Chrome is included in `Linux/arm64` images starting with Chrome `151`.
 
 ## Tags
 

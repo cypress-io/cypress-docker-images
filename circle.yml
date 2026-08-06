@@ -272,15 +272,14 @@ workflows:
             alias: factory-arm
             parameters:
               test-target:
-                [
-                  test-factory-electron,
-                  test-factory-firefox,
-                  test-factory-cypress-included-electron,
-                  test-factory-cypress-included-electron-non-root-user,
-                  test-factory-cypress-included-firefox,
-                  test-factory-cypress-included-firefox-non-root-user,
-                  test-factory-all-included-electron-only,
-                ]
+                - test-factory-electron
+                - test-factory-chrome
+                - test-factory-firefox
+                - test-factory-cypress-included-electron
+                - test-factory-cypress-included-electron-non-root-user
+                - test-factory-cypress-included-firefox
+                - test-factory-cypress-included-firefox-non-root-user
+                - test-factory-all-included-electron-only
               resourceClass: [arm.medium]
               target: [factory]
       - test-image:
@@ -288,21 +287,19 @@ workflows:
             alias: factory
             parameters:
               test-target:
-                [
-                  test-factory-electron,
-                  test-factory-chrome,
-                  test-factory-chrome-for-testing,
-                  test-factory-chrome-non-root-user,
-                  test-factory-firefox,
-                  test-factory-edge,
-                  test-factory-cypress-included-electron,
-                  test-factory-cypress-included-electron-non-root-user,
-                  test-factory-cypress-included-chrome,
-                  test-factory-cypress-included-firefox,
-                  test-factory-cypress-included-firefox-non-root-user,
-                  test-factory-cypress-included-edge,
-                  test-factory-all-included,
-                ]
+                - test-factory-electron
+                - test-factory-chrome
+                - test-factory-chrome-for-testing
+                - test-factory-chrome-non-root-user
+                - test-factory-firefox
+                - test-factory-edge
+                - test-factory-cypress-included-electron
+                - test-factory-cypress-included-electron-non-root-user
+                - test-factory-cypress-included-chrome
+                - test-factory-cypress-included-firefox
+                - test-factory-cypress-included-firefox-non-root-user
+                - test-factory-cypress-included-edge
+                - test-factory-all-included
               resourceClass: [medium]
               target: [factory]
       - test-image:
@@ -323,12 +320,11 @@ workflows:
           matrix:
             alias: browsers
             parameters:
-              test-target: [
-                  test-browsers-electron, #
-                  test-browsers-chrome,
-                  test-browsers-firefox,
-                  test-browsers-edge,
-                ]
+              test-target:
+                - test-browsers-electron
+                - test-browsers-chrome
+                - test-browsers-firefox
+                - test-browsers-edge
               resourceClass: [medium]
               target: [browsers]
 
@@ -336,29 +332,31 @@ workflows:
           matrix:
             alias: browsers-arm
             parameters:
-              test-target: [test-browsers-electron, test-browsers-firefox]
+              test-target:
+                - test-browsers-electron
+                - test-browsers-chrome
+                - test-browsers-firefox
               resourceClass: [arm.medium]
               target: [browsers]
       - test-image:
           matrix:
             alias: included
             parameters:
-              test-target: [
-                  test-included-electron, #
-                  test-included-chrome,
-                  test-included-firefox,
-                  test-included-edge,
-                ]
+              test-target:
+                - test-included-electron
+                - test-included-chrome
+                - test-included-firefox
+                - test-included-edge
               resourceClass: [medium]
               target: [included]
       - test-image:
           matrix:
             alias: included-arm
             parameters:
-              test-target: [
-                  test-included-electron, #
-                  test-included-firefox,
-                ]
+              test-target:
+                - test-included-electron
+                - test-included-chrome
+                - test-included-firefox
               resourceClass: [arm.medium]
               target: [included]
       # pushing the factory image must come first because the other images may pull it down to build

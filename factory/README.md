@@ -86,7 +86,7 @@ Example: `CHROME_VERSION='149.0.7827.155-1'`
 
 [Chrome versions](https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable)
 
-This browser is currently available only for the `Linux/amd64` platform.
+This browser is available for the `Linux/amd64` platform in all versions, and for the `Linux/arm64` platform in Chrome `151` and above.
 
 ### CHROME_FOR_TESTING_VERSION
 

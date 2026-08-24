@@ -1,7 +1,7 @@
 # build this image with command
 #   docker build -t cypress/browsers-internal:node20.18.1-bullseye-chrome131-ff133 --platform linux/amd64 .
 #
-FROM cypress/base-internal:20.18.1-bullseye
+FROM cypress/base-internal:20.19.1-bullseye
 
 USER root
 

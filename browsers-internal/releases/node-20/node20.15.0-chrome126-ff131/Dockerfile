@@ -1,7 +1,7 @@
 # build this image with command
 #   docker build -t cypress/browsers-internal:node20.15.0-chrome126-ff131 --platform linux/amd64 .
 #
-FROM cypress/base-internal:20.15.0
+FROM cypress/base-internal:20.19.1
 
 USER root
 

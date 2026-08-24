@@ -2,6 +2,7 @@
   "configMigration": true,
   "dependencyDashboard": true,
   "extends": ["config:recommended"],
+  "ignorePaths": ["**/node_modules/**", "base-internal/**", "browsers-internal/**"],
   "automerge": true,
   "minimumReleaseAge": "7 days",
   "osvVulnerabilityAlerts": true,

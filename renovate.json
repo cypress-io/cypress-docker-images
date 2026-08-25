@@ -23,6 +23,10 @@
     {
       "matchPackageNames": ["/eslint/", "globals"],
       "groupName": "eslint"
+    },
+    {
+      "matchPackageNames": ["cypress"],
+      "minimumReleaseAge": "0 days"
     }
   ]
 }

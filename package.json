@@ -2,18 +2,12 @@
   "name": "cypress-docker-images",
   "version": "1.0.0",
   "description": "These images provide all of the required dependencies for running Cypress in Docker.",
-  "main": "index.js",
-  "directories": {
-    "example": "examples"
-  },
+  "private": true,
   "scripts": {
     "check:markdown": "find . -type f -name '*.md' ! -path '*/node_modules/*' | xargs -L1 npx markdown-link-check -c markdownLinkConfig.json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint"
-  },
-  "engines": {
-    "node": ">=20.19.0"
   },
   "repository": {
     "type": "git",

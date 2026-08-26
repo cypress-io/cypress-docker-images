@@ -3,7 +3,7 @@
 ## 8.4.1
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.19.0` to `24.20.0`.
-  Addressed in [#1574](https://github.com/cypress-io/cypress-docker-images/issues/1574).
+  Addressed in [#1574](https://github.com/cypress-io/cypress-docker-images/pull/1574).
 
 ## 8.4.0
 
@@ -13,12 +13,12 @@
 ## 8.3.2
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.18.1` to `24.19.0`.
-  Addressed in [#1549](https://github.com/cypress-io/cypress-docker-images/issues/1549).
+  Addressed in [#1549](https://github.com/cypress-io/cypress-docker-images/pull/1549).
 
 ## 8.3.1
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.18.0` to `24.18.1`.
-  Addressed in [#1548](https://github.com/cypress-io/cypress-docker-images/issues/1548).
+  Addressed in [#1548](https://github.com/cypress-io/cypress-docker-images/pull/1548).
 
 ## 8.3.0
 

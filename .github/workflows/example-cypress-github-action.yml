@@ -35,7 +35,7 @@ jobs:
       # Selecting the same user minimizes permissions issues
       options: --user 1001
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version-file: '.node-version'
@@ -60,7 +60,7 @@ jobs:
       image: cypress/browsers:latest
       options: --user 1001
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version-file: '.node-version'
@@ -84,7 +84,7 @@ jobs:
       image: cypress/included:latest
       options: --user 1001
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version-file: '.node-version'

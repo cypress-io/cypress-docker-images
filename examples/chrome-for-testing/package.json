@@ -10,7 +10,7 @@
   "private": true,
   "devDependencies": {
     "@puppeteer/browsers": "^3.2.1",
-    "cypress": "^15.21.1"
+    "cypress": "^16.0.0"
   },
   "allowScripts": {
     "cypress": true

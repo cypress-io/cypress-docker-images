@@ -8,15 +8,34 @@ if (!chromeVersion) {
   process.exit(0)
 }
 
-if (process.arch !== 'x64') {
-  console.log(`Chrome for Testing only available for x64. Not currently available for architecture: ${process.arch}`)
-  process.exit(0)
+const chromeMajorVersion = chromeVersion.split('.').map(Number)[0]
+
+const architecture = process.arch
+let platformFilename
+
+switch (architecture) {
+  case 'x64':
+    platformFilename = 'linux64'
+    break
+  case 'arm64':
+    platformFilename = 'linux-arm64'
+    if (chromeMajorVersion >= 153) {
+      break
+    }
+    else {
+      console.log(`Chrome for Testing ${chromeVersion} not available for arm64, minimum 153 required, skipping download`)
+      process.exit(0)
+    }
+  // eslint-disable-next-line no-fallthrough
+  default:
+    console.log(`Unsupported architecture ${architecture} for Chrome for Testing ${chromeVersion}, skipping download`)
+    process.exit(0)
 }
 
-console.log('Installing Chrome for Testing version: ', chromeVersion)
+console.log(`Installing Chrome for Testing version ${chromeVersion} for ${architecture}`)
 
 // Insert logic here if needed to run a different install script based on chrome version.
-const install = spawn(`${__dirname}/default.sh`, [chromeVersion], { stdio: 'inherit' })
+const install = spawn(`${__dirname}/default.sh`, [chromeVersion, platformFilename], { stdio: 'inherit' })
 
 install.on('error', function (error) {
   console.log('child process errored with ' + error.toString())

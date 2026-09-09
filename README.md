@@ -72,7 +72,16 @@ Cypress officially [supports][Cypress Browser Support] the latest 3 major versio
 
 The [Google Chrome for Testing][Chrome for Testing] browser is supported by [Cypress 13.17.0](https://docs.cypress.io/app/references/changelog#13-17-0) and above.
 
-[cypress/factory](./factory/) provides the parameter [CHROME_FOR_TESTING_VERSION](./factory/README.md#chrome_for_testing_version) to optionally add Chrome for Testing to a custom image. The [examples/chrome-for-testing](./examples/chrome-for-testing/) directory describes an alternate way to install Chrome for Testing into a custom image using the [@puppeteer/browsers command-line utility](https://pptr.dev/browsers-api). At this time, Chrome for Testing is not included in [cypress/browsers](./browsers/) or [cypress/included](./included/) images. Chrome for Testing is currently not available for the `linux/arm64` platform.
+[cypress/factory](./factory/) provides the parameter
+[CHROME_FOR_TESTING_VERSION](./factory/README.md#chrome_for_testing_version)
+to add Chrome for Testing optionally to a custom image.
+The [examples/chrome-for-testing](./examples/chrome-for-testing/) directory describes an alternate way to install
+Chrome for Testing into a custom image using the
+[@puppeteer/browsers command-line utility](https://pptr.dev/browsers-api).
+At this time, Chrome for Testing is not included in
+[cypress/browsers](./browsers/) or [cypress/included](./included/) images.
+Chrome for Testing is available for the `linux/amd64` platform since `113.0.5672.0`.
+For the `linux/arm64` platform, the lowest available version is `153.0.8001.0`.
 
 ### Mozilla geckodriver
 

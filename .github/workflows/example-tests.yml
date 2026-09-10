@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - examples/**
+      - .github/workflows/example-tests.yml
   pull_request:
   workflow_dispatch:
 
@@ -16,26 +17,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        directory: [
-            basic-mini, # testing cypress/included
-            basic, # testing cypress/browsers
-            chrome-for-testing,
-            chromium,
-            firefox-esr,
-            included-as-non-root,
-          ]
-        os: [
-            ubuntu-24.04, # testing Linux/amd64 platform
-            ubuntu-24.04-arm, # testing Linux/arm64 platform
-          ]
-        exclude:
-          - os: ubuntu-24.04-arm
-            directory: chrome-for-testing # browser not available for Linux/arm64
+        directory:
+          - basic-mini # testing cypress/included
+          - basic # testing cypress/browsers
+          - chrome-for-testing
+          - chromium
+          - firefox-esr
+          - included-as-non-root
+        os:
+          - ubuntu-24.04 # testing Linux/amd64 platform
+          - ubuntu-24.04-arm # testing Linux/arm64 platform
+
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version-file: '.node-version'
       - name: Run test script

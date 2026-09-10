@@ -99,8 +99,8 @@ and [JSON API endpoints](https://github.com/GoogleChromeLabs/chrome-for-testing#
 
 The parameter `CHROME_FOR_TESTING_VERSION` can be used for custom-built images based on `cypress/factory`.
 The browser is however not currently built into `cypress/browsers` or `cypress/included` images.
-Chrome for Testing is available for the `linux/amd64` platform since `113.0.5672.0`.
-For the `linux/arm64` platform, the lowest available version is `153.0.8001.0`.
+Chrome for Testing is available for the `linux/amd64` platform since `113.0.5672.0`
+and since `153.0.8001.0` for the `linux/arm64` platform.
 
 ### FIREFOX_VERSION
 

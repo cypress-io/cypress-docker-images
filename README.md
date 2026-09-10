@@ -80,8 +80,7 @@ Chrome for Testing into a custom image using the
 [@puppeteer/browsers command-line utility](https://pptr.dev/browsers-api).
 At this time, Chrome for Testing is not included in
 [cypress/browsers](./browsers/) or [cypress/included](./included/) images.
-Chrome for Testing is available for the `linux/amd64` platform since `113.0.5672.0`.
-For the `linux/arm64` platform, the lowest available version is `153.0.8001.0`.
+Chrome for Testing is available for the `linux/amd64` platform since `113.0.5672.0` and since `153.0.8001.0` for the `linux/arm64` platform.
 
 ### Mozilla geckodriver
 

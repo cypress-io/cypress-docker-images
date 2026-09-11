@@ -274,6 +274,7 @@ workflows:
               test-target:
                 - test-factory-electron
                 - test-factory-chrome
+                - test-factory-chrome-for-testing
                 - test-factory-firefox
                 - test-factory-cypress-included-electron
                 - test-factory-cypress-included-electron-non-root-user

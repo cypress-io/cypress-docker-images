@@ -92,11 +92,15 @@ This browser is available for the `Linux/amd64` platform in all versions, and fo
 
 The version of [Google Chrome for Testing](https://developer.chrome.com/blog/chrome-for-testing/) to install. If the `ARG` variable is unset or an empty string, Chrome for Testing is not installed.
 
-Example: `CHROME_FOR_TESTING_VERSION='150.0.7871.24'`
+Example: `CHROME_FOR_TESTING_VERSION='153.0.8010.36'`
 
-Refer to [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/) for current versions or [available downloads](https://googlechromelabs.github.io/chrome-for-testing/files) for other versions.
+Refer to [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/) for current versions
+and [JSON API endpoints](https://github.com/GoogleChromeLabs/chrome-for-testing#json-api-endpoints) for all versions.
 
-The parameter `CHROME_FOR_TESTING_VERSION` can be used for custom-built images based on `cypress/factory`. The browser is however not currently built into `cypress/browsers` or `cypress/included` images and is currently available only for the `Linux/amd64` platform.
+The parameter `CHROME_FOR_TESTING_VERSION` can be used for custom-built images based on `cypress/factory`.
+The browser is however not currently built into `cypress/browsers` or `cypress/included` images.
+Chrome for Testing is available for the `linux/amd64` platform since `113.0.5672.0`
+and since `153.0.8001.0` for the `linux/arm64` platform.
 
 ### FIREFOX_VERSION
 

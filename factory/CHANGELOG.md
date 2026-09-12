@@ -1,5 +1,10 @@
 # Change log
 
+## 8.5.1
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.20.0` to `24.21.0`.
+  Addresses [#1587](https://github.com/cypress-io/cypress-docker-images/issues/1587).
+
 ## 8.5.0
 
 - Add factory support for Chrome for Testing `arm64` with versions `153` and above.

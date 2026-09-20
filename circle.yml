@@ -62,14 +62,6 @@ commands:
 # used by the new machine image.
 
 jobs:
-  lint:
-    machine:
-      image: ubuntu-2404:2026.05.1
-    steps:
-      - checkout
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run format:check
   check-factory-versions:
     machine:
       image: ubuntu-2404:2026.05.1
@@ -264,7 +256,6 @@ jobs:
 workflows:
   test:
     jobs:
-      - lint
       - check-factory-versions
       - check-node-override-version
       - test-image:

@@ -27,6 +27,10 @@
     {
       "matchPackageNames": ["cypress"],
       "minimumReleaseAge": "0 days"
+    },
+    {
+      "matchUpdateTypes": ["lockFileMaintenance"],
+      "minimumReleaseAge": null
     }
   ]
 }

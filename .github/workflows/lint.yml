@@ -1,0 +1,25 @@
+name: Lint
+# Runs ESLint and the Prettier format check.
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: '.node-version'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check

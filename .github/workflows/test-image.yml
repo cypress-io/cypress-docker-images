@@ -1,0 +1,91 @@
+name: Test image
+
+# Reusable workflow backing every image test job: build cypress/factory, build the
+# image under test, then build and run one docker compose test target per matrix
+# entry. The caller picks the platform through the runner it passes in.
+
+on:
+  workflow_call:
+    inputs:
+      target:
+        description: The docker compose target to build (factory, base, browsers or included).
+        type: string
+        required: true
+      runner:
+        description: The runner label to execute on, which selects the platform under test.
+        type: string
+        required: true
+      test-targets:
+        description: JSON array of docker compose test targets to run, one job per entry.
+        type: string
+        required: true
+      retries:
+        description: Times to retry a failing test target before the job fails.
+        type: number
+        default: 3
+      retry-delay:
+        description: Seconds to wait between test target attempts.
+        type: number
+        default: 300
+
+permissions:
+  contents: read
+
+# `bash` rather than the default `bash -e`, so that a failure anywhere in a pipeline
+# fails the step instead of being masked by the exit status of the last command.
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    runs-on: ${{ inputs.runner }}
+    # Generous because a failing target is retried: the slowest target takes ~12
+    # minutes, and three retries each wait retry-delay seconds before starting.
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        test-target: ${{ fromJSON(inputs.test-targets) }}
+    steps:
+      - uses: actions/checkout@v7
+
+      # These images are large relative to a hosted runner's free disk. Reclaiming
+      # the preinstalled toolchains we never use avoids running out part way
+      # through a build.
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          docker system prune --all --force || true
+          df -h /
+
+      - uses: ./.github/actions/load-factory-env
+
+      - name: Build ${{ inputs.target }} image
+        working-directory: factory
+        run: |
+          if [ "${{ inputs.target }}" != factory ]; then docker compose --progress plain build factory; fi
+          docker compose --progress plain build "${{ inputs.target }}"
+
+      - name: Test ${{ matrix.test-target }}
+        working-directory: factory/test-project
+        env:
+          TEST_TARGET: ${{ matrix.test-target }}
+          ATTEMPTS: ${{ inputs.retries }}
+          RETRY_DELAY: ${{ inputs.retry-delay }}
+        run: |
+          total=$((ATTEMPTS + 1))
+          for attempt in $(seq 1 "${total}"); do
+            if docker compose --progress plain build "${TEST_TARGET}" \
+              && docker compose run --rm "${TEST_TARGET}"; then
+              exit 0
+            fi
+
+            if [ "${attempt}" -lt "${total}" ]; then
+              echo "Attempt ${attempt} of ${total} failed, retrying in ${RETRY_DELAY}s"
+              sleep "${RETRY_DELAY}"
+            fi
+          done
+
+          echo "${TEST_TARGET} failed after ${total} attempts"
+          exit 1

@@ -1,0 +1,314 @@
+name: Docker Images
+
+# Builds, tests and publishes the cypress/factory, base, browsers and included
+# images. Each image is built and tested natively on both arm64 and x64 before any
+# publish job runs, and the factory image publishes first because the other images
+# may pull it down to build.
+
+## If you wish to release Docker image(s) with alternate (i.e. non-primary) versions, do not modify this file in the master branch.
+## Follow the instructions in the CONTRIBUTING document for alternate versions and work instead in a feature branch.
+## Change the publish jobs below to be triggered on the feature branch, not the master branch.
+
+on:
+  push:
+    branches:
+      - master
+      # Feature branches used to publish alternate (non-primary) versions, as
+      # described in CONTRIBUTING. Pushing to one builds and tests it; publishing
+      # from it additionally needs the `if:` on the publish jobs changed.
+      - '*-publish'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# `bash` rather than the default `bash -e`, so that a failure anywhere in a pipeline
+# fails the step instead of being masked by the exit status of the last command.
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  check-factory-versions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/load-factory-env
+
+      - name: Building docker image
+        working-directory: factory
+        run: docker compose --progress plain build factory
+
+      - name: Build test image
+        working-directory: factory/test-project
+        run: docker compose --progress plain build test-factory-all-included
+
+      - name: Check node version
+        working-directory: factory/test-project
+        run: |
+          ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included node -v)
+          if [ v${NODE_VERSION} != "${ACTUAL_VERSION}" ]; then
+            echo "Version mismatch, v${NODE_VERSION} != ${ACTUAL_VERSION}"
+            exit 1;
+          fi
+          echo "Version ${ACTUAL_VERSION} confirmed"
+
+      - name: Check yarn version
+        working-directory: factory/test-project
+        run: |
+          if [ -n "${YARN_VERSION}" ]; then
+            ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included yarn -v)
+            if [ ${YARN_VERSION} != "${ACTUAL_VERSION}" ]; then
+              echo "Version mismatch, ${YARN_VERSION} != ${ACTUAL_VERSION}"
+              exit 1;
+            fi
+            echo "Version ${ACTUAL_VERSION} confirmed"
+          else
+            echo "YARN_VERSION not defined, skipping version check"
+          fi
+
+      - name: Check chrome version
+        working-directory: factory/test-project
+        run: |
+          ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included google-chrome --version | xargs)
+          TRIMMED_CHROME_VERSION=$(echo ${CHROME_VERSION} | sed -e 's/-.*$//g')
+          if [ "Google Chrome ${TRIMMED_CHROME_VERSION}" != "${ACTUAL_VERSION}" ]; then
+            echo "Version mismatch, Google Chrome ${TRIMMED_CHROME_VERSION} != ${ACTUAL_VERSION}"
+            exit 1;
+          fi
+          echo "Version ${ACTUAL_VERSION} confirmed"
+
+      - name: Check firefox version
+        working-directory: factory/test-project
+        run: |
+          ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included firefox --version)
+          if [ "Mozilla Firefox ${FIREFOX_VERSION}" != "${ACTUAL_VERSION}" ]; then
+            echo "Version mismatch, Mozilla Firefox ${FIREFOX_VERSION} != ${ACTUAL_VERSION}"
+            exit 1;
+          fi
+          echo "Version ${ACTUAL_VERSION} confirmed"
+
+      - name: Check edge version
+        working-directory: factory/test-project
+        run: |
+          ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included edge --version | xargs)
+          TRIMMED_EDGE_VERSION=$(echo ${EDGE_VERSION} | sed -e 's/-.*$//g')
+          if [ "Microsoft Edge ${TRIMMED_EDGE_VERSION}" != "${ACTUAL_VERSION}" ]; then
+            echo "Version mismatch, Microsoft Edge ${TRIMMED_EDGE_VERSION} != ${ACTUAL_VERSION}"
+            exit 1;
+          fi
+          echo "Version ${ACTUAL_VERSION} confirmed"
+
+      - name: Check cypress version
+        working-directory: factory/test-project
+        run: |
+          ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included cypress -v)
+          TRIMMED_ACTUAL_VERSION=$(echo ${ACTUAL_VERSION} | sed -e 's/ Cypress binary version:.*$//g')
+          if [  "Cypress package version: ${CYPRESS_VERSION}" != "${TRIMMED_ACTUAL_VERSION}" ]; then
+            echo "Version mismatch, Cypress package version: ${CYPRESS_VERSION} != ${TRIMMED_ACTUAL_VERSION}"
+            exit 1;
+          fi
+          echo "Version ${ACTUAL_VERSION} confirmed"
+
+      # The git version is determined by BASE_IMAGE and its online package sources
+      # We check that git is installed and report its version
+      # There is no check for a certain version of git
+      - name: Check git version
+        working-directory: factory/test-project
+        run: |
+          ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included git --version)
+          echo "Version ${ACTUAL_VERSION} confirmed"
+
+      - name: Check ssh version # We don't really care what version ssh has as long as the command doesn't error
+        working-directory: factory/test-project
+        run: |
+          ACTUAL_VERSION=$(docker compose run --rm test-factory-all-included ssh -V 2>&1)
+          echo "Version ${ACTUAL_VERSION} confirmed"
+
+  check-node-override-version:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/load-factory-env
+
+      - name: Building docker image
+        working-directory: factory
+        run: docker compose --progress plain build factory
+
+      - name: Build test image
+        working-directory: factory/test-project
+        run: docker compose --progress plain build test-factory-node-override
+
+      - name: Check node version
+        working-directory: factory/test-project
+        run: |
+          ACTUAL_VERSION=$(docker compose run --rm test-factory-node-override node -v)
+          if [ v22.15.0 != "${ACTUAL_VERSION}" ]; then
+            echo "Version mismatch, v22.15.0 != ${ACTUAL_VERSION}"
+            exit 1;
+          fi
+          echo "Version ${ACTUAL_VERSION} confirmed"
+
+  factory-arm:
+    uses: ./.github/workflows/test-image.yml
+    with:
+      target: factory
+      runner: ubuntu-24.04-arm
+      test-targets: |
+        [
+          "test-factory-electron",
+          "test-factory-chrome",
+          "test-factory-chrome-for-testing",
+          "test-factory-firefox",
+          "test-factory-cypress-included-electron",
+          "test-factory-cypress-included-electron-non-root-user",
+          "test-factory-cypress-included-firefox",
+          "test-factory-cypress-included-firefox-non-root-user",
+          "test-factory-all-included-electron-only"
+        ]
+
+  factory:
+    uses: ./.github/workflows/test-image.yml
+    with:
+      target: factory
+      runner: ubuntu-24.04
+      test-targets: |
+        [
+          "test-factory-electron",
+          "test-factory-chrome",
+          "test-factory-chrome-for-testing",
+          "test-factory-chrome-non-root-user",
+          "test-factory-firefox",
+          "test-factory-edge",
+          "test-factory-cypress-included-electron",
+          "test-factory-cypress-included-electron-non-root-user",
+          "test-factory-cypress-included-chrome",
+          "test-factory-cypress-included-firefox",
+          "test-factory-cypress-included-firefox-non-root-user",
+          "test-factory-cypress-included-edge",
+          "test-factory-all-included"
+        ]
+
+  base:
+    uses: ./.github/workflows/test-image.yml
+    with:
+      target: base
+      runner: ubuntu-24.04
+      test-targets: '["test-base"]'
+
+  base-arm:
+    uses: ./.github/workflows/test-image.yml
+    with:
+      target: base
+      runner: ubuntu-24.04-arm
+      test-targets: '["test-base"]'
+
+  browsers:
+    uses: ./.github/workflows/test-image.yml
+    with:
+      target: browsers
+      runner: ubuntu-24.04
+      test-targets: |
+        [
+          "test-browsers-electron",
+          "test-browsers-chrome",
+          "test-browsers-firefox",
+          "test-browsers-edge"
+        ]
+
+  browsers-arm:
+    uses: ./.github/workflows/test-image.yml
+    with:
+      target: browsers
+      runner: ubuntu-24.04-arm
+      test-targets: |
+        [
+          "test-browsers-electron",
+          "test-browsers-chrome",
+          "test-browsers-firefox"
+        ]
+
+  included:
+    uses: ./.github/workflows/test-image.yml
+    with:
+      target: included
+      runner: ubuntu-24.04
+      test-targets: |
+        [
+          "test-included-electron",
+          "test-included-chrome",
+          "test-included-firefox",
+          "test-included-edge"
+        ]
+
+  included-arm:
+    uses: ./.github/workflows/test-image.yml
+    with:
+      target: included
+      runner: ubuntu-24.04-arm
+      test-targets: |
+        [
+          "test-included-electron",
+          "test-included-chrome",
+          "test-included-firefox"
+        ]
+
+  # Publishing the factory image must come first because the other images may pull
+  # it down to build.
+  #
+  # Only the branch named below publishes. Follow the instructions in the
+  # CONTRIBUTING document for alternate versions and change this to a feature
+  # branch such as <cypress-version>-node-<node.js version>-publish if publishing
+  # an alternate (non-primary) version. This job must run because the base,
+  # browsers and included jobs depend on it.
+  push-factory:
+    name: Push Factory Image
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs:
+      - factory
+      - factory-arm
+      - check-node-override-version
+      - check-factory-versions
+    uses: ./.github/workflows/push-image.yml
+    with:
+      target: factory
+    secrets: inherit
+
+  push-base:
+    name: Push Base Image
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs:
+      - push-factory
+      - base
+      - base-arm
+    uses: ./.github/workflows/push-image.yml
+    with:
+      target: base
+    secrets: inherit
+
+  push-browsers:
+    name: Push Browser Image
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs:
+      - push-factory
+      - browsers
+      - browsers-arm
+    uses: ./.github/workflows/push-image.yml
+    with:
+      target: browsers
+    secrets: inherit
+
+  push-included:
+    name: Push Included Image
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs:
+      - push-factory
+      - included
+      - included-arm
+    uses: ./.github/workflows/push-image.yml
+    with:
+      target: included
+    secrets: inherit

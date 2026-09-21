@@ -69,7 +69,7 @@ To publish a new image for `factory`, `base`, `browsers`, or `included`, open a 
 
 You should not change the `FACTORY_VERSION` or make an entry into the factory [CHANGELOG](./factory/CHANGELOG.md) if you are only changing browser versions, geckodriver version or the Cypress version.
 
-Once the PR is merged into the `master` branch, the corresponding images will be pushed to [Docker Hub](https://hub.docker.com/u/cypress) and to the [Amazon ECR (Elastic Container Registry) Public Gallery](https://gallery.ecr.aws/cypress-io) via an automated script run through [CircleCI](circle.yml). Please check that the CI jobs pass after merge. Any CI failure can cause the release process to be interrupted.
+Once the PR is merged into the `master` branch, the corresponding images will be pushed to [Docker Hub](https://hub.docker.com/u/cypress) and to the [Amazon ECR (Elastic Container Registry) Public Gallery](https://gallery.ecr.aws/cypress-io) via the [Docker Images workflow](.github/workflows/docker-images.yml). Please check that the CI jobs pass after merge. Any CI failure can cause the release process to be interrupted.
 
 ##### Alternate versions
 
@@ -84,7 +84,7 @@ If you need to release an alternate version that does not qualify to be a primar
 3. Now modify the three files as follows in your working branch. Pay attention to comments in the files affected for additional details of the changes necessary.
 4. Modify [factory/.env](./factory/.env) with the desired versions. Do not modify the `FACTORY_VERSION`. No new `cypress/factory` image should be published with this process.
 5. Modify [factory/docker-compose.yml](./factory/docker-compose.yml) to comment out the creation of `latest` tags. Comment out the `cypress/included` `INCLUDED_IMAGE_SHORT_TAG` to also prevent this tag from being created. This step is essential to avoid the related tags of any existing released images being moved to point to non-primary images.
-6. Modify [circle.yml](circle.yml) to push releases from the feature branch.
+6. Modify [.github/workflows/docker-images.yml](.github/workflows/docker-images.yml) to publish from the feature branch: change `refs/heads/master` in the `if:` condition of each publish job to `refs/heads/<your feature branch>`. Pushing to a branch whose name ends in `-publish` already builds and tests it; only the publish jobs are branch-gated.
 7. Open a PR which commits the changes from your working branch to the publish feature branch. Do **not** target the `master` branch with the PR.
 8. After PR merge, check Cypress on [Docker Hub](https://hub.docker.com/u/cypress) for the presence of the associated new image(s).
 
@@ -211,10 +211,10 @@ In CI, the images are built and tested in real `arm64` and `x64` architectures. 
 ## Node.js
 
 The version of Node.js to be used in GitHub Actions workflows, and when running locally, is defined in [.node-version](.node-version).
-This version is aligned with the Node.js version provided by the CircleCI machine image used in the config [circle.yml](circle.yml).
+Workflows read it through the `node-version-file` input of `actions/setup-node`, so updating the file updates CI with it.
 You can find a list of tools on [node-version-usage](https://github.com/shadowspawn/node-version-usage) to switch the version of Node.js based on [.node-version](.node-version).
 For convenience, [.nvmrc](.nvmrc) also contains an identical setting of Node.js version for use with the POSIX version of [nvm](https://github.com/nvm-sh/nvm).
 
-If the CircleCI machine image in [circle.yml](circle.yml) is updated, then [.node-version](.node-version) and [.nvmrc](.nvmrc) should also be updated to use the same version of Node.js throughout.
+[.node-version](.node-version) and [.nvmrc](.nvmrc) should be kept identical so that the same version of Node.js is used throughout.
 
 This is separate from the version of Node.js to be installed and used within Cypress Docker images, which is defined in the [factory NODE_VERSION](./factory/README.md#node_version) document section.

@@ -1,0 +1,109 @@
+name: Push image
+
+# Reusable workflow backing every publish job: skip if the tag is already published,
+# otherwise build linux/amd64 and linux/arm64 and push to Docker Hub, then re-tag the
+# same build to the Amazon ECR Public gallery.
+
+on:
+  workflow_call:
+    inputs:
+      target:
+        description: The docker compose target to build and push.
+        type: string
+        required: true
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_PASS:
+        required: true
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+      AWS_ECR_REGION:
+        required: true
+      AWS_ECR_PREFIX:
+        required: true
+
+permissions:
+  contents: read
+
+# `bash` rather than the default `bash -e`, so that a failure anywhere in a pipeline
+# fails the step instead of being masked by the exit status of the last command.
+# The Amazon ECR login in particular pipes credentials into `docker login`.
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  push:
+    runs-on: ubuntu-24.04
+    # Installing Cypress under arm64 emulation can take some time.
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          docker system prune --all --force || true
+          df -h /
+
+      - uses: ./.github/actions/load-factory-env
+
+      # Using the Docker Hub API https://docs.docker.com/docker-hub/api/latest/
+      # to check whether Docker Hub definitely does not have this image. Anything
+      # other than a clear 404 skips the publish, so an API error never republishes.
+      - name: Check if image for ${{ inputs.target }} exists on Docker Hub
+        id: published
+        env:
+          DOCKER_REPO: ${{ inputs.target }}
+        run: |
+          DOCKER_NAMESPACE='cypress'
+
+          DOCKER_TAG=''
+          if [ "${DOCKER_REPO}" == factory ]; then DOCKER_TAG=${FACTORY_VERSION}; fi
+          if [ "${DOCKER_REPO}" == base ]; then DOCKER_TAG=${BASE_IMAGE_TAG}; fi
+          if [ "${DOCKER_REPO}" == browsers ]; then DOCKER_TAG=${BROWSERS_IMAGE_TAG}; fi
+          if [ "${DOCKER_REPO}" == included ]; then DOCKER_TAG=${INCLUDED_IMAGE_TAG}; fi
+
+          DOCKER_NAME=${DOCKER_NAMESPACE}/${DOCKER_REPO}:${DOCKER_TAG}
+
+          if curl -s https://hub.docker.com/v2/namespaces/${DOCKER_NAMESPACE}/repositories/${DOCKER_REPO}/tags/${DOCKER_TAG} \
+            | grep -iq 'httperror 404'; then
+            echo Docker Hub says image $DOCKER_NAME does not exist - HTTP status 404 returned
+            echo $DOCKER_NAME available for publishing
+            echo 'exists=false' >> "${GITHUB_OUTPUT}"
+          else
+            echo Docker Hub found image $DOCKER_NAME - or error occurred
+            echo Skipping to avoid republishing
+            echo 'exists=true' >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Building Docker image for target ${{ inputs.target }}
+        if: steps.published.outputs.exists != 'true'
+        working-directory: factory
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ECR_REGION: ${{ secrets.AWS_ECR_REGION }}
+          AWS_ECR_PREFIX: ${{ secrets.AWS_ECR_PREFIX }}
+        run: |
+          echo Build environment is ...
+          echo Node.js $(node --version)
+          echo $(docker --version)
+          echo $(docker buildx version)
+
+          ## see https://docs.docker.com/desktop/multi-arch/
+          docker run --privileged --rm tonistiigi/binfmt:latest@sha256:d3b963f787999e6c0219a48dba02978769286ff61a5f4d26245cb6a6e5567ea3 --install linux/amd64,linux/arm64
+          docker buildx create --name builder --use
+
+          echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64,linux/amd64 --push ${{ inputs.target }}
+
+          ## now, let's re-build those same images for Amazon ECR this is basically a re-tag and push because of the cache from the previous build.
+          ## see https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html
+          aws ecr-public get-login-password --region "$AWS_ECR_REGION" | docker login --username AWS --password-stdin "$AWS_ECR_PREFIX"
+          REPO_PREFIX=$AWS_ECR_PREFIX/ docker buildx bake -f ./docker-compose.yml --progress plain --set *.platform=linux/arm64,linux/amd64 --push ${{ inputs.target }}

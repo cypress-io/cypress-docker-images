@@ -1,0 +1,21 @@
+name: Load factory env
+description: Exports the variables defined in factory/.env to the job environment.
+
+# factory/.env interpolates its own values (NODE_VERSION references
+# FACTORY_DEFAULT_NODE_VERSION, the image tags reference NODE_VERSION), so the file
+# is sourced rather than parsed. Docker Compose resolves it the same way when run
+# from factory/, but the version checks and the image-exists probe read the values
+# directly from the environment.
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        set -a
+        . "${GITHUB_WORKSPACE}/factory/.env"
+        set +a
+
+        while IFS= read -r name; do
+          printf '%s=%s\n' "${name}" "${!name}" >> "${GITHUB_ENV}"
+        done < <(sed -nE 's/^[[:space:]]*([A-Za-z_][A-Za-z0-9_]*)=.*/\1/p' "${GITHUB_WORKSPACE}/factory/.env")

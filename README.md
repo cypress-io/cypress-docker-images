@@ -1,4 +1,4 @@
-# Cypress Docker Images [![CircleCI](https://circleci.com/gh/cypress-io/cypress-docker-images/tree/master.svg?style=svg)](https://circleci.com/gh/cypress-io/cypress-docker-images/tree/master)
+# Cypress Docker Images [![Docker Images](https://github.com/cypress-io/cypress-docker-images/actions/workflows/docker-images.yml/badge.svg?branch=master)](https://github.com/cypress-io/cypress-docker-images/actions/workflows/docker-images.yml)
 
 Cypress Docker images are published to [Cypress on Docker Hub](https://hub.docker.com/u/cypress).
 

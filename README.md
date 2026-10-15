@@ -123,7 +123,7 @@ For each of the `REPOSITORY` image types, see the `Tags` section of each `README
 
 Images with a specific version tag for `cypress/factory` and `cypress/base` (for example: `cypress/factory:6.0.1` and `cypress/base:22.19.0`) are frozen once they have been published. The same is true for images linked to full browser version tags for `cypress/browsers` and `cypress/included` (for example: `cypress/browsers:node-22.19.0-chrome-139.0.7258.154-1-ff-142.0.1-edge-139.0.3405.125-1` and `cypress/included:cypress-15.1.0-node-22.19.0-chrome-139.0.7258.154-1-ff-142.0.1-edge-139.0.3405.125-1`).
 
-The version tags for Chrome and Edge for `Linux/arm64` images, as well as Firefox version tags below `ff-136.x`, do not carry any meaning due to browser unavailability for this platform.
+The version tags for Edge for `Linux/arm64` images, as well as Chrome version tags below `chrome-151.x` and Firefox version tags below `ff-136.x`, do not carry any meaning due to browser unavailability for this platform.
 With the tag scheme used by Cypress Docker images, all tags are required to be in place to allow use of Docker's [multi-platform images](https://docs.docker.com/build/building/multi-platform/), irrespective of whether the browser is actually available or not.
 
 `cypress/browsers` and `cypress/included` images are also offered with short-form convenience tags that do not include browser version details (example: `cypress/browsers:22.19.0` and `cypress/included:15.1.0`). The tags that these images refer to can change without notice if browser updates are made.

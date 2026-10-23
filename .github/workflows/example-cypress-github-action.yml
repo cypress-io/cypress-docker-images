@@ -30,6 +30,7 @@ jobs:
       # For production use, to avoid the risk of breaking changes,
       # choose a fixed version tag from
       # https://hub.docker.com/r/cypress/base/tags
+      # The cypress/base image is deprecated
       image: cypress/base:latest
       # User 1001 matches the owner of the HOME directory which GitHub Actions creates
       # Selecting the same user minimizes permissions issues
@@ -43,6 +44,8 @@ jobs:
         with:
           # Only the Electron browser is available with cypress/base
           # This is the default browser and does not need to be specified
+          # The Cypress 16.0.0 release notes deprecated the Electron browser
+          # https://docs.cypress.io/app/references/changelog#16-0-0
           working-directory: examples/basic
 
   docker-browsers:

@@ -1,8 +1,22 @@
 # cypress/base
+**Deprecated**
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/cypress/base.svg?maxAge=604800)](https://hub.docker.com/r/cypress/base/)
 
-> Docker images that include all operating system dependencies necessary to run Cypress, **but NOT Cypress itself** and no pre-installed browsers. See [cypress/included](../included) images if you need Cypress pre-installed in the image. See [cypress/browsers](../browsers) images if you need some browsers pre-installed in the image.
+> Docker images that include all operating system dependencies necessary to run Cypress, **but NOT Cypress itself** and no pre-installed browsers. See [cypress/browsers](../browsers) images if you need browsers pre-installed in the image and to prepare for the future removal of the Electron browser. See [cypress/included](../included) images if you need Cypress pre-installed in the image.
+
+## Deprecation
+
+The `cypress/base` image is deprecated.
+
+With the release of [Cypress 16](https://docs.cypress.io/app/references/changelog#16-0-0),
+the Electron browser was deprecated and documentation advises that it will be removed in a future major version of Cypress.
+[Migrating away from the Electron browser](https://docs.cypress.io/app/references/migration-guide#Migrating-away-from-the-Electron-browser)
+explains alternatives.
+
+Examples listed below will no longer work as described when Electron is removed.
+
+Migrate to [cypress/browsers](../browsers) instead.
 
 ## Tags
 

@@ -9,7 +9,7 @@ We build four images: click on the image name to see the available tags with ver
 | Image Name                                                     | Description                                                                        |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | [cypress/factory](https://hub.docker.com/r/cypress/factory/)   | A base image template which can be used with ARGs to create a custom docker image. |
-| [cypress/base](https://hub.docker.com/r/cypress/base/)         | All operating system dependencies, no Cypress, and no browsers.                    |
+| [cypress/base](https://hub.docker.com/r/cypress/base/)         | All operating system dependencies, no Cypress, and no browsers (deprecated).       |
 | [cypress/browsers](https://hub.docker.com/r/cypress/browsers/) | All operating system dependencies, no Cypress, and some browsers.                  |
 | [cypress/included](https://hub.docker.com/r/cypress/included/) | All operating system dependencies, Cypress, and some browsers, installed globally. |
 
@@ -247,6 +247,12 @@ Build a custom Docker image and add the following instructions to the end of the
 ENV HOME=/home/node
 RUN chmod -R 777 $HOME /root/.cache/Cypress
 ```
+
+## Deprecations
+
+The [cypress/base](./base/README.md#deprecation) image is deprecated because it relies on the Electron browser
+that is deprecated with [Cypress 16](https://docs.cypress.io/app/references/changelog#16-0-0).
+Migrate to the [cypress/browsers](./browsers/README.md) image instead.
 
 ## Contributing
 

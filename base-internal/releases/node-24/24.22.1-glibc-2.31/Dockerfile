@@ -98,7 +98,7 @@ ENV TERM=xterm
 ENV npm_config_loglevel=warn
 
 RUN npm --version \
-  && npm install -g yarn@latest --force \
+  && npm install -g yarn@1 --force \
   && yarn --version \
   && node -p process.versions \
   && node -p 'module.paths' \

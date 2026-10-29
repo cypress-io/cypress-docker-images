@@ -1,5 +1,12 @@
 # Change log
 
+## 9.0.0
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.22.1` (`Krypton` - Maintenance LTS)
+  to `26.13.0` (`Lithium` - Active LTS) -
+  see [Blog v26.13.0](https://nodejs.org/en/blog/release/v26.13.0).
+  Addresses [#1620](https://github.com/cypress-io/cypress-docker-images/issues/1620).
+
 ## 8.6.2
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.22.0` to `24.22.1`.

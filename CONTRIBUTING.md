@@ -83,7 +83,7 @@ If you need to release an alternate version that does not qualify to be a primar
 2. Create a similarly named working branch, for example, `15.4.0-node-25.0.0-work`, also branched from the `master` branch.
 3. Now modify the three files as follows in your working branch. Pay attention to comments in the files affected for additional details of the changes necessary.
 4. Modify [factory/.env](./factory/.env) with the desired versions. Do not modify the `FACTORY_VERSION`. No new `cypress/factory` image should be published with this process.
-5. Modify [factory/docker-compose.yml](./factory/docker-compose.yml) to comment out the creation of `latest` tags. Comment out the `cypress/included` `INCLUDED_IMAGE_SHORT_TAG` to also prevent this tag from being created. This step is essential to avoid the related tags of any existing released images being moved to point to non-primary images.
+5. Modify [factory/docker-compose.yml](./factory/docker-compose.yml) to comment out the `cypress/included` `INCLUDED_IMAGE_SHORT_TAG` so that this tag is not created. This step is essential to avoid the short tag of an existing released image being moved to point to a non-primary image. The `latest` tags need no change: they are defined in [factory/docker-compose.latest.yml](./factory/docker-compose.latest.yml), which CI applies only when pushing from the `master` branch.
 6. Modify [circle.yml](circle.yml) to push releases from the feature branch.
 7. Open a PR which commits the changes from your working branch to the publish feature branch. Do **not** target the `master` branch with the PR.
 8. After PR merge, check Cypress on [Docker Hub](https://hub.docker.com/u/cypress) for the presence of the associated new image(s).

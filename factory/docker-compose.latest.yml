@@ -1,0 +1,24 @@
+# Adds the latest tags to the images built from docker-compose.yml.
+# CI applies this file only when pushing from the master branch,
+# so that releases from any other branch never move a latest tag.
+
+services:
+  factory:
+    build:
+      tags:
+        - ${REPO_PREFIX-}cypress/factory:latest
+
+  included:
+    build:
+      tags:
+        - ${REPO_PREFIX-}cypress/included:latest
+
+  browsers:
+    build:
+      tags:
+        - ${REPO_PREFIX-}cypress/browsers:latest
+
+  base:
+    build:
+      tags:
+        - ${REPO_PREFIX-}cypress/base:latest

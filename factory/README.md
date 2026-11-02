@@ -20,7 +20,7 @@
 
 for example:
 
-- `cypress/factory:4.0.2`
+- `cypress/factory:9.0.0`
 - `cypress/factory:latest`
 
 To avoid unplanned breaking changes, specify a fixed `<factory version>` tag, not the `latest` tag. The `latest` tag is linked to the latest released `cypress/factory` image and is updated without notice.
@@ -44,7 +44,7 @@ If no `ARG` variables are defined, only the default version of Node.js will be i
 
 The version of Node.js to install in the Docker image. The exact version must be used, no wildcards or shorthands are supported. If the `ARG` variable is not defined or an empty string, the default version of Node.js (defined in [.env](./.env) as `FACTORY_DEFAULT_NODE_VERSION`) is installed. Node.js is a prerequisite for Cypress.
 
-Example: `NODE_VERSION='20.14.0'`
+Example: `NODE_VERSION='26.13.0'`
 
 [Node Versions](https://nodejs.org/en/download/releases)
 
@@ -70,7 +70,7 @@ They are not currently published to the
 
 The version of Cypress to install (globally via npm). If the `ARG` variable is unset or an empty string, Cypress is not installed.
 
-Example: `CYPRESS_VERSION='15.1.0'`
+Example: `CYPRESS_VERSION='16.2.1'`
 
 [Cypress versions](https://www.npmjs.com/package/cypress)
 
@@ -82,7 +82,7 @@ to allow running tests written in TypeScript (see [Cypress TypeScript Support](h
 
 The version of Google Chrome to install. If the `ARG` variable is unset or an empty string, Chrome is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
-Example: `CHROME_VERSION='149.0.7827.155-1'`
+Example: `CHROME_VERSION='156.0.8078.73-1'`
 
 [Chrome versions](https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable)
 
@@ -92,7 +92,7 @@ This browser is available for the `Linux/amd64` platform in all versions, and fo
 
 The version of [Google Chrome for Testing](https://developer.chrome.com/blog/chrome-for-testing/) to install. If the `ARG` variable is unset or an empty string, Chrome for Testing is not installed.
 
-Example: `CHROME_FOR_TESTING_VERSION='153.0.8010.36'`
+Example: `CHROME_FOR_TESTING_VERSION='156.0.8078.73'`
 
 Refer to [Chrome for Testing availability](https://googlechromelabs.github.io/chrome-for-testing/) for current versions
 and [JSON API endpoints](https://github.com/GoogleChromeLabs/chrome-for-testing#json-api-endpoints) for all versions.
@@ -106,7 +106,7 @@ and since `153.0.8001.0` for the `linux/arm64` platform.
 
 The version of Mozilla Firefox to install. If the `ARG` variable is unset or an empty string, Firefox is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
-Example: `FIREFOX_VERSION='152.0'`
+Example: `FIREFOX_VERSION='159.0'`
 
 [Firefox versions](https://download-installer.cdn.mozilla.net/pub/firefox/releases/)
 
@@ -116,7 +116,7 @@ This browser is available for the `Linux/amd64` platform in all versions, and fo
 
 The version of [Mozilla geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/index.html) to install. If the `ARG` variable is unset or an empty string, the `geckodriver` is not installed. The exact version must be used, no wildcards or shorthands are supported. A minimum version `0.34.0` is required.
 
-Example: `GECKODRIVER_VERSION='0.37.0'`
+Example: `GECKODRIVER_VERSION='0.37.1'`
 
 [Mozilla geckodriver releases](https://github.com/mozilla/geckodriver/releases) provides drivers for both `Linux/amd64` and `Linux/arm64` platforms. Cypress release [13.15.1](https://docs.cypress.io/app/references/changelog#13-15-1), and above, require `geckodriver` when testing Firefox. If `GECKODRIVER_VERSION` is not defined, Cypress uses the npm wrapper package [geckodriver](https://www.npmjs.com/package/geckodriver) to download [Mozilla geckodriver](https://github.com/mozilla/geckodriver) at run-time. Specifying `GECKODRIVER_VERSION` is advised if testing in an air-gapped environment, and to use a defined version of `geckodriver`.
 
@@ -124,7 +124,7 @@ Example: `GECKODRIVER_VERSION='0.37.0'`
 
 The version of Microsoft Edge to install. If the `ARG` variable is unset or an empty string, Edge is not installed. The exact version must be used, no wildcards or shorthands are supported.
 
-Example: `EDGE_VERSION='149.0.4022.69-1'`
+Example: `EDGE_VERSION='156.0.4314.50-1'`
 
 [Edge versions](https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/)
 
@@ -186,9 +186,9 @@ Create a `Dockerfile` with the following content:
 # Args are defined in the Dockerfile before the FROM command.
 # Using these args will cause an image to be created with
 # Node.js (default version from .env file), Chrome, Firefox and Edge.
-ARG CHROME_VERSION='149.0.7827.155-1'
-ARG EDGE_VERSION='149.0.4022.69-1'
-ARG FIREFOX_VERSION='152.0'
+ARG CHROME_VERSION='156.0.8078.73-1'
+ARG EDGE_VERSION='156.0.4314.50-1'
+ARG FIREFOX_VERSION='159.0'
 
 FROM cypress/factory
 
@@ -202,7 +202,7 @@ Then, in the same directory as the `Dockerfile`, run the following commands to b
 
 ```bash
 docker build -t test .
-docker run -it --rm test npx cypress run -b chrome
+docker run --rm test npx cypress run -b chrome
 ```
 
 ### At build time
@@ -223,8 +223,8 @@ RUN npx cypress install
 Run the Docker commands:
 
 ```bash
-docker build --build-arg CHROME_VERSION='149.0.7827.155-1' --build-arg EDGE_VERSION='149.0.4022.69-1' --build-arg FIREFOX_VERSION='152.0' -t test .
-docker run -it --rm test npx cypress run -b chrome
+docker build --build-arg CHROME_VERSION='156.0.8078.73-1' --build-arg EDGE_VERSION='156.0.4314.50-1' --build-arg FIREFOX_VERSION='159.0' -t test .
+docker run --rm test npx cypress run -b chrome
 ```
 
 ### In docker-compose.yml
@@ -239,9 +239,9 @@ services:
     build:
       context: .
       args:
-        CHROME_VERSION: '149.0.7827.155-1'
-        EDGE_VERSION: '149.0.4022.69-1'
-        FIREFOX_VERSION: '152.0'
+        CHROME_VERSION: '156.0.8078.73-1'
+        EDGE_VERSION: '156.0.4314.50-1'
+        FIREFOX_VERSION: '159.0'
     command: npx cypress run
 ```
 
@@ -263,16 +263,16 @@ docker compose build test
 docker compose run --rm test
 ```
 
-### Reducing the size of the docker container
+### Reducing the size of the Docker image
 
-As mentioned above we can reduce the size of the Docker image by removing browsers we aren't using.
+As mentioned above, we can reduce the size of the Docker image by removing browsers we aren't using.
 
 Since this example only uses Chrome, removing Edge and Firefox is as simple as not including a version.
 
 Create a `Dockerfile` with the following content:
 
 ```dockerfile
-ARG CHROME_VERSION='149.0.7827.155-1'
+ARG CHROME_VERSION='156.0.8078.73-1'
 
 FROM cypress/factory
 
@@ -286,10 +286,14 @@ Then, in the same directory as the `Dockerfile`, run the following commands to b
 
 ```bash
 docker build -t test .
-docker run -it --rm test npx cypress run -b chrome
+docker run --rm test npx cypress run -b chrome
 ```
 
-The released [cypress/base](https://hub.docker.com/r/cypress/base) image (no browsers) has a compressed size on [Docker Hub](https://hub.docker.com/u/cypress) of ~ 230 MB. The [cypress/browsers](https://hub.docker.com/r/cypress/browsers) image for `linux/amd64` has a compressed image size of ~ 840 MB. By generating a custom image with unneeded browsers removed, the image size can be correspondingly reduced.
+The released [cypress/base](https://hub.docker.com/r/cypress/base) image (no browsers) has a compressed size on
+[Docker Hub](https://hub.docker.com/u/cypress) of ~ 243 MB.
+The [cypress/browsers](https://hub.docker.com/r/cypress/browsers) image for `linux/amd64` has a compressed image
+size of ~ 970 MB.
+By generating a custom image with unneeded browsers removed, the image size can be correspondingly reduced.
 
 ### Proxy management
 

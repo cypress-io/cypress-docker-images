@@ -327,7 +327,9 @@ jobs:
             docker buildx create --name builder --use
 
             if [ -n "<< parameters.major >>" ]; then
-              BAKE_FILES="-f ./maintenance/docker-compose.yml"
+              # bake resolves the build context against the working directory, not the compose file
+              cd maintenance
+              BAKE_FILES="-f ./docker-compose.yml"
               echo "Cypress << parameters.major >> maintenance image - latest tags will not be pushed"
             elif [ "${CIRCLE_BRANCH}" = master ]; then
               BAKE_FILES="-f ./docker-compose.yml -f ./docker-compose.latest.yml"

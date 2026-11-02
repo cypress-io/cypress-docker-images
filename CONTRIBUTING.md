@@ -88,6 +88,25 @@ If you need to release an alternate version that does not qualify to be a primar
 7. Open a PR which commits the changes from your working branch to the publish feature branch. Do **not** target the `master` branch with the PR.
 8. After PR merge, check Cypress on [Docker Hub](https://hub.docker.com/u/cypress) for the presence of the associated new image(s).
 
+##### Maintenance releases
+
+`cypress/included` images for patch releases of previous Cypress major versions are published from the `master` branch. Each such major version has an env file in [factory/maintenance](./factory/maintenance), for example [factory/maintenance/15.env](./factory/maintenance/15.env) for Cypress 15, which is used instead of [factory/.env](./factory/.env). No `cypress/factory`, `cypress/base` or `cypress/browsers` images and no `latest` tags are published for them.
+
+Each maintenance `cypress/included` image is built on top of the last `cypress/browsers` image released for that Cypress major version, pinned by digest in its env file. The Node.js and browser versions therefore stay the same for every patch release of that major version. Patch releases do not depend on older browser versions remaining available for download, and do not ship browser versions that the major version was not tested with.
+
+To publish a patch release, open a PR that updates `CYPRESS_VERSION` in the env file of that major version, for example to a new 15.x version in [factory/maintenance/15.env](./factory/maintenance/15.env). Do not change any other versions in that file. CI fails until the new Cypress version is available on npm. Once the PR is merged into the `master` branch, the image is pushed along with any primary images.
+
+The maintenance CI jobs build and test an image only when its env file has a Cypress version that is not yet published, so they finish early in other PRs.
+
+To start maintenance releases for a major version when the next major version becomes the primary version:
+
+1. Create `factory/maintenance/<major>.env`, using an existing file in [factory/maintenance](./factory/maintenance) as a template. Set the versions and `BROWSERS_IMAGE_TAG` of the last `cypress/browsers` image released for that major version, its digest from [Docker Hub](https://hub.docker.com/r/cypress/browsers/tags) in `BROWSERS_IMAGE_DIGEST`, the `TYPESCRIPT_VERSION` from [factory/.env](./factory/.env) at that time, and the latest published version of that major version in `CYPRESS_VERSION`.
+2. Add the major version to `maintenance-majors` in [circle.yml](circle.yml).
+
+To end maintenance releases for a major version, delete its env file and remove it from `maintenance-majors`.
+
+To build and test locally, set the environment variables from the env file of the major version instead of [factory/.env](./factory/.env), for example with `set -a && . ./15.env && set +a` from the `factory/maintenance` directory. Then run `docker compose build included` from the `factory/maintenance` directory and `docker compose run --build --rm test-included-chrome` from the `factory/test-project` directory.
+
 #### Manual
 
 > Note: This requires being a member of the Cypress org

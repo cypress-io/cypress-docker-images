@@ -1,0 +1,20 @@
+# REPO_PREFIX is used in CI to deploy to other docker registries than dockerhub.
+
+## Builds cypress/included images for patch releases of a previous Cypress major version,
+## using the versions in the <major>.env file in this directory.
+## Run with: set -a && . ./15.env && set +a && docker compose build included
+## No latest tags are created for these images.
+
+services:
+  included:
+    image: ${REPO_PREFIX-}cypress/included
+    build:
+      context: .
+      args:
+        BROWSERS_IMAGE: cypress/browsers:${BROWSERS_IMAGE_TAG}@${BROWSERS_IMAGE_DIGEST}
+        CYPRESS_VERSION: ${CYPRESS_VERSION}
+        TYPESCRIPT_VERSION: ${TYPESCRIPT_VERSION}
+      tags:
+        - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_SHORT_TAG}
+        - ${REPO_PREFIX-}cypress/included:${INCLUDED_IMAGE_TAG}
+    command: node -v

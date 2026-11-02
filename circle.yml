@@ -10,12 +10,19 @@ version: 2.1
 commands:
   expand-env-file:
     description: Sets up bash env to load envs from the env file
+    parameters:
+      major:
+        type: string
+        default: ''
+        description: Previous Cypress major version to load factory/maintenance/<major>.env for, instead of factory/.env
     steps:
       - run:
           name: Sets up bash env to load envs from the env file
           command: |
+            ENV_FILE=.env
+            if [ -n "<< parameters.major >>" ]; then ENV_FILE=maintenance/<< parameters.major >>.env; fi
             touch $BASH_ENV
-            echo 'set -a && . ~/project/factory/.env && set +a' >> $BASH_ENV
+            echo "set -a && . ~/project/factory/${ENV_FILE} && set +a" >> $BASH_ENV
   halt-if-docker-image-exists:
     description: Halt current CircleCI job if Docker image exists already
     parameters:
@@ -218,6 +225,77 @@ jobs:
           auto_rerun_delay: 5m
           working_directory: factory/test-project
 
+  check-maintenance-versions:
+    machine:
+      image: ubuntu-2604:2026.10.1
+    parameters:
+      major:
+        type: string
+        description: Previous Cypress major version, as in factory/maintenance/<major>.env
+    steps:
+      - checkout
+      - expand-env-file:
+          major: << parameters.major >>
+      - halt-if-docker-image-exists:
+          target: included
+      - run:
+          name: building docker image
+          command: |
+            docker compose --progress plain build included
+          working_directory: factory/maintenance
+      - run:
+          name: check versions
+          command: |
+            check_version() {
+              EXPECTED_VERSION=$1
+              shift
+              ACTUAL_VERSION=$(docker run --rm --entrypoint "" cypress/included:${INCLUDED_IMAGE_TAG} "$@" | xargs)
+              if [ "${EXPECTED_VERSION}" != "${ACTUAL_VERSION}" ]; then
+                echo "Version mismatch, ${EXPECTED_VERSION} != ${ACTUAL_VERSION}"
+                exit 1;
+              fi
+              echo "Version ${ACTUAL_VERSION} confirmed"
+            }
+            check_version "v${NODE_VERSION}" node -v
+            check_version "Google Chrome ${CHROME_VERSION%-*}" google-chrome --version
+            check_version "Mozilla Firefox ${FIREFOX_VERSION}" firefox --version
+            check_version "Microsoft Edge ${EDGE_VERSION%-*}" edge --version
+            check_version "${CYPRESS_VERSION}" cypress version --component package
+  test-maintenance:
+    machine:
+      image: ubuntu-2604:2026.10.1
+    parameters:
+      major:
+        type: string
+        description: Previous Cypress major version, as in factory/maintenance/<major>.env
+      resourceClass:
+        type: string
+        description: Resource class to use for this job
+      browser:
+        type: string
+        description: Browser to test with, as in the test-included-<browser> docker compose target
+    resource_class: << parameters.resourceClass >>
+    steps:
+      - checkout
+      - expand-env-file:
+          major: << parameters.major >>
+      # Only test when the env file has a Cypress version that is not yet published
+      - halt-if-docker-image-exists:
+          target: included
+      - run:
+          name: building docker image
+          command: |
+            docker compose --progress plain build included
+          working_directory: factory/maintenance
+      - run:
+          name: test
+          command: |
+            docker compose --progress plain build test-included-<< parameters.browser >>
+            docker compose run --rm test-included-<< parameters.browser >>
+          max_auto_reruns: 3
+          auto_rerun_delay: 5m
+          working_directory: factory/test-project
+
   push:
     machine:
       image: ubuntu-2604:2026.10.1
@@ -225,9 +303,14 @@ jobs:
       target:
         type: string
         description: Name of the docker compose target to build and push.
+      major:
+        type: string
+        default: ''
+        description: Previous Cypress major version to push the cypress/included image for, using factory/maintenance/<major>.env
     steps:
       - checkout
-      - expand-env-file
+      - expand-env-file:
+          major: << parameters.major >>
       - halt-if-docker-image-exists:
           target: << parameters.target >>
       - run:
@@ -243,10 +326,13 @@ jobs:
             docker run --privileged --rm tonistiigi/binfmt:latest@sha256:d3b963f787999e6c0219a48dba02978769286ff61a5f4d26245cb6a6e5567ea3 --install linux/amd64,linux/arm64
             docker buildx create --name builder --use
 
-            BAKE_FILES="-f ./docker-compose.yml"
-            if [ "${CIRCLE_BRANCH}" = master ]; then
-              BAKE_FILES="${BAKE_FILES} -f ./docker-compose.latest.yml"
+            if [ -n "<< parameters.major >>" ]; then
+              BAKE_FILES="-f ./maintenance/docker-compose.yml"
+              echo "Cypress << parameters.major >> maintenance image - latest tags will not be pushed"
+            elif [ "${CIRCLE_BRANCH}" = master ]; then
+              BAKE_FILES="-f ./docker-compose.yml -f ./docker-compose.latest.yml"
             else
+              BAKE_FILES="-f ./docker-compose.yml"
               echo "Branch ${CIRCLE_BRANCH} is not master - latest tags will not be pushed"
             fi
 
@@ -259,6 +345,10 @@ jobs:
             REPO_PREFIX=$AWS_ECR_PREFIX/ docker buildx bake ${BAKE_FILES} --progress plain --set *.platform=linux/arm64,linux/amd64 --push << parameters.target >>
 
           working_directory: factory
+
+# Previous Cypress major versions that still receive cypress/included patch releases,
+# each with an env file in factory/maintenance
+maintenance-majors: &maintenance-majors ['15']
 
 workflows:
   test:
@@ -413,3 +503,41 @@ workflows:
             - 'Push Factory Image'
             - included
             - included-arm
+      - check-maintenance-versions:
+          name: check-included-<< matrix.major >>-versions
+          matrix:
+            parameters:
+              major: *maintenance-majors
+      - test-maintenance:
+          name: test-included-<< matrix.major >>-<< matrix.browser >>
+          matrix:
+            parameters:
+              major: *maintenance-majors
+              browser: [chrome, firefox, edge]
+              resourceClass: [medium]
+      - test-maintenance:
+          name: test-included-<< matrix.major >>-<< matrix.browser >>-arm
+          matrix:
+            parameters:
+              major: *maintenance-majors
+              browser: [chrome, firefox]
+              resourceClass: [arm.medium]
+      - push:
+          name: Push Included << matrix.major >> Image
+          target: included
+          matrix:
+            parameters:
+              major: *maintenance-majors
+          context: test-runner:docker-push
+          filters:
+            branches:
+              only:
+                # Only branches matching the below regex filters will run
+                - master
+          requires:
+            - check-included-<< matrix.major >>-versions
+            - test-included-<< matrix.major >>-chrome
+            - test-included-<< matrix.major >>-firefox
+            - test-included-<< matrix.major >>-edge
+            - test-included-<< matrix.major >>-chrome-arm
+            - test-included-<< matrix.major >>-firefox-arm

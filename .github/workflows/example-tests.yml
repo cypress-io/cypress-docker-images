@@ -25,8 +25,8 @@ jobs:
           - firefox-esr
           - included-as-non-root
         os:
-          - ubuntu-24.04 # testing Linux/amd64 platform
-          - ubuntu-24.04-arm # testing Linux/arm64 platform
+          - ubuntu-26.04 # testing Linux/amd64 platform
+          - ubuntu-26.04-arm # testing Linux/arm64 platform
 
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15

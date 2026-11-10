@@ -1,3 +1,6 @@
+# syntax=docker/dockerfile:1
+# check=skip=InvalidDefaultArgInFrom
+
 # BROWSERS_IMAGE is expected to be overridden
 # Regular builds, using docker compose, take the values from
 # the <major>.env file in the same directory as this file

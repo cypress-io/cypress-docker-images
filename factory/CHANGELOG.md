@@ -1,5 +1,10 @@
 # Change log
 
+## 9.0.1
+
+- Updated `FACTORY_DEFAULT_NODE_VERSION` from `26.13.0` to `26.13.1`.
+  Addressed in [#1656](https://github.com/cypress-io/cypress-docker-images/pull/1656).
+
 ## 9.0.0
 
 - Updated `FACTORY_DEFAULT_NODE_VERSION` from `24.22.1` (`Krypton` - Maintenance LTS)

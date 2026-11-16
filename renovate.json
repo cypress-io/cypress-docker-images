@@ -1,6 +1,8 @@
 {
   "configMigration": true,
-  "dependencyDashboard": true,
+  "dependencyDashboard": {
+    "enabled": true
+  },
   "extends": ["config:recommended"],
   "ignorePaths": ["**/node_modules/**", "base-internal/**", "browsers-internal/**", ".node-version", ".nvmrc"],
   "automerge": true,

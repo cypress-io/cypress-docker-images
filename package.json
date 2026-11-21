@@ -22,7 +22,7 @@
   "homepage": "https://github.com/cypress-io/cypress-docker-images#readme",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@stylistic/eslint-plugin": "^5.10.0",
+    "@stylistic/eslint-plugin": "^6.0.0",
     "eslint": "^10.15.0",
     "eslint-plugin-cypress": "^7.0.5",
     "globals": "^17.14.0",
